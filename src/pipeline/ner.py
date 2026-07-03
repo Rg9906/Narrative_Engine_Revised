@@ -13,7 +13,7 @@ from __future__ import annotations
 import logging
 from typing import List, Optional
 
-from src.models.state import ExtractedEntity
+from src.models.state import ExtractedEntity, TextSpan
 
 logger = logging.getLogger("NarrativeEngine.Pipeline.NER")
 
@@ -72,9 +72,17 @@ class EntityExtractor:
 
         entities = []
         for ent in raw_entities:
+            span = None
+            if "start" in ent and "end" in ent:
+                span = TextSpan(
+                    text=ent["text"],
+                    start_char=ent["start"],
+                    end_char=ent["end"],
+                )
             entities.append(ExtractedEntity(
                 text=ent["text"],
                 label=ent["label"],
+                span=span,
                 confidence=ent.get("score", 1.0),
             ))
 

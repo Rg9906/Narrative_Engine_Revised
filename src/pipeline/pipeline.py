@@ -17,11 +17,14 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from src.models.state import ChapterData
+from src.models.state import ChapterData, TextSpan
 from src.pipeline.parser import DocumentParser
 from src.pipeline.cleaner import TextCleaner
 from src.pipeline.segmenter import SentenceSegmenter
 from src.pipeline.nlp import NLPProcessor
+from src.pipeline.ner import EntityExtractor
+from src.pipeline.coref import CoreferenceResolver
+from src.pipeline.dialogue import DialogueExtractor
 
 logger = logging.getLogger("NarrativeEngine.Pipeline")
 
@@ -42,7 +45,12 @@ class Pipeline:
         chapter_data = pipeline.process_chapter("chapter_01.txt", chapter_num=1)
     """
 
-    def __init__(self, config=None):
+    def __init__(
+        self,
+        config=None,
+        entity_extractor=None,
+        coreference_resolver=None,
+    ):
         self._config = config
         self._parser = DocumentParser()
         self._cleaner = TextCleaner()
@@ -51,10 +59,11 @@ class Pipeline:
             if config else "en_core_web_sm"
         )
         self._segmenter = None  # Initialized after NLP loads
+        self._dialogue_extractor = DialogueExtractor()
 
-        # Phase 4 components (lazy-loaded)
-        self._ner = None
-        self._coref = None
+        # Phase 4 components (lazy-loaded, injectable for tests)
+        self._ner = entity_extractor
+        self._coref = coreference_resolver
 
     def _get_segmenter(self) -> SentenceSegmenter:
         """Get segmenter, initializing with spaCy if available."""
@@ -89,9 +98,11 @@ class Pipeline:
         # Step 1: Get raw text
         if is_file:
             raw_text = self._parser.parse(source)
+            source_name = Path(source).name
             logger.info(f"Parsed file: {Path(source).name} ({len(raw_text)} chars)")
         else:
             raw_text = source
+            source_name = ""
             logger.info(f"Received raw text ({len(raw_text)} chars)")
 
         # Step 2: Clean text
@@ -100,13 +111,18 @@ class Pipeline:
 
         # Step 3: Segment into sentences
         segmenter = self._get_segmenter()
+        paragraphs = segmenter.split_into_paragraphs(cleaned_text)
         sentences = segmenter.split(cleaned_text)
+        sentence_spans = self._sentence_spans(cleaned_text, sentences)
         logger.info(f"Segmented into {len(sentences)} sentences")
 
         # Build initial ChapterData with what we have
         chapter_data = ChapterData(
             chapter_number=chapter_num,
+            source_name=source_name,
+            chapter_title=self._extract_chapter_title(paragraphs),
             raw_text=cleaned_text,
+            paragraphs=paragraphs,
             sentences=sentences,
         )
 
@@ -122,6 +138,8 @@ class Pipeline:
                     subject=t["subject"],
                     predicate=t["verb"],
                     object=t["object"],
+                    span=self._span_for_sentence(cleaned_text, t.get("sentence"), sentence_spans),
+                    source="spacy_svo",
                 )
                 for t in svo_triples
             ]
@@ -133,11 +151,137 @@ class Pipeline:
         except (ImportError, OSError) as e:
             logger.warning(f"spaCy processing skipped: {e}")
 
-        # Step 5: NER (Phase 4 — lazy loaded)
-        # Step 6: Coref (Phase 4 — lazy loaded)
+        # Step 5: NER (Phase 4)
+        try:
+            chapter_data.entities = self._get_entity_extractor().extract(
+                cleaned_text,
+                labels=self._entity_labels(),
+            )
+            self._normalize_entities(chapter_data)
+            logger.info(f"Extracted {len(chapter_data.entities)} entities")
+        except (ImportError, OSError) as e:
+            logger.warning(f"GLiNER entity extraction skipped: {e}")
+
+        # Step 6: Coreference resolution (Phase 4)
+        try:
+            chapter_data.coreferences = self._get_coreference_resolver().resolve(cleaned_text)
+            self._normalize_coreferences(chapter_data)
+            chapter_data.coreference_clusters = [
+                cluster.mentions for cluster in chapter_data.coreferences
+            ]
+            self._attach_coreference_ids(chapter_data)
+            logger.info(f"Resolved {len(chapter_data.coreferences)} coreference clusters")
+        except (ImportError, OSError) as e:
+            logger.warning(f"FastCoref resolution skipped: {e}")
+
+        # Step 7: Dialogue evidence (Phase 5)
+        chapter_data.dialogues = self._dialogue_extractor.extract(cleaned_text, sentence_spans)
+
+        # Step 8: Final evidence package validation (Phase 5)
+        chapter_data.validate()
 
         logger.info(f"=== Chapter {chapter_num} evidence extraction complete ===")
         return chapter_data
+
+    def _get_entity_extractor(self):
+        """Get the GLiNER-backed entity extractor."""
+        if self._ner is None:
+            model_name = (
+                self._config.get("pipeline.gliner_model", "gliner-community/gliner_small-v2.5")
+                if self._config else "gliner-community/gliner_small-v2.5"
+            )
+            threshold = (
+                self._config.get("pipeline.gliner_threshold", 0.5)
+                if self._config else 0.5
+            )
+            self._ner = EntityExtractor(model_name=model_name, threshold=threshold)
+        return self._ner
+
+    def _get_coreference_resolver(self):
+        """Get the FastCoref-backed coreference resolver."""
+        if self._coref is None:
+            self._coref = CoreferenceResolver(device="cpu")
+        return self._coref
+
+    def _entity_labels(self) -> list:
+        """Get configured narrative entity labels."""
+        default_labels = ["person", "location", "organization", "object", "event", "time"]
+        if not self._config:
+            return default_labels
+        return self._config.get("pipeline.entity_labels", default_labels)
+
+    def _attach_coreference_ids(self, chapter_data: ChapterData) -> None:
+        """Annotate extracted entities with matching coreference cluster IDs."""
+        mention_to_cluster = {}
+        for index, cluster in enumerate(chapter_data.coreferences):
+            for mention in cluster.mentions:
+                mention_to_cluster[mention.strip().lower()] = index
+
+        for entity in chapter_data.entities:
+            entity.coreference_cluster = mention_to_cluster.get(entity.text.strip().lower())
+
+    def _sentence_spans(self, text: str, sentences: list) -> list:
+        """Build approximate character spans for sentence strings."""
+        spans = []
+        cursor = 0
+        for index, sentence in enumerate(sentences):
+            start = text.find(sentence, cursor)
+            if start == -1:
+                start = text.find(sentence)
+            if start == -1:
+                continue
+            end = start + len(sentence)
+            spans.append(
+                TextSpan(
+                    text=sentence,
+                    start_char=start,
+                    end_char=end,
+                    sentence_index=index,
+                )
+            )
+            cursor = end
+        return spans
+
+    def _span_for_sentence(self, text: str, sentence: Optional[str], sentence_spans: list):
+        """Find a TextSpan for a sentence-level extraction."""
+        if not sentence:
+            return None
+        for span in sentence_spans:
+            if span.text == sentence:
+                return span
+        start = text.find(sentence)
+        if start == -1:
+            return None
+        return TextSpan(text=sentence, start_char=start, end_char=start + len(sentence))
+
+    def _extract_chapter_title(self, paragraphs: list) -> str:
+        """Use an obvious first-line heading as chapter title evidence."""
+        if not paragraphs:
+            return ""
+        first = paragraphs[0].strip()
+        if len(first) <= 120 and first.lower().startswith(("chapter", "prologue", "epilogue")):
+            return first
+        return ""
+
+    def _normalize_entities(self, chapter_data: ChapterData) -> None:
+        """Normalize entity evidence without converting it into state."""
+        for entity in chapter_data.entities:
+            entity.normalized_text = self._normalize_text_key(entity.text)
+            if entity.source == "unknown":
+                entity.source = "gliner"
+
+    def _normalize_coreferences(self, chapter_data: ChapterData) -> None:
+        """Add IDs and canonical mentions to coreference evidence."""
+        for index, cluster in enumerate(chapter_data.coreferences):
+            cluster.cluster_id = index
+            if not cluster.canonical_mention and cluster.mentions:
+                cluster.canonical_mention = cluster.mentions[0]
+            if cluster.source == "unknown":
+                cluster.source = "fastcoref"
+
+    def _normalize_text_key(self, text: str) -> str:
+        """Normalize surface text for evidence matching only."""
+        return " ".join(text.strip().lower().split())
 
     def _compute_style_metrics(self, doc, sentences: list) -> dict:
         """

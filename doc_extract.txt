@@ -1,0 +1,429 @@
+---Project Vision.docx---
+Project Vision
+We are building a Narrative Intelligence Engine – not just another chatbot or editor. This offline Python system must read and “understand” a very long novel (100k–500k+ words) the way a seasoned developmental editor does. In practice, as each new chapter is ingested, the system should update an evolving story memory so that by Chapter 100 it already “knows” everything important from Chapters 1–99 (without re-reading them). The focus is on structured narrative memory and reasoning, not just text retrieval. In other words, we emulate how a human editor remembers and reasons about characters, events, and themes, rather than relying solely on vector lookups.
+Cognitive Subsystems (Editor’s Mental Model)
+An expert editor juggles many mental models of the story. Key cognitive subsystems include:
+Character Modeling: Who are the characters, including identities, aliases, traits, motivations, fears, goals, and how they grow or change. (E.g. “Alice now fears water,” “Bob’s goal is power.”)
+Relationship Modeling: How characters relate to each other (family ties, friendships, rivalries, romances) and how those ties evolve over time.
+Dialogue & Voice: Who speaks which lines, the tone and style of each character’s speech, and consistency of voice.
+Scene and Plot Structure: Division of the book into scenes, each scene’s purpose/conflict, and the causal sequence of events.
+Timeline: Temporal ordering of events (the chronology of what happens when, including flashbacks, chapters, and scene-to-scene transitions).
+Worldbuilding & Setting: Details of the world (locations, objects, magic/technology rules, cultural lore) and maintaining consistency of the setting.
+Themes & Symbols: Recurring motifs, symbols, themes or metaphors (e.g. “light vs dark,” “freedom”) and how they are set up or paid off.
+Narrative Style & Tone: Pacing, voice, tense, descriptive density, and overall writing quality (e.g. sentence length, use of passive vs active voice).
+These subsystems collectively form the “narrative memory” of the novel. For example, an editor might remember that Alice never cries, only swims when afraid, and loved her mother as a child. The system must store similar facts, not raw text – much like a knowledge graph of the story【21†L150-L159】.
+Open-Source Tool Mapping
+For each of the above cognitive tasks, we seek the best mature open-source library or model (each choice must be justified as “USE AS-IS”, “WRAP”, “EXTEND” or “BUILD”). Key mappings include:
+Document Parsing: PyMuPDF (Apache-2.0) can extract text from PDFs; python-docx or pandoc can handle Word or Markdown files. These are industry standards for text ingestion (USE-AS-IS).
+Sentence Segmentation & Tokenization: spaCy (MIT license) provides fast, production-ready tokenization, sentence splitting, POS and dependency parsing【10†L53-L61】. Use spaCy’s English models as the base (USE-AS-IS).
+Named Entity Recognition (NER): GLiNER or spaCy’s NER can detect basic entities (persons, places, etc.). GLiNER in particular is flexible for custom labels (like “MagicItem” or “PoliticalFaction”), and is optimized for CPU. This covers standard entities well (USE-AS-IS for base extraction).
+Coreference Resolution: FastCoref (GPU-accelerated) or AllenNLP’s coref module can cluster pronouns and noun phrases into entities. We will use one of these as-is to resolve “John…the detective…he” references (USE-AS-IS).
+Quotation & Speaker Attribution: BookNLP (MIT license) includes a module for identifying quoted dialogue and attributing speakers【28†L262-L270】. We can integrate BookNLP’s speaker-attribution model to split dialogue vs narration (WRAP, possibly wrap in a Python call).
+Scene Segmentation: No single library dominates. We will implement a heuristic or lightweight ML (potentially fine-tune a transformer) for detecting scene boundaries (e.g. location/time changes). This is CUSTOM – likely rule-based (look for heading changes, new locations, or significant time shifts), or use dynamic topic modeling【12†L150-L158】. (If a pre-trained model exists from research [14], we could fine-tune it; otherwise BUILD.)
+Dialogue Detection: Heuristics or BookNLP’s quote detection can be used to identify dialogue segments. Rules for opening quotes (““”) or patterns from BookNLP (USE-AS-IS or WRAP).
+POV Detection: Identify who is the viewpoint character of each scene (by majority references or first-person pronouns). Likely custom logic (BUILD-WRAP, since not a common open tool).
+Relationship & Event Extraction: Use an Open Information Extraction library (like Stanford OpenIE or AllenNLP’s SRL/EIL). These extract subject-verb-object triples or event triggers, which we can interpret (e.g. “Alice kisses Bob” implies a “Romantic” relationship event). There’s no turnkey “novel relationship extractor,” so we will mostly wrap general relation/event extractors and then classify results (e.g. keyword matching or LLM prompting to label “family vs enemy vs friend”). (Likely WRAP+CUSTOM logic.)
+Emotion/Sentiment Analysis: Off-the-shelf models (like HuggingFace’s transformers pipelines for emotion or Vader sentiment) can tag sentence-level mood or sentiment. These provide coarse checks (e.g. “scene is sad” or “Alice is angry”) (USE-AS-IS).
+Theme/Motif Detection: No mature open tool specifically. We may use topic modeling (e.g. LDA) or transformer-based zero-shot classification on sets of chapters to detect recurring topics. This will be custom (BUILD or EXTEND), possibly guided by a small set of seed concepts.
+Style Metrics: Use open libraries like LanguageTool for grammar/punctuation, and libraries like textstat for readability metrics. Also compute statistics (avg sentence length, dialogue ratio, etc.) with custom code (WRAP, EXTEND as needed).
+Memory Storage/Graph: Use NetworkX or RDFLib (both Python libraries) to store a knowledge graph of entities/relations. Characters, Locations, Events, Themes will be nodes/edges in a graph (USE-AS-IS for graph structure). We can serialize this graph to JSON or an in-memory structure each chapter (so no heavy DB needed).
+All tools above are chosen for maturity and permissive license. For example, BookNLP is specifically built for novels【28†L262-L270】 (it handles entity coreference, event tagging and quote attribution out of the box). spaCy and GLiNER are well-supported. For tasks lacking a clear library (scene splitting, dynamic themes, narrative consistency), we will custom-build only those modules.
+Memory Architecture (Structured Story Memory)
+The core of the system is structured memory, not raw text. After each chapter, the engine updates multiple interconnected memory stores. Unlike the initial design (which stored simple entity lists), we must model stateful, evolving facts about the story. The main memory components include (with example JSON fields):
+Character Memory: One object per character (identified by name cluster). Fields include: name, aliases, traits, fears, goals, current_emotional_state, location, inventory, relationships, last_mentioned_chapter, arc_stage, secret_status, etc. For example:
+"Alice": {
+  "aliases": ["Ally", "Alicia"],
+  "current_location": "Sea Port",
+  "goal": "Find her mother",
+  "fears": ["Water"],
+  "inventory": ["OldKey"],
+  "relationships": {"Bob": "Friend", "EvilKing": "Enemy"},
+  "last_seen_chapter": 17,
+  ...
+}
+Update Algorithm: For each coreferenced mention or NER: if it matches an existing character, update that entry; if new, create a character. When a chapter says “Alice took out a sword,” add Sword to Alice’s inventory. If it says “she is terrified,” update Alice.fears. This is mainly custom code that merges NLP output into the JSON state.
+Relationship Memory: A graph (or adjacency list) of character-character relations (labels like friend/enemy/family/lovers). Each time two characters interact significantly, we update or add an edge. For example, if “Alice embraces Bob,” strengthen Alice–Bob: Lovers; if “They argued fiercely,” maybe change to Rivals. This can be stored either as part of Character objects or as separate triples.
+World Memory: Details about locations, objects, magic systems, societies, etc. Example schema:
+"locations": {"ForestCave": {"type": "Cave", "description": "damp and dark", "first_mentioned": 5}},
+"objects": {"Excalibur": {"owner": "None", "power": "LegendarySword", "first_mentioned": 12}},
+"lore": {"DragonMyth": {"summary": "...", "associated_characters": ["Dragonslayer"]}}
+New world elements discovered in text are added. World rules (e.g. “no one can cross water alive”) are noted if described.
+Timeline/Events Memory: A chronological list of major events, each tagged with chapter/scene. For example: {"chapter": 7, "scene": 2, "event": "Alice obtains sword", "characters": ["Alice"], "time": "Night"}. This timeline also notes unresolved events (cliffhangers) and completed arcs.
+Scene Memory: Each scene (within chapters) is an entry, with fields: scene_id, characters_present, setting, conflict, outcome, emotion_tone, purpose. Scenes link into the chapter and timeline. (E.g. Scene 7.3: In the Goblin Lair, Alice confronts goblins – Conflict: “Rescue her brother” – Outcome: “Escapes with goblin key”.)
+Theme/Motif Memory: Track high-level themes (e.g. “betrayal,” “redemption”). Count how often each appears or is referenced. We might list specific motifs (e.g. a “broken mirror” symbol).
+Promise/Foreshadow Tracker: Every time a promise or prophecy is made (“I will return for you”), add an entry. Each has a speaker, listener, promise_text, chapter_made, status. If the promise is later broken or fulfilled, update status. Unresolved promises by Chapter 100 can be flagged.
+Consistency/Fact Database: A special store of “established facts,” such as static traits (hair color, age, physical description). After each chapter, we cross-check any new mention against this database to detect contradictions (e.g. hair changing).
+Editorial Notes Memory: This is where the system accumulates issues it has found so far (like "Alice’s hair color changed from black to brown between Ch.5 and Ch.12"). These notes feed into the final review.
+All memory components are continuously updated. For example, after reading Chapter N:
+We parse the chapter → extract entities/events.
+Character Memory Update: We match any names/aliases to existing characters. If “Ally” appears and maps to “Alice”, we update Alice’s state. We merge coreference clusters so “he/she/they” updates the right profile.
+World Memory Update: If a new location or object is mentioned, add it. If an object changes hands, update the owner.
+Relationship Update: If a scene shows two characters interacting in a new way, adjust their relationship edge.
+Theme/Promise Update: If a new motif or foreshadow occurs, log it; if a previous motif is paid off, mark it resolved.
+Timeline/Scene Update: Record the new scene(s) as entries. Link them to previous ones.
+By structuring memory this way (essentially a story knowledge graph), the system can answer questions like “What has Alice done recently?” or “Who does Alice trust?” without scanning raw text. This approach echoes how knowledge-graph-backed storytelling has been shown to improve coherence【21†L150-L159】.
+Pipeline Redesign
+Rather than a simple linear pipeline, we implement a rich, multi-stage cognitive pipeline. Each stage can USE an existing tool (or wrap it) or require custom logic. An example pipeline is:
+Document Parsing & Cleaning: Read file (with PyMuPDF, docx) → extract plain text. Normalize whitespace and fix encoding issues. (USE-AS-IS)
+Sentence Segmentation & Tokenization: Use spaCy to split text into sentences, tokens, POS tags and basic parsing【10†L53-L61】. (USE-AS-IS)
+NER & Coreference: Run spaCy/GLiNER NER to extract named entities; run FastCoref to cluster mentions into entities. (USE-AS-IS)
+Alias Resolution: Merge coref clusters with NER: e.g. if FastCoref links “Mr. Sawyer” with spaCy’s “Tom Sawyer”, unify them. Maintain an alias map to join different names. (WRAP: some custom merging logic.)
+Dialogue & Speaker Attribution: Detect quoted speech (e.g. using regex or BookNLP). For each quote, identify the speaker (using BookNLP’s model or pronoun heuristics) (WRAP). Output: list of (speaker, utterance) pairs.
+Scene Segmentation: Determine where one scene ends and the next begins. This may use cues (e.g. location/time change). We can build a simple ML model (or use dynamic topic shifts【12†L150-L158】) to propose cuts. (BUILD or fine-tune if corpus available.)
+Entity Linking: (Optional) If we have any external knowledge base (Wikipedia, etc.), we could link famous names. For fiction, probably skip. (Likely SKIP or minimal custom entity normalization.)
+Event Extraction: For each sentence or clause, extract an event triple (subject-verb-object) using an OpenIE tool or a transformer model (like a fine-tuned T5 for event extraction【28†L262-L270】). Label the event type (e.g. “action:kiss”, “transaction”). (WRAP or EXTEND an existing event extraction system.)
+Emotion/Sentiment Analysis: Classify each sentence or scene for emotion or sentiment (e.g. using DistilRoBERTa on Ekman’s 6 emotions【8†L247-L256】). Tag “anger, fear, joy, sadness, surprise, disgust” or polarity. (USE-AS-IS with HuggingFace model.)
+Style & Pacing Analysis: Compute metrics like average sentence length, paragraph length, dialogue ratio, grammar issues (via LanguageTool), readability score. Store these in Style Memory. (USE/WRAP textstat, LanguageTool.)
+Theme/Motif Detection: Run a topic modeling pass on the chapter’s text (or the chapter plus memory) to see if known themes appear. (BUILD/WRAP a simple LDA or transformer-based classifier.)
+Memory Update (Character/World/Timeline): Using the extracted entities, events, scenes: update Character Memory, World Memory, etc. (BUILD the logic described above.)
+Consistency Checking: Compare updated memory against what was known. E.g.: “Did Alice’s hair change color?” If a fact has changed unexpectedly, record a potential inconsistency. (BUILD custom rule-checkers.)
+Editorial Reasoning: Finally, run higher-level analysis. This might involve prompting an LLM (e.g. Gemini or GPT) with a summary of the chapter plus relevant memory (characters’ states, unresolved threads). The model can then output summary notes and critique (e.g. “Alice’s motivation is unclear here,” “Dialogue feels stiff”). (WRAP a chat completion model, passing structured memory as context.)
+Review Output: Compile all findings into JSON: character profiles, timeline, scene list, editorial notes, consistency issues, and chapter summary.
+Each stage’s input/output is clearly defined. For example, after “Dialogue & Speaker Attribution” we have a list of (character, quote) pairs that feed into character memory and emotion analysis. After “Event Extraction”, we have structured event records that update timeline and relationships. Whenever possible, we note if a stage is USE (pure existing tool), WRAP (existing tool plus glue), EXTEND (modify an existing model), or BUILD (custom code).
+Throughout, the focus is on mature, single-purpose tools. For instance, BookNLP already bundles NER, coref, event tagging and quote attribution【28†L262-L270】 – we can use it as a reference or for some parts. spaCy serves most lower-level NLP needs. Only novel areas (scene splitting, narrative consistency rules) require fresh implementation.
+Scene Engine
+A strong Narrative Engine must explicitly model scenes (sub-chapter units). Scenes are “segments where time and discourse align, one location, and a stable cast of characters”【14†L26-L34】. We will build a Scene Engine that:
+Detects Scene Boundaries: Using cues (chapter headings, changes in setting phrases, time jumps). We can start with simple heuristics (e.g. a new line starting with a location name). Research suggests scene segmentation is hard, but even a baseline helps【14†L63-L72】.
+Identifies Scene Properties: For each scene, record its setting, time_of_day, characters_present (from character memory), emotional_tone (aggregate from emotion analysis), conflict (highest-stakes goal), and outcome. For example, Scene 3.2 might be “Battle at the Dock” – characters “Alice, Bob”; conflict “defend the ship”; outcome “pirates repelled”.
+Links Scenes into Chapters and Timeline: Each scene gets a unique ID like “Chap7.Scene2”. Scenes within a chapter are ordered. Scenes carry pointers to memory: the events that occur and characters who enter/exit.
+Having explicit scenes lets the system reason like an editor: “Scene 4 was too long and lost focus” or “this scene has no clear conflict”. It also enables localized memory updates (e.g. coreference is easier within one scene). We can optionally visualize the scene graph (the Reddit thread noted visualizing timelines and character networks as helpful【4†L186-L194】).
+Character Engine
+Instead of treating characters as static, each character’s state must evolve. Every time a chapter is read, we update each character’s dynamic profile. Key elements of a character’s state include:
+Current Goals and Motivations: What are they actively trying to do in this chapter? E.g. Alice’s goal might shift from “escape” to “confront Bob” as the plot evolves.
+Emotional State: Mood or feelings at chapter start/end (happy, anxious, furious, etc.). These come from emotion analysis and context.
+Knowledge/Beliefs: What the character knows. If Alice learns a secret in Ch.5, record “Alice knows King is traitor.” This can be updated by scanning factual statements that are directed to or observed by the character.
+Possessions/Status: Items carried, alive/dead status, injuries. If Alice picks up a key, add to inventory. If a character dies, mark them accordingly.
+Relationships: Current stance toward others (friend/enemy) which may be updated if they reconcile or have a falling out.
+Character Arc Stage: Track which act of the story the character is in (e.g. “Introduction,” “Crisis,” “Resolution”). We could infer this by how many significant events they’ve had.
+All these fields are part of the Character Memory JSON, but they are dynamic subfields that change. For example, if the chapter shows Alice overcoming her fear of water, we remove “Water” from fears. If Bob reveals he loved Alice, we update Alice’s relationships["Bob"] = "LoveInterest" and vice versa.
+By tracking dynamic state, the engine can flag issues like character regression (e.g. Alice suddenly forgetting her fear without reason) or consistency errors (Alice cannot simultaneously love and hate Bob without explanation). This goes far beyond a simple name list – it’s a full profile for each character.
+Editorial Engine
+This is the reasoning and critique layer – the heart of the project. It should look at the updated narrative memory and the current chapter and act like an expert editor. It will check for problems and suggest improvements, such as:
+Consistency Checks: Compare chapter facts against memory (e.g. “Alice’s eye color changed,” “Magic rule violation: objects can’t teleport in this world,” “Timeline gap: Bob was seen across town a minute ago”). Contradictions are flagged.
+Character Consistency: Ensure characters act in line with their arcs and traits. E.g. if Alice is cowardly until chapter 50, going “Rambo-mode” early triggers a warning.
+Relationship Plausibility: If two characters suddenly become lovers with no buildup, note that. If a promise was made (e.g. “We will run away together”) and not yet fulfilled or broken, remind the author.
+Plot and Pacing Issues: Identify scenes or chapters with too much or too little action, unclear conflict, or misplaced digressions. (E.g. “Ch.10 spends 5 pages describing a market that doesn’t affect the plot.”)
+Dialogue & Style Suggestions: E.g. “Alice’s dialogue sounds monotone compared to her angry inner voice” or “We’ve not seen anyone use slang until now.” Check for overused words or broken prose.
+Emotional/Theme Consistency: “The chapter starts very dark but ends cheerfully – consider smoothing the transition.” Or “This scene doesn’t reinforce any of the main themes.”
+Structural Advice: If an important subplot is introduced late or left hanging, note it. If a chapter or scene doesn’t serve the story arc, point that out.
+The Editorial Engine will likely use a mix of rule-based checks (e.g. simple flagging of contradictions) and a small LLM for more nuanced feedback. For instance, we can craft a prompt: “Given Character Memory (goals, fears, relationships) and the chapter text, list any inconsistencies or weak motivations.” Because it has the structured memory as context, the model can be more precise. We keep these suggestions in editorial.json.
+Implementation Roadmap
+We break development into phases, each delivering a working subset. Every phase is tested on example chapters and has clear acceptance criteria.
+Setup & Basic Pipeline: Goal: Ingest text and run spaCy. Install and test PyMuPDF, python-docx, spaCy (USE-AS-IS). Deliverables: Script that reads a chapter file and outputs tokenized sentences with POS tags. Test: Verify extraction on sample PDF/DOCX. (Est. 2 days)
+Entity & Coref Extraction: Goal: Extract named entities and coref clusters. Install FastCoref or AllenNLP coref. Deliverables: List of characters with their mentions in the chapter. Test: On a short story, check that pronouns link to correct names. (Est. 3 days)
+Dialogue & BookNLP Integration: Goal: Identify quoted dialogue and speakers. Integrate BookNLP or implement regex-based quote splitting and simple speaker heuristics. Deliverables: (Speaker: Utterance) pairs for chapter. Test: Given a chapter with dialogue, verify each quote is tagged with a speaker (or “Unknown”). (Est. 5 days)
+Initial Memory Structures: Goal: Define JSON schemas for Character, Relationship, World, Scene, Timeline, etc. Initialize an empty memory. Deliverables: Schema files and code to load/save them. Test: JSON validity, no missing fields. (Est. 2 days)
+Basic Memory Update: Goal: Write code to take NER/coref/dialogue output and update Character Memory (names, aliases, last seen). Also add Locations/Objects to World Memory. Deliverables: After processing a chapter, characters.json and world.json show new entries or updates. Test: Manually inspect that new characters are added and facts merged correctly. (Est. 5 days)
+Scene Segmentation & Scene Memory: Goal: Implement scene boundary detection (e.g. by blank lines or chapter subheadings) and create scene entries. Deliverables: A list of scenes per chapter with basic metadata (characters present, setting if obvious). Test: On a chapter with two settings, pipeline should split into two scenes. (Est. 4 days)
+Relationship & Timeline Update: Goal: Use events (subject-verb-object) to infer simple relations (e.g. “Alice hugs Bob” → add/strengthen Alice–Bob: “Lover”). Append major events to timeline. Deliverables: relationships.json and timeline.json updated per chapter. Test: Known interactions in text produce correct edges or timeline entries. (Est. 5 days)
+Style & Emotion Analysis: Goal: Add grammar/style metrics and emotion tags. Use LanguageTool API or library and an emotion classifier. Deliverables: style.json and emotions noted in scene/character profiles. Test: Flag a grammatical error in a test sentence; classify obvious emotions correctly. (Est. 3 days)
+Consistency Checker: Goal: Implement checks (e.g. contradiction detection) using the growing memory. Example: if Character Memory says “blue eyes” and new text says “green eyes,” flag it. Deliverables: consistency.json listing any found issues. Test: Create a test chapter with a deliberate inconsistency and ensure it’s caught. (Est. 5 days)
+Editorial Output (LLM Integration): Goal: Integrate an LLM (like GPT-4, Claude or Gemini) to generate chapter summaries and critique based on memory. Deliverables: editorial.json with summary of chapter and list of suggested improvements. Test: Prompt the LLM with a known problem case and see if it points it out. (Est. 5 days)
+Refinement & Optimization: Goal: Polish JSON schemas, add error handling, and improve any modules (like refining scene splits or alias merging). Deliverables: Clean, documented code and final memory + review outputs. Test: Run on a multi-chapter example novel; review output for completeness. (Est. 7 days)
+Each phase’s Acceptance Criteria means the pipeline runs end-to-end for that phase’s scope without errors, and manual inspection confirms correctness on a small test. All data is stored locally (JSON files); no complex databases or cloud.
+Summary
+Version 2 of the architecture centers on persistent narrative memory and editorial reasoning, not just extraction. We significantly expand the initial design by introducing explicit memory stores (character profiles, scene list, event timeline, etc.) and engines for scenes, character arcs, and editorial checks. We leverage mature OSS for as much as possible (spaCy, BookNLP, FastCoref, PyMuPDF, etc.)【28†L262-L270】【14†L26-L34】. Crucially, we link story elements into a knowledge graph: characters, events, locations and themes are interconnected, much as “story elements” are stored in a graph to enforce coherence【21†L150-L159】. Only in the truly novel parts (like the Promise Tracker or custom consistency rules) do we build new modules.
+This design reads like a specification for a solo engineer: it uses only local Python libraries, splits work into self-contained stages, and avoids distributed complexity. By the end, the engine will operate “like an editor” – summarizing chapters in context, catching continuity errors, and remembering the entire novel’s world as a living structure.
+Sources: We consulted state-of-the-art literature and tools for narrative processing. For instance, Cognee’s analysis highlights that LLMs need an external memory layer to overcome “context window exhaustion” and retain knowledge【2†L62-L69】. Similarly, research on scene segmentation shows the importance of breaking novels into coherent parts to simplify long-text analysis【14†L26-L34】【14†L67-L74】. We incorporated these insights and only resort to custom coding where no mature open-source solution exists.
+
+---Project Structure.docx---
+Project Structure
+Organize the code into a clear Python package hierarchy so that an agent (or developer) can navigate easily. For example:
+myproject/
+├── src/                            # Source code
+│   ├── __init__.py
+│   ├── pipeline/                   # NLP pipeline modules
+│   │   ├── __init__.py
+│   │   ├── parser.py               # DocumentParser class (PDF, DOCX → text)
+│   │   ├── cleaner.py              # TextCleaner class (whitespace, markup removal)
+│   │   ├── segmenter.py            # SentenceSegmenter class (tokenization)
+│   │   ├── nlp.py                  # NLPProcessor class (spaCy pipeline wrapper)
+│   │   ├── ner.py                  # EntityExtractor (GLiNER integration)
+│   │   └── coref.py                # CoreferenceResolver (FastCoref integration)
+│   ├── memory/                     # Persistent narrative memory
+│   │   ├── __init__.py
+│   │   ├── base_memory.py          # BaseMemory class (load/save JSON)
+│   │   ├── character_memory.py     # CharacterMemory class
+│   │   ├── relationship_memory.py  # RelationshipMemory class
+│   │   ├── world_memory.py         # WorldMemory class
+│   │   ├── timeline_memory.py      # TimelineMemory class
+│   │   └── misc_memory.py          # Other memory (themes, etc.)
+│   ├── engines/                    # Higher-level engines
+│   │   ├── __init__.py
+│   │   ├── scene_engine.py         # Scene segmentation & analysis
+│   │   ├── editorial_engine.py     # EditorialReviewer class (modular inspectors)
+│   │   └── narrative_graph.py      # NarrativeGraph class (knowledge graph builder)
+│   ├── utils/                      # Utility functions
+│   │   ├── __init__.py
+│   │   └── config.py              # Configuration loader (e.g., paths, parameters)
+│   └── review/                     # Review report generation
+│       ├── __init__.py
+│       ├── inspector.py            # BaseInspector class (common logic)
+│       ├── char_inspector.py       # CharacterInspector
+│       ├── scene_inspector.py      # SceneInspector
+│       └── ... (other inspectors)
+├── tests/                          # Automated tests
+│   ├── __init__.py
+│   ├── test_pipeline.py
+│   ├── test_memory.py
+│   ├── test_engines.py
+│   ├── test_end_to_end.py          # Integration/regression tests
+│   └── data/                       # Golden test novels (sample texts)
+│       └── example_novel.txt
+├── config/                         # Configuration (e.g., JSON/YAML for models, thresholds)
+│   ├── default.json
+│   └── ...
+├── requirements.txt                # pip dependencies
+├── README.md                       # Overview and setup instructions
+└── LICENSE.md                      # License (MIT/Apache)
+The src/ directory holds all source code. Subfolders group related components (pipeline, memory, engines, utils, review). Clear folder names and co-located tests help an AI agent find and reuse code patterns【45†L65-L73】【45†L81-L90】.
+Include a top-level README.md or CLAUDE.md to describe the project and coding conventions (so an agent knows what to do)【45†L81-L90】.
+Keep folder structure flat and logical. For example, put all NLP pipeline code under src/pipeline/, all memory modules under src/memory/, and so on. As one guide notes, every directory and file name is a signal to the agent; a consistent layout prevents guessing and hallucination【45†L81-L90】.
+Dependencies and Setup
+Use standard Python packaging. In requirements.txt list libraries:
+spaCy – for tokenization, POS tagging, parsing (e.g. pip install spacy and then python -m spacy download en_core_web_sm【10†L303-L307】).
+GLiNER – for general-purpose named entity recognition. Install via pip install gliner【37†L384-L392】. (GLiNER is optimized for CPU and can extract any entity type in one pass【37†L343-L352】.)
+FastCoref – for fast coreference resolution. Install via pip install fastcoref【39†L88-L96】. Its API (e.g. FCoref) yields coreference clusters easily【39†L100-L109】.
+PyMuPDF (a.k.a. Fitz) and python-docx – for parsing PDF and DOCX files into raw text. (These let the DocumentParser load chapter files.)
+NetworkX or Graph-tool – optional, for building/maintaining a narrative graph structure of events, characters, etc. (NetworkX is a popular pure-Python graph library.)
+tinyDB or jsonschema – for JSON-based storage of memory. (Or simply use built‑in JSON and file I/O.)
+pytest – for writing tests (pytest is widely used for Python testing【43†L121-L124】).
+Other helpers: PyYAML, pandas, etc., if needed (e.g. configuration, serialization).
+Example installation commands (to include in README or setup script):
+pip install spacy gliner fastcoref pymupdf python-docx networkx tinydb pytest
+python -m spacy download en_core_web_sm
+Each subsystem should list its required package in requirements.txt. Cite official sources where helpful (e.g. spaCy installation【10†L303-L307】, GLiNER docs【37†L384-L392】, FastCoref PyPI page【39†L88-L96】).
+Pipeline Implementation
+The NLP pipeline ingests raw chapter text and extracts structured information. Key components:
+DocumentParser (src/pipeline/parser.py): Class to read a chapter file (PDF or DOCX) and output a clean string. Use PyMuPDF for PDFs and python-docx for Word.
+Input: file path. Output: raw text.
+Dependencies: PyMuPDF, python-docx.
+Test: give a short PDF and DOCX and verify extracted text matches.
+TextCleaner (src/pipeline/cleaner.py): Cleans raw text (remove extra whitespace, HTML or markdown markup if any, normalize quotes).
+Input: raw text. Output: normalized text string.
+Test: run on sample strings with HTML tags or odd whitespace, check output.
+SentenceSegmenter (src/pipeline/segmenter.py): Splits cleaned text into sentences or passages. Could be as simple as using spaCy’s sentence tokenizer (nlp(text).sents) or NLTK’s sent_tokenize. NLTK is a “go-to” toolkit for basic segmentation【42†L200-L207】.
+Input: clean text. Output: list of sentences (strings or spaCy Span objects).
+Test: input a paragraph and verify correct sentence splits.
+NLPProcessor (src/pipeline/nlp.py): Wraps spaCy pipeline. It loads a spaCy model (e.g. en_core_web_sm) and has methods to run POS tagging, dependency parsing, etc.
+Functions: process_text(text) returns a spaCy Doc.
+Dependencies: spaCy (downloaded model).
+Usage: This provides tokens, lemmas, POS, dependency for downstream use.
+EntityExtractor (src/pipeline/ner.py): Uses GLiNER to extract entities. For example,
+from gliner import GLiNER
+model = GLiNER.from_pretrained("gliner-community/gliner_small-v2.5")
+entities = model.predict_entities(text, labels, threshold=0.5)
+(This matches GLiNER’s quickstart【37†L400-L409】.)
+Functions: extract_entities(text, label_list) returns list of (entity text, label, span).
+Test: Given a text like “John is in Paris”, verify that “John”→person, “Paris”→location are extracted.
+CoreferenceResolver (src/pipeline/coref.py): Wraps FastCoref. For example:
+from fastcoref import FCoref
+model = FCoref(device='cpu')
+clusters = model.predict(texts=["Sample text"])[0].get_clusters()
+(This follows the quickstart example【39†L100-L109】.)
+Functions: resolve(text) returns list of coreference clusters (character spans or strings).
+Test: On text with pronouns, check that clusters link pronouns to names.
+(Optional) RelationExtractor: Use spaCy dependency relations or an OpenIE library to extract (subject, predicate, object) triples from each sentence. If a library like Stanford OpenIE is available, wrap it. Otherwise, implement simple rules (e.g., for “X verb Y”, take X and Y).
+Functions: extract_relations(doc) returns list of (subject, relation, object).
+Test: Given “Alice loves Bob”, verify it finds (“Alice”, “loves”, “Bob”).
+Pipeline Orchestration (src/pipeline/pipeline.py): A Pipeline class that chains the above components. For each new chapter:
+Parse file into text.
+Clean text.
+Split into sentences.
+Run NLPProcessor to get spaCy Doc.
+Extract entities with EntityExtractor.
+Resolve coreferences with CoreferenceResolver.
+Optionally extract relations/events.
+Return a structured ChapterData object (could be a Python dict or dataclass) containing all extracted info.
+Inputs: file path or raw text. Outputs: structured data (entities, coref clusters, etc.).
+Files: e.g. pipeline.py defines class Pipeline. Use appropriate methods in other modules.
+Test: End-to-end on a small chapter text and verify the outputs contain expected entities and clusters.
+Each pipeline stage should have unit tests (see Testing below). For example, test that the parser reads a sample PDF, that GLiNER finds expected entities, etc. Use pytest for all tests【43†L121-L124】. For integration testing, you might mock or stub some components to focus on one piece at a time, as recommended for incremental integration【43†L201-L210】.
+Memory Modules
+Implement a Narrative State Engine: each memory stores evolving story state, not static facts. Use JSON or a lightweight DB to persist between chapters. For example, you might define JSON schemas like:
+Character Memory (src/memory/character_memory.py): Stores one entry per character. Example JSON schema:
+
+{
+  "id": "tom_sawyer",
+  "names": ["Tom", "Tom Sawyer", "Mr. Sawyer"],
+  "traits": {"brave": true, "age": 15},
+  "current_goal": "find treasure",
+  "current_fear": "getting caught",
+  "knowledge": ["sawyer_ship", "phelps_mansion"],
+  "relationships": {"huckleberry_finn": "friend", "aunt_poly": "guardian"},
+  "inventory": ["paintbrush", "cat"],
+  "secrets": ["knows_about_murder"],
+  "history": [
+     {"chapter": 5, "action": "painted fence"},
+     {"chapter": 10, "action": "rescued friend"}
+  ]
+}
+Each chapter’s processing may update these fields: e.g., add new goals or knowledge, modify relationships or fears. Implement methods like update_from_chapter(chapter_data) that incorporate new facts.
+File: character_memory.py (class CharacterMemory).
+Test: Simulate a chapter mention and check that character state is updated correctly (e.g. a new fear added).
+Relationship Memory (relationship_memory.py): Tracks pairs of characters and how their relationship evolves (friends, enemies, neutral, etc.). For example, maintain a JSON like:
+
+{"tom_sawyer--huck_finn": {"relation": "friends", "history": [{"chapter":8,"event":"adventure"}]}}
+Each chapter update can record events affecting relationships.
+File: relationship_memory.py.
+Test: If two characters interact in a chapter, ensure a new event is logged or relation changed.
+World Memory (world_memory.py): Captures static setting and dynamic world state. E.g., known locations, factions, laws, magical rules, etc. It might include known locations and their properties:
+
+{"locations": {"phelps_mansion": {"description": "old mansion", "visited_by": ["tom_sawyer"], "events": [ {"chapter":10,"event":"argument"} ] }}, ... }
+Also global state like weather, political state.
+File: world_memory.py.
+Test: If a new location appears in text, world memory should record it.
+Timeline Memory (timeline_memory.py): Maintains events in chronological order. Could simply be a list of (chapter, timestamp, event) entries:
+
+{"events": [{"chapter":3,"time":"1832","description":"Old Ben's death"}, ...]}
+This helps check chronological consistency.
+File: timeline_memory.py.
+Test: Add events from chapters and verify ordering and retrieval.
+Other Memories: Implement similarly for Scene Memory (each scene’s summary and purpose), Theme Memory, Promise Tracker, Foreshadow Tracker, etc. Each can be a class that loads/saves a JSON dict and has an update(chapter_data) method.
+Use a base class (BaseMemory) to handle loading/saving JSON to src/memory/{name}.json. For example, in base_memory.py have:
+class BaseMemory:
+    def __init__(self, filename):
+        self.filename = filename
+        self.data = self._load()
+    def _load(self):
+        if exists(self.filename): return json.load(...)
+        else: return {}
+    def save(self):
+        json.dump(self.data, open(self.filename, 'w'), indent=2)
+Subclasses then operate on self.data and call save().
+Basic-memory style: The “Basic Memory” project also used a SQLite-backed graph【48†L156-L163】, but since our architecture favors JSON, we simply ensure each memory writes to JSON. (Alternatively, one could use SQLite or TinyDB for efficiency; Basic Memory shows a local-first graph approach【48†L156-L163】.)
+After each chapter, execute update_from_chapter on every memory module. For example:
+chapter_data = pipeline.process(chapter_text)
+char_memory.update(chapter_data)
+relationship_memory.update(chapter_data)
+...
+character_memory.save()
+relationship_memory.save()
+...
+This preserves narrative state so the next chapter build on it.
+Engines and Higher-Level Components
+Scene Engine (src/engines/scene_engine.py): Identify scene boundaries and attributes. E.g., look for paragraph breaks, chapter/section markers, or large temporal gaps. For each scene, record purpose, location, characters present, conflict/resolution, etc.
+Input: raw text or list of sentences. Output: list of Scene objects (or dicts).
+Approach: A simple rule-based splitter (e.g. split by double newline or headings) or trainable text segmentation (texttiling, topic segmentation). NLTK can also help segment text into topics【42†L200-L207】.
+Test: On a sample chapter text, verify scenes are split at expected points.
+Editorial Engine (src/engines/editorial_engine.py): Coordinates multiple "Inspector" modules. It should load memory state and chapter data, then run checks like character consistency, pacing, foreshadowing, etc.
+Structure: Implement a base class BaseInspector (in utils/inspector.py) with an inspect(chapter_data, memory_state) interface. Each specific inspector (CharacterInspector, SceneInspector, etc.) inherits from this.
+Inspectors:
+CharacterInspector: Checks character consistency (age, traits, voice) and updates needed.
+RelationshipInspector: Verifies evolving relationships make sense.
+DialogueInspector: Checks speaker attribution and dialogue style.
+SceneInspector: Ensures each scene has a clear purpose and transition.
+ConflictInspector: Verifies conflicts escalate properly.
+TimelineInspector: Checks chronological consistency using TimelineMemory.
+... (etc, based on architecture).
+Each inspector produces a report entry with fields like finding, severity, suggestion. The EditorialEngine aggregates these into a review output (e.g., JSON or formatted text).
+Test: Create mock chapter_data with known issues and ensure the appropriate inspector flags it.
+NarrativeGraph (src/engines/narrative_graph.py): Optionally maintain a knowledge graph. For example, use NetworkX to store nodes (characters, events, places) and edges (relationships like "friends_with", "happens_before"). This enables advanced queries.
+Input: updated memory data. Action: add nodes/edges accordingly.
+Test: Add nodes for two characters with an edge, ensure graph queries return correct neighbors.
+Data Models and Interfaces
+Where relevant, define Python data models (could use dataclasses or simple classes) for structured data:
+ChapterData: holds all extracted info from a chapter (text, list of sentences, entities, coref clusters, events, etc.). e.g.:
+
+@dataclass
+class ChapterData:
+    chapter_num: int
+    raw_text: str
+    sentences: List[str]
+    entities: List[Entity]       # Entity may be another dataclass
+    coref_clusters: List[List[Span]]
+    events: List[Event]
+    # ... other fields ...
+Entity, Event, Scene, Finding: classes representing items with fields (text, type, spans, etc.).
+Provide JSON schemas or example JSON output for any persistent files. For instance, character_memory.json should follow the schema illustrated above.
+Milestones
+Break implementation into small, testable steps (1–2 days each). Each milestone delivers a runnable system. For example:
+Setup & Hello World
+Goal: Create project repo with the structure above. Install dependencies.
+Files: Initialize requirements.txt, README.md. Write a simple src/main.py that prints “Hello Narrative.”
+Tests: Ensure environment is set up (e.g., pytest runs an empty test).
+Time: ~1 hour.
+Document Parsing Module
+Goal: Implement DocumentParser that can read a PDF or DOCX file and return text.
+Files: src/pipeline/parser.py with class DocumentParser.parse(file_path).
+Dependencies: PyMuPDF (for PDF), python-docx (for DOCX).
+Test: Provide a short PDF and DOCX in tests/data/ and assert the output string contains expected phrases.
+Time: 1–2 days.
+Text Cleaning & Segmentation
+Goal: Implement TextCleaner and SentenceSegmenter. Clean the text (remove extra whitespace, tags) and split into sentences.
+Files: pipeline/cleaner.py and pipeline/segmenter.py.
+Dependencies: None beyond Python stdlib or re, NLTK, or spaCy (for sentence tokenization).
+Test: Feed in sample text with HTML and multiple sentences; check that clean text has no HTML and segmentation yields correct number of sentences.
+Time: 1–2 days.
+NER and Coreference Integration
+Goal: Wrap GLiNER and FastCoref in Python classes.
+Files: pipeline/ner.py (EntityExtractor using GLiNER), pipeline/coref.py (CoreferenceResolver using FastCoref).
+Test: Use pytest to check that each class’s methods return entities/clusters for known text (e.g., use the GLiNER demo in their README【37†L400-L409】).
+Time: 1–2 days.
+Pipeline Orchestrator
+Goal: Write pipeline/pipeline.py that ties parser, cleaner, segmenter, NLP, NER, coref together. Should produce a ChapterData object.
+Test: Give it a chapter text; assert that output has all expected fields (non-empty lists of entities, etc.).
+Time: 1–2 days.
+Persistent Memory Base & Character Memory
+Goal: Implement BaseMemory for loading/saving JSON. Then implement CharacterMemory with fields from the JSON schema above. Write update_from_chapter(chapter_data) to add new characters or update states.
+Files: memory/base_memory.py, memory/character_memory.py.
+Test: Simulate a chapter mention (e.g. a new character appears) and check memory JSON updates.
+Time: 1–2 days.
+Relationship & World Memory
+Goal: Similarly, implement RelationshipMemory and WorldMemory. Update relationships and world facts after each chapter.
+Files: memory/relationship_memory.py, memory/world_memory.py.
+Test: Check that a known relationship (e.g. “Alice – Bob: friends”) is added when both appear.
+Time: 1–2 days.
+Timeline and Scene Engine
+Goal: Build TimelineMemory and a basic SceneEngine. For scenes, split chapter into scenes and record key attributes (location, characters).
+Files: memory/timeline_memory.py, engines/scene_engine.py.
+Test: Ensure scenes are detected (e.g., split where double-newlines occur) and timeline is appended with events.
+Time: 1–2 days.
+Editorial Engine Framework
+Goal: Implement BaseInspector and at least two concrete inspectors (e.g., CharacterInspector and SceneInspector). Hook them into EditorialEngine to run on each chapter.
+Files: engines/editorial_engine.py, review/char_inspector.py, etc.
+Test: Create a dummy ChapterData with a known inconsistency (e.g., character age change) and check that CharacterInspector flags it.
+Time: 2–3 days.
+Integration and Full Run
+Goal: Combine all parts. Write a main script that loads the current novel memory, processes a new chapter, updates memory, and runs the editorial review.
+Files: Possibly src/main.py or run_engine.py.
+Test: Run end-to-end on the golden test novel(s) and verify no errors and expected output format.
+Time: 1–2 days.
+Each milestone produces a working subset of the system, following top-down or bottom-up integration to catch issues early【43†L201-L210】. By the end of each, write unit tests (using pytest【43†L121-L124】) for new code, and an integration test that runs through the new components.
+Testing Strategy
+Unit Tests: One per class/function. Use pytest【43†L121-L124】. For example, test that DocumentParser.parse() returns correct text, CharacterMemory.update_from_chapter() changes the memory dict correctly, etc. These should run in milliseconds and catch logic errors【43†L235-L243】.
+Integration Tests: Cover interactions across modules. For example, a test that runs the full pipeline on a sample chapter and checks the combined output against an expected result. This ensures the components work together【43†L201-L210】.
+Golden Regression Tests: Store a few representative “golden” novels or chapters in tests/data/. After each major change, re-run the engine on these texts and compare the JSON outputs (memory files) or review reports to stored “golden” outputs to detect regressions.
+Edge Cases: Include tests for chapters with edge-case content (e.g., no dialogue, all dialogue, unknown entities). Verify the system doesn’t crash and handles them gracefully.
+Failure Cases: Deliberately break inputs (e.g., invalid file format, unsupported content) to ensure the code raises appropriate errors or skips invalid parts.
+Debugging tips: print or log intermediate outputs (e.g. entities, coref clusters) during development. Use assertions liberally in tests to catch unexpected results early. Remember a strong test suite “includes both unit and integration tests”【43†L249-L252】.
+Dependencies Recap (with Versions)
+In requirements.txt, pin library versions that are stable: e.g.
+spacy==3.x
+en-core-web-sm
+gliner==x.y.z
+fastcoref==2.1.6          # (latest version at time of writing)
+pymupdf==1.xx
+python-docx
+networkx
+tinydb
+pytest
+Refer to each project’s docs for install commands and usage examples (e.g. GLiNER’s GitHub examples【37†L400-L409】, spaCy docs【10†L303-L307】). Use semantic versioning so future upgrades don’t break the code.
+Example Interfaces
+DocumentParser.parse(file_path) ➞ str
+TextCleaner.clean(text: str) ➞ str
+SentenceSegmenter.split(text: str) ➞ List[str]
+NLPProcessor.process(text: str) ➞ Doc (spaCy Doc)
+EntityExtractor.predict_entities(text: str, labels: List[str]) ➞ List[Entity]
+CoreferenceResolver.predict(text: str) ➞ List[List[str]] (clusters of mentions)
+CharacterMemory.update_from_chapter(chapter_data: ChapterData) ➞ None (updates internal dict)
+EditorialEngine.review(chapter_data, memory) ➞ ReviewReport
+Each of these should be documented in code (docstrings) and have corresponding unit tests verifying at least one typical use case.
+Citations
+Where relevant, incorporate authoritative references to justify design choices. For example:
+Provide a structured project layout helps the coding agent work correctly【45†L65-L73】【45†L81-L90】.
+spaCy installation instructions【10†L303-L307】 and GLiNER usage example【37†L400-L409】.
+FastCoref quickstart【39†L100-L109】.
+NLTK as a baseline for text segmentation【42†L200-L207】 (or consider advanced segmentation like Pawpaw【42†L243-L252】).
+Testing advice: include both unit and integration tests【43†L249-L252】, and use frameworks like pytest【43†L121-L124】.
+These citations guide implementation with best practices and tools. By following this plan, the coding agent can iteratively build and test each component, resulting in a functioning Narrative Intelligence Engine that matches the architecture’s design.

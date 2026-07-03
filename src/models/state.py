@@ -101,6 +101,23 @@ class TextSpan:
     end_char: int                    # Character offset end
     sentence_index: Optional[int] = None  # Which sentence in the chapter
 
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "text": self.text,
+            "start_char": self.start_char,
+            "end_char": self.end_char,
+            "sentence_index": self.sentence_index,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "TextSpan":
+        return cls(
+            text=data["text"],
+            start_char=data["start_char"],
+            end_char=data["end_char"],
+            sentence_index=data.get("sentence_index"),
+        )
+
 
 @dataclass
 class Evidence:
@@ -133,12 +150,7 @@ class Evidence:
         """Serialize to dictionary for JSON storage."""
         return {
             "id": self.id,
-            "text_span": {
-                "text": self.text_span.text,
-                "start_char": self.text_span.start_char,
-                "end_char": self.text_span.end_char,
-                "sentence_index": self.text_span.sentence_index,
-            } if self.text_span else None,
+            "text_span": self.text_span.to_dict() if self.text_span else None,
             "evidence_type": self.evidence_type.name,
             "source_chapter": self.source_chapter,
             "source_scene": self.source_scene,
@@ -153,13 +165,7 @@ class Evidence:
         """Deserialize from dictionary."""
         text_span = None
         if data.get("text_span"):
-            ts = data["text_span"]
-            text_span = TextSpan(
-                text=ts["text"],
-                start_char=ts["start_char"],
-                end_char=ts["end_char"],
-                sentence_index=ts.get("sentence_index"),
-            )
+            text_span = TextSpan.from_dict(data["text_span"])
         return cls(
             id=data.get("id", str(uuid.uuid4())[:8]),
             text_span=text_span,
@@ -309,6 +315,18 @@ class ExtractedEntity:
     span: Optional[TextSpan] = None  # Location in text
     confidence: float = 1.0
     coreference_cluster: Optional[int] = None  # Which coref cluster it belongs to
+    normalized_text: str = ""
+    source: str = "unknown"
+
+
+@dataclass
+class ExtractedCoreferenceCluster:
+    """A group of mentions that refer to the same narrative entity."""
+    mentions: List[str]
+    canonical_mention: str = ""
+    confidence: float = 1.0
+    cluster_id: Optional[int] = None
+    source: str = "unknown"
 
 
 @dataclass
@@ -319,6 +337,7 @@ class ExtractedRelation:
     object: str
     span: Optional[TextSpan] = None
     confidence: float = 1.0
+    source: str = "unknown"
 
 
 @dataclass
@@ -328,6 +347,7 @@ class ExtractedDialogue:
     text: str                        # The spoken text
     span: Optional[TextSpan] = None
     confidence: float = 1.0          # Confidence in speaker attribution
+    attribution_method: str = "unknown"
 
 
 @dataclass
@@ -342,16 +362,22 @@ class ChapterData:
     Think of this as "what the eyes saw" — not "what the mind understood."
     """
     chapter_number: int
+    source_name: str = ""
+    chapter_title: str = ""
     raw_text: str = ""
+    paragraphs: List[str] = field(default_factory=list)
     sentences: List[str] = field(default_factory=list)
     entities: List[ExtractedEntity] = field(default_factory=list)
     coreference_clusters: List[List[str]] = field(default_factory=list)
+    coreferences: List[ExtractedCoreferenceCluster] = field(default_factory=list)
     relations: List[ExtractedRelation] = field(default_factory=list)
     dialogues: List[ExtractedDialogue] = field(default_factory=list)
     scenes: List[Dict[str, Any]] = field(default_factory=list)
 
     # Style metrics (evidence about HOW the text is written)
     style_metrics: Dict[str, Any] = field(default_factory=dict)
+    validation_warnings: List[str] = field(default_factory=list)
+    extraction_notes: List[str] = field(default_factory=list)
 
     # Raw spaCy doc tokens if needed for deeper analysis
     # (not serialized — ephemeral)
@@ -359,23 +385,106 @@ class ChapterData:
     def to_dict(self) -> Dict[str, Any]:
         return {
             "chapter_number": self.chapter_number,
+            "source_name": self.source_name,
+            "chapter_title": self.chapter_title,
+            "raw_text": self.raw_text,
+            "paragraph_count": len(self.paragraphs),
+            "paragraphs": self.paragraphs,
             "sentence_count": len(self.sentences),
+            "sentences": self.sentences,
             "entity_count": len(self.entities),
             "entities": [
-                {"text": e.text, "label": e.label, "confidence": e.confidence}
+                {
+                    "text": e.text,
+                    "label": e.label,
+                    "normalized_text": e.normalized_text,
+                    "confidence": e.confidence,
+                    "span": e.span.to_dict() if e.span else None,
+                    "coreference_cluster": e.coreference_cluster,
+                    "source": e.source,
+                }
                 for e in self.entities
             ],
             "coreference_clusters": self.coreference_clusters,
+            "coreferences": [
+                {
+                    "mentions": c.mentions,
+                    "canonical_mention": c.canonical_mention,
+                    "confidence": c.confidence,
+                    "cluster_id": c.cluster_id,
+                    "source": c.source,
+                }
+                for c in self.coreferences
+            ],
             "relations": [
-                {"subject": r.subject, "predicate": r.predicate, "object": r.object}
+                {
+                    "subject": r.subject,
+                    "predicate": r.predicate,
+                    "object": r.object,
+                    "span": r.span.to_dict() if r.span else None,
+                    "confidence": r.confidence,
+                    "source": r.source,
+                }
                 for r in self.relations
             ],
             "dialogues": [
-                {"speaker": d.speaker, "text": d.text}
+                {
+                    "speaker": d.speaker,
+                    "text": d.text,
+                    "span": d.span.to_dict() if d.span else None,
+                    "confidence": d.confidence,
+                    "attribution_method": d.attribution_method,
+                }
                 for d in self.dialogues
             ],
             "scene_count": len(self.scenes),
+            "scenes": self.scenes,
             "style_metrics": self.style_metrics,
+            "validation_warnings": self.validation_warnings,
+            "extraction_notes": self.extraction_notes,
+            "evidence_summary": self.evidence_summary(),
+        }
+
+    def validate(self) -> List[str]:
+        """Return warnings about incomplete or inconsistent chapter evidence."""
+        warnings = []
+        if self.chapter_number < 1:
+            warnings.append("chapter_number should be >= 1")
+        if not self.raw_text.strip():
+            warnings.append("raw_text is empty")
+        if self.raw_text and not self.sentences:
+            warnings.append("raw_text is present but no sentences were extracted")
+        if self.raw_text and not self.paragraphs:
+            warnings.append("raw_text is present but no paragraphs were extracted")
+
+        for entity in self.entities:
+            if not entity.text.strip():
+                warnings.append("entity has empty text")
+            if not entity.label.strip():
+                warnings.append(f"entity '{entity.text}' has empty label")
+
+        for relation in self.relations:
+            if not relation.subject or not relation.predicate or not relation.object:
+                warnings.append("relation is missing subject, predicate, or object")
+
+        for dialogue in self.dialogues:
+            if not dialogue.text.strip():
+                warnings.append("dialogue has empty text")
+
+        self.validation_warnings = warnings
+        return warnings
+
+    def evidence_summary(self) -> Dict[str, int]:
+        """Compact count summary for downstream engines and diagnostics."""
+        return {
+            "paragraphs": len(self.paragraphs),
+            "sentences": len(self.sentences),
+            "entities": len(self.entities),
+            "coreference_clusters": len(self.coreferences),
+            "relations": len(self.relations),
+            "dialogues": len(self.dialogues),
+            "scenes": len(self.scenes),
+            "validation_warnings": len(self.validation_warnings),
         }
 
 

@@ -13,6 +13,8 @@ from __future__ import annotations
 import logging
 from typing import List
 
+from src.models.state import ExtractedCoreferenceCluster
+
 logger = logging.getLogger("NarrativeEngine.Pipeline.Coref")
 
 
@@ -48,7 +50,7 @@ class CoreferenceResolver:
                     "Install with: pip install fastcoref"
                 )
 
-    def resolve(self, text: str) -> List[List[str]]:
+    def resolve(self, text: str) -> List[ExtractedCoreferenceCluster]:
         """
         Resolve coreferences in text.
 
@@ -56,13 +58,31 @@ class CoreferenceResolver:
             text: Input text to resolve coreferences in.
 
         Returns:
-            List of coreference clusters. Each cluster is a list of
-            text spans (strings) that refer to the same entity.
+            List of coreference clusters. Each cluster contains mentions
+            that refer to the same entity.
         """
         self._ensure_loaded()
 
         preds = self._model.predict(texts=[text])
-        clusters = preds[0].get_clusters()
+        raw_clusters = preds[0].get_clusters()
+        clusters = [
+            ExtractedCoreferenceCluster(
+                mentions=list(cluster),
+                canonical_mention=self._canonical_mention(cluster),
+            )
+            for cluster in raw_clusters
+        ]
 
         logger.info(f"Resolved {len(clusters)} coreference clusters")
         return clusters
+
+    def _canonical_mention(self, cluster) -> str:
+        """Pick a stable representative mention for a coreference cluster."""
+        pronouns = {
+            "i", "me", "you", "he", "him", "she", "her", "they", "them",
+            "we", "us", "it", "its", "his", "hers", "their", "theirs",
+        }
+        for mention in cluster:
+            if mention.strip().lower() not in pronouns:
+                return mention.strip()
+        return cluster[0].strip() if cluster else ""

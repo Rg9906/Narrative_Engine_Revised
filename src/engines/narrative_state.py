@@ -21,9 +21,20 @@ Implementation: Phase 6 (core), expanded in Phases 7-11
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import List
 
-from src.models.state import ChapterData, NarrativeState, StateDelta
+from src.memory.character_memory import CharacterMemory
+from src.models.state import (
+    ChapterData,
+    Evidence,
+    EvidenceType,
+    ExtractedRelation,
+    NarrativeState,
+    NarrativeElementType,
+    StateChange,
+    StateChangeType,
+    StateDelta,
+)
 
 logger = logging.getLogger("NarrativeEngine.Engines.NarrativeState")
 
@@ -59,14 +70,74 @@ class NarrativeStateEngine:
         Returns:
             StateDelta describing all state changes.
         """
-        # TODO: Phase 6 implementation
-        # This will:
-        # 1. Interpret entity evidence → character introductions/updates
-        # 2. Interpret relation evidence → relationship evolution
-        # 3. Interpret dialogue evidence → voice/personality state
-        # 4. Interpret scene structure → plot progression
-        # 5. Detect new themes, promises, mysteries
-        # 6. Check for contradictions against current state
-        # 7. Compute confidence for each change
-        # 8. Generate predictions about future narrative expectations
-        raise NotImplementedError("Narrative State Engine — Phase 6")
+        delta = StateDelta(chapter_number=chapter_data.chapter_number)
+
+        # Phase 6: Character updates from evidence
+        character_memory = CharacterMemory(existing_entries=current_state.characters)
+        character_changes = character_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
+        delta.changes.extend(character_changes)
+
+        # Evidence storage for all extracted relations and entities
+        delta.new_evidence.extend(self._collect_evidence(chapter_data))
+
+        # Prepare a concise summary of what the chapter contributed
+        delta.summary = self._build_summary(delta)
+
+        return delta
+
+    def _collect_evidence(self, chapter_data: ChapterData) -> List[Evidence]:
+        evidence_items: List[Evidence] = []
+
+        for relation in chapter_data.relations:
+            evidence_items.append(self._evidence_from_relation(chapter_data.chapter_number, relation))
+
+        for entity in chapter_data.entities:
+            evidence_items.append(self._evidence_from_entity(chapter_data.chapter_number, entity))
+
+        for dialogue in chapter_data.dialogues:
+            evidence_items.append(self._evidence_from_dialogue(chapter_data.chapter_number, dialogue))
+
+        return evidence_items
+
+    def _evidence_from_relation(self, chapter_number: int, relation: ExtractedRelation) -> Evidence:
+        return Evidence(
+            text_span=None,
+            evidence_type=EvidenceType.ACTION if relation.predicate else EvidenceType.DIRECT_STATEMENT,
+            source_chapter=chapter_number,
+            confidence=relation.confidence,
+            related_entities=[relation.subject, relation.object],
+            interpretation_hint=f"Relation evidence: {relation.subject} {relation.predicate} {relation.object}",
+        )
+
+    def _evidence_from_entity(self, chapter_number: int, entity) -> Evidence:
+        return Evidence(
+            text_span=entity.span,
+            evidence_type=EvidenceType.DIRECT_STATEMENT,
+            source_chapter=chapter_number,
+            confidence=entity.confidence,
+            related_entities=[entity.text],
+            interpretation_hint=f"Entity evidence: {entity.text} ({entity.label})",
+        )
+
+    def _evidence_from_dialogue(self, chapter_number: int, dialogue) -> Evidence:
+        return Evidence(
+            text_span=dialogue.span,
+            evidence_type=EvidenceType.DIALOGUE,
+            source_chapter=chapter_number,
+            confidence=dialogue.confidence,
+            related_entities=[dialogue.speaker],
+            interpretation_hint=f"Dialogue evidence attributed to {dialogue.speaker}",
+        )
+
+    def _build_summary(self, delta: StateDelta) -> str:
+        introduction_count = len([c for c in delta.changes if c.change_type == StateChangeType.INTRODUCTION])
+        evolution_count = len([c for c in delta.changes if c.change_type == StateChangeType.EVOLUTION])
+        confirmation_count = len([c for c in delta.changes if c.change_type == StateChangeType.CONFIRMATION])
+        contradiction_count = len([c for c in delta.changes if c.change_type == StateChangeType.CONTRADICTION])
+
+        return (
+            f"Chapter {delta.chapter_number} produced {len(delta.changes)} state changes: "
+            f"{introduction_count} introductions, {evolution_count} evolutions, "
+            f"{confirmation_count} confirmations, {contradiction_count} contradictions. "
+            f"Collected {len(delta.new_evidence)} evidence items."
+        )

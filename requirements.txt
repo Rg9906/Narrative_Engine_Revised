@@ -1,5 +1,7 @@
 # Core NLP & text processing
 spacy>=3.7,<4.0
+gliner>=0.2
+fastcoref>=2.1
 pymupdf>=1.23
 python-docx>=1.1
 
@@ -15,8 +17,6 @@ pyyaml>=6.0
 # Utilities
 dataclasses-json>=0.6
 
-# === Phase 4+ dependencies (install when needed) ===
-# gliner>=0.2
-# fastcoref>=2.1
+# === Later phase dependencies (install when needed) ===
 # bookNLP  (install via: pip install booknlp)
 # sentence-transformers>=2.2
