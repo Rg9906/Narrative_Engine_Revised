@@ -1,0 +1,50 @@
+# Default configuration for the Narrative Intelligence Engine
+
+# Project paths
+paths:
+  data_dir: "data"
+  memory_dir: "data/memory"
+  output_dir: "data/output"
+
+# NLP Pipeline configuration
+pipeline:
+  spacy_model: "en_core_web_sm"
+  # GLiNER model (Phase 4)
+  gliner_model: "gliner-community/gliner_small-v2.5"
+  gliner_threshold: 0.5
+  # Entity labels to extract
+  entity_labels:
+    - "person"
+    - "location"
+    - "organization"
+    - "object"
+    - "event"
+    - "time"
+
+# Narrative State Engine configuration
+narrative_state:
+  # Minimum confidence to accept evidence into state
+  min_confidence: 0.3
+  # Confidence boost when evidence is corroborated
+  corroboration_boost: 0.15
+  # Confidence decay per chapter when not reinforced
+  decay_per_chapter: 0.02
+
+# Scene detection
+scene_engine:
+  # Minimum paragraph gap to consider a scene break
+  min_gap_lines: 2
+  # Whether to use semantic similarity for scene boundaries
+  use_semantic: false
+
+# Editorial Engine
+editorial:
+  # Chapters without mention before flagging a dangling element
+  dormancy_threshold: 5
+  # Minimum relationship interactions before flagging a leap
+  min_relationship_interactions: 3
+
+# Logging
+logging:
+  level: "INFO"
+  file: "data/engine.log"
