@@ -165,26 +165,37 @@ class BaseMemory:
 
         logger.info(f"Memory saved to {path} ({len(self._entries)} entities)")
 
-    def load(self, file_path: Optional[str] = None) -> None:
-        """Load the memory state from a JSON file."""
-        path = Path(file_path) if file_path else self._memory_file
-        if path is None or not path.exists():
-            logger.info("No existing memory file found, starting fresh")
+    def load(self, file_path: Optional[Any] = None) -> None:
+        """Load the memory state from a JSON file or from an in-memory dict."""
+        data = None
+
+        if isinstance(file_path, dict):
+            data = file_path
+        else:
+            path = Path(file_path) if file_path else self._memory_file
+            if path is None or not path.exists():
+                logger.info("No existing memory file found, starting fresh")
+                return
+
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+        if data is None:
+            logger.info("No memory data provided, starting fresh")
             return
 
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
         self._metadata = data.get("metadata", self._metadata)
+
+        raw_entries = data.get("entries") if isinstance(data, dict) and "entries" in data else data
         self._entries = {
             entity_id: {
-                field_key: StateEntry.from_dict(entry_data)
+                field_key: entry_data if isinstance(entry_data, StateEntry) else StateEntry.from_dict(entry_data)
                 for field_key, entry_data in fields.items()
             }
-            for entity_id, fields in data.get("entries", {}).items()
+            for entity_id, fields in raw_entries.items()
         }
 
-        logger.info(f"Memory loaded from {path} ({len(self._entries)} entities)")
+        logger.info("Memory loaded from dict input" if isinstance(file_path, dict) else f"Memory loaded from {path} ({len(self._entries)} entities)")
 
     def to_dict(self) -> Dict[str, Any]:
         """Serialize entire memory to a dictionary."""

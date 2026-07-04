@@ -9,11 +9,11 @@ Tracks character profiles with versioned history:
   - Goals, fears, motivations
   - Arc progression
 
-Implementation: Phase 6
+Implementation: Phase 6 (basic), Phase 9 (advanced)
 """
 
 import re
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Set
 
 from src.memory.base_memory import BaseMemory
 from src.models.state import (
@@ -34,6 +34,60 @@ class CharacterMemory(BaseMemory):
     PRONOUNS = {
         "i", "me", "you", "he", "him", "she", "her", "they", "them",
         "we", "us", "it", "its", "his", "hers", "their", "theirs",
+    }
+
+    # Physical trait keywords (Phase 9)
+    PHYSICAL_TRAIT_KEYWORDS = {
+        "hair_color": ["hair", "blonde", "brunette", "red", "black", "brown", "gray", "white", "blond"],
+        "eye_color": ["eyes", "blue", "green", "brown", "hazel", "gray", "dark", "light"],
+        "height": ["tall", "short", "height", "towering", "petite", "lanky"],
+        "build": ["thin", "slender", "stocky", "muscular", "athletic", "heavy", "lean"],
+        "age": ["young", "old", "age", "years old", "teenage", "middle-aged", "elderly"],
+        "distinctive": ["scar", "tattoo", "limp", "freckles", "glasses", "beard", "mustache"],
+    }
+
+    # Personality trait keywords (Phase 9)
+    PERSONALITY_KEYWORDS = {
+        "brave": ["brave", "courageous", "fearless", "bold", "daring"],
+        "shy": ["shy", "timid", "reserved", "quiet", "withdrawn"],
+        "kind": ["kind", "gentle", "compassionate", "caring", "warm"],
+        "cruel": ["cruel", "ruthless", "mean", "harsh", "cold"],
+        "intelligent": ["smart", "intelligent", "clever", "wise", "brilliant"],
+        "stubborn": ["stubborn", "obstinate", "headstrong", "willful"],
+        "ambitious": ["ambitious", "driven", "determined", "goal-oriented"],
+        "loyal": ["loyal", "faithful", "devoted", "trustworthy"],
+        "deceptive": ["deceptive", "dishonest", "cunning", "sly", "manipulative"],
+        "humorous": ["funny", "witty", "humorous", "sarcastic", "playful"],
+    }
+
+    # Emotion keywords (Phase 9)
+    EMOTION_KEYWORDS = {
+        "happy": ["happy", "joyful", "cheerful", "delighted", "pleased", "glad"],
+        "sad": ["sad", "unhappy", "sorrowful", "melancholy", "depressed", "grief"],
+        "angry": ["angry", "furious", "rage", "irritated", "annoyed", "mad"],
+        "afraid": ["afraid", "fearful", "terrified", "scared", "anxious", "worried"],
+        "surprised": ["surprised", "shocked", "astonished", "amazed", "stunned"],
+        "disgusted": ["disgusted", "revolted", "repulsed", "sickened"],
+        "hopeful": ["hopeful", "optimistic", "expectant", "confident"],
+        "guilty": ["guilty", "ashamed", "remorseful", "regretful"],
+        "proud": ["proud", "confident", "accomplished", "triumphant"],
+        "lonely": ["lonely", "isolated", "alone", "solitary"],
+    }
+
+    # Goal/action keywords (Phase 9)
+    GOAL_INDICATORS = ["want to", "need to", "must", "have to", "trying to", "attempting to", "seeking", "searching for", "looking for", "goal", "aim", "purpose"]
+
+    # Fear keywords (Phase 9)
+    FEAR_INDICATORS = ["fear", "afraid of", "terrified of", "scared of", "dread", "phobia", "worried about"]
+
+    # Arc stage keywords (Phase 9)
+    ARC_STAGES = {
+        "introduction": ["introduced", "first appeared", "met", "arrived"],
+        "inciting_incident": ["received call", "discovered", "learned", "found out"],
+        "rising_action": ["journey", "pursued", "chased", "fought", "struggled"],
+        "crisis": ["confronted", "faced", "challenged", "tested"],
+        "climax": ["final battle", "confrontation", "showdown", "ultimate test"],
+        "resolution": ["succeeded", "failed", "resolved", "concluded", "returned"],
     }
 
     def __init__(self, memory_file=None, existing_entries: Optional[Dict[str, Dict[str, object]]] = None):
@@ -183,6 +237,458 @@ class CharacterMemory(BaseMemory):
                     new_value=new_count,
                     confidence=0.9,
                     reasoning="Existing character mention confirmed and tracked.",
+                )
+            )
+
+        return changes
+
+    def extract_advanced_attributes(
+        self,
+        chapter_data: ChapterData,
+        chapter_num: int,
+    ) -> List[StateChange]:
+        """
+        Extract advanced character attributes from chapter text (Phase 9).
+
+        This analyzes the raw text and dialogue to extract:
+        - Physical traits (appearance, age, distinctive features)
+        - Personality traits
+        - Emotional state
+        - Goals and motivations
+        - Fears
+        - Arc progression indicators
+
+        Returns:
+            List of StateChange objects for advanced attributes.
+        """
+        changes: List[StateChange] = []
+        coref_map = self._build_coref_map(chapter_data)
+
+        # Process each character mention in the chapter
+        for char_id in self._entries.keys():
+            char_state = self.get_entity_state(char_id)
+            if not char_state:
+                continue
+
+            canonical_name = char_state.get("canonical_name")
+            if not canonical_name or not canonical_name.current:
+                continue
+
+            name_variants = self._get_name_variants(canonical_name.current.value, char_state)
+
+            # Extract physical traits from text
+            physical_changes = self._extract_physical_traits(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(physical_changes)
+
+            # Extract personality traits
+            personality_changes = self._extract_personality_traits(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(personality_changes)
+
+            # Extract emotional state
+            emotion_changes = self._extract_emotional_state(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(emotion_changes)
+
+            # Extract goals
+            goal_changes = self._extract_goals(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(goal_changes)
+
+            # Extract fears
+            fear_changes = self._extract_fears(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(fear_changes)
+
+            # Update arc stage
+            arc_changes = self._update_arc_stage(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(arc_changes)
+
+        return changes
+
+    def _get_name_variants(self, canonical_name: str, char_state: Dict) -> Set[str]:
+        """Get all known name variants for a character."""
+        variants = {canonical_name.lower()}
+        alias_entry = char_state.get("aliases")
+        if alias_entry and alias_entry.current:
+            for alias in alias_entry.current.value:
+                variants.add(alias.lower())
+        return variants
+
+    def _extract_physical_traits(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        """Extract physical traits from text mentioning the character."""
+        changes: List[StateChange] = []
+        text = chapter_data.raw_text.lower()
+
+        for trait_type, keywords in self.PHYSICAL_TRAIT_KEYWORDS.items():
+            for keyword in keywords:
+                # Look for sentences containing character name and trait keyword
+                sentences = chapter_data.sentences
+                for sentence in sentences:
+                    sentence_lower = sentence.lower()
+                    if any(variant in sentence_lower for variant in name_variants):
+                        if keyword in sentence_lower:
+                            # Extract the specific trait value
+                            trait_value = self._extract_trait_value(sentence, keyword, trait_type)
+                            if trait_value:
+                                existing = self.get_entry(char_id, f"physical_{trait_type}")
+                                old_value = existing.current.value if existing and existing.current else None
+
+                                if old_value != trait_value:
+                                    self.update_entry(
+                                        char_id,
+                                        f"physical_{trait_type}",
+                                        trait_value,
+                                        chapter=chapter_num,
+                                        evidence_ids=[],
+                                        confidence=0.7,
+                                        reasoning=f"Extracted from sentence: '{sentence[:100]}...'",
+                                        importance=0.6,
+                                    )
+                                    changes.append(
+                                        StateChange(
+                                            change_type=StateChangeType.EVOLUTION if old_value else StateChangeType.INTRODUCTION,
+                                            target_type=NarrativeElementType.CHARACTER,
+                                            target_id=char_id,
+                                            field_key=f"physical_{trait_type}",
+                                            old_value=old_value,
+                                            new_value=trait_value,
+                                            confidence=0.7,
+                                            reasoning=f"Physical trait extracted from text.",
+                                        )
+                                    )
+        return changes
+
+    def _extract_trait_value(self, sentence: str, keyword: str, trait_type: str) -> Optional[str]:
+        """Extract the specific value of a trait from a sentence."""
+        words = sentence.lower().split()
+        if keyword not in words:
+            return None
+
+        # Simple extraction: return the word before or after the keyword
+        keyword_idx = words.index(keyword)
+        if keyword_idx > 0:
+            return words[keyword_idx - 1]
+        elif keyword_idx < len(words) - 1:
+            return words[keyword_idx + 1]
+        return keyword
+
+    def _extract_personality_traits(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        """Extract personality traits from text and dialogue."""
+        changes: List[StateChange] = []
+
+        for trait, keywords in self.PERSONALITY_KEYWORDS.items():
+            # Check in dialogue
+            for dialogue in chapter_data.dialogues:
+                if dialogue.speaker and dialogue.speaker.lower() in name_variants:
+                    dialogue_lower = dialogue.text.lower()
+                    for keyword in keywords:
+                        if keyword in dialogue_lower:
+                            existing_traits = self.get_entry(char_id, "personality_traits")
+                            current_traits = existing_traits.current.value if existing_traits and existing_traits.current else []
+
+                            if trait not in current_traits:
+                                new_traits = current_traits + [trait]
+                                self.update_entry(
+                                    char_id,
+                                    "personality_traits",
+                                    new_traits,
+                                    chapter=chapter_num,
+                                    evidence_ids=[],
+                                    confidence=0.65,
+                                    reasoning=f"Personality trait '{trait}' inferred from dialogue.",
+                                    importance=0.7,
+                                )
+                                changes.append(
+                                    StateChange(
+                                        change_type=StateChangeType.EVOLUTION,
+                                        target_type=NarrativeElementType.CHARACTER,
+                                        target_id=char_id,
+                                        field_key="personality_traits",
+                                        old_value=current_traits,
+                                        new_value=new_traits,
+                                        confidence=0.65,
+                                        reasoning=f"Personality trait extracted from dialogue.",
+                                    )
+                                )
+
+            # Check in narration
+            for sentence in chapter_data.sentences:
+                sentence_lower = sentence.lower()
+                if any(variant in sentence_lower for variant in name_variants):
+                    for keyword in keywords:
+                        if keyword in sentence_lower:
+                            existing_traits = self.get_entry(char_id, "personality_traits")
+                            current_traits = existing_traits.current.value if existing_traits and existing_traits.current else []
+
+                            if trait not in current_traits:
+                                new_traits = current_traits + [trait]
+                                self.update_entry(
+                                    char_id,
+                                    "personality_traits",
+                                    new_traits,
+                                    chapter=chapter_num,
+                                    evidence_ids=[],
+                                    confidence=0.6,
+                                    reasoning=f"Personality trait '{trait}' inferred from narration.",
+                                    importance=0.7,
+                                )
+                                changes.append(
+                                    StateChange(
+                                        change_type=StateChangeType.EVOLUTION,
+                                        target_type=NarrativeElementType.CHARACTER,
+                                        target_id=char_id,
+                                        field_key="personality_traits",
+                                        old_value=current_traits,
+                                        new_value=new_traits,
+                                        confidence=0.6,
+                                        reasoning=f"Personality trait extracted from narration.",
+                                    )
+                                )
+
+        return changes
+
+    def _extract_emotional_state(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        """Extract current emotional state from text and dialogue."""
+        changes: List[StateChange] = []
+        detected_emotions = []
+
+        for emotion, keywords in self.EMOTION_KEYWORDS.items():
+            # Check dialogue
+            for dialogue in chapter_data.dialogues:
+                if dialogue.speaker and dialogue.speaker.lower() in name_variants:
+                    dialogue_lower = dialogue.text.lower()
+                    for keyword in keywords:
+                        if keyword in dialogue_lower:
+                            detected_emotions.append(emotion)
+                            break
+
+            # Check narration
+            for sentence in chapter_data.sentences:
+                sentence_lower = sentence.lower()
+                if any(variant in sentence_lower for variant in name_variants):
+                    for keyword in keywords:
+                        if keyword in sentence_lower:
+                            detected_emotions.append(emotion)
+                            break
+
+        if detected_emotions:
+            # Use the most frequently detected emotion
+            from collections import Counter
+            emotion_counts = Counter(detected_emotions)
+            primary_emotion = emotion_counts.most_common(1)[0][0]
+
+            existing_emotion = self.get_entry(char_id, "emotional_state")
+            old_emotion = existing_emotion.current.value if existing_emotion and existing_emotion.current else None
+
+            if old_emotion != primary_emotion:
+                self.update_entry(
+                    char_id,
+                    "emotional_state",
+                    primary_emotion,
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=0.7,
+                    reasoning=f"Emotional state inferred from text and dialogue.",
+                    importance=0.8,
+                )
+                changes.append(
+                    StateChange(
+                        change_type=StateChangeType.EVOLUTION,
+                        target_type=NarrativeElementType.CHARACTER,
+                        target_id=char_id,
+                        field_key="emotional_state",
+                        old_value=old_emotion,
+                        new_value=primary_emotion,
+                        confidence=0.7,
+                        reasoning=f"Emotional state changed based on chapter evidence.",
+                    )
+                )
+
+        return changes
+
+    def _extract_goals(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        """Extract character goals from dialogue and narration."""
+        changes: List[StateChange] = []
+
+        for sentence in chapter_data.sentences:
+            sentence_lower = sentence.lower()
+            if any(variant in sentence_lower for variant in name_variants):
+                for indicator in self.GOAL_INDICATORS:
+                    if indicator in sentence_lower:
+                        # Extract the goal (simplified: take words after indicator)
+                        goal_text = sentence.strip()
+                        existing_goals = self.get_entry(char_id, "goals")
+                        current_goals = existing_goals.current.value if existing_goals and existing_goals.current else []
+
+                        if goal_text not in current_goals:
+                            new_goals = current_goals + [goal_text]
+                            self.update_entry(
+                                char_id,
+                                "goals",
+                                new_goals,
+                                chapter=chapter_num,
+                                evidence_ids=[],
+                                confidence=0.6,
+                                reasoning=f"Goal extracted from text containing '{indicator}'.",
+                                importance=0.9,
+                            )
+                            changes.append(
+                                StateChange(
+                                    change_type=StateChangeType.EVOLUTION,
+                                    target_type=NarrativeElementType.CHARACTER,
+                                    target_id=char_id,
+                                    field_key="goals",
+                                    old_value=current_goals,
+                                    new_value=new_goals,
+                                    confidence=0.6,
+                                    reasoning=f"New goal identified from chapter text.",
+                                )
+                            )
+                        break
+
+        return changes
+
+    def _extract_fears(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        """Extract character fears from dialogue and narration."""
+        changes: List[StateChange] = []
+
+        for sentence in chapter_data.sentences:
+            sentence_lower = sentence.lower()
+            if any(variant in sentence_lower for variant in name_variants):
+                for indicator in self.FEAR_INDICATORS:
+                    if indicator in sentence_lower:
+                        # Extract the fear (simplified: take the sentence)
+                        fear_text = sentence.strip()
+                        existing_fears = self.get_entry(char_id, "fears")
+                        current_fears = existing_fears.current.value if existing_fears and existing_fears.current else []
+
+                        if fear_text not in current_fears:
+                            new_fears = current_fears + [fear_text]
+                            self.update_entry(
+                                char_id,
+                                "fears",
+                                new_fears,
+                                chapter=chapter_num,
+                                evidence_ids=[],
+                                confidence=0.65,
+                                reasoning=f"Fear extracted from text containing '{indicator}'.",
+                                importance=0.85,
+                            )
+                            changes.append(
+                                StateChange(
+                                    change_type=StateChangeType.EVOLUTION,
+                                    target_type=NarrativeElementType.CHARACTER,
+                                    target_id=char_id,
+                                    field_key="fears",
+                                    old_value=current_fears,
+                                    new_value=new_fears,
+                                    confidence=0.65,
+                                    reasoning=f"New fear identified from chapter text.",
+                                )
+                            )
+                        break
+
+        return changes
+
+    def _update_arc_stage(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        """Update character arc stage based on chapter events."""
+        changes: List[StateChange] = []
+
+        # Get current arc stage
+        existing_arc = self.get_entry(char_id, "arc_stage")
+        current_stage = existing_arc.current.value if existing_arc and existing_arc.current else "introduction"
+
+        # Simple heuristic: arc progression based on chapter number and mention count
+        mention_entry = self.get_entry(char_id, "mention_count")
+        mention_count = mention_entry.current.value if mention_entry and mention_entry.current else 0
+
+        # Determine new arc stage based on heuristics
+        new_stage = current_stage
+        if chapter_num <= 2:
+            new_stage = "introduction"
+        elif chapter_num <= 5 and mention_count >= 3:
+            new_stage = "inciting_incident"
+        elif chapter_num <= 10 and mention_count >= 5:
+            new_stage = "rising_action"
+        elif chapter_num <= 15 and mention_count >= 8:
+            new_stage = "crisis"
+        elif chapter_num <= 18 and mention_count >= 10:
+            new_stage = "climax"
+        elif chapter_num > 18:
+            new_stage = "resolution"
+
+        if new_stage != current_stage:
+            self.update_entry(
+                char_id,
+                "arc_stage",
+                new_stage,
+                chapter=chapter_num,
+                evidence_ids=[],
+                confidence=0.5,
+                reasoning=f"Arc stage updated based on chapter progression (ch{chapter_num}, mentions:{mention_count}).",
+                importance=0.8,
+            )
+            changes.append(
+                StateChange(
+                    change_type=StateChangeType.EVOLUTION,
+                    target_type=NarrativeElementType.CHARACTER,
+                    target_id=char_id,
+                    field_key="arc_stage",
+                    old_value=current_stage,
+                    new_value=new_stage,
+                    confidence=0.5,
+                    reasoning=f"Character arc progressed to new stage.",
                 )
             )
 

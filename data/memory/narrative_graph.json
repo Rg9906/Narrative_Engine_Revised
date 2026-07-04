@@ -1,0 +1,229 @@
+{
+  "nodes": [
+    {
+      "id": "sun",
+      "label": "sun",
+      "type": "character"
+    },
+    {
+      "id": "shadows",
+      "label": "shadows",
+      "type": "character"
+    },
+    {
+      "id": "journal",
+      "label": "journal",
+      "type": "character"
+    },
+    {
+      "id": "gate",
+      "label": "gate",
+      "type": "character"
+    },
+    {
+      "id": "myth",
+      "label": "myth",
+      "type": "character"
+    },
+    {
+      "id": "father",
+      "label": "father",
+      "type": "character"
+    },
+    {
+      "id": "myths",
+      "label": "myths",
+      "type": "character"
+    },
+    {
+      "id": "life",
+      "label": "life",
+      "type": "character"
+    },
+    {
+      "id": "dreams",
+      "label": "dreams",
+      "type": "character"
+    },
+    {
+      "id": "name",
+      "label": "name",
+      "type": "character"
+    },
+    {
+      "id": "warmth",
+      "label": "warmth",
+      "type": "character"
+    },
+    {
+      "id": "crossroads",
+      "label": "crossroads",
+      "type": "character"
+    },
+    {
+      "id": "that",
+      "label": "that",
+      "type": "character"
+    },
+    {
+      "id": "names",
+      "label": "names",
+      "type": "character"
+    },
+    {
+      "id": "woman",
+      "label": "woman",
+      "type": "character"
+    },
+    {
+      "id": "peeling",
+      "label": "peeling",
+      "type": "character"
+    },
+    {
+      "id": "who",
+      "label": "who",
+      "type": "character"
+    },
+    {
+      "id": "alice",
+      "label": "alice",
+      "type": "character"
+    },
+    {
+      "id": "camp",
+      "label": "camp",
+      "type": "character"
+    },
+    {
+      "id": "door",
+      "label": "door",
+      "type": "character"
+    },
+    {
+      "id": "question",
+      "label": "question",
+      "type": "character"
+    },
+    {
+      "id": "cloak",
+      "label": "cloak",
+      "type": "character"
+    },
+    {
+      "id": "thomas",
+      "label": "thomas",
+      "type": "character"
+    }
+  ],
+  "edges": [
+    {
+      "id": "sun::shadows",
+      "source": "sun",
+      "target": "shadows",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "she::journal",
+      "source": "she",
+      "target": "journal",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "gate::myth",
+      "source": "gate",
+      "target": "myth",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "father::myths",
+      "source": "father",
+      "target": "myths",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "father::life",
+      "source": "father",
+      "target": "life",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "it::him",
+      "source": "it",
+      "target": "him",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "dreams::name",
+      "source": "dreams",
+      "target": "name",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "she::warmth",
+      "source": "she",
+      "target": "warmth",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "she::crossroads",
+      "source": "she",
+      "target": "crossroads",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "that::names",
+      "source": "that",
+      "target": "names",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "woman::peeling",
+      "source": "woman",
+      "target": "peeling",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "who::it",
+      "source": "who",
+      "target": "it",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "alice::her",
+      "source": "alice",
+      "target": "her",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "she::camp",
+      "source": "she",
+      "target": "camp",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "gate::door",
+      "source": "gate",
+      "target": "door",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "it::question",
+      "source": "it",
+      "target": "question",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "alice::journal",
+      "source": "alice",
+      "target": "journal",
+      "label": "UNKNOWN"
+    },
+    {
+      "id": "she::cloak",
+      "source": "she",
+      "target": "cloak",
+      "label": "UNKNOWN"
+    }
+  ]
+}

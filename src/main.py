@@ -21,8 +21,17 @@ import logging
 import sys
 from pathlib import Path
 
+# Ensure the repository root is on path when executing src/main.py directly.
+REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from src.models.state import NarrativeState
 from src.utils.config import get_config
+from src.pipeline.pipeline import Pipeline
+from src.engines.narrative_state import NarrativeStateEngine
+from src.engines.editorial_engine import EditorialEngine
+from src.engines.narrative_graph import NarrativeGraph
 
 
 # Set up logging
@@ -83,28 +92,31 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
     logger.info(f"Current narrative state: {state.total_chapters_processed} chapters processed")
 
     # === Phase 2+: Pipeline evidence extraction ===
-    # TODO: Implement pipeline integration
-    # from src.pipeline.pipeline import Pipeline
-    # pipeline = Pipeline(config)
-    # chapter_data = pipeline.process_chapter(chapter_path)
+    pipeline = Pipeline(config)
+    chapter_num = state.last_processed_chapter + 1
+    chapter_data = pipeline.process_chapter(str(chapter_file), chapter_num=chapter_num, is_file=True)
 
     # === Phase 6+: Narrative State Engine ===
-    # TODO: Implement state engine integration
-    # from src.engines.narrative_state import NarrativeStateEngine
-    # engine = NarrativeStateEngine(config)
-    # delta = engine.process_chapter(chapter_data, state)
-    # state.apply_delta(delta)
+    engine = NarrativeStateEngine(config)
+    delta = engine.process_chapter(chapter_data, state)
+    state.apply_delta(delta)
 
     # === Phase 10+: Editorial Engine ===
-    # TODO: Implement editorial engine integration
-    # from src.engines.editorial_engine import EditorialEngine
-    # editorial = EditorialEngine(config)
-    # review = editorial.review(state, delta)
+    editorial = EditorialEngine(config)
+    review = editorial.review(state, delta)
 
-    # Save updated state
+    # Persist updated state and report artifacts
     save_narrative_state(state, config.memory_dir)
 
+    # Export narrative graph from updated state
+    graph_builder = NarrativeGraph(config)
+    graph_path = graph_builder.save(state, config.memory_dir)
+
     logger.info("Chapter processing complete.")
+    logger.info(f"Applied delta: {delta.summary}")
+    logger.info(f"Editorial report generated for chapter {chapter_num}")
+    logger.info(f"Findings: {len(review.get('findings', []))}")
+    logger.info(f"Narrative graph saved to {graph_path}")
 
 
 def main():

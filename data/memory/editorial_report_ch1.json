@@ -1,0 +1,533 @@
+{
+  "metadata": {
+    "chapter": 1,
+    "generated_at": "2026-07-03T20:06:41.852387",
+    "inspector_count": 2
+  },
+  "findings": [
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'sun' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "sun"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'sun' has a canonical name 'sun' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "sun"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'shadows' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "shadows"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'shadows' has a canonical name 'shadows' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "shadows"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'journal' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "journal"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'journal' has a canonical name 'journal' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "journal"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'gate' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "gate"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'myth' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "myth"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'myth' has a canonical name 'myth' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "myth"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'father' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "father"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'myths' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "myths"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'myths' has a canonical name 'myths' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "myths"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'life' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "life"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'life' has a canonical name 'life' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "life"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'dreams' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "dreams"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'dreams' has a canonical name 'dreams' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "dreams"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'name' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "name"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'name' has a canonical name 'name' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "name"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'warmth' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "warmth"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'warmth' has a canonical name 'warmth' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "warmth"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'crossroads' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "crossroads"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'crossroads' has a canonical name 'crossroads' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "crossroads"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'that' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "that"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'that' has a canonical name 'that' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "that"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'names' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "names"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'names' has a canonical name 'names' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "names"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'woman' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "woman"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'woman' has a canonical name 'woman' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "woman"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'peeling' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "peeling"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'peeling' has a canonical name 'peeling' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "peeling"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'who' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "who"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'who' has a canonical name 'who' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "who"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'alice' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "alice"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'camp' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "camp"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'camp' has a canonical name 'camp' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "camp"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'door' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "door"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'door' has a canonical name 'door' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "door"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'question' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "question"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'question' has a canonical name 'question' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "question"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'cloak' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "cloak"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'cloak' has a canonical name 'cloak' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "cloak"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'thomas' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "thomas"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "warning",
+      "category": "scene",
+      "title": "Dense timeline events",
+      "description": "This chapter has 20 timeline events; consider breaking into clearer scenes for pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "scene",
+      "title": "No scene boundaries detected",
+      "description": "Timeline events were extracted but no scene boundaries were introduced. Consider explicit scene markers or stronger transitions.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.5
+    }
+  ]
+}

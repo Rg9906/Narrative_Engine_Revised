@@ -660,9 +660,6 @@ class NarrativeState:
                 for k, v in d.items()
             }
 
-        def _serialize_flat_state_dict(d: Dict[str, StateEntry]) -> Dict:
-            return {k: v.to_dict() for k, v in d.items()}
-
         return {
             "metadata": {
                 "last_processed_chapter": self.last_processed_chapter,
@@ -674,12 +671,12 @@ class NarrativeState:
             "relationships": _serialize_state_dict(self.relationships),
             "world": _serialize_state_dict(self.world),
             "timeline": self.timeline,
-            "themes": _serialize_flat_state_dict(self.themes),
-            "promises": _serialize_flat_state_dict(self.promises),
-            "mysteries": _serialize_flat_state_dict(self.mysteries),
-            "conflicts": _serialize_flat_state_dict(self.conflicts),
-            "arcs": _serialize_flat_state_dict(self.arcs),
-            "style": _serialize_flat_state_dict(self.style),
+            "themes": _serialize_state_dict(self.themes),
+            "promises": _serialize_state_dict(self.promises),
+            "mysteries": _serialize_state_dict(self.mysteries),
+            "conflicts": _serialize_state_dict(self.conflicts),
+            "arcs": _serialize_state_dict(self.arcs),
+            "style": _serialize_state_dict(self.style),
             "evidence_store": {k: v.to_dict() for k, v in self.evidence_store.items()},
             "delta_history": [d.to_dict() for d in self.delta_history],
         }
@@ -710,12 +707,12 @@ class NarrativeState:
         state.relationships = _deserialize_state_dict(data.get("relationships", {}))
         state.world = _deserialize_state_dict(data.get("world", {}))
         state.timeline = data.get("timeline", [])
-        state.themes = _deserialize_flat_state_dict(data.get("themes", {}))
-        state.promises = _deserialize_flat_state_dict(data.get("promises", {}))
-        state.mysteries = _deserialize_flat_state_dict(data.get("mysteries", {}))
-        state.conflicts = _deserialize_flat_state_dict(data.get("conflicts", {}))
-        state.arcs = _deserialize_flat_state_dict(data.get("arcs", {}))
-        state.style = _deserialize_flat_state_dict(data.get("style", {}))
+        state.themes = _deserialize_state_dict(data.get("themes", {}))
+        state.promises = _deserialize_state_dict(data.get("promises", {}))
+        state.mysteries = _deserialize_state_dict(data.get("mysteries", {}))
+        state.conflicts = _deserialize_state_dict(data.get("conflicts", {}))
+        state.arcs = _deserialize_state_dict(data.get("arcs", {}))
+        state.style = _deserialize_state_dict(data.get("style", {}))
 
         # Deserialize evidence store
         for eid, edata in data.get("evidence_store", {}).items():
