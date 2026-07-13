@@ -187,3 +187,62 @@ class TestStyleMemory:
         assert len(word_count_entry.history) == 1
         assert word_count_entry.history[0].value == 1000
 
+
+def test_stable_hash():
+    from src.utils import stable_hash
+    # Test determinism
+    h1 = stable_hash("test string")
+    h2 = stable_hash("test string")
+    assert h1 == h2
+    assert len(h1) == 16
+    # Test stability of outputs (MD5 prefix of 'test string')
+    assert h1 == "6f8db599de986fab"
+    # Test empty string behavior
+    assert stable_hash("") == ""
+    assert stable_hash(None) == ""
+
+
+def test_promise_and_mystery_id_determinism(empty_chapter_data):
+    # Tests that IDs generated are completely deterministic across restarts
+    ch_data = ChapterData(
+        chapter_number=1,
+        source_name="test.txt",
+        chapter_title="Chapter 1",
+        raw_text="Why did he leave? I promise to return.",
+        paragraphs=["Why did he leave? I promise to return."],
+        sentences=["Why did he leave?", "I promise to return."],
+    )
+    
+    # Process with mystery memory
+    memory_myst = MysteryMemory()
+    memory_myst.update_from_chapter(ch_data, 1)
+    unresolved_myst = memory_myst.get_unresolved_mysteries()
+    assert len(unresolved_myst) == 1
+    myst_id = unresolved_myst[0]["id"]
+    
+    # Process again with a new memory instance (simulating reload/new run)
+    memory_myst2 = MysteryMemory()
+    memory_myst2.update_from_chapter(ch_data, 1)
+    unresolved_myst2 = memory_myst2.get_unresolved_mysteries()
+    assert len(unresolved_myst2) == 1
+    myst_id2 = unresolved_myst2[0]["id"]
+    
+    assert myst_id == myst_id2
+    
+    # Process with promise memory
+    memory_prom = PromiseMemory()
+    memory_prom.update_from_chapter(ch_data, 1)
+    unresolved_prom = memory_prom.get_unresolved_promises()
+    assert len(unresolved_prom) == 1
+    prom_id = unresolved_prom[0]["id"]
+    
+    # Process again with a new promise memory instance
+    memory_prom2 = PromiseMemory()
+    memory_prom2.update_from_chapter(ch_data, 1)
+    unresolved_prom2 = memory_prom2.get_unresolved_promises()
+    assert len(unresolved_prom2) == 1
+    prom_id2 = unresolved_prom2[0]["id"]
+    
+    assert prom_id == prom_id2
+
+

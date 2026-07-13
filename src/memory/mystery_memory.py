@@ -20,6 +20,7 @@ from src.models.state import (
     StateChangeType,
     NarrativeElementType,
 )
+from src.utils import stable_hash
 
 
 class MysteryMemory(BaseMemory):
@@ -94,7 +95,7 @@ class MysteryMemory(BaseMemory):
                     mystery_text = sentence.strip()
 
                     # Generate a unique mystery ID
-                    mystery_id = f"mystery_{hash(mystery_text)}"
+                    mystery_id = f"mystery_{stable_hash(mystery_text)}"
 
                     # Check if this mystery already exists
                     existing_mystery = self.get_entry(mystery_id, "mystery_text")
@@ -188,7 +189,7 @@ class MysteryMemory(BaseMemory):
 
                     # Try to associate with existing mysteries
                     # For simplicity, we'll create a general clue entry
-                    clue_id = f"clue_{hash(clue_text)}_{chapter_num}"
+                    clue_id = f"clue_{stable_hash(clue_text)}_{chapter_num}"
 
                     existing_clue = self.get_entry(clue_id, "clue_text")
 

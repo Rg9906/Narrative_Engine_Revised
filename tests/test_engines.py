@@ -257,6 +257,44 @@ The next day, Arthur woke up early in his quarters. This paragraph starts with a
         assert findings[0]["chapter"] == 5
         assert findings[0]["title"] == "Unresolved Mystery"
 
+    def test_editorial_engine_llm_context_goals(self, monkeypatch):
+        # Setup a state with a character having a goal
+        state = NarrativeState()
+        state.last_processed_chapter = 1
+        state.total_chapters_processed = 1
+        
+        from src.models.state import StateEntry, StateSnapshot, StateDelta
+        name_entry = StateEntry(key="canonical_name")
+        name_entry.update(StateSnapshot(value="Arthur", chapter=1))
+        
+        goals_entry = StateEntry(key="goals")
+        goals_entry.update(StateSnapshot(value=["find the grail"], chapter=1))
+        
+        state.characters["arthur"] = {
+            "canonical_name": name_entry,
+            "goals": goals_entry
+        }
+        
+        engine = EditorialEngine()
+        # Mock LLMProvider to be available
+        monkeypatch.setattr(engine._llm, "_provider", "mock_llm")
+        monkeypatch.setattr(engine._llm, "_model", "mock-model")
+        
+        captured_messages = []
+        def mock_chat(messages):
+            captured_messages.extend(messages)
+            return "[]" # Return empty findings
+            
+        monkeypatch.setattr(engine._llm, "chat", mock_chat)
+        
+        delta = StateDelta(chapter_number=1)
+        engine._run_llm_critique(state, delta)
+        
+        assert len(captured_messages) == 2
+        user_prompt = captured_messages[1]["content"]
+        assert "Goals: ['find the grail']" in user_prompt
+
+
 
 class TestLLMProvider:
     """Tests for the centralized LLMProvider backend detection."""

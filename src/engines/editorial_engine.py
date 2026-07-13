@@ -118,7 +118,7 @@ class EditorialEngine:
             name = cid
             if "canonical_name" in cdata and cdata["canonical_name"].current:
                 name = cdata["canonical_name"].current.value
-            goals = cdata.get("goal").current.value if "goal" in cdata and cdata["goal"].current else "unknown"
+            goals = cdata.get("goals").current.value if "goals" in cdata and cdata["goals"].current else "unknown"
             traits = cdata.get("personality_traits").current.value if "personality_traits" in cdata and cdata["personality_traits"].current else []
             char_list.append(f"- Character '{name}' (Aliases: {cid}): Goals: {goals}, Personality: {traits}")
 

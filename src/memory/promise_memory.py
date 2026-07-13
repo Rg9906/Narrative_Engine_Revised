@@ -21,8 +21,7 @@ from src.models.state import (
     StateChangeType,
     NarrativeElementType,
 )
-
-
+from src.utils import stable_hash
 class PromiseMemory(BaseMemory):
     """Manages promise and foreshadowing tracking with full history."""
 
@@ -94,7 +93,7 @@ class PromiseMemory(BaseMemory):
                     speaker = self._identify_speaker(sentence, chapter_data)
 
                     # Generate a unique promise ID
-                    promise_id = f"promise_{hash(promise_text)}"
+                    promise_id = f"promise_{stable_hash(promise_text)}"
 
                     # Check if this promise already exists
                     existing_promise = self.get_entry(promise_id, "promise_text")
@@ -187,7 +186,7 @@ class PromiseMemory(BaseMemory):
                     foreshadow_text = sentence.strip()
 
                     # Generate a unique foreshadowing ID
-                    foreshadow_id = f"foreshadow_{hash(foreshadow_text)}"
+                    foreshadow_id = f"foreshadow_{stable_hash(foreshadow_text)}"
 
                     # Check if this foreshadowing already exists
                     existing_foreshadow = self.get_entry(foreshadow_id, "foreshadow_text")
