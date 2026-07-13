@@ -68,4 +68,33 @@ class CharacterInspector(BaseInspector):
             except Exception:
                 pass
 
+            # Check physical trait consistency (hair_color, eye_color, age, height, build)
+            try:
+                physical_traits = ['hair_color', 'eye_color', 'height', 'build', 'age']
+                for trait in physical_traits:
+                    trait_entry = entries.get(f"physical_{trait}")
+                    if trait_entry and trait_entry.current:
+                        current_val = trait_entry.current.value
+                        # Check history for a different value (indicating contradiction/conflict)
+                        for snapshot in trait_entry.history:
+                            if snapshot.value != current_val:
+                                trait_name = trait.replace("_", " ")
+                                findings.append(Finding(
+                                    severity='warning',
+                                    category='consistency',
+                                    title='Physical consistency warning',
+                                    description=(
+                                        f"Character '{cid}' has conflicting {trait_name} descriptions: "
+                                        f"previously '{snapshot.value}' (chapter {snapshot.chapter}), "
+                                        f"currently '{current_val}' (chapter {trait_entry.current.chapter})."
+                                    ),
+                                    chapter=chapter,
+                                    evidence_ids=list(set((getattr(snapshot, 'evidence_ids', []) or []) + (getattr(trait_entry.current, 'evidence_ids', []) or []))),
+                                    related_entities=[cid],
+                                    confidence=0.8,
+                                ))
+                                break
+            except Exception:
+                pass
+
         return findings

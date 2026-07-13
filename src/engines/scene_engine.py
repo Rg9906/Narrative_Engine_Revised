@@ -123,6 +123,10 @@ class SceneEngine:
         outcome = self._detect_scene_outcome(scene_text, scene_lower)
         analyzed["outcome"] = outcome
 
+        # Detect POV character (Phase 12)
+        pov = self._detect_scene_pov(scene_text, characters_present, chapter_data)
+        analyzed["pov"] = pov
+
         return analyzed
 
     def _detect_characters_in_scene(self, scene_text: str, character_names: Set[str]) -> List[str]:
@@ -220,6 +224,43 @@ class SceneEngine:
         if outcome_scores:
             return max(outcome_scores, key=outcome_scores.get)
         return "neutral"
+
+    def _detect_scene_pov(self, scene_text: str, characters_present: List[str], chapter_data) -> str:
+        """Detect the Point of View (POV) character for the scene."""
+        if not characters_present:
+            return "unknown"
+
+        if len(characters_present) == 1:
+            return characters_present[0]
+
+        scores = {char: 0 for char in characters_present}
+        scene_lower = scene_text.lower()
+
+        # Count direct mentions of character names / aliases
+        for char in characters_present:
+            escaped_name = re.escape(char.lower())
+            occurrences = len(re.findall(r"\b" + escaped_name + r"\b", scene_lower))
+            scores[char] += occurrences * 2
+
+        # Check coreference clusters to count resolved pronoun mentions
+        if hasattr(chapter_data, "coreferences") and chapter_data.coreferences:
+            for cluster in chapter_data.coreferences:
+                canonical = cluster.canonical_mention.lower()
+                matched_char = None
+                for char in characters_present:
+                    if char.lower() in canonical or canonical in char.lower():
+                        matched_char = char
+                        break
+
+                if matched_char:
+                    for mention in cluster.mentions:
+                        if mention.lower() in scene_lower:
+                            scores[matched_char] += 1
+
+        best_char = max(scores, key=scores.get)
+        if scores[best_char] > 0:
+            return best_char
+        return characters_present[0]
 
     def analyze_all_scenes(
         self,

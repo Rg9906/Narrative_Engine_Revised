@@ -2,7 +2,8 @@
 Base Memory — Foundation for all persistent narrative state modules.
 
 Every memory module (Character, Relationship, World, Timeline, etc.)
-inherits from BaseMemory. It provides:
+inherits from BaseMemory
+. It provides:
 
   - JSON serialization/deserialization
   - Versioned state with history preservation
