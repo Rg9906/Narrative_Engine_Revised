@@ -51,7 +51,7 @@ class EditorialEngine:
             ConflictInspector(),
         ]
 
-    def review(self, state: NarrativeState, delta: StateDelta | None = None) -> dict:
+    def review(self, state: NarrativeState, delta: StateDelta | None = None, raw_text: str = "") -> dict:
         findings = []
         for inspector in self.inspectors:
             try:
@@ -71,7 +71,7 @@ class EditorialEngine:
 
         # Run LLM-based critique (Gemini / Groq / Ollama — auto-detected)
         try:
-            llm_findings = self._run_llm_critique(state, delta)
+            llm_findings = self._run_llm_critique(state, delta, raw_text=raw_text)
             findings.extend(llm_findings)
         except Exception as e:
             logger.error(f"Failed to run LLM critique: {e}")
@@ -110,7 +110,7 @@ class EditorialEngine:
 
         return report
 
-    def _run_llm_critique(self, state: NarrativeState, delta: StateDelta | None) -> List[dict]:
+    def _run_llm_critique(self, state: NarrativeState, delta: StateDelta | None, raw_text: str = "") -> List[dict]:
         if not self._llm.is_available:
             logger.info(f"No LLM provider available (provider: {self._llm.provider_name}). Skipping LLM critique.")
             return []
@@ -122,14 +122,22 @@ class EditorialEngine:
             if "canonical_name" in cdata and cdata["canonical_name"].current:
                 name = cdata["canonical_name"].current.value
             goals = cdata.get("goals").current.value if "goals" in cdata and cdata["goals"].current else "unknown"
+            fears = cdata.get("fears").current.value if "fears" in cdata and cdata["fears"].current else "unknown"
             traits = cdata.get("personality_traits").current.value if "personality_traits" in cdata and cdata["personality_traits"].current else []
-            char_list.append(f"- Character '{name}' (Aliases: {cid}): Goals: {goals}, Personality: {traits}")
+            char_list.append(f"- Character '{name}' (Aliases: {cid}): Goals: {goals}, Fears: {fears}, Personality: {traits}")
+
+        # Active relationship statuses
+        relations = []
+        for rid, rdata in state.relationships.items():
+            label = rdata.get("relationship_label").current.value if "relationship_label" in rdata and rdata["relationship_label"].current else "unknown"
+            char_parts = rid.split("::")
+            relations.append(f"- Relationship between '{char_parts[0]}' and '{char_parts[1]}': Status: {label}")
 
         # Count unresolved promises
         promises = []
         for pid, pdata in state.promises.items():
             status = pdata.get("status").current.value if "status" in pdata and pdata["status"].current else "unresolved"
-            if status == "unresolved":
+            if status in ("unresolved", "OPEN"):
                 text = pdata.get("promise_text").current.value if "promise_text" in pdata and pdata["promise_text"].current else ""
                 promises.append(f"- {text} (Chapter {pdata.get('chapter_made').current.value if 'chapter_made' in pdata and pdata['chapter_made'].current else 'unknown'})")
 
@@ -142,12 +150,18 @@ class EditorialEngine:
 
         prompt = (
             f"You are a developmental editor reviewing Chapter {state.last_processed_chapter}.\n\n"
-            f"Chapter State Delta Summary:\n{delta.summary if delta else 'No delta summary'}\n\n"
-            f"Story Memory State:\n"
-            f"Characters tracked:\n" + "\n".join(char_list) + "\n\n"
-            f"Unresolved promises/foreshadows:\n" + "\n".join(promises) + "\n\n"
-            f"Unresolved mysteries:\n" + "\n".join(mysteries) + "\n\n"
-            f"Please review the chapter changes and story memory. Identify any pacing issues, character inconsistency, weak motivations, or unresolved plots.\n\n"
+            f"--- Current Chapter Raw Text ---\n"
+            f"{raw_text if raw_text else 'No raw text provided.'}\n\n"
+            f"--- Current Story Memory State ---\n"
+            f"Characters tracked (Goals, Fears, Personality):\n" + ("\n".join(char_list) if char_list else "None") + "\n\n"
+            f"Unresolved promises/foreshadows:\n" + ("\n".join(promises) if promises else "None") + "\n\n"
+            f"Active relationship statuses:\n" + ("\n".join(relations) if relations else "None") + "\n\n"
+            f"Unresolved mysteries & conflict events:\n" + ("\n".join(mysteries) if mysteries else "None") + "\n\n"
+            f"--- Editorial Instructions ---\n"
+            f"Please critique the current chapter based on the provided story memory state. Specifically, critique:\n"
+            f"1. **Thematic Pacing Drift**: Analyze whether the chapter's pacing is consistent with the current narrative arc or if it introduces sudden shifts, drag, or rushed scenes.\n"
+            f"2. **Stylistic Variance**: Detect if there is a noticeable stylistic, voice, or tone variance in this chapter compared to the standard narrative flow.\n"
+            f"3. **Mystery/Conflict cross-referencing**: Cross-reference newly emerged conflict events from mysteries (e.g. contradiction events, inventory dual-ownership, or physical description mismatches) to flag contradictions.\n\n"
             f"Format your response EXACTLY as a JSON array of objects. Do not include markdown code block syntax (like ```json). "
             f"Each object must have the following fields:\n"
             f"- 'severity': 'error' | 'warning' | 'suggestion' | 'note'\n"

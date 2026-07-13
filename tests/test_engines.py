@@ -493,3 +493,142 @@ def test_relationship_inspector_emotional_inversion():
     assert len(findings) > 0
     assert any("emotional inversion" in f.title.lower() for f in findings)
 
+
+def test_split_manuscript_utility(tmp_path):
+    from scripts.split_manuscript import split_manuscript
+    
+    manuscript_content = (
+        "Chapter 1\nThis is the first chapter content.\n"
+        "### CHAPTER II\nThis is the second chapter with markdown.\n"
+        "Chapter Three\nAnd the third chapter here.\n"
+    )
+    manuscript_file = tmp_path / "monolithic.txt"
+    manuscript_file.write_text(manuscript_content, encoding="utf-8")
+    
+    output_dir = tmp_path / "chapters"
+    split_manuscript(manuscript_file, output_dir)
+    
+    # Check output files
+    ch1_file = output_dir / "chapter_01.txt"
+    ch2_file = output_dir / "chapter_02.txt"
+    ch3_file = output_dir / "chapter_03.txt"
+    
+    assert ch1_file.exists()
+    assert ch2_file.exists()
+    assert ch3_file.exists()
+    
+    assert "Chapter 1" in ch1_file.read_text(encoding="utf-8")
+    assert "CHAPTER II" in ch2_file.read_text(encoding="utf-8")
+    assert "Chapter Three" in ch3_file.read_text(encoding="utf-8")
+
+
+def test_main_cli_chapter_parsing(tmp_path, monkeypatch):
+    import src.main
+    from src.models.state import NarrativeState
+    
+    # Mock load_narrative_state to return empty NarrativeState
+    monkeypatch.setattr(src.main, "load_narrative_state", lambda path: NarrativeState())
+    # Mock save_narrative_state to do nothing
+    monkeypatch.setattr(src.main, "save_narrative_state", lambda state, path: None)
+    
+    # Mock Pipeline and NarrativeStateEngine
+    class MockPipeline:
+        def __init__(self, config):
+            pass
+        def process_chapter(self, path, chapter_num, is_file):
+            class MockChapterData:
+                raw_text = "Arthur was a king."
+            return MockChapterData()
+            
+    class MockStateEngine:
+        def __init__(self, config):
+            pass
+        def process_chapter(self, data, state):
+            from src.models.state import StateDelta
+            return StateDelta(chapter_number=1)
+            
+    monkeypatch.setattr(src.main, "Pipeline", MockPipeline)
+    monkeypatch.setattr(src.main, "NarrativeStateEngine", MockStateEngine)
+    
+    # Verify that file named "chapter_05.txt" resolves chapter number to 5
+    chapter_file = tmp_path / "chapter_05.txt"
+    chapter_file.write_text("Arthur was a king.", encoding="utf-8")
+    
+    # Run process_chapter
+    # Note: we need to mock EditorialEngine and NarrativeGraph too
+    class MockEditorial:
+        def __init__(self, config):
+            pass
+        def review(self, state, delta, raw_text):
+            assert raw_text == "Arthur was a king."
+            return {"findings": []}
+            
+    class MockGraph:
+        def __init__(self, config):
+            pass
+        def save(self, state, path):
+            return "graph_path"
+            
+    monkeypatch.setattr(src.main, "EditorialEngine", MockEditorial)
+    monkeypatch.setattr(src.main, "NarrativeGraph", MockGraph)
+    
+    src.main.process_chapter(str(chapter_file))
+
+
+def test_optimized_llm_prompt_generator(monkeypatch):
+    from src.engines.editorial_engine import EditorialEngine
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType
+    
+    state = NarrativeState()
+    state.last_processed_chapter = 1
+    
+    # Setup character with goals, fears, traits
+    char_entry = {
+        "canonical_name": StateEntry(key="canonical_name", element_type=NarrativeElementType.CHARACTER),
+        "goals": StateEntry(key="goals", element_type=NarrativeElementType.CHARACTER),
+        "fears": StateEntry(key="fears", element_type=NarrativeElementType.CHARACTER),
+        "personality_traits": StateEntry(key="personality_traits", element_type=NarrativeElementType.CHARACTER),
+    }
+    char_entry["canonical_name"].update(StateSnapshot(value="Arthur", chapter=1))
+    char_entry["goals"].update(StateSnapshot(value="Unify Albion", chapter=1))
+    char_entry["fears"].update(StateSnapshot(value="Failure", chapter=1))
+    char_entry["personality_traits"].update(StateSnapshot(value=["brave"], chapter=1))
+    state.characters["arthur"] = char_entry
+    
+    # Setup active relationship
+    rel_entry = {
+        "relationship_label": StateEntry(key="relationship_label", element_type=NarrativeElementType.CHARACTER)
+    }
+    rel_entry["relationship_label"].update(StateSnapshot(value="ALLIANCE", chapter=1))
+    state.relationships["arthur::merlin"] = rel_entry
+    
+    # Mock LLM provider to capture the prompt
+    captured_messages = []
+    class MockLLM:
+        is_available = True
+        provider_name = "mock"
+        model = "mock-model"
+        def chat(self, messages):
+            nonlocal captured_messages
+            captured_messages = messages
+            return "[]"
+            
+    engine = EditorialEngine()
+    monkeypatch.setattr(engine, "_llm", MockLLM())
+    
+    engine.review(state, None, raw_text="Chapter 1 content.")
+    
+    assert len(captured_messages) > 0
+    prompt_content = captured_messages[1]["content"]
+    
+    # Assert that all required context is in the prompt payload
+    assert "Chapter 1 content." in prompt_content
+    assert "Arthur" in prompt_content
+    assert "Unify Albion" in prompt_content
+    assert "Failure" in prompt_content
+    assert "brave" in prompt_content
+    assert "ALLIANCE" in prompt_content
+    assert "Thematic Pacing Drift" in prompt_content
+    assert "Stylistic Variance" in prompt_content
+
+

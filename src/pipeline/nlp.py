@@ -101,11 +101,17 @@ class NLPProcessor:
             if token.dep_ in ("nsubj", "nsubjpass"):
                 subject = token.text
                 verb = token.head.text
-                # Find direct objects
-                objects = [
-                    child.text for child in token.head.children
-                    if child.dep_ in ("dobj", "attr", "pobj")
-                ]
+                
+                # Find direct objects and prepositional objects/dative targets
+                objects = []
+                for child in token.head.children:
+                    if child.dep_ in ("dobj", "attr", "pobj"):
+                        objects.append(child.text)
+                    elif child.dep_ in ("prep", "dative"):
+                        for grandchild in child.children:
+                            if grandchild.dep_ in ("pobj", "dobj"):
+                                objects.append(grandchild.text)
+                                
                 for obj in objects:
                     triples.append({
                         "subject": subject,

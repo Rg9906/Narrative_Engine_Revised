@@ -176,7 +176,7 @@ Narrative_Engine/
 
 ## 🧪 Bulletproof Testing
 
-The project has a robust testing suite running 52 unit and integration tests. Run them instantly:
+The project has a robust testing suite running 61 unit and integration tests. Run them instantly:
 ```bash
 pytest
 ```

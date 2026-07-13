@@ -91,12 +91,29 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
         logger.error(f"Chapter file not found: {chapter_path}")
         sys.exit(1)
 
-    logger.info(f"Processing chapter: {chapter_file.name}")
+    # Parse chapter number from filename if possible
+    import re
+    match = re.search(r'(?:chapter|ch|ch_)[^\d]*(\d+)', chapter_file.name, re.IGNORECASE)
+    if match:
+        chapter_num = int(match.group(1))
+    else:
+        chapter_num = state.last_processed_chapter + 1
+
+    logger.info(f"Processing chapter: {chapter_file.name} (Resolved Chapter Number: {chapter_num})")
     logger.info(f"Current narrative state: {state.total_chapters_processed} chapters processed")
+
+    # Read text to calculate hash
+    try:
+        with open(chapter_file, "r", encoding="utf-8") as f:
+            raw_text = f.read()
+        import hashlib
+        text_hash = hashlib.sha256(raw_text.encode("utf-8")).hexdigest()
+        logger.info(f"Chapter file SHA-256: {text_hash}")
+    except Exception as e:
+        logger.warning(f"Could not calculate hash of chapter file: {e}")
 
     # === Phase 2+: Pipeline evidence extraction ===
     pipeline = Pipeline(config)
-    chapter_num = state.last_processed_chapter + 1
     chapter_data = pipeline.process_chapter(str(chapter_file), chapter_num=chapter_num, is_file=True)
 
     # === Phase 6+: Narrative State Engine ===
@@ -106,7 +123,7 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
 
     # === Phase 10+: Editorial Engine ===
     editorial = EditorialEngine(config)
-    review = editorial.review(state, delta)
+    review = editorial.review(state, delta, raw_text=chapter_data.raw_text)
 
     # Persist updated state and report artifacts
     save_narrative_state(state, config.memory_dir)

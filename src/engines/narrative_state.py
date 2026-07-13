@@ -95,7 +95,9 @@ class NarrativeStateEngine:
         relationship_memory = RelationshipMemory()
         # Load existing relationships into memory helper so updates persist
         relationship_memory.load(self._wrap_entries(current_state.relationships))
-        relationship_changes = relationship_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
+        relationship_changes = relationship_memory.update_from_chapter(
+            chapter_data, chapter_data.chapter_number, existing_characters=current_state.characters
+        )
         delta.changes.extend(relationship_changes)
 
         # Phase 7: World updates

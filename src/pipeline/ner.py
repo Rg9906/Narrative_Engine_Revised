@@ -52,13 +52,14 @@ class EntityExtractor:
                     "Install with: pip install gliner"
                 )
 
-    def extract(self, text: str, labels: Optional[List[str]] = None) -> List[ExtractedEntity]:
+    def extract(self, text: str, labels: Optional[List[str]] = None, doc = None) -> List[ExtractedEntity]:
         """
         Extract entities from text.
 
         Args:
             text: Input text to extract entities from.
             labels: Entity types to extract. Defaults to narrative-relevant types.
+            doc: Optional pre-parsed spaCy doc for linguistic filtering.
 
         Returns:
             List of ExtractedEntity objects (evidence, not state).
@@ -70,8 +71,44 @@ class EntityExtractor:
 
         raw_entities = self._model.predict_entities(text, labels, threshold=self._threshold)
 
+        # Ensure we have a spaCy doc for POS tagging if not provided
+        if doc is None:
+            try:
+                import spacy
+                nlp = spacy.load("en_core_web_sm")
+                doc = nlp(text)
+            except Exception:
+                pass
+
+        dirty_words = {"that", "eyes", "men", "oath", "hand", "cloak", "this", "it", "she", "he", "they", "we", "them", "him", "her", "i", "me", "you"}
+
         entities = []
         for ent in raw_entities:
+            ent_text = ent["text"]
+            ent_label = ent["label"]
+
+            # Filter out dirty words
+            if ent_text.lower() in dirty_words:
+                continue
+
+            # Check if person consists purely of lower-case common nouns, pronouns, or conjunctions
+            if doc is not None and ent_label.lower() == "person":
+                char_span = doc.char_span(ent["start"], ent["end"])
+                if char_span is not None:
+                    all_dirty_pos = True
+                    has_propn = False
+                    for t in char_span:
+                        if t.is_punct or t.is_space:
+                            continue
+                        if t.pos_ == "PROPN":
+                            has_propn = True
+                        is_token_dirty = (t.pos_ in ("NOUN", "PRON", "CCONJ") and t.text == t.text.lower())
+                        if not is_token_dirty:
+                            all_dirty_pos = False
+                    # Discard if it consists purely of lower-case nouns/pronouns/conjunctions
+                    if all_dirty_pos or (not has_propn and all(t.pos_ in ("NOUN", "PRON", "CCONJ", "DET", "ADP") or t.text.lower() in dirty_words for t in char_span)):
+                        continue
+
             span = None
             if "start" in ent and "end" in ent:
                 span = TextSpan(

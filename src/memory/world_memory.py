@@ -95,4 +95,43 @@ class WorldMemory(BaseMemory):
                     )
                 )
 
+        # Extract object locations if objects and locations appear in the same sentence
+        objects = []
+        locations = []
+        for ent in getattr(chapter_data, "entities", []):
+            label = (ent.label or "").lower()
+            if label == "object":
+                objects.append(ent)
+            elif label == "location":
+                locations.append(ent)
+
+        for obj in objects:
+            oid = _idify(obj.text)
+            for loc in locations:
+                lid = _idify(loc.text)
+                for sentence in chapter_data.sentences:
+                    sentence_lower = sentence.lower()
+                    if obj.text.lower() in sentence_lower and loc.text.lower() in sentence_lower:
+                        containment_verbs = ["locked", "inside", "in", "placed", "hidden", "within", "kept", "secured", "stored"]
+                        if any(v in sentence_lower for v in containment_verbs):
+                            existing_loc = self.get_entry(oid, "location")
+                            prev_loc = existing_loc.current.value if existing_loc and existing_loc.current else None
+                            if prev_loc != lid:
+                                self.update_entry(oid, "location", lid, chapter=chapter_num,
+                                                  evidence_ids=[obj.span.text] if obj.span else [], confidence=0.8,
+                                                  reasoning=f"Located at '{lid}' (implied by sentence: '{sentence}').")
+                                changes.append(
+                                    StateChange(
+                                        change_type=StateChangeType.EVOLUTION if prev_loc else StateChangeType.INTRODUCTION,
+                                        target_type=NarrativeElementType.OBJECT,
+                                        target_id=oid,
+                                        field_key="location",
+                                        old_value=prev_loc,
+                                        new_value=lid,
+                                        confidence=0.8,
+                                        reasoning=f"Object location updated to: {lid}",
+                                    )
+                                )
+                                break
+
         return changes

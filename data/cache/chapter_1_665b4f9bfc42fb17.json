@@ -23,7 +23,7 @@
     "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
     "Alice closed the journal and stared into the fire. Somewhere in the darkness, an owl called. She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear."
   ],
-  "sentence_count": 50,
+  "sentence_count": 49,
   "sentences": [
     "Chapter 1: The Departure\n\nThe morning sun cast long shadows across the stone courtyard of Thornfield Hall.",
     "Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valley.",
@@ -34,11 +34,10 @@
     "Alice turned to him.",
     "\"I do.",
     "Father's letter was clear.",
-    "Something is wrong at the Silver Gate, and no one else will go.",
-    "\"\n\nThomas kicked at a loose stone.",
+    "Something is wrong at the Silver Gate, and no one else will go.\"\n\nThomas kicked at a loose stone.",
     "\"The Silver Gate is a myth.",
-    "Father chased myths his whole life, and look where it got him.",
-    "\"\n\n\"It got him answers,\" Alice said quietly.",
+    "Father chased myths his whole life, and look where it got him.\"",
+    "\"It got him answers,\" Alice said quietly.",
     "She reached out and squeezed his shoulder.",
     "\"I'll be back before the winter solstice.",
     "I promise.",
@@ -76,7 +75,7 @@
     "Somewhere in the darkness, an owl called.",
     "She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear."
   ],
-  "entity_count": 24,
+  "entity_count": 20,
   "entities": [
     {
       "text": "The Departure",
@@ -118,20 +117,6 @@
         "sentence_index": null
       },
       "coreference_cluster": 0,
-      "source": "gliner"
-    },
-    {
-      "text": "mother",
-      "label": "person",
-      "normalized_text": "mother",
-      "confidence": 0.7375738620758057,
-      "span": {
-        "text": "mother",
-        "start_char": 284,
-        "end_char": 290,
-        "sentence_index": null
-      },
-      "coreference_cluster": null,
       "source": "gliner"
     },
     {
@@ -317,20 +302,6 @@
       "source": "gliner"
     },
     {
-      "text": "father",
-      "label": "person",
-      "normalized_text": "father",
-      "confidence": 0.9165157079696655,
-      "span": {
-        "text": "father",
-        "start_char": 1659,
-        "end_char": 1665,
-        "sentence_index": null
-      },
-      "coreference_cluster": 3,
-      "source": "gliner"
-    },
-    {
       "text": "Alice",
       "label": "person",
       "normalized_text": "alice",
@@ -359,20 +330,6 @@
       "source": "gliner"
     },
     {
-      "text": "mother",
-      "label": "person",
-      "normalized_text": "mother",
-      "confidence": 0.8319657444953918,
-      "span": {
-        "text": "mother",
-        "start_char": 2339,
-        "end_char": 2345,
-        "sentence_index": null
-      },
-      "coreference_cluster": null,
-      "source": "gliner"
-    },
-    {
       "text": "Alice",
       "label": "person",
       "normalized_text": "alice",
@@ -398,20 +355,6 @@
         "sentence_index": null
       },
       "coreference_cluster": null,
-      "source": "gliner"
-    },
-    {
-      "text": "father",
-      "label": "person",
-      "normalized_text": "father",
-      "confidence": 0.9028377532958984,
-      "span": {
-        "text": "father",
-        "start_char": 2745,
-        "end_char": 2751,
-        "sentence_index": null
-      },
-      "coreference_cluster": 3,
       "source": "gliner"
     }
   ],
@@ -810,6 +753,45 @@
       "source": "spacy_svo"
     },
     {
+      "subject": "sun",
+      "predicate": "cast",
+      "object": "courtyard",
+      "span": {
+        "text": "Chapter 1: The Departure\n\nThe morning sun cast long shadows across the stone courtyard of Thornfield Hall.",
+        "start_char": 0,
+        "end_char": 106,
+        "sentence_index": 0
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Alice",
+      "predicate": "stood",
+      "object": "door",
+      "span": {
+        "text": "Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valley.",
+        "start_char": 107,
+        "end_char": 209,
+        "sentence_index": 1
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "that",
+      "predicate": "wound",
+      "object": "valley",
+      "span": {
+        "text": "Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valley.",
+        "start_char": 107,
+        "end_char": 209,
+        "sentence_index": 1
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
       "subject": "She",
       "predicate": "clutched",
       "object": "journal",
@@ -825,12 +807,77 @@
     {
       "subject": "She",
       "predicate": "clutched",
-      "object": "gift",
+      "object": "chest",
       "span": {
         "text": "She clutched a worn leather journal to her chest — the last gift from her mother.\n\n",
         "start_char": 210,
         "end_char": 293,
         "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "He",
+      "predicate": "leaned",
+      "object": "doorframe",
+      "span": {
+        "text": "He leaned against the doorframe, arms crossed, trying to look indifferent.",
+        "start_char": 351,
+        "end_char": 425,
+        "sentence_index": 4
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "voice",
+      "predicate": "cracked",
+      "object": "word",
+      "span": {
+        "text": "But his voice cracked on the last word.\n\n",
+        "start_char": 426,
+        "end_char": 467,
+        "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Alice",
+      "predicate": "turned",
+      "object": "him",
+      "span": {
+        "text": "Alice turned to him.",
+        "start_char": 467,
+        "end_char": 487,
+        "sentence_index": 6
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Something",
+      "predicate": "is",
+      "object": "Gate",
+      "span": {
+        "text": "Something is wrong at the Silver Gate, and no one else will go.\"\n\nThomas kicked at a loose stone.",
+        "start_char": 522,
+        "end_char": 619,
+        "sentence_index": 9
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Thomas",
+      "predicate": "kicked",
+      "object": "stone",
+      "span": {
+        "text": "Something is wrong at the Silver Gate, and no one else will go.\"\n\nThomas kicked at a loose stone.",
+        "start_char": 522,
+        "end_char": 619,
+        "sentence_index": 9
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -843,7 +890,7 @@
         "text": "\"The Silver Gate is a myth.",
         "start_char": 620,
         "end_char": 647,
-        "sentence_index": 11
+        "sentence_index": 10
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -853,10 +900,10 @@
       "predicate": "chased",
       "object": "myths",
       "span": {
-        "text": "Father chased myths his whole life, and look where it got him.",
+        "text": "Father chased myths his whole life, and look where it got him.\"\n\n",
         "start_char": 648,
-        "end_char": 710,
-        "sentence_index": 12
+        "end_char": 713,
+        "sentence_index": null
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -866,10 +913,10 @@
       "predicate": "chased",
       "object": "life",
       "span": {
-        "text": "Father chased myths his whole life, and look where it got him.",
+        "text": "Father chased myths his whole life, and look where it got him.\"\n\n",
         "start_char": 648,
-        "end_char": 710,
-        "sentence_index": 12
+        "end_char": 713,
+        "sentence_index": null
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -879,36 +926,36 @@
       "predicate": "got",
       "object": "him",
       "span": {
-        "text": "Father chased myths his whole life, and look where it got him.",
+        "text": "Father chased myths his whole life, and look where it got him.\"\n\n",
         "start_char": 648,
-        "end_char": 710,
-        "sentence_index": 12
+        "end_char": 713,
+        "sentence_index": null
       },
       "confidence": 1.0,
       "source": "spacy_svo"
     },
     {
-      "subject": "It",
-      "predicate": "got",
-      "object": "answers",
+      "subject": "I",
+      "predicate": "be",
+      "object": "solstice",
       "span": {
-        "text": "\"\n\n\"It got him answers,\" Alice said quietly.",
-        "start_char": 710,
-        "end_char": 754,
-        "sentence_index": 13
+        "text": "\"I'll be back before the winter solstice.",
+        "start_char": 798,
+        "end_char": 839,
+        "sentence_index": 14
       },
       "confidence": 1.0,
       "source": "spacy_svo"
     },
     {
-      "subject": "She",
-      "predicate": "mention",
-      "object": "dreams",
+      "subject": "dreams",
+      "predicate": "called",
+      "object": "name",
       "span": {
         "text": "\"\n\nShe didn't mention the dreams — the ones where the Gate opened and a voice called her name.",
         "start_char": 850,
         "end_char": 944,
-        "sentence_index": 17
+        "sentence_index": 16
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -921,7 +968,7 @@
         "text": "She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive.",
         "start_char": 945,
         "end_char": 1064,
-        "sentence_index": 18
+        "sentence_index": 17
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -934,7 +981,20 @@
         "text": "She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive.",
         "start_char": 945,
         "end_char": 1064,
-        "sentence_index": 18
+        "sentence_index": 17
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Alice",
+      "predicate": "walked",
+      "object": "hours",
+      "span": {
+        "text": "Alice walked for three hours before she reached the crossroads at Millhaven.",
+        "start_char": 1196,
+        "end_char": 1272,
+        "sentence_index": 20
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -947,20 +1007,46 @@
         "text": "Alice walked for three hours before she reached the crossroads at Millhaven.",
         "start_char": 1196,
         "end_char": 1272,
-        "sentence_index": 21
+        "sentence_index": 20
       },
       "confidence": 1.0,
       "source": "spacy_svo"
     },
     {
-      "subject": "village",
-      "predicate": "was",
-      "object": "blacksmith",
+      "subject": "she",
+      "predicate": "reached",
+      "object": "Millhaven",
       "span": {
-        "text": "The village was small — a blacksmith, a tavern called The Copper Bell, and a handful of cottages with thatched roofs.",
-        "start_char": 1273,
-        "end_char": 1390,
-        "sentence_index": 22
+        "text": "Alice walked for three hours before she reached the crossroads at Millhaven.",
+        "start_char": 1196,
+        "end_char": 1272,
+        "sentence_index": 20
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "woman",
+      "predicate": "sat",
+      "object": "tavern",
+      "span": {
+        "text": "An old woman sat outside the tavern, peeling apples.\n\n",
+        "start_char": 1391,
+        "end_char": 1445,
+        "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Things",
+      "predicate": "move",
+      "object": "trees",
+      "span": {
+        "text": "Things move in those trees that don't have names.\"",
+        "start_char": 1572,
+        "end_char": 1622,
+        "sentence_index": 27
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -973,7 +1059,7 @@
         "text": "Things move in those trees that don't have names.\"",
         "start_char": 1572,
         "end_char": 1622,
-        "sentence_index": 28
+        "sentence_index": 27
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -986,7 +1072,20 @@
         "text": "The woman paused her peeling.",
         "start_char": 1623,
         "end_char": 1652,
-        "sentence_index": 29
+        "sentence_index": 28
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "he",
+      "predicate": "looking",
+      "object": "something",
+      "span": {
+        "text": "\"Did he say where he was going?\"\n\n\"Said he was looking for something that was lost.",
+        "start_char": 1768,
+        "end_char": 1851,
+        "sentence_index": 33
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -999,7 +1098,7 @@
         "text": "Said it like a man who'd already found it and wished he hadn't.\"",
         "start_char": 1852,
         "end_char": 1916,
-        "sentence_index": 35
+        "sentence_index": 34
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1012,7 +1111,59 @@
         "text": "\"\n\nAlice thanked her and continued walking.",
         "start_char": 2006,
         "end_char": 2049,
+        "sentence_index": 38
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "it",
+      "predicate": "climbed",
+      "object": "hills",
+      "span": {
+        "text": "The road narrowed as it climbed into the hills.",
+        "start_char": 2050,
+        "end_char": 2097,
         "sentence_index": 39
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "trees",
+      "predicate": "thickened",
+      "object": "afternoon",
+      "span": {
+        "text": "By late afternoon, the trees had thickened into a canopy so dense that the sunlight came through in scattered coins of gold.\n\n",
+        "start_char": 2098,
+        "end_char": 2224,
+        "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "trees",
+      "predicate": "thickened",
+      "object": "canopy",
+      "span": {
+        "text": "By late afternoon, the trees had thickened into a canopy so dense that the sunlight came through in scattered coins of gold.\n\n",
+        "start_char": 2098,
+        "end_char": 2224,
+        "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "sunlight",
+      "predicate": "came",
+      "object": "coins",
+      "span": {
+        "text": "By late afternoon, the trees had thickened into a canopy so dense that the sunlight came through in scattered coins of gold.\n\n",
+        "start_char": 2098,
+        "end_char": 2224,
+        "sentence_index": null
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1025,7 +1176,20 @@
         "text": "She made camp beside a stream, building a small fire from dry birch branches.",
         "start_char": 2224,
         "end_char": 2301,
-        "sentence_index": 42
+        "sentence_index": 41
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "made",
+      "object": "stream",
+      "span": {
+        "text": "She made camp beside a stream, building a small fire from dry birch branches.",
+        "start_char": 2224,
+        "end_char": 2301,
+        "sentence_index": 41
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1038,7 +1202,7 @@
         "text": "As the flames danced, she opened her mother's journal.",
         "start_char": 2302,
         "end_char": 2356,
-        "sentence_index": 43
+        "sentence_index": 42
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1051,7 +1215,7 @@
         "text": "The handwriting was elegant but hurried, as if the words had been racing to escape the pen:\n\n\"The Gate is not a door.",
         "start_char": 2357,
         "end_char": 2474,
-        "sentence_index": 44
+        "sentence_index": 43
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1064,7 +1228,7 @@
         "text": "It is a question.",
         "start_char": 2475,
         "end_char": 2492,
-        "sentence_index": 45
+        "sentence_index": 44
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1077,7 +1241,7 @@
         "text": "\"\n\nAlice closed the journal and stared into the fire.",
         "start_char": 2538,
         "end_char": 2591,
-        "sentence_index": 47
+        "sentence_index": 46
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1090,20 +1254,7 @@
         "text": "She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear.",
         "start_char": 2634,
         "end_char": 2799,
-        "sentence_index": 49
-      },
-      "confidence": 1.0,
-      "source": "spacy_svo"
-    },
-    {
-      "subject": "She",
-      "predicate": "pulled",
-      "object": "tighter",
-      "span": {
-        "text": "She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear.",
-        "start_char": 2634,
-        "end_char": 2799,
-        "sentence_index": 49
+        "sentence_index": 48
       },
       "confidence": 1.0,
       "source": "spacy_svo"
@@ -1141,7 +1292,7 @@
         "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
         "start_char": 620,
         "end_char": 711,
-        "sentence_index": 11
+        "sentence_index": 10
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1153,7 +1304,7 @@
         "text": "\"It got him answers,\"",
         "start_char": 713,
         "end_char": 734,
-        "sentence_index": 13
+        "sentence_index": 12
       },
       "confidence": 0.8,
       "attribution_method": "speaker_before_verb_after"
@@ -1165,7 +1316,7 @@
         "text": "\"I'll be back before the winter solstice. I promise.\"",
         "start_char": 798,
         "end_char": 851,
-        "sentence_index": 15
+        "sentence_index": 14
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1177,7 +1328,7 @@
         "text": "\"Heading north?\"",
         "start_char": 1445,
         "end_char": 1461,
-        "sentence_index": 24
+        "sentence_index": 23
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1189,7 +1340,7 @@
         "text": "\"Yes,\"",
         "start_char": 1499,
         "end_char": 1505,
-        "sentence_index": 26
+        "sentence_index": 25
       },
       "confidence": 0.8,
       "attribution_method": "speaker_before_verb_after"
@@ -1201,7 +1352,7 @@
         "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
         "start_char": 1519,
         "end_char": 1622,
-        "sentence_index": 27
+        "sentence_index": 26
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1213,7 +1364,7 @@
         "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
         "start_char": 1653,
         "end_char": 1741,
-        "sentence_index": 30
+        "sentence_index": 29
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1225,7 +1376,7 @@
         "text": "\"Did he say where he was going?\"",
         "start_char": 1768,
         "end_char": 1800,
-        "sentence_index": 34
+        "sentence_index": 33
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1237,7 +1388,7 @@
         "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
         "start_char": 1802,
         "end_char": 1916,
-        "sentence_index": 34
+        "sentence_index": 33
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1249,7 +1400,7 @@
         "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
         "start_char": 1944,
         "end_char": 2007,
-        "sentence_index": 37
+        "sentence_index": 36
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1261,7 +1412,7 @@
         "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
         "start_char": 2450,
         "end_char": 2539,
-        "sentence_index": 44
+        "sentence_index": 43
       },
       "confidence": 0.25,
       "attribution_method": "unattributed_quote"
@@ -1271,18 +1422,18 @@
   "scenes": [],
   "style_metrics": {
     "word_count": 503,
-    "sentence_count": 50,
-    "avg_sentence_length": 10.06,
+    "sentence_count": 49,
+    "avg_sentence_length": 10.27,
     "pos_distribution": {
       "NOUN": 103,
       "NUM": 3,
       "PUNCT": 105,
       "DET": 62,
-      "PROPN": 26,
       "SPACE": 16,
-      "VERB": 90,
-      "ADJ": 32,
-      "ADP": 43,
+      "VERB": 88,
+      "ADJ": 34,
+      "ADP": 44,
+      "PROPN": 25,
       "PRON": 58,
       "AUX": 29,
       "PART": 17,
@@ -1297,10 +1448,10 @@
   "extraction_notes": [],
   "evidence_summary": {
     "paragraphs": 17,
-    "sentences": 50,
-    "entities": 24,
+    "sentences": 49,
+    "entities": 20,
     "coreference_clusters": 19,
-    "relations": 24,
+    "relations": 40,
     "dialogues": 13,
     "scenes": 0,
     "validation_warnings": 0

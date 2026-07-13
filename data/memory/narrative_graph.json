@@ -1,229 +1,192 @@
 {
   "nodes": [
     {
-      "id": "sun",
-      "label": "sun",
+      "id": "char::lord_alistair_vance",
+      "label": "lord_alistair_vance",
       "type": "character"
     },
     {
-      "id": "shadows",
-      "label": "shadows",
+      "id": "char::jonathan_drake",
+      "label": "jonathan_drake",
       "type": "character"
     },
     {
-      "id": "journal",
-      "label": "journal",
+      "id": "char::box",
+      "label": "box",
       "type": "character"
     },
     {
-      "id": "gate",
-      "label": "gate",
+      "id": "char::other",
+      "label": "other",
       "type": "character"
     },
     {
-      "id": "myth",
-      "label": "myth",
+      "id": "char::hatred",
+      "label": "hatred",
       "type": "character"
     },
     {
-      "id": "father",
-      "label": "father",
-      "type": "character"
+      "id": "world::iron_citadel",
+      "label": "iron_citadel",
+      "type": "world"
     },
     {
-      "id": "myths",
-      "label": "myths",
-      "type": "character"
+      "id": "world::emperor_s_scarab",
+      "label": "emperor_s_scarab",
+      "type": "world"
     },
     {
-      "id": "life",
-      "label": "life",
-      "type": "character"
+      "id": "world::obsidian_sarcophagus",
+      "label": "obsidian_sarcophagus",
+      "type": "world"
     },
     {
-      "id": "dreams",
-      "label": "dreams",
-      "type": "character"
+      "id": "theme::symbol_water",
+      "label": "symbol_water",
+      "type": "theme"
     },
     {
-      "id": "name",
-      "label": "name",
-      "type": "character"
+      "id": "theme::symbol_key",
+      "label": "symbol_key",
+      "type": "theme"
     },
     {
-      "id": "warmth",
-      "label": "warmth",
-      "type": "character"
+      "id": "event::evt::1",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "crossroads",
-      "label": "crossroads",
-      "type": "character"
+      "id": "event::evt::2",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "that",
-      "label": "that",
-      "type": "character"
+      "id": "event::evt::3",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "names",
-      "label": "names",
-      "type": "character"
+      "id": "event::evt::4",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "woman",
-      "label": "woman",
-      "type": "character"
+      "id": "event::evt::5",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "peeling",
-      "label": "peeling",
-      "type": "character"
+      "id": "event::evt::6",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "who",
-      "label": "who",
-      "type": "character"
+      "id": "event::evt::7",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "alice",
-      "label": "alice",
-      "type": "character"
+      "id": "event::evt::8",
+      "label": "timeline_event",
+      "type": "event"
     },
     {
-      "id": "camp",
-      "label": "camp",
-      "type": "character"
-    },
-    {
-      "id": "door",
-      "label": "door",
-      "type": "character"
-    },
-    {
-      "id": "question",
-      "label": "question",
-      "type": "character"
-    },
-    {
-      "id": "cloak",
-      "label": "cloak",
-      "type": "character"
-    },
-    {
-      "id": "thomas",
-      "label": "thomas",
-      "type": "character"
+      "id": "chapter::1",
+      "label": "Chapter 1",
+      "type": "chapter"
     }
   ],
   "edges": [
     {
-      "id": "sun::shadows",
-      "source": "sun",
-      "target": "shadows",
-      "label": "UNKNOWN"
+      "id": "grandmaster::stones",
+      "source": "char::grandmaster",
+      "target": "char::stones",
+      "label": "UNKNOWN",
+      "type": "relationship"
     },
     {
-      "id": "she::journal",
-      "source": "she",
-      "target": "journal",
-      "label": "UNKNOWN"
+      "id": "jonathan_drake::box",
+      "source": "char::jonathan_drake",
+      "target": "char::box",
+      "label": "UNKNOWN",
+      "type": "relationship"
     },
     {
-      "id": "gate::myth",
-      "source": "gate",
-      "target": "myth",
-      "label": "UNKNOWN"
+      "id": "lord_alistair_vance::order",
+      "source": "char::lord_alistair_vance",
+      "target": "char::order",
+      "label": "UNKNOWN",
+      "type": "relationship"
     },
     {
-      "id": "father::myths",
-      "source": "father",
-      "target": "myths",
-      "label": "UNKNOWN"
+      "id": "lord_alistair_vance::courtyard",
+      "source": "char::lord_alistair_vance",
+      "target": "char::courtyard",
+      "label": "UNKNOWN",
+      "type": "relationship"
     },
     {
-      "id": "father::life",
-      "source": "father",
-      "target": "life",
-      "label": "UNKNOWN"
+      "id": "other::hatred",
+      "source": "char::other",
+      "target": "char::hatred",
+      "label": "UNKNOWN",
+      "type": "relationship"
     },
     {
-      "id": "it::him",
-      "source": "it",
-      "target": "him",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::1",
+      "source": "event::evt::1",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "dreams::name",
-      "source": "dreams",
-      "target": "name",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::2",
+      "source": "event::evt::2",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "she::warmth",
-      "source": "she",
-      "target": "warmth",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::3",
+      "source": "event::evt::3",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "she::crossroads",
-      "source": "she",
-      "target": "crossroads",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::4",
+      "source": "event::evt::4",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "that::names",
-      "source": "that",
-      "target": "names",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::5",
+      "source": "event::evt::5",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "woman::peeling",
-      "source": "woman",
-      "target": "peeling",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::6",
+      "source": "event::evt::6",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "who::it",
-      "source": "who",
-      "target": "it",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::7",
+      "source": "event::evt::7",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     },
     {
-      "id": "alice::her",
-      "source": "alice",
-      "target": "her",
-      "label": "UNKNOWN"
-    },
-    {
-      "id": "she::camp",
-      "source": "she",
-      "target": "camp",
-      "label": "UNKNOWN"
-    },
-    {
-      "id": "gate::door",
-      "source": "gate",
-      "target": "door",
-      "label": "UNKNOWN"
-    },
-    {
-      "id": "it::question",
-      "source": "it",
-      "target": "question",
-      "label": "UNKNOWN"
-    },
-    {
-      "id": "alice::journal",
-      "source": "alice",
-      "target": "journal",
-      "label": "UNKNOWN"
-    },
-    {
-      "id": "she::cloak",
-      "source": "she",
-      "target": "cloak",
-      "label": "UNKNOWN"
+      "id": "evt_edge::evt::8",
+      "source": "event::evt::8",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
     }
   ]
 }

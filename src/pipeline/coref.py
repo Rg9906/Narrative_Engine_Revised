@@ -40,6 +40,22 @@ class CoreferenceResolver:
         """Lazy-load the FastCoref model."""
         if self._model is None:
             try:
+                # Monkey-patch to fix compatibility between newer transformers and fastcoref
+                import transformers
+                if not hasattr(transformers.PreTrainedModel, "all_tied_weights_keys"):
+                    def get_all_tied_weights_keys(self):
+                        if not hasattr(self, "_all_tied_weights_keys"):
+                            try:
+                                self._all_tied_weights_keys = self.get_expanded_tied_weights_keys(all_submodels=False)
+                            except Exception:
+                                self._all_tied_weights_keys = {}
+                        return self._all_tied_weights_keys
+                    def set_all_tied_weights_keys(self, value):
+                        self._all_tied_weights_keys = value
+                    transformers.PreTrainedModel.all_tied_weights_keys = property(
+                        get_all_tied_weights_keys, set_all_tied_weights_keys
+                    )
+
                 from fastcoref import FCoref
                 logger.info("Loading FastCoref model...")
                 self._model = FCoref(device=self._device)

@@ -1,20 +1,9 @@
 {
   "metadata": {
     "chapter": 1,
-    "generated_at": "2026-07-13T21:05:12.355808",
+    "generated_at": "2026-07-13T22:40:35.698677",
     "inspector_count": 8,
-    "llm_provider": "gemini"
+    "llm_provider": "mock"
   },
-  "findings": [
-    {
-      "severity": "warning",
-      "category": "pacing",
-      "title": "Very short chapter",
-      "description": "Chapter 1 is extremely short (200 words). Consider expanding or combining scenes.",
-      "chapter": 1,
-      "evidence_ids": [],
-      "related_entities": [],
-      "confidence": 0.9
-    }
-  ]
+  "findings": []
 }

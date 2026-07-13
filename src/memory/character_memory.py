@@ -119,7 +119,7 @@ class CharacterMemory(BaseMemory):
             if not char_id:
                 continue
 
-            alias = mention_text.strip()
+            alias = self.trim_to_proper_noun(mention_text.strip())
             canonical_name = alias
             existing_entity = self.get_entity_state(char_id)
             introduction = existing_entity is None
@@ -318,6 +318,59 @@ class CharacterMemory(BaseMemory):
             )
             changes.extend(inventory_changes)
 
+            # Extract location
+            location_changes = self._extract_location(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(location_changes)
+
+        return changes
+
+    def _extract_location(
+        self,
+        chapter_data: ChapterData,
+        char_id: str,
+        name_variants: Set[str],
+        chapter_num: int,
+        coref_map: Dict[str, str],
+    ) -> List[StateChange]:
+        changes = []
+        for ent in chapter_data.entities:
+            if ent.label.lower() != "location":
+                continue
+            loc_name = ent.text.strip()
+            
+            for sentence in chapter_data.sentences:
+                sentence_lower = sentence.lower()
+                if loc_name.lower() in sentence_lower and any(v in sentence_lower for v in name_variants):
+                    loc_verbs = ["stood", "sat", "was", "inside", "at", "within", "walked", "arrived", "in", "entered"]
+                    if any(v in sentence_lower for v in loc_verbs):
+                        existing = self.get_entry(char_id, "location")
+                        current_loc = existing.current.value if existing and existing.current else None
+                        
+                        if current_loc != loc_name:
+                            self.update_entry(
+                                char_id,
+                                "location",
+                                loc_name,
+                                chapter=chapter_num,
+                                evidence_ids=[ent.span.text] if ent.span else [],
+                                confidence=0.7,
+                                reasoning=f"Located at '{loc_name}' (implied by sentence: '{sentence}')",
+                            )
+                            changes.append(
+                                StateChange(
+                                    change_type=StateChangeType.EVOLUTION if current_loc else StateChangeType.INTRODUCTION,
+                                    target_type=NarrativeElementType.CHARACTER,
+                                    target_id=char_id,
+                                    field_key="location",
+                                    old_value=current_loc,
+                                    new_value=loc_name,
+                                    confidence=0.7,
+                                    reasoning=f"Character location updated to: {loc_name}",
+                                )
+                            )
+                            break
         return changes
 
     def _get_name_variants(self, canonical_name: str, char_state: Dict) -> Set[str]:
@@ -722,14 +775,39 @@ class CharacterMemory(BaseMemory):
         mentions: List[str] = []
         seen: set = set()
 
+        dirty_words = {"that", "eyes", "men", "oath", "hand", "cloak", "this", "it", "she", "he", "they", "we", "them", "him", "her", "i", "me", "you"}
+
         def add(text: str) -> None:
             if not text or not text.strip():
                 return
             text = text.strip()
-            normalized = text.lower()
-            if normalized in self.PRONOUNS:
+            # If the mention consists entirely of lowercase words, discard it immediately.
+            # Real character names must contain at least one capitalized word.
+            if all(w == w.lower() for w in text.split() if w):
                 return
+            normalized = text.lower()
+            if normalized in self.PRONOUNS or normalized in dirty_words:
+                return
+
+            # POS-based filtering for lower-case common nouns, pronouns, or conjunctions
+            nlp = self._get_nlp()
+            doc = nlp(text)
+            has_propn = False
+            all_dirty_pos = True
+            for t in doc:
+                if t.is_punct or t.is_space:
+                    continue
+                if t.pos_ == "PROPN":
+                    has_propn = True
+                is_token_dirty = (t.pos_ in ("NOUN", "PRON", "CCONJ") and t.text == t.text.lower())
+                if not is_token_dirty:
+                    all_dirty_pos = False
+            if all_dirty_pos or (not has_propn and all(t.pos_ in ("NOUN", "PRON", "CCONJ", "DET", "ADP") or t.text.lower() in dirty_words for t in doc)):
+                return
+
             text = coref_map.get(text, text)
+            if text.lower() in dirty_words:
+                return
             normalized = text.lower()
             if normalized in seen:
                 return
@@ -757,36 +835,99 @@ class CharacterMemory(BaseMemory):
         text = re.sub(r"_+", "_", text).strip("_")
         return text
 
+    _nlp = None
+
+    @classmethod
+    def _get_nlp(cls):
+        if cls._nlp is None:
+            import spacy
+            try:
+                cls._nlp = spacy.load("en_core_web_sm")
+            except Exception:
+                cls._nlp = spacy.blank("en")
+        return cls._nlp
+
+    def trim_to_proper_noun(self, text: str) -> str:
+        """Trim away descriptive appositives and modifiers, leaving only the proper name."""
+        nlp = self._get_nlp()
+        doc = nlp(text)
+        propns_indices = [i for i, t in enumerate(doc) if t.pos_ == "PROPN"]
+        if propns_indices:
+            first_idx = propns_indices[0]
+            last_idx = propns_indices[-1]
+            return doc[first_idx : last_idx + 1].text
+        return text
+
     def resolve_character_id(self, mention_text: str, existing_entries: Dict[str, Dict[str, object]]) -> str:
-        # First, check direct normalization
-        normalized_id = self._normalize_entity_id(mention_text)
+        # First, trim to proper name
+        trimmed_name = self.trim_to_proper_noun(mention_text)
+        mention_lower = trimmed_name.strip().lower()
+        normalized_id = self._normalize_entity_id(trimmed_name)
+
         if normalized_id in existing_entries:
             return normalized_id
-        
-        # If not found directly, check for alias overlap
-        mention_lower = mention_text.strip().lower()
-        mention_words = set(w for w in mention_lower.split() if w not in {"mr", "mrs", "sir", "lord", "lady", "detective", "captain", "miss", "dr"})
-        
-        best_match_id = None
-        best_score = 0.0
-        
-        import logging
-        logger = logging.getLogger("NarrativeEngine.Memory.Character")
-        
+
+        # Get capitalized proper noun tokens of the trimmed name
+        nlp = self._get_nlp()
+        mention_doc = nlp(trimmed_name)
+        mention_propns = {t.text for t in mention_doc if t.pos_ == "PROPN" and t.text == t.text.capitalize()}
+        if not mention_propns:
+            mention_propns = {w for w in trimmed_name.split() if w and w[0].isupper()}
+
         for char_id, char_fields in existing_entries.items():
             # Check canonical name
             canonical_entry = char_fields.get("canonical_name")
-            canonical_name = canonical_entry.current.value.strip().lower() if canonical_entry and canonical_entry.current else ""
-            
+            canonical_name = canonical_entry.current.value if canonical_entry and canonical_entry.current else ""
+            canonical_lower = canonical_name.strip().lower()
+
             # Check aliases
             alias_entry = char_fields.get("aliases")
+            aliases = [a.strip() for a in alias_entry.current.value] if alias_entry and alias_entry.current else []
+            aliases_lower = [a.lower() for a in aliases]
+
+            # 1. Exact substring check (bidirectional)
+            if mention_lower and canonical_lower:
+                if mention_lower in canonical_lower or canonical_lower in mention_lower:
+                    import logging
+                    logger = logging.getLogger("NarrativeEngine.Memory.Character")
+                    logger.info(f"Resolved '{mention_text}' (trimmed: '{trimmed_name}') to existing character '{char_id}' via substring match.")
+                    return char_id
+
+            for alias in aliases_lower:
+                if mention_lower and alias:
+                    if mention_lower in alias or alias in mention_lower:
+                        import logging
+                        logger = logging.getLogger("NarrativeEngine.Memory.Character")
+                        logger.info(f"Resolved '{mention_text}' (trimmed: '{trimmed_name}') to existing character '{char_id}' via alias substring match.")
+                        return char_id
+
+            # 2. Capitalized proper noun token sharing check
+            char_names = [canonical_name] + aliases
+            for name in char_names:
+                name_doc = nlp(name)
+                name_propns = {t.text for t in name_doc if t.pos_ == "PROPN" and t.text == t.text.capitalize()}
+                if not name_propns:
+                    name_propns = {w for w in name.split() if w and w[0].isupper()}
+
+                titles_to_exclude = {"Lord", "Lady", "Sir", "Mr", "Mrs", "Miss", "Dr", "Captain", "Nemesis", "Grandmaster"}
+                shared_propns = (mention_propns & name_propns) - titles_to_exclude
+                if shared_propns:
+                    import logging
+                    logger = logging.getLogger("NarrativeEngine.Memory.Character")
+                    logger.info(f"Resolved '{mention_text}' (trimmed: '{trimmed_name}') to existing character '{char_id}' sharing capitalized proper noun(s): {shared_propns}")
+                    return char_id
+
+        # 3. Fallback to direct normalization / word overlap match
+        mention_words = set(w for w in mention_lower.split() if w not in {"mr", "mrs", "sir", "lord", "lady", "detective", "captain", "miss", "dr"})
+        best_match_id = None
+        best_score = 0.0
+        for char_id, char_fields in existing_entries.items():
+            canonical_entry = char_fields.get("canonical_name")
+            canonical_name = canonical_entry.current.value.strip().lower() if canonical_entry and canonical_entry.current else ""
+
+            alias_entry = char_fields.get("aliases")
             aliases = [a.strip().lower() for a in alias_entry.current.value] if alias_entry and alias_entry.current else []
-            
-            # Direct match with any alias or canonical name
-            if mention_lower == canonical_name or mention_lower in aliases:
-                return char_id
-            
-            # Word overlap match
+
             for name in [canonical_name] + aliases:
                 name_words = set(w for w in name.split() if w not in {"mr", "mrs", "sir", "lord", "lady", "detective", "captain", "miss", "dr"})
                 if not name_words or not mention_words:
@@ -794,15 +935,16 @@ class CharacterMemory(BaseMemory):
                 overlap = name_words.intersection(mention_words)
                 if overlap:
                     score = len(overlap) / max(len(name_words), len(mention_words))
-                    # If substantial overlap (e.g. >= 0.5 or sharing key name), consider a match
                     if score > best_score:
                         best_score = score
                         best_match_id = char_id
-                        
+
         if best_score >= 0.5:
+            import logging
+            logger = logging.getLogger("NarrativeEngine.Memory.Character")
             logger.info(f"Auto-merged mention '{mention_text}' into existing character ID '{best_match_id}' (overlap score: {best_score:.2f})")
             return best_match_id
-            
+
         return normalized_id
 
     def _extract_inventory(self, chapter_data: ChapterData, char_id: str, name_variants: Set[str], chapter_num: int, coref_map: Dict[str, str]) -> List[StateChange]:

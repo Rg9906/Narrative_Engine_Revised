@@ -144,6 +144,7 @@ class Pipeline:
         )
 
         # Step 4: NLP processing (spaCy)
+        doc = None
         try:
             doc = self._nlp_processor.process(cleaned_text)
 
@@ -170,10 +171,20 @@ class Pipeline:
 
         # Step 5: NER (Phase 4)
         try:
-            chapter_data.entities = self._get_entity_extractor().extract(
-                cleaned_text,
-                labels=self._entity_labels(),
-            )
+            extractor = self._get_entity_extractor()
+            import inspect
+            sig = inspect.signature(extractor.extract)
+            if "doc" in sig.parameters:
+                chapter_data.entities = extractor.extract(
+                    cleaned_text,
+                    labels=self._entity_labels(),
+                    doc=doc,
+                )
+            else:
+                chapter_data.entities = extractor.extract(
+                    cleaned_text,
+                    labels=self._entity_labels(),
+                )
             self._normalize_entities(chapter_data)
             logger.info(f"Extracted {len(chapter_data.entities)} entities")
         except (ImportError, OSError) as e:
