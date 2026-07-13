@@ -22,12 +22,12 @@ class SceneEngine:
     def detect_scenes(self, text: str, chapter_num: int) -> list:
         """Detect scene boundaries within a chapter.
 
-        Heuristic Phase 8 implementation:
+        Advanced Phase 12 implementation:
           - Split text into paragraphs (double-newline separators).
-          - Treat each paragraph as a candidate scene segment.
-          - If a paragraph appears to be a heading (short, title-case or all-caps),
-            start a new scene and attach following paragraphs until next heading.
-          - Return a list of scene dicts with minimal metadata.
+          - Detect visual break patterns (e.g. * * *, ---, ***) and start new scenes.
+          - Detect headings (short uppercase/chapter lines).
+          - Detect temporal and spatial transition sentences at the start of a paragraph
+            (e.g., "The next morning,", "Three hours later,", "Back at the laboratory,").
         """
         import re
 
@@ -41,21 +41,59 @@ class SceneEngine:
         scene_idx = 0
 
         def _is_heading(p: str) -> bool:
-            # Heading heuristics: short line, mostly uppercase or starts with Chapter/Prologue
             s = p.split('\n', 1)[0].strip()
             if len(s) <= 120 and (s.upper() == s or s.lower().startswith(("chapter", "prologue", "epilogue"))):
                 return True
             return False
 
+        def _is_visual_break(p: str) -> bool:
+            # Matches patterns like * * *, ***, ---, ___
+            cleaned = p.replace(" ", "")
+            if len(cleaned) >= 3 and all(c in ('*', '-', '_') for c in cleaned):
+                return True
+            return False
+
+        # Transition phrases indicating scene time/setting shift
+        TRANSITION_PATTERN = re.compile(
+            r"^(?:(?:the|a|several|many|two|three|four|five|next|following)\s+(?:day|morning|afternoon|evening|night|week|month|year|hour|minute|second)s?\s+(?:later|after|passed|had\s+passed|before)\b|"
+            r"(?:the\s+next|the\s+following)\s+(?:day|morning|afternoon|evening|night|week|month|year)\b|"
+            r"(?:later\s+that|early\s+the|by\s+the|during\s+the|at\s+the|in\s+the)\s+(?:day|morning|afternoon|evening|night|meanwhile|time)\b|"
+            r"(?:meanwhile|meanwhile,|later,|afterward,|afterwards,|suddenly,|suddenly)\b|"
+            r"(?:back\s+at|inside\s+the|across\s+the|upon\s+entering|when\s+they\s+arrived|outside\s+the)\s+[a-z]+)",
+            re.IGNORECASE
+        )
+
+        def _has_scene_transition_phrase(p: str) -> bool:
+            # Check the first sentence of the paragraph
+            first_sentence = re.split(r'[.!?]', p)[0].strip()
+            return bool(TRANSITION_PATTERN.match(first_sentence))
+
         for para in paragraphs:
+            # If it's a visual break, we start a new scene and discard the separator line itself
+            if _is_visual_break(para):
+                if current_scene:
+                    scenes.append(current_scene)
+                    current_scene = None
+                continue
+
             if _is_heading(para):
-                # Start a new scene with heading as title
                 scene_idx += 1
                 if current_scene:
                     scenes.append(current_scene)
                 current_scene = {
                     "id": f"ch{chapter_num}.sc{scene_idx}",
                     "title": para.split('\n', 1)[0].strip(),
+                    "text": "",
+                    "chapter": chapter_num,
+                    "paragraphs": [para],
+                }
+            elif _has_scene_transition_phrase(para) and current_scene is not None:
+                # If there's a strong transition phrase, split here and start a new scene
+                scene_idx += 1
+                scenes.append(current_scene)
+                current_scene = {
+                    "id": f"ch{chapter_num}.sc{scene_idx}",
+                    "title": f"Scene {scene_idx} - Setting Transition",
                     "text": "",
                     "chapter": chapter_num,
                     "paragraphs": [para],
@@ -74,11 +112,11 @@ class SceneEngine:
                     current_scene["paragraphs"].append(para)
 
         if current_scene:
-            # Finalize scenes: join paragraph text
-            for s in scenes:
-                s["text"] = "\n\n".join(s.get("paragraphs", []))
-            current_scene["text"] = "\n\n".join(current_scene.get("paragraphs", []))
             scenes.append(current_scene)
+
+        # Finalize scenes: join paragraph text
+        for s in scenes:
+            s["text"] = "\n\n".join(s.get("paragraphs", []))
 
         return scenes
 

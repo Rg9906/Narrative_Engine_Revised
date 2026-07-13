@@ -1,8 +1,9 @@
 {
   "metadata": {
     "chapter": 3,
-    "generated_at": "2026-07-13T10:34:15.776056",
-    "inspector_count": 8
+    "generated_at": "2026-07-13T12:17:39.588751",
+    "inspector_count": 8,
+    "llm_provider": "none"
   },
   "findings": [
     {

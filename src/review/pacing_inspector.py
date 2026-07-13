@@ -34,11 +34,8 @@ class PacingInspector(BaseInspector):
         findings: List[Finding] = []
         chapter = state.last_processed_chapter
 
-        # Check chapter-level metrics from delta if available
-        if delta and hasattr(delta, 'chapter_number'):
-            # This is a basic implementation - in a full system, we'd track
-            # chapter metrics over time in the state
-            pass
+        # Check chapter-level metrics from state.style if available
+        self._check_style_pacing(state, findings, chapter)
 
         # Analyze overall state for pacing patterns
         self._check_chapter_distribution(state, findings, chapter)
@@ -46,6 +43,58 @@ class PacingInspector(BaseInspector):
         self._check_theme_distribution(state, findings, chapter)
 
         return findings
+
+    def _check_style_pacing(self, state, findings: List[Finding], chapter: int) -> None:
+        """Check for pacing issues using tracked style metrics."""
+        style_entries = state.style.get("global_style", {})
+        if not style_entries:
+            return
+
+        word_count_entry = style_entries.get("word_count")
+        dialogue_density_entry = style_entries.get("dialogue_density")
+
+        if word_count_entry and word_count_entry.current:
+            word_count = word_count_entry.current.value
+            # Alert on extreme chapter length
+            if word_count < 500:
+                findings.append(Finding(
+                    severity='warning',
+                    category='pacing',
+                    title='Very short chapter',
+                    description=f"Chapter {chapter} is extremely short ({word_count} words). Consider expanding or combining scenes.",
+                    chapter=chapter,
+                    confidence=0.9,
+                ))
+            elif word_count > 6000:
+                findings.append(Finding(
+                    severity='warning',
+                    category='pacing',
+                    title='Very long chapter',
+                    description=f"Chapter {chapter} is very long ({word_count} words). Consider breaking it into smaller chapters.",
+                    chapter=chapter,
+                    confidence=0.9,
+                ))
+
+        if dialogue_density_entry and dialogue_density_entry.current:
+            density = dialogue_density_entry.current.value
+            if density < 0.05:
+                findings.append(Finding(
+                    severity='suggestion',
+                    category='pacing',
+                    title='Low dialogue density',
+                    description=f"Chapter {chapter} contains very little dialogue ({round(density * 100, 1)}%). Consider adding interactions to break up walls of exposition.",
+                    chapter=chapter,
+                    confidence=0.8,
+                ))
+            elif density > 0.60:
+                findings.append(Finding(
+                    severity='suggestion',
+                    category='pacing',
+                    title='High dialogue density',
+                    description=f"Chapter {chapter} is dialogue-heavy ({round(density * 100, 1)}%). Consider adding more sensory description or action beats.",
+                    chapter=chapter,
+                    confidence=0.8,
+                ))
 
     def _check_chapter_distribution(self, state, findings: List[Finding], chapter: int) -> None:
         """Check if chapters are being processed consistently."""

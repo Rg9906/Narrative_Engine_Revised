@@ -1,22 +1,20 @@
 {
   "metadata": {
     "chapter": 2,
-    "generated_at": "2026-07-13T10:34:12.308111",
-    "inspector_count": 8
+    "generated_at": "2026-07-13T12:17:48.665649",
+    "inspector_count": 8,
+    "llm_provider": "none"
   },
   "findings": [
     {
       "severity": "warning",
-      "category": "consistency",
-      "title": "Abrupt relationship shift",
-      "description": "Relationship between 'arthur' and 'merlin' shifted abruptly from ENMITY (chapter 1) to ROMANTIC (chapter 2) without gradual transition.",
+      "category": "voice",
+      "title": "Sudden prose style shift",
+      "description": "Average sentence length changed significantly in chapter 2 (25.0 words) compared to historical average (15.0 words). Verify if this tempo change is intentional.",
       "chapter": 2,
       "evidence_ids": [],
-      "related_entities": [
-        "arthur",
-        "merlin"
-      ],
-      "confidence": 0.75
+      "related_entities": [],
+      "confidence": 0.8
     }
   ]
 }

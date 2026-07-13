@@ -186,3 +186,137 @@ class TestEditorialEngine:
         findings = report["findings"]
 
         assert any(f["category"] == "conflict" and "neglected mystery" in f["title"].lower() for f in findings)
+
+    def test_pacing_inspector_extreme_word_count(self):
+        engine = EditorialEngine()
+        state = NarrativeState()
+        state.last_processed_chapter = 1
+        state.total_chapters_processed = 1
+
+        from src.models.state import StateEntry, StateSnapshot
+        wc_entry = StateEntry(key="word_count")
+        wc_entry.update(StateSnapshot(value=200, chapter=1)) # Very short chapter
+        state.style["global_style"] = {"word_count": wc_entry}
+
+        report = engine.review(state)
+        findings = report["findings"]
+
+        assert any(f["category"] == "pacing" and "very short chapter" in f["title"].lower() for f in findings)
+
+    def test_voice_inspector_sudden_style_shift(self):
+        engine = EditorialEngine()
+        state = NarrativeState()
+        state.last_processed_chapter = 2
+        state.total_chapters_processed = 2
+
+        from src.models.state import StateEntry, StateSnapshot
+        avg_len_entry = StateEntry(key="avg_sentence_length")
+        avg_len_entry.update(StateSnapshot(value=15.0, chapter=1)) # Chapter 1 avg sentence length
+        avg_len_entry.update(StateSnapshot(value=25.0, chapter=2)) # Chapter 2 avg sentence length (diff is 10.0 > 8.0)
+        state.style["global_style"] = {"avg_sentence_length": avg_len_entry}
+
+        report = engine.review(state)
+        findings = report["findings"]
+
+        assert any(f["category"] == "voice" and "sudden prose style shift" in f["title"].lower() for f in findings)
+
+    def test_scene_engine_advanced_boundaries(self):
+        engine = SceneEngine()
+        # Test text with visual break and transition phrase
+        text = """Paragraph one of the first scene.
+
+* * *
+
+Paragraph two starting a new scene because of visual break.
+
+The next day, Arthur woke up early in his quarters. This paragraph starts with a transition phrase."""
+        
+        scenes = engine.detect_scenes(text, chapter_num=1)
+        # Should detect 3 scenes:
+        # Scene 1: Paragraph one
+        # Scene 2: Paragraph two
+        # Scene 3: The next day paragraph
+        assert len(scenes) == 3
+        assert "Setting Transition" in scenes[2]["title"]
+
+    def test_editorial_engine_parse_json_findings(self):
+        engine = EditorialEngine()
+        raw_output = """```json
+[
+  {
+    "severity": "warning",
+    "category": "consistency",
+    "title": "Unresolved Mystery",
+    "description": "The chalice is still missing.",
+    "confidence": 0.9
+  }
+]
+```"""
+        findings = engine._parse_json_findings(raw_output, chapter_num=5)
+        assert len(findings) == 1
+        assert findings[0]["chapter"] == 5
+        assert findings[0]["title"] == "Unresolved Mystery"
+
+
+class TestLLMProvider:
+    """Tests for the centralized LLMProvider backend detection."""
+
+    def test_provider_detects_gemini(self, monkeypatch):
+        monkeypatch.setenv("GEMINI_API_KEY", "test-gemini-key-123")
+        monkeypatch.delenv("GROQ_API_KEY", raising=False)
+        monkeypatch.delenv("OLLAMA_MODEL", raising=False)
+        monkeypatch.delenv("OLLAMA_API_URL", raising=False)
+
+        from src.utils.llm_provider import LLMProvider
+        provider = LLMProvider()
+        assert provider.provider_name == "gemini"
+        assert provider.is_available is True
+        assert provider.model == "gemini-2.0-flash"
+
+    def test_provider_detects_groq(self, monkeypatch):
+        monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+        monkeypatch.setenv("GROQ_API_KEY", "test-groq-key-456")
+        monkeypatch.delenv("OLLAMA_MODEL", raising=False)
+        monkeypatch.delenv("OLLAMA_API_URL", raising=False)
+
+        from src.utils.llm_provider import LLMProvider
+        provider = LLMProvider()
+        assert provider.provider_name == "groq"
+        assert provider.is_available is True
+        assert provider.model == "llama-3.3-70b-versatile"
+
+    def test_provider_priority_gemini_over_groq(self, monkeypatch):
+        monkeypatch.setenv("GEMINI_API_KEY", "test-gemini-key-123")
+        monkeypatch.setenv("GROQ_API_KEY", "test-groq-key-456")
+        monkeypatch.delenv("OLLAMA_MODEL", raising=False)
+        monkeypatch.delenv("OLLAMA_API_URL", raising=False)
+
+        from src.utils.llm_provider import LLMProvider
+        provider = LLMProvider()
+        assert provider.provider_name == "gemini"
+
+    def test_provider_falls_back_to_none(self, monkeypatch):
+        monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+        monkeypatch.delenv("GROQ_API_KEY", raising=False)
+        monkeypatch.delenv("OLLAMA_MODEL", raising=False)
+        monkeypatch.delenv("OLLAMA_API_URL", raising=False)
+        monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+        from src.utils.llm_provider import LLMProvider
+        # Patch _check_ollama_alive to always return False (no local server)
+        monkeypatch.setattr(LLMProvider, "_check_ollama_alive", staticmethod(lambda url: False))
+        provider = LLMProvider()
+        assert provider.provider_name == "none"
+        assert provider.is_available is False
+
+    def test_provider_chat_raises_when_unavailable(self, monkeypatch):
+        monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+        monkeypatch.delenv("GROQ_API_KEY", raising=False)
+        monkeypatch.delenv("OLLAMA_MODEL", raising=False)
+        monkeypatch.delenv("OLLAMA_API_URL", raising=False)
+
+        from src.utils.llm_provider import LLMProvider
+        monkeypatch.setattr(LLMProvider, "_check_ollama_alive", staticmethod(lambda url: False))
+        provider = LLMProvider()
+        with pytest.raises(RuntimeError, match="No LLM provider available"):
+            provider.chat([{"role": "user", "content": "test"}])

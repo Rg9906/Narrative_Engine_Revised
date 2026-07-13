@@ -87,6 +87,7 @@ class NarrativeElementType(Enum):
     MYSTERY = auto()
     SCENE = auto()
     ARC = auto()
+    STYLE = auto()
 
 
 # =============================================================================

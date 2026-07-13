@@ -82,9 +82,8 @@ class VoiceInspector(BaseInspector):
         if not state.style:
             return
 
-        # Check if style metrics are being tracked
-        style_entries = len(state.style)
-        if style_entries == 0 and state.total_chapters_processed >= 5:
+        style_entries = state.style.get("global_style", {})
+        if not style_entries and state.total_chapters_processed >= 5:
             findings.append(Finding(
                 severity='note',
                 category='voice',
@@ -95,3 +94,26 @@ class VoiceInspector(BaseInspector):
                 related_entities=[],
                 confidence=0.4,
             ))
+            return
+
+        avg_sent_len_entry = style_entries.get("avg_sentence_length")
+        if avg_sent_len_entry and avg_sent_len_entry.current and avg_sent_len_entry.history:
+            current_len = avg_sent_len_entry.current.value
+            previous_lens = [snapshot.value for snapshot in avg_sent_len_entry.history]
+            avg_previous = sum(previous_lens) / len(previous_lens)
+
+            # Detect sudden drift in average sentence length (sudden change in prose tempo)
+            diff = abs(current_len - avg_previous)
+            if diff > 8.0:
+                findings.append(Finding(
+                    severity='warning',
+                    category='voice',
+                    title='Sudden prose style shift',
+                    description=(
+                        f"Average sentence length changed significantly in chapter {chapter} "
+                        f"({current_len} words) compared to historical average ({round(avg_previous, 1)} words). "
+                        f"Verify if this tempo change is intentional."
+                    ),
+                    chapter=chapter,
+                    confidence=0.8,
+                ))

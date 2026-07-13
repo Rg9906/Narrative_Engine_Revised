@@ -10,6 +10,7 @@ from src.memory.timeline_memory import TimelineMemory
 from src.memory.theme_memory import ThemeMemory
 from src.memory.promise_memory import PromiseMemory
 from src.memory.mystery_memory import MysteryMemory
+from src.memory.style_memory import StyleMemory
 
 
 @pytest.fixture
@@ -154,3 +155,35 @@ class TestMysteryMemory:
         memory.update_from_chapter(ch2_data, 2)
         unresolved_after = memory.get_unresolved_mysteries()
         assert len(unresolved_after) == 0
+
+
+class TestStyleMemory:
+    def test_style_metrics_tracked_and_updated(self, empty_chapter_data):
+        empty_chapter_data.style_metrics = {
+            "word_count": 1000,
+            "sentence_count": 50,
+            "avg_sentence_length": 20.0,
+            "dialogue_density": 0.15,
+        }
+        memory = StyleMemory()
+        changes = memory.update_from_chapter(empty_chapter_data, 1)
+
+        assert len(changes) > 0
+        assert "global_style" in memory.entries
+        assert memory.get_entry("global_style", "word_count").current.value == 1000
+        assert memory.get_entry("global_style", "avg_sentence_length").current.value == 20.0
+
+        # Update with new chapter data to test evolution
+        empty_chapter_data.style_metrics = {
+            "word_count": 1200,
+            "sentence_count": 60,
+            "avg_sentence_length": 20.0,
+            "dialogue_density": 0.20,
+        }
+        changes_ch2 = memory.update_from_chapter(empty_chapter_data, 2)
+        assert len(changes_ch2) > 0
+        word_count_entry = memory.get_entry("global_style", "word_count")
+        assert word_count_entry.current.value == 1200
+        assert len(word_count_entry.history) == 1
+        assert word_count_entry.history[0].value == 1000
+

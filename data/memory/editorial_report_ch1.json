@@ -1,21 +1,20 @@
 {
   "metadata": {
     "chapter": 1,
-    "generated_at": "2026-07-13T10:34:08.794571",
-    "inspector_count": 8
+    "generated_at": "2026-07-13T12:17:45.638336",
+    "inspector_count": 8,
+    "llm_provider": "none"
   },
   "findings": [
     {
-      "severity": "suggestion",
-      "category": "character",
-      "title": "Underdeveloped character",
-      "description": "Character 'arthur' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "severity": "warning",
+      "category": "pacing",
+      "title": "Very short chapter",
+      "description": "Chapter 1 is extremely short (200 words). Consider expanding or combining scenes.",
       "chapter": 1,
       "evidence_ids": [],
-      "related_entities": [
-        "arthur"
-      ],
-      "confidence": 0.6
+      "related_entities": [],
+      "confidence": 0.9
     }
   ]
 }

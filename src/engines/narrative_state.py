@@ -30,6 +30,7 @@ from src.memory.timeline_memory import TimelineMemory
 from src.memory.theme_memory import ThemeMemory
 from src.memory.promise_memory import PromiseMemory
 from src.memory.mystery_memory import MysteryMemory
+from src.memory.style_memory import StyleMemory
 from src.engines.scene_engine import SceneEngine
 from src.models.state import (
     ChapterData,
@@ -154,6 +155,11 @@ class NarrativeStateEngine:
         mystery_changes = mystery_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
         delta.changes.extend(mystery_changes)
 
+        # Phase 11: Style tracking
+        style_memory = StyleMemory(existing_entries=current_state.style)
+        style_changes = style_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
+        delta.changes.extend(style_changes)
+
         # Persist memory entries back into the current NarrativeState
         try:
             current_state.characters = character_memory.entries
@@ -162,6 +168,7 @@ class NarrativeStateEngine:
             current_state.themes = theme_memory.entries
             current_state.promises = promise_memory.entries
             current_state.mysteries = mystery_memory.entries
+            current_state.style = style_memory.entries
             # Append extracted relations as simple timeline events
             for rel in getattr(chapter_data, "relations", []):
                 event = {

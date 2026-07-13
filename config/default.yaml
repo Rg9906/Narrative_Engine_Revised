@@ -44,6 +44,16 @@ editorial:
   # Minimum relationship interactions before flagging a leap
   min_relationship_interactions: 3
 
+# LLM Provider configuration
+# Priority: gemini → groq → ollama (auto-detected)
+# Set GEMINI_API_KEY or GROQ_API_KEY in environment variables
+llm:
+  gemini_model: "gemini-2.0-flash"
+  groq_model: "llama-3.3-70b-versatile"
+  ollama_model: "llama3"
+  ollama_url: "http://localhost:11434"
+  temperature: 0.2
+
 # Logging
 logging:
   level: "INFO"
