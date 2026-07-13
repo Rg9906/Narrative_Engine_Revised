@@ -1,0 +1,26 @@
+# Virtual environment folder
+venv/
+.venv/
+env/
+.env
+.env.*
+
+# Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Testing cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local configuration and cache directories
+data/cache/
+data/memory/
+data/output/
+
+# IDE configurations
+.vscode/
+.idea/

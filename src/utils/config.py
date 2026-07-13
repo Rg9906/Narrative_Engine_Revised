@@ -30,6 +30,7 @@ class Config:
         self._config: Dict[str, Any] = {}
         self._config_path = Path(config_path) if config_path else DEFAULT_CONFIG_PATH
         self._load()
+        self._load_dotenv()
 
     def _load(self) -> None:
         """Load configuration from YAML file."""
@@ -39,6 +40,27 @@ class Config:
         else:
             print(f"[Config] Warning: Config file not found at {self._config_path}, using defaults.")
             self._config = {}
+
+    def _load_dotenv(self) -> None:
+        """Load environment variables from .env file if it exists."""
+        dotenv_path = PROJECT_ROOT / ".env"
+        if dotenv_path.exists():
+            try:
+                with open(dotenv_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if not line or line.startswith("#"):
+                            continue
+                        parts = line.split("=", 1)
+                        if len(parts) == 2:
+                            key = parts[0].strip()
+                            val = parts[1].strip()
+                            # Strip quotes if present
+                            if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                                val = val[1:-1]
+                            os.environ[key] = val
+            except Exception as e:
+                print(f"[Config] Warning: Failed to read .env file: {e}")
 
     def get(self, key_path: str, default: Any = None) -> Any:
         """

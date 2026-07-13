@@ -2,8 +2,8 @@
   "metadata": {
     "last_processed_chapter": 1,
     "total_chapters_processed": 1,
-    "created_at": "2026-07-13T17:43:37.967651",
-    "last_updated": "2026-07-13T17:43:38.030243"
+    "created_at": "2026-07-13T20:40:14.574410",
+    "last_updated": "2026-07-13T20:40:14.644408"
   },
   "characters": {
     "alice": {
@@ -16,7 +16,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -36,7 +36,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -54,7 +54,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -72,7 +72,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -90,7 +90,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valle...'",
-          "timestamp": "2026-07-13T17:43:37.970659"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [
           {
@@ -100,7 +100,7 @@
             "evidence_ids": [],
             "confidence": 0.7,
             "reasoning": "Extracted from sentence: 'Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valle...'",
-            "timestamp": "2026-07-13T17:43:37.969664"
+            "timestamp": "2026-07-13T20:40:14.575410"
           }
         ],
         "importance": 0.6,
@@ -120,7 +120,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Personality trait 'shy' inferred from narration.",
-          "timestamp": "2026-07-13T17:43:37.970659"
+          "timestamp": "2026-07-13T20:40:14.576409"
         },
         "history": [],
         "importance": 0.7,
@@ -140,7 +140,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -160,7 +160,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -178,7 +178,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -196,7 +196,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -216,7 +216,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -236,7 +236,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -254,7 +254,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -272,7 +272,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -292,7 +292,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Goal extracted from text containing 'have to'.",
-          "timestamp": "2026-07-13T17:43:37.973661"
+          "timestamp": "2026-07-13T20:40:14.582409"
         },
         "history": [],
         "importance": 0.9,
@@ -312,7 +312,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -332,7 +332,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -350,7 +350,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -368,7 +368,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -386,7 +386,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the so...'",
-          "timestamp": "2026-07-13T17:43:37.974661"
+          "timestamp": "2026-07-13T20:40:14.582409"
         },
         "history": [],
         "importance": 0.6,
@@ -406,7 +406,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -426,7 +426,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -444,7 +444,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -462,7 +462,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -480,7 +480,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the so...'",
-          "timestamp": "2026-07-13T17:43:37.976663"
+          "timestamp": "2026-07-13T20:40:14.584409"
         },
         "history": [],
         "importance": 0.6,
@@ -500,7 +500,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -520,7 +520,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -538,7 +538,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -556,7 +556,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -576,7 +576,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -596,7 +596,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -614,7 +614,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -632,7 +632,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -652,7 +652,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -672,7 +672,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -690,7 +690,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -708,7 +708,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -728,7 +728,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Personality trait 'kind' inferred from narration.",
-          "timestamp": "2026-07-13T17:43:37.982658"
+          "timestamp": "2026-07-13T20:40:14.590410"
         },
         "history": [],
         "importance": 0.7,
@@ -748,7 +748,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -768,7 +768,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -786,7 +786,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -804,7 +804,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -824,7 +824,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -844,7 +844,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -862,7 +862,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -880,7 +880,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -900,7 +900,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -920,7 +920,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -938,7 +938,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -956,7 +956,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -976,7 +976,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -996,7 +996,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1014,7 +1014,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1032,7 +1032,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1052,7 +1052,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -1072,7 +1072,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1090,7 +1090,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1108,7 +1108,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1128,7 +1128,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -1148,7 +1148,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1166,7 +1166,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1184,7 +1184,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1204,7 +1204,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Personality trait 'shy' inferred from narration.",
-          "timestamp": "2026-07-13T17:43:37.991237"
+          "timestamp": "2026-07-13T20:40:14.601407"
         },
         "history": [],
         "importance": 0.7,
@@ -1224,7 +1224,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.9,
@@ -1244,7 +1244,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1262,7 +1262,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1280,7 +1280,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.574410"
         },
         "history": [],
         "importance": 0.5,
@@ -1298,7 +1298,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the so...'",
-          "timestamp": "2026-07-13T17:43:37.993246"
+          "timestamp": "2026-07-13T20:40:14.602407"
         },
         "history": [],
         "importance": 0.6,
@@ -1318,7 +1318,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1338,7 +1338,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1356,7 +1356,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1374,7 +1374,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1394,7 +1394,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Personality trait 'kind' inferred from narration.",
-          "timestamp": "2026-07-13T17:43:37.996246"
+          "timestamp": "2026-07-13T20:40:14.604409"
         },
         "history": [],
         "importance": 0.7,
@@ -1414,7 +1414,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1434,7 +1434,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1452,7 +1452,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.968653"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1470,7 +1470,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1490,7 +1490,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1510,7 +1510,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1528,7 +1528,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1546,7 +1546,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1566,7 +1566,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1586,7 +1586,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1604,7 +1604,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1622,7 +1622,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1642,7 +1642,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1662,7 +1662,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1680,7 +1680,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1698,7 +1698,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1716,7 +1716,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valle...'",
-          "timestamp": "2026-07-13T17:43:38.001247"
+          "timestamp": "2026-07-13T20:40:14.610410"
         },
         "history": [
           {
@@ -1726,7 +1726,7 @@
             "evidence_ids": [],
             "confidence": 0.7,
             "reasoning": "Extracted from sentence: 'Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valle...'",
-            "timestamp": "2026-07-13T17:43:38.001247"
+            "timestamp": "2026-07-13T20:40:14.610410"
           }
         ],
         "importance": 0.6,
@@ -1744,7 +1744,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Emotional state inferred from text and dialogue.",
-          "timestamp": "2026-07-13T17:43:38.004246"
+          "timestamp": "2026-07-13T20:40:14.614410"
         },
         "history": [],
         "importance": 0.8,
@@ -1764,7 +1764,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Goal extracted from text containing 'looking for'.",
-          "timestamp": "2026-07-13T17:43:38.004246"
+          "timestamp": "2026-07-13T20:40:14.614410"
         },
         "history": [],
         "importance": 0.9,
@@ -1784,7 +1784,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1804,7 +1804,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1822,7 +1822,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1840,7 +1840,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1860,7 +1860,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1880,7 +1880,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1898,7 +1898,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1916,7 +1916,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1934,7 +1934,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'An old woman sat outside the tavern, peeling apples....'",
-          "timestamp": "2026-07-13T17:43:38.006245"
+          "timestamp": "2026-07-13T20:40:14.616409"
         },
         "history": [],
         "importance": 0.6,
@@ -1954,7 +1954,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -1974,7 +1974,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -1992,7 +1992,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2010,7 +2010,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2028,7 +2028,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'An old woman sat outside the tavern, peeling apples....'",
-          "timestamp": "2026-07-13T17:43:38.007247"
+          "timestamp": "2026-07-13T20:40:14.618409"
         },
         "history": [],
         "importance": 0.6,
@@ -2048,7 +2048,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -2068,7 +2068,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2086,7 +2086,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2104,7 +2104,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2124,7 +2124,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -2144,7 +2144,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2162,7 +2162,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2180,7 +2180,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2198,7 +2198,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Emotional state inferred from text and dialogue.",
-          "timestamp": "2026-07-13T17:43:38.012244"
+          "timestamp": "2026-07-13T20:40:14.623410"
         },
         "history": [],
         "importance": 0.8,
@@ -2218,7 +2218,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -2238,7 +2238,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2256,7 +2256,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2274,7 +2274,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2292,7 +2292,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valle...'",
-          "timestamp": "2026-07-13T17:43:38.013245"
+          "timestamp": "2026-07-13T20:40:14.625408"
         },
         "history": [
           {
@@ -2302,7 +2302,7 @@
             "evidence_ids": [],
             "confidence": 0.7,
             "reasoning": "Extracted from sentence: 'Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valle...'",
-            "timestamp": "2026-07-13T17:43:38.013245"
+            "timestamp": "2026-07-13T20:40:14.625408"
           }
         ],
         "importance": 0.6,
@@ -2322,7 +2322,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Goal extracted from text containing 'trying to'.",
-          "timestamp": "2026-07-13T17:43:38.014245"
+          "timestamp": "2026-07-13T20:40:14.626408"
         },
         "history": [],
         "importance": 0.9,
@@ -2342,7 +2342,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -2362,7 +2362,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2380,7 +2380,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2398,7 +2398,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2418,7 +2418,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -2438,7 +2438,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2456,7 +2456,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2474,7 +2474,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2492,7 +2492,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the so...'",
-          "timestamp": "2026-07-13T17:43:38.016245"
+          "timestamp": "2026-07-13T20:40:14.628407"
         },
         "history": [],
         "importance": 0.6,
@@ -2512,7 +2512,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.9,
@@ -2532,7 +2532,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2550,7 +2550,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2568,7 +2568,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T17:43:37.969664"
+          "timestamp": "2026-07-13T20:40:14.575410"
         },
         "history": [],
         "importance": 0.5,
@@ -2586,7 +2586,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Extracted from sentence: 'She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the so...'",
-          "timestamp": "2026-07-13T17:43:38.018247"
+          "timestamp": "2026-07-13T20:40:14.632410"
         },
         "history": [],
         "importance": 0.6,
@@ -2608,7 +2608,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'cast' between sun and shadows.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.633410"
         },
         "history": [],
         "importance": 0.5,
@@ -2626,7 +2626,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.633410"
         },
         "history": [],
         "importance": 0.5,
@@ -2644,7 +2644,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.633410"
         },
         "history": [],
         "importance": 0.5,
@@ -2664,7 +2664,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'clutched' between She and journal.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.633410"
         },
         "history": [],
         "importance": 0.5,
@@ -2682,7 +2682,7 @@
           "evidence_ids": [],
           "confidence": 0.85,
           "reasoning": "Incremented mention count for relationship.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [
           {
@@ -2692,7 +2692,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "First observed interaction this chapter.",
-            "timestamp": "2026-07-13T17:43:38.020243"
+            "timestamp": "2026-07-13T20:40:14.634409"
           },
           {
             "value": 2,
@@ -2701,7 +2701,7 @@
             "evidence_ids": [],
             "confidence": 0.85,
             "reasoning": "Incremented mention count for relationship.",
-            "timestamp": "2026-07-13T17:43:38.020243"
+            "timestamp": "2026-07-13T20:40:14.634409"
           }
         ],
         "importance": 0.5,
@@ -2719,7 +2719,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Updated last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [
           {
@@ -2729,7 +2729,7 @@
             "evidence_ids": [],
             "confidence": 0.9,
             "reasoning": "Recorded last interaction chapter.",
-            "timestamp": "2026-07-13T17:43:38.020243"
+            "timestamp": "2026-07-13T20:40:14.634409"
           },
           {
             "value": 1,
@@ -2738,7 +2738,7 @@
             "evidence_ids": [],
             "confidence": 0.9,
             "reasoning": "Updated last interaction chapter.",
-            "timestamp": "2026-07-13T17:43:38.020243"
+            "timestamp": "2026-07-13T20:40:14.634409"
           }
         ],
         "importance": 0.5,
@@ -2758,7 +2758,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'clutched' between She and gift.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2776,7 +2776,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2794,7 +2794,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2814,7 +2814,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'is' between Gate and myth.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2832,7 +2832,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2850,7 +2850,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2870,7 +2870,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'chased' between Father and myths.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2888,7 +2888,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2906,7 +2906,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2926,7 +2926,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'chased' between Father and life.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2944,7 +2944,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2962,7 +2962,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -2982,7 +2982,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'got' between it and him.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3000,7 +3000,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3018,7 +3018,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3038,7 +3038,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'got' between It and answers.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3056,7 +3056,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3074,7 +3074,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3094,7 +3094,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'mention' between She and dreams.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3112,7 +3112,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3130,7 +3130,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3150,7 +3150,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'mention' between She and warmth.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3168,7 +3168,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3186,7 +3186,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3206,7 +3206,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'reached' between she and crossroads.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3224,7 +3224,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3242,7 +3242,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3262,7 +3262,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'was' between village and blacksmith.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3280,7 +3280,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3298,7 +3298,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3318,7 +3318,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'have' between that and names.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3336,7 +3336,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3354,7 +3354,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3374,7 +3374,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'paused' between woman and peeling.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3392,7 +3392,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3410,7 +3410,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3430,7 +3430,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'found' between who and it.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3448,7 +3448,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3466,7 +3466,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3486,7 +3486,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'thanked' between Alice and her.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3504,7 +3504,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3522,7 +3522,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3542,7 +3542,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'made' between She and camp.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3560,7 +3560,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3578,7 +3578,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3598,7 +3598,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'is' between Gate and door.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3616,7 +3616,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3634,7 +3634,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3654,7 +3654,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'is' between It and question.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3672,7 +3672,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3690,7 +3690,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3710,7 +3710,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'closed' between Alice and journal.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3728,7 +3728,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3746,7 +3746,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3766,7 +3766,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'pulled' between She and cloak.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3784,7 +3784,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3802,7 +3802,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3822,7 +3822,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Observed relation 'pulled' between She and tighter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3840,7 +3840,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3858,7 +3858,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3880,7 +3880,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3898,7 +3898,7 @@
           "evidence_ids": [],
           "confidence": 0.95,
           "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3916,7 +3916,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3936,7 +3936,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3954,7 +3954,7 @@
           "evidence_ids": [],
           "confidence": 0.95,
           "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -3972,7 +3972,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Incremented world element mention count.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [
           {
@@ -3982,7 +3982,7 @@
             "evidence_ids": [],
             "confidence": 0.9,
             "reasoning": "First mention count.",
-            "timestamp": "2026-07-13T17:43:38.020243"
+            "timestamp": "2026-07-13T20:40:14.634409"
           }
         ],
         "importance": 0.5,
@@ -4000,7 +4000,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Updated last mention chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4020,7 +4020,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4038,7 +4038,7 @@
           "evidence_ids": [],
           "confidence": 0.95,
           "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4056,7 +4056,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T17:43:38.020243"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4076,7 +4076,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T17:43:38.021245"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4094,7 +4094,7 @@
           "evidence_ids": [],
           "confidence": 0.95,
           "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T17:43:38.021245"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4112,7 +4112,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T17:43:38.021245"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4132,7 +4132,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T17:43:38.021245"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4150,7 +4150,7 @@
           "evidence_ids": [],
           "confidence": 0.95,
           "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T17:43:38.021245"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4168,7 +4168,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T17:43:38.021245"
+          "timestamp": "2026-07-13T20:40:14.634409"
         },
         "history": [],
         "importance": 0.5,
@@ -4336,7 +4336,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Theme 'love' mentioned 1 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4356,7 +4356,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Theme 'love' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4374,7 +4374,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Theme 'love' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.9,
@@ -4394,7 +4394,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Theme 'freedom' mentioned 1 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4414,7 +4414,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Theme 'freedom' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4432,7 +4432,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Theme 'freedom' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.9,
@@ -4452,7 +4452,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Theme 'good_vs_evil' mentioned 1 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4472,7 +4472,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Theme 'good_vs_evil' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4490,7 +4490,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Theme 'good_vs_evil' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.9,
@@ -4510,7 +4510,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Theme 'hope' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4530,7 +4530,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Theme 'hope' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4548,7 +4548,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Theme 'hope' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.9,
@@ -4568,7 +4568,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'light' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4588,7 +4588,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'light' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4606,7 +4606,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'light' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4626,7 +4626,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'darkness' mentioned 5 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4646,7 +4646,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'darkness' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4664,7 +4664,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'darkness' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4684,7 +4684,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'water' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4704,7 +4704,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'water' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4722,7 +4722,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'water' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4742,7 +4742,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'fire' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4762,7 +4762,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'fire' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4780,7 +4780,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'fire' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4800,7 +4800,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'blood' mentioned 1 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4820,7 +4820,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'blood' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4838,7 +4838,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'blood' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4858,7 +4858,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'door' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4878,7 +4878,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'door' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4896,7 +4896,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'door' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4916,7 +4916,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'key' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4936,7 +4936,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'key' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -4954,7 +4954,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'key' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -4974,7 +4974,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Symbol 'tree' mentioned 3 times in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -4994,7 +4994,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Symbol 'tree' appears in new chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.6,
@@ -5012,7 +5012,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "Symbol 'tree' introduced in chapter.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -5034,7 +5034,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Promise extracted from text containing 'i promise'.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.9,
@@ -5052,7 +5052,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Speaker identified from context.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.7,
@@ -5070,7 +5070,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "New promise marked as unresolved.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.9,
@@ -5088,7 +5088,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where promise was made.",
-          "timestamp": "2026-07-13T17:43:38.027244"
+          "timestamp": "2026-07-13T20:40:14.642409"
         },
         "history": [],
         "importance": 0.8,
@@ -5110,7 +5110,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'who'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5128,7 +5128,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5138,7 +5138,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5156,7 +5156,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5174,7 +5174,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5192,7 +5192,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5212,7 +5212,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'where'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5230,7 +5230,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5240,7 +5240,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5258,7 +5258,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5276,7 +5276,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5294,7 +5294,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5314,7 +5314,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'when'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5332,7 +5332,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5342,7 +5342,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5360,7 +5360,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5378,7 +5378,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5396,7 +5396,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5416,7 +5416,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'where'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5434,7 +5434,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5444,7 +5444,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5462,7 +5462,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5480,7 +5480,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5498,7 +5498,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5518,7 +5518,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'who'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5536,7 +5536,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5546,7 +5546,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5564,7 +5564,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5582,7 +5582,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5600,7 +5600,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5620,7 +5620,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'what'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5638,7 +5638,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5648,7 +5648,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5666,7 +5666,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5684,7 +5684,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5702,7 +5702,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5722,7 +5722,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'who'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5740,7 +5740,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5750,7 +5750,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5768,7 +5768,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5786,7 +5786,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5804,7 +5804,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5824,7 +5824,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Mystery extracted from text containing 'where'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.85,
@@ -5842,7 +5842,7 @@
           "evidence_ids": [],
           "confidence": 0.7,
           "reasoning": "Resolution detected via 'answer' in chapter.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [
           {
@@ -5852,7 +5852,7 @@
             "evidence_ids": [],
             "confidence": 0.8,
             "reasoning": "New mystery marked as unresolved.",
-            "timestamp": "2026-07-13T17:43:38.028244"
+            "timestamp": "2026-07-13T20:40:14.643409"
           }
         ],
         "importance": 0.85,
@@ -5870,7 +5870,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.8,
@@ -5888,7 +5888,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.6,
@@ -5906,7 +5906,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Chapter where mystery was resolved.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.9,
@@ -5926,7 +5926,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Clue extracted from text containing 'found'.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.7,
@@ -5944,7 +5944,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Chapter where clue was found.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.7,
@@ -5968,7 +5968,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Extracted stylistic metric 'word_count' from Chapter 1.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.4,
@@ -5986,7 +5986,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Extracted stylistic metric 'sentence_count' from Chapter 1.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.4,
@@ -6004,7 +6004,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Extracted stylistic metric 'avg_sentence_length' from Chapter 1.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.4,
@@ -6022,7 +6022,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Extracted stylistic metric 'dialogue_density' from Chapter 1.",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         "history": [],
         "importance": 0.4,
@@ -6034,8 +6034,8 @@
     }
   },
   "evidence_store": {
-    "ff9d6fcd": {
-      "id": "ff9d6fcd",
+    "4c60f002": {
+      "id": "4c60f002",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6046,10 +6046,10 @@
         "shadows"
       ],
       "interpretation_hint": "Relation evidence: sun cast shadows",
-      "timestamp": "2026-07-13T17:43:38.028244"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "9e56d2db": {
-      "id": "9e56d2db",
+    "775ec323": {
+      "id": "775ec323",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6060,10 +6060,10 @@
         "journal"
       ],
       "interpretation_hint": "Relation evidence: She clutched journal",
-      "timestamp": "2026-07-13T17:43:38.028244"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "7ce10cae": {
-      "id": "7ce10cae",
+    "bb3bb0f7": {
+      "id": "bb3bb0f7",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6074,10 +6074,10 @@
         "gift"
       ],
       "interpretation_hint": "Relation evidence: She clutched gift",
-      "timestamp": "2026-07-13T17:43:38.028244"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "d9ba15f9": {
-      "id": "d9ba15f9",
+    "d50f1e9a": {
+      "id": "d50f1e9a",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6088,10 +6088,10 @@
         "myth"
       ],
       "interpretation_hint": "Relation evidence: Gate is myth",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "114d1256": {
-      "id": "114d1256",
+    "a31d425e": {
+      "id": "a31d425e",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6102,10 +6102,10 @@
         "myths"
       ],
       "interpretation_hint": "Relation evidence: Father chased myths",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "6f3d4208": {
-      "id": "6f3d4208",
+    "a5c9d43c": {
+      "id": "a5c9d43c",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6116,10 +6116,10 @@
         "life"
       ],
       "interpretation_hint": "Relation evidence: Father chased life",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "bd81184e": {
-      "id": "bd81184e",
+    "df767f86": {
+      "id": "df767f86",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6130,10 +6130,10 @@
         "him"
       ],
       "interpretation_hint": "Relation evidence: it got him",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "48eef1a1": {
-      "id": "48eef1a1",
+    "c5d0ba8a": {
+      "id": "c5d0ba8a",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6144,10 +6144,10 @@
         "answers"
       ],
       "interpretation_hint": "Relation evidence: It got answers",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "d53fa3bc": {
-      "id": "d53fa3bc",
+    "a8c597a9": {
+      "id": "a8c597a9",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6158,10 +6158,10 @@
         "dreams"
       ],
       "interpretation_hint": "Relation evidence: She mention dreams",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "65028543": {
-      "id": "65028543",
+    "a853abd0": {
+      "id": "a853abd0",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6172,10 +6172,10 @@
         "warmth"
       ],
       "interpretation_hint": "Relation evidence: She mention warmth",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "3a6c91ed": {
-      "id": "3a6c91ed",
+    "1d65b05a": {
+      "id": "1d65b05a",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6186,10 +6186,10 @@
         "journal"
       ],
       "interpretation_hint": "Relation evidence: she touched journal",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "557e786a": {
-      "id": "557e786a",
+    "8330cdba": {
+      "id": "8330cdba",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6200,10 +6200,10 @@
         "crossroads"
       ],
       "interpretation_hint": "Relation evidence: she reached crossroads",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "8445d0db": {
-      "id": "8445d0db",
+    "dda835dd": {
+      "id": "dda835dd",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6214,10 +6214,10 @@
         "blacksmith"
       ],
       "interpretation_hint": "Relation evidence: village was blacksmith",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "72bc12b6": {
-      "id": "72bc12b6",
+    "70be0d24": {
+      "id": "70be0d24",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6228,10 +6228,10 @@
         "names"
       ],
       "interpretation_hint": "Relation evidence: that have names",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "d5275616": {
-      "id": "d5275616",
+    "20af0a69": {
+      "id": "20af0a69",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6242,10 +6242,10 @@
         "peeling"
       ],
       "interpretation_hint": "Relation evidence: woman paused peeling",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "1bae93e3": {
-      "id": "1bae93e3",
+    "0591feec": {
+      "id": "0591feec",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6256,10 +6256,10 @@
         "it"
       ],
       "interpretation_hint": "Relation evidence: who found it",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "43d310c5": {
-      "id": "43d310c5",
+    "5ed9a6f6": {
+      "id": "5ed9a6f6",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6270,10 +6270,10 @@
         "her"
       ],
       "interpretation_hint": "Relation evidence: Alice thanked her",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "5db884c5": {
-      "id": "5db884c5",
+    "38c84fc4": {
+      "id": "38c84fc4",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6284,10 +6284,10 @@
         "camp"
       ],
       "interpretation_hint": "Relation evidence: She made camp",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "0168bc4a": {
-      "id": "0168bc4a",
+    "36f5da6a": {
+      "id": "36f5da6a",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6298,10 +6298,10 @@
         "journal"
       ],
       "interpretation_hint": "Relation evidence: she opened journal",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "404ff5d7": {
-      "id": "404ff5d7",
+    "70be32cf": {
+      "id": "70be32cf",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6312,10 +6312,10 @@
         "door"
       ],
       "interpretation_hint": "Relation evidence: Gate is door",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "e3f24a26": {
-      "id": "e3f24a26",
+    "0c9ddfa8": {
+      "id": "0c9ddfa8",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6326,10 +6326,10 @@
         "question"
       ],
       "interpretation_hint": "Relation evidence: It is question",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "4fb75c28": {
-      "id": "4fb75c28",
+    "3b4e943a": {
+      "id": "3b4e943a",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6340,10 +6340,10 @@
         "journal"
       ],
       "interpretation_hint": "Relation evidence: Alice closed journal",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "ee22fe15": {
-      "id": "ee22fe15",
+    "9188e15e": {
+      "id": "9188e15e",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6354,10 +6354,10 @@
         "cloak"
       ],
       "interpretation_hint": "Relation evidence: She pulled cloak",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "f0ff2a80": {
-      "id": "f0ff2a80",
+    "e7ad521f": {
+      "id": "e7ad521f",
       "text_span": null,
       "evidence_type": "ACTION",
       "source_chapter": 1,
@@ -6368,10 +6368,10 @@
         "tighter"
       ],
       "interpretation_hint": "Relation evidence: She pulled tighter",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "99f0d916": {
-      "id": "99f0d916",
+    "c5b2192b": {
+      "id": "c5b2192b",
       "text_span": {
         "text": "The Departure",
         "start_char": 11,
@@ -6386,10 +6386,10 @@
         "The Departure"
       ],
       "interpretation_hint": "Entity evidence: The Departure (event)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "c6cb450b": {
-      "id": "c6cb450b",
+    "bbf02c0e": {
+      "id": "bbf02c0e",
       "text_span": {
         "text": "Thornfield Hall",
         "start_char": 90,
@@ -6404,10 +6404,10 @@
         "Thornfield Hall"
       ],
       "interpretation_hint": "Entity evidence: Thornfield Hall (location)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "b61cbc32": {
-      "id": "b61cbc32",
+    "15bde80d": {
+      "id": "15bde80d",
       "text_span": {
         "text": "Alice",
         "start_char": 107,
@@ -6422,10 +6422,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "12c12e58": {
-      "id": "12c12e58",
+    "186ea1fb": {
+      "id": "186ea1fb",
       "text_span": {
         "text": "mother",
         "start_char": 284,
@@ -6440,10 +6440,10 @@
         "mother"
       ],
       "interpretation_hint": "Entity evidence: mother (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "8c360fb4": {
-      "id": "8c360fb4",
+    "9afc09ea": {
+      "id": "9afc09ea",
       "text_span": {
         "text": "Thomas",
         "start_char": 322,
@@ -6458,10 +6458,10 @@
         "Thomas"
       ],
       "interpretation_hint": "Entity evidence: Thomas (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "92635855": {
-      "id": "92635855",
+    "9316bf36": {
+      "id": "9316bf36",
       "text_span": {
         "text": "Alice",
         "start_char": 467,
@@ -6476,10 +6476,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "0ade977f": {
-      "id": "0ade977f",
+    "7c7ecabd": {
+      "id": "7c7ecabd",
       "text_span": {
         "text": "Father",
         "start_char": 495,
@@ -6494,10 +6494,10 @@
         "Father"
       ],
       "interpretation_hint": "Entity evidence: Father (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "108f6a54": {
-      "id": "108f6a54",
+    "d17d36c0": {
+      "id": "d17d36c0",
       "text_span": {
         "text": "Silver Gate",
         "start_char": 548,
@@ -6512,10 +6512,10 @@
         "Silver Gate"
       ],
       "interpretation_hint": "Entity evidence: Silver Gate (location)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "d7bcc5f1": {
-      "id": "d7bcc5f1",
+    "f43640b2": {
+      "id": "f43640b2",
       "text_span": {
         "text": "Thomas",
         "start_char": 588,
@@ -6530,10 +6530,10 @@
         "Thomas"
       ],
       "interpretation_hint": "Entity evidence: Thomas (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "d18d4ea8": {
-      "id": "d18d4ea8",
+    "1fd9f534": {
+      "id": "1fd9f534",
       "text_span": {
         "text": "Silver Gate",
         "start_char": 625,
@@ -6548,10 +6548,10 @@
         "Silver Gate"
       ],
       "interpretation_hint": "Entity evidence: Silver Gate (object)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "3d57ccac": {
-      "id": "3d57ccac",
+    "f2125a76": {
+      "id": "f2125a76",
       "text_span": {
         "text": "Father",
         "start_char": 648,
@@ -6566,10 +6566,10 @@
         "Father"
       ],
       "interpretation_hint": "Entity evidence: Father (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "0af96874": {
-      "id": "0af96874",
+    "739d44b2": {
+      "id": "739d44b2",
       "text_span": {
         "text": "Alice",
         "start_char": 735,
@@ -6584,10 +6584,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "c49d5996": {
-      "id": "c49d5996",
+    "09cc8d29": {
+      "id": "09cc8d29",
       "text_span": {
         "text": "winter solstice",
         "start_char": 823,
@@ -6602,10 +6602,10 @@
         "winter solstice"
       ],
       "interpretation_hint": "Entity evidence: winter solstice (event)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "7e71f7b7": {
-      "id": "7e71f7b7",
+    "b66d7df1": {
+      "id": "b66d7df1",
       "text_span": {
         "text": "Alice",
         "start_char": 1196,
@@ -6620,10 +6620,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "771396f8": {
-      "id": "771396f8",
+    "3c7b7df5": {
+      "id": "3c7b7df5",
       "text_span": {
         "text": "Millhaven",
         "start_char": 1262,
@@ -6638,10 +6638,10 @@
         "Millhaven"
       ],
       "interpretation_hint": "Entity evidence: Millhaven (location)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "603bfe3f": {
-      "id": "603bfe3f",
+    "05917710": {
+      "id": "05917710",
       "text_span": {
         "text": "Alice",
         "start_char": 1506,
@@ -6656,10 +6656,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "98ae8d98": {
-      "id": "98ae8d98",
+    "5b1cfd0f": {
+      "id": "5b1cfd0f",
       "text_span": {
         "text": "Thornwood",
         "start_char": 1550,
@@ -6674,10 +6674,10 @@
         "Thornwood"
       ],
       "interpretation_hint": "Entity evidence: Thornwood (location)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "f5b39654": {
-      "id": "f5b39654",
+    "f65cf824": {
+      "id": "f65cf824",
       "text_span": {
         "text": "father",
         "start_char": 1659,
@@ -6692,10 +6692,10 @@
         "father"
       ],
       "interpretation_hint": "Entity evidence: father (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.643409"
     },
-    "39ef8c84": {
-      "id": "39ef8c84",
+    "93232dd9": {
+      "id": "93232dd9",
       "text_span": {
         "text": "Alice",
         "start_char": 1743,
@@ -6710,10 +6710,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "eac15b97": {
-      "id": "eac15b97",
+    "aa0fa1c5": {
+      "id": "aa0fa1c5",
       "text_span": {
         "text": "Alice",
         "start_char": 2009,
@@ -6728,10 +6728,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "4881fb52": {
-      "id": "4881fb52",
+    "fb6b5bae": {
+      "id": "fb6b5bae",
       "text_span": {
         "text": "mother",
         "start_char": 2339,
@@ -6746,10 +6746,10 @@
         "mother"
       ],
       "interpretation_hint": "Entity evidence: mother (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "ed8d6f36": {
-      "id": "ed8d6f36",
+    "3c4eeace": {
+      "id": "3c4eeace",
       "text_span": {
         "text": "Alice",
         "start_char": 2541,
@@ -6764,10 +6764,10 @@
         "Alice"
       ],
       "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "f1c068d9": {
-      "id": "f1c068d9",
+    "ca2f0426": {
+      "id": "ca2f0426",
       "text_span": {
         "text": "owl",
         "start_char": 2622,
@@ -6782,10 +6782,10 @@
         "owl"
       ],
       "interpretation_hint": "Entity evidence: owl (object)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "36a34c59": {
-      "id": "36a34c59",
+    "b867bcad": {
+      "id": "b867bcad",
       "text_span": {
         "text": "father",
         "start_char": 2745,
@@ -6800,10 +6800,10 @@
         "father"
       ],
       "interpretation_hint": "Entity evidence: father (person)",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "87574adb": {
-      "id": "87574adb",
+    "c7056f1b": {
+      "id": "c7056f1b",
       "text_span": {
         "text": "\"You don't have to go,\"",
         "start_char": 293,
@@ -6818,10 +6818,10 @@
         "Thomas"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Thomas",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "92568e95": {
-      "id": "92568e95",
+    "d3b9f322": {
+      "id": "d3b9f322",
       "text_span": {
         "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
         "start_char": 488,
@@ -6836,10 +6836,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "50dc77e4": {
-      "id": "50dc77e4",
+    "69e1db4c": {
+      "id": "69e1db4c",
       "text_span": {
         "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
         "start_char": 620,
@@ -6854,10 +6854,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "d6220f34": {
-      "id": "d6220f34",
+    "c8c99da0": {
+      "id": "c8c99da0",
       "text_span": {
         "text": "\"It got him answers,\"",
         "start_char": 713,
@@ -6872,10 +6872,10 @@
         "Alice"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Alice",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "ca4249e3": {
-      "id": "ca4249e3",
+    "89a3eaea": {
+      "id": "89a3eaea",
       "text_span": {
         "text": "\"I'll be back before the winter solstice. I promise.\"",
         "start_char": 798,
@@ -6890,10 +6890,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "65a9dc46": {
-      "id": "65a9dc46",
+    "3857a606": {
+      "id": "3857a606",
       "text_span": {
         "text": "\"Heading north?\"",
         "start_char": 1445,
@@ -6908,10 +6908,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "86199cb7": {
-      "id": "86199cb7",
+    "bebc3bb5": {
+      "id": "bebc3bb5",
       "text_span": {
         "text": "\"Yes,\"",
         "start_char": 1499,
@@ -6926,10 +6926,10 @@
         "Alice"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Alice",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "5dbb305d": {
-      "id": "5dbb305d",
+    "a1200ac2": {
+      "id": "a1200ac2",
       "text_span": {
         "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
         "start_char": 1519,
@@ -6944,10 +6944,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "4ab0f621": {
-      "id": "4ab0f621",
+    "49fea3d7": {
+      "id": "49fea3d7",
       "text_span": {
         "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
         "start_char": 1653,
@@ -6962,10 +6962,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "a91b5102": {
-      "id": "a91b5102",
+    "3cb4bae7": {
+      "id": "3cb4bae7",
       "text_span": {
         "text": "\"Did he say where he was going?\"",
         "start_char": 1768,
@@ -6980,10 +6980,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "374df4a7": {
-      "id": "374df4a7",
+    "bf96375f": {
+      "id": "bf96375f",
       "text_span": {
         "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
         "start_char": 1802,
@@ -6998,10 +6998,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "d8c46a75": {
-      "id": "d8c46a75",
+    "43d35054": {
+      "id": "43d35054",
       "text_span": {
         "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
         "start_char": 1944,
@@ -7016,10 +7016,10 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     },
-    "a1b740d7": {
-      "id": "a1b740d7",
+    "867500e0": {
+      "id": "867500e0",
       "text_span": {
         "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
         "start_char": 2450,
@@ -7034,7 +7034,7 @@
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-13T17:43:38.029246"
+      "timestamp": "2026-07-13T20:40:14.644408"
     }
   },
   "delta_history": [
@@ -8600,7 +8600,7 @@
       "new_evidence_count": 61,
       "new_evidence": [
         {
-          "id": "ff9d6fcd",
+          "id": "4c60f002",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8611,10 +8611,10 @@
             "shadows"
           ],
           "interpretation_hint": "Relation evidence: sun cast shadows",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "9e56d2db",
+          "id": "775ec323",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8625,10 +8625,10 @@
             "journal"
           ],
           "interpretation_hint": "Relation evidence: She clutched journal",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "7ce10cae",
+          "id": "bb3bb0f7",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8639,10 +8639,10 @@
             "gift"
           ],
           "interpretation_hint": "Relation evidence: She clutched gift",
-          "timestamp": "2026-07-13T17:43:38.028244"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "d9ba15f9",
+          "id": "d50f1e9a",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8653,10 +8653,10 @@
             "myth"
           ],
           "interpretation_hint": "Relation evidence: Gate is myth",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "114d1256",
+          "id": "a31d425e",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8667,10 +8667,10 @@
             "myths"
           ],
           "interpretation_hint": "Relation evidence: Father chased myths",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "6f3d4208",
+          "id": "a5c9d43c",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8681,10 +8681,10 @@
             "life"
           ],
           "interpretation_hint": "Relation evidence: Father chased life",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "bd81184e",
+          "id": "df767f86",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8695,10 +8695,10 @@
             "him"
           ],
           "interpretation_hint": "Relation evidence: it got him",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "48eef1a1",
+          "id": "c5d0ba8a",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8709,10 +8709,10 @@
             "answers"
           ],
           "interpretation_hint": "Relation evidence: It got answers",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "d53fa3bc",
+          "id": "a8c597a9",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8723,10 +8723,10 @@
             "dreams"
           ],
           "interpretation_hint": "Relation evidence: She mention dreams",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "65028543",
+          "id": "a853abd0",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8737,10 +8737,10 @@
             "warmth"
           ],
           "interpretation_hint": "Relation evidence: She mention warmth",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "3a6c91ed",
+          "id": "1d65b05a",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8751,10 +8751,10 @@
             "journal"
           ],
           "interpretation_hint": "Relation evidence: she touched journal",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "557e786a",
+          "id": "8330cdba",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8765,10 +8765,10 @@
             "crossroads"
           ],
           "interpretation_hint": "Relation evidence: she reached crossroads",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "8445d0db",
+          "id": "dda835dd",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8779,10 +8779,10 @@
             "blacksmith"
           ],
           "interpretation_hint": "Relation evidence: village was blacksmith",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "72bc12b6",
+          "id": "70be0d24",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8793,10 +8793,10 @@
             "names"
           ],
           "interpretation_hint": "Relation evidence: that have names",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "d5275616",
+          "id": "20af0a69",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8807,10 +8807,10 @@
             "peeling"
           ],
           "interpretation_hint": "Relation evidence: woman paused peeling",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "1bae93e3",
+          "id": "0591feec",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8821,10 +8821,10 @@
             "it"
           ],
           "interpretation_hint": "Relation evidence: who found it",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "43d310c5",
+          "id": "5ed9a6f6",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8835,10 +8835,10 @@
             "her"
           ],
           "interpretation_hint": "Relation evidence: Alice thanked her",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "5db884c5",
+          "id": "38c84fc4",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8849,10 +8849,10 @@
             "camp"
           ],
           "interpretation_hint": "Relation evidence: She made camp",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "0168bc4a",
+          "id": "36f5da6a",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8863,10 +8863,10 @@
             "journal"
           ],
           "interpretation_hint": "Relation evidence: she opened journal",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "404ff5d7",
+          "id": "70be32cf",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8877,10 +8877,10 @@
             "door"
           ],
           "interpretation_hint": "Relation evidence: Gate is door",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "e3f24a26",
+          "id": "0c9ddfa8",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8891,10 +8891,10 @@
             "question"
           ],
           "interpretation_hint": "Relation evidence: It is question",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "4fb75c28",
+          "id": "3b4e943a",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8905,10 +8905,10 @@
             "journal"
           ],
           "interpretation_hint": "Relation evidence: Alice closed journal",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "ee22fe15",
+          "id": "9188e15e",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8919,10 +8919,10 @@
             "cloak"
           ],
           "interpretation_hint": "Relation evidence: She pulled cloak",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "f0ff2a80",
+          "id": "e7ad521f",
           "text_span": null,
           "evidence_type": "ACTION",
           "source_chapter": 1,
@@ -8933,10 +8933,10 @@
             "tighter"
           ],
           "interpretation_hint": "Relation evidence: She pulled tighter",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "99f0d916",
+          "id": "c5b2192b",
           "text_span": {
             "text": "The Departure",
             "start_char": 11,
@@ -8951,10 +8951,10 @@
             "The Departure"
           ],
           "interpretation_hint": "Entity evidence: The Departure (event)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "c6cb450b",
+          "id": "bbf02c0e",
           "text_span": {
             "text": "Thornfield Hall",
             "start_char": 90,
@@ -8969,10 +8969,10 @@
             "Thornfield Hall"
           ],
           "interpretation_hint": "Entity evidence: Thornfield Hall (location)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "b61cbc32",
+          "id": "15bde80d",
           "text_span": {
             "text": "Alice",
             "start_char": 107,
@@ -8987,10 +8987,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "12c12e58",
+          "id": "186ea1fb",
           "text_span": {
             "text": "mother",
             "start_char": 284,
@@ -9005,10 +9005,10 @@
             "mother"
           ],
           "interpretation_hint": "Entity evidence: mother (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "8c360fb4",
+          "id": "9afc09ea",
           "text_span": {
             "text": "Thomas",
             "start_char": 322,
@@ -9023,10 +9023,10 @@
             "Thomas"
           ],
           "interpretation_hint": "Entity evidence: Thomas (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "92635855",
+          "id": "9316bf36",
           "text_span": {
             "text": "Alice",
             "start_char": 467,
@@ -9041,10 +9041,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "0ade977f",
+          "id": "7c7ecabd",
           "text_span": {
             "text": "Father",
             "start_char": 495,
@@ -9059,10 +9059,10 @@
             "Father"
           ],
           "interpretation_hint": "Entity evidence: Father (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "108f6a54",
+          "id": "d17d36c0",
           "text_span": {
             "text": "Silver Gate",
             "start_char": 548,
@@ -9077,10 +9077,10 @@
             "Silver Gate"
           ],
           "interpretation_hint": "Entity evidence: Silver Gate (location)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "d7bcc5f1",
+          "id": "f43640b2",
           "text_span": {
             "text": "Thomas",
             "start_char": 588,
@@ -9095,10 +9095,10 @@
             "Thomas"
           ],
           "interpretation_hint": "Entity evidence: Thomas (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "d18d4ea8",
+          "id": "1fd9f534",
           "text_span": {
             "text": "Silver Gate",
             "start_char": 625,
@@ -9113,10 +9113,10 @@
             "Silver Gate"
           ],
           "interpretation_hint": "Entity evidence: Silver Gate (object)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "3d57ccac",
+          "id": "f2125a76",
           "text_span": {
             "text": "Father",
             "start_char": 648,
@@ -9131,10 +9131,10 @@
             "Father"
           ],
           "interpretation_hint": "Entity evidence: Father (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "0af96874",
+          "id": "739d44b2",
           "text_span": {
             "text": "Alice",
             "start_char": 735,
@@ -9149,10 +9149,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "c49d5996",
+          "id": "09cc8d29",
           "text_span": {
             "text": "winter solstice",
             "start_char": 823,
@@ -9167,10 +9167,10 @@
             "winter solstice"
           ],
           "interpretation_hint": "Entity evidence: winter solstice (event)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "7e71f7b7",
+          "id": "b66d7df1",
           "text_span": {
             "text": "Alice",
             "start_char": 1196,
@@ -9185,10 +9185,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "771396f8",
+          "id": "3c7b7df5",
           "text_span": {
             "text": "Millhaven",
             "start_char": 1262,
@@ -9203,10 +9203,10 @@
             "Millhaven"
           ],
           "interpretation_hint": "Entity evidence: Millhaven (location)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "603bfe3f",
+          "id": "05917710",
           "text_span": {
             "text": "Alice",
             "start_char": 1506,
@@ -9221,10 +9221,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "98ae8d98",
+          "id": "5b1cfd0f",
           "text_span": {
             "text": "Thornwood",
             "start_char": 1550,
@@ -9239,10 +9239,10 @@
             "Thornwood"
           ],
           "interpretation_hint": "Entity evidence: Thornwood (location)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "f5b39654",
+          "id": "f65cf824",
           "text_span": {
             "text": "father",
             "start_char": 1659,
@@ -9257,10 +9257,10 @@
             "father"
           ],
           "interpretation_hint": "Entity evidence: father (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.643409"
         },
         {
-          "id": "39ef8c84",
+          "id": "93232dd9",
           "text_span": {
             "text": "Alice",
             "start_char": 1743,
@@ -9275,10 +9275,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "eac15b97",
+          "id": "aa0fa1c5",
           "text_span": {
             "text": "Alice",
             "start_char": 2009,
@@ -9293,10 +9293,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "4881fb52",
+          "id": "fb6b5bae",
           "text_span": {
             "text": "mother",
             "start_char": 2339,
@@ -9311,10 +9311,10 @@
             "mother"
           ],
           "interpretation_hint": "Entity evidence: mother (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "ed8d6f36",
+          "id": "3c4eeace",
           "text_span": {
             "text": "Alice",
             "start_char": 2541,
@@ -9329,10 +9329,10 @@
             "Alice"
           ],
           "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "f1c068d9",
+          "id": "ca2f0426",
           "text_span": {
             "text": "owl",
             "start_char": 2622,
@@ -9347,10 +9347,10 @@
             "owl"
           ],
           "interpretation_hint": "Entity evidence: owl (object)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "36a34c59",
+          "id": "b867bcad",
           "text_span": {
             "text": "father",
             "start_char": 2745,
@@ -9365,10 +9365,10 @@
             "father"
           ],
           "interpretation_hint": "Entity evidence: father (person)",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "87574adb",
+          "id": "c7056f1b",
           "text_span": {
             "text": "\"You don't have to go,\"",
             "start_char": 293,
@@ -9383,10 +9383,10 @@
             "Thomas"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Thomas",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "92568e95",
+          "id": "d3b9f322",
           "text_span": {
             "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
             "start_char": 488,
@@ -9401,10 +9401,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "50dc77e4",
+          "id": "69e1db4c",
           "text_span": {
             "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
             "start_char": 620,
@@ -9419,10 +9419,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "d6220f34",
+          "id": "c8c99da0",
           "text_span": {
             "text": "\"It got him answers,\"",
             "start_char": 713,
@@ -9437,10 +9437,10 @@
             "Alice"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Alice",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "ca4249e3",
+          "id": "89a3eaea",
           "text_span": {
             "text": "\"I'll be back before the winter solstice. I promise.\"",
             "start_char": 798,
@@ -9455,10 +9455,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "65a9dc46",
+          "id": "3857a606",
           "text_span": {
             "text": "\"Heading north?\"",
             "start_char": 1445,
@@ -9473,10 +9473,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "86199cb7",
+          "id": "bebc3bb5",
           "text_span": {
             "text": "\"Yes,\"",
             "start_char": 1499,
@@ -9491,10 +9491,10 @@
             "Alice"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Alice",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "5dbb305d",
+          "id": "a1200ac2",
           "text_span": {
             "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
             "start_char": 1519,
@@ -9509,10 +9509,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "4ab0f621",
+          "id": "49fea3d7",
           "text_span": {
             "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
             "start_char": 1653,
@@ -9527,10 +9527,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "a91b5102",
+          "id": "3cb4bae7",
           "text_span": {
             "text": "\"Did he say where he was going?\"",
             "start_char": 1768,
@@ -9545,10 +9545,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "374df4a7",
+          "id": "bf96375f",
           "text_span": {
             "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
             "start_char": 1802,
@@ -9563,10 +9563,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "d8c46a75",
+          "id": "43d35054",
           "text_span": {
             "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
             "start_char": 1944,
@@ -9581,10 +9581,10 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         },
         {
-          "id": "a1b740d7",
+          "id": "867500e0",
           "text_span": {
             "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
             "start_char": 2450,
@@ -9599,11 +9599,11 @@
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-13T17:43:38.029246"
+          "timestamp": "2026-07-13T20:40:14.644408"
         }
       ],
       "summary": "Chapter 1 produced 140 state changes: 117 introductions, 12 evolutions, 3 confirmations, 0 contradictions. Collected 61 evidence items.",
-      "timestamp": "2026-07-13T17:43:37.967651"
+      "timestamp": "2026-07-13T20:40:14.574410"
     }
   ]
 }
