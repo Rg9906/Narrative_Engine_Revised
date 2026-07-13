@@ -81,9 +81,14 @@ class Config:
         """Path to the output directory."""
         return PROJECT_ROOT / self.get("paths.output_dir", "data/output")
 
+    @property
+    def cache_dir(self) -> Path:
+        """Path to the pipeline cache directory."""
+        return PROJECT_ROOT / self.get("paths.cache_dir", "data/cache")
+
     def ensure_directories(self) -> None:
         """Create necessary directories if they don't exist."""
-        for d in [self.data_dir, self.memory_dir, self.output_dir]:
+        for d in [self.data_dir, self.memory_dir, self.output_dir, self.cache_dir]:
             d.mkdir(parents=True, exist_ok=True)
 
 

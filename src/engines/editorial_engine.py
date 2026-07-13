@@ -168,18 +168,55 @@ class EditorialEngine:
             return []
 
     def _parse_json_findings(self, raw_output: str, chapter_num: int) -> List[dict]:
-        """Clean and parse JSON output from the LLM."""
-        if raw_output.startswith("```"):
-            lines = raw_output.split("\n")
+        """Clean and parse JSON output from the LLM, handling conversational wrapping."""
+        cleaned_output = raw_output.strip()
+
+        # Try regex to locate outermost JSON array structure [...]
+        import re
+        array_match = re.search(r'(\[.*\])', cleaned_output, re.DOTALL)
+        if array_match:
+            candidate = array_match.group(1).strip()
+            try:
+                # Test if it parses correctly
+                llm_findings = json.loads(candidate)
+                if isinstance(llm_findings, list):
+                    cleaned_output = candidate
+            except Exception:
+                pass
+        else:
+            # If no array found, try to locate outermost JSON object structure {...}
+            obj_match = re.search(r'(\{.*\})', cleaned_output, re.DOTALL)
+            if obj_match:
+                candidate = obj_match.group(1).strip()
+                try:
+                    llm_findings = json.loads(candidate)
+                    if isinstance(llm_findings, dict):
+                        cleaned_output = candidate
+                except Exception:
+                    pass
+
+        # If regex search failed or didn't yield a valid structure, fallback to standard markdown stripping
+        if cleaned_output == raw_output.strip() and cleaned_output.startswith("```"):
+            lines = cleaned_output.split("\n")
             if lines[0].startswith("```"):
                 lines = lines[1:]
             if lines[-1].startswith("```"):
                 lines = lines[:-1]
-            raw_output = "\n".join(lines).strip()
+            cleaned_output = "\n".join(lines).strip()
 
-        llm_findings = json.loads(raw_output)
+        # Parse findings
+        llm_findings = json.loads(cleaned_output)
+        
+        # Coerce to a list of dicts
+        if isinstance(llm_findings, dict):
+            llm_findings = [llm_findings]
+        elif not isinstance(llm_findings, list):
+            raise ValueError("LLM response did not parse into a list or dict of findings.")
+
         normalized_findings = []
         for lf in llm_findings:
+            if not isinstance(lf, dict):
+                continue
             lf["chapter"] = chapter_num
             lf["evidence_ids"] = lf.get("evidence_ids", [])
             lf["related_entities"] = lf.get("related_entities", [])

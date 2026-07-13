@@ -319,6 +319,20 @@ class ExtractedEntity:
     normalized_text: str = ""
     source: str = "unknown"
 
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ExtractedEntity:
+        span_data = data.get("span")
+        span = TextSpan.from_dict(span_data) if span_data else None
+        return cls(
+            text=data["text"],
+            label=data["label"],
+            span=span,
+            confidence=data.get("confidence", 1.0),
+            coreference_cluster=data.get("coreference_cluster"),
+            normalized_text=data.get("normalized_text", ""),
+            source=data.get("source", "unknown"),
+        )
+
 
 @dataclass
 class ExtractedCoreferenceCluster:
@@ -328,6 +342,16 @@ class ExtractedCoreferenceCluster:
     confidence: float = 1.0
     cluster_id: Optional[int] = None
     source: str = "unknown"
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ExtractedCoreferenceCluster:
+        return cls(
+            mentions=data["mentions"],
+            canonical_mention=data.get("canonical_mention", ""),
+            confidence=data.get("confidence", 1.0),
+            cluster_id=data.get("cluster_id"),
+            source=data.get("source", "unknown"),
+        )
 
 
 @dataclass
@@ -340,6 +364,19 @@ class ExtractedRelation:
     confidence: float = 1.0
     source: str = "unknown"
 
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ExtractedRelation:
+        span_data = data.get("span")
+        span = TextSpan.from_dict(span_data) if span_data else None
+        return cls(
+            subject=data["subject"],
+            predicate=data["predicate"],
+            object=data["object"],
+            span=span,
+            confidence=data.get("confidence", 1.0),
+            source=data.get("source", "unknown"),
+        )
+
 
 @dataclass
 class ExtractedDialogue:
@@ -349,6 +386,18 @@ class ExtractedDialogue:
     span: Optional[TextSpan] = None
     confidence: float = 1.0          # Confidence in speaker attribution
     attribution_method: str = "unknown"
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ExtractedDialogue:
+        span_data = data.get("span")
+        span = TextSpan.from_dict(span_data) if span_data else None
+        return cls(
+            speaker=data["speaker"],
+            text=data["text"],
+            span=span,
+            confidence=data.get("confidence", 1.0),
+            attribution_method=data.get("attribution_method", "unknown"),
+        )
 
 
 @dataclass
@@ -487,6 +536,30 @@ class ChapterData:
             "scenes": len(self.scenes),
             "validation_warnings": len(self.validation_warnings),
         }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ChapterData:
+        entities = [ExtractedEntity.from_dict(e) for e in data.get("entities", [])]
+        coreferences = [ExtractedCoreferenceCluster.from_dict(c) for c in data.get("coreferences", [])]
+        relations = [ExtractedRelation.from_dict(r) for r in data.get("relations", [])]
+        dialogues = [ExtractedDialogue.from_dict(d) for d in data.get("dialogues", [])]
+        return cls(
+            chapter_number=data["chapter_number"],
+            source_name=data.get("source_name", ""),
+            chapter_title=data.get("chapter_title", ""),
+            raw_text=data.get("raw_text", ""),
+            paragraphs=data.get("paragraphs", []),
+            sentences=data.get("sentences", []),
+            entities=entities,
+            coreference_clusters=data.get("coreference_clusters", []),
+            coreferences=coreferences,
+            relations=relations,
+            dialogues=dialogues,
+            scenes=data.get("scenes", []),
+            style_metrics=data.get("style_metrics", {}),
+            validation_warnings=data.get("validation_warnings", []),
+            extraction_notes=data.get("extraction_notes", []),
+        )
 
 
 # =============================================================================

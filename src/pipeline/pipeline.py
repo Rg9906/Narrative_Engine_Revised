@@ -109,6 +109,23 @@ class Pipeline:
         cleaned_text = self._cleaner.clean(raw_text)
         logger.info(f"Cleaned text: {len(cleaned_text)} chars")
 
+        # Step 2b: Caching lookup
+        use_cache = self._config.get("pipeline.use_cache", True) if self._config else True
+        cache_file = None
+        if use_cache and self._config:
+            import hashlib
+            import json
+            text_hash = hashlib.sha256(cleaned_text.encode("utf-8")).hexdigest()
+            cache_file = Path(self._config.cache_dir) / f"chapter_{chapter_num}_{text_hash[:16]}.json"
+            if cache_file.exists():
+                logger.info(f"Cache hit: Loading Chapter {chapter_num} data from {cache_file.name}")
+                try:
+                    with open(cache_file, "r", encoding="utf-8") as f:
+                        cached_data = json.load(f)
+                    return ChapterData.from_dict(cached_data)
+                except Exception as e:
+                    logger.warning(f"Failed to load cached chapter data: {e}. Re-processing...")
+
         # Step 3: Segment into sentences
         segmenter = self._get_segmenter()
         paragraphs = segmenter.split_into_paragraphs(cleaned_text)
@@ -179,6 +196,17 @@ class Pipeline:
 
         # Step 8: Final evidence package validation (Phase 5)
         chapter_data.validate()
+
+        # Save to cache if enabled
+        if use_cache and cache_file:
+            try:
+                import json
+                cache_file.parent.mkdir(parents=True, exist_ok=True)
+                with open(cache_file, "w", encoding="utf-8") as f:
+                    json.dump(chapter_data.to_dict(), f, indent=2, ensure_ascii=False)
+                logger.info(f"Cached Chapter {chapter_num} data to {cache_file.name}")
+            except Exception as e:
+                logger.warning(f"Failed to cache chapter data: {e}")
 
         logger.info(f"=== Chapter {chapter_num} evidence extraction complete ===")
         return chapter_data

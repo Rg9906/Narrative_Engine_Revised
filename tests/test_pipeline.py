@@ -562,3 +562,146 @@ class TestPhase5PipelineIntegration:
         assert chapter_data.validation_warnings == []
         assert data["evidence_summary"]["paragraphs"] == 3
         assert data["evidence_summary"]["dialogues"] == 1
+
+
+    def test_chapter_data_serialization_deserialization(self):
+        """Test that ChapterData and nested classes can serialize and deserialize cleanly."""
+        from src.models.state import (
+            ChapterData,
+            ExtractedEntity,
+            ExtractedCoreferenceCluster,
+            ExtractedRelation,
+            ExtractedDialogue,
+            TextSpan
+        )
+
+        span = TextSpan(text="test text", start_char=10, end_char=19, sentence_index=1)
+        entity = ExtractedEntity(
+            text="Alice",
+            label="person",
+            span=span,
+            confidence=0.9,
+            coreference_cluster=2,
+            normalized_text="alice",
+            source="gliner"
+        )
+        coref = ExtractedCoreferenceCluster(
+            mentions=["Alice", "she"],
+            canonical_mention="Alice",
+            confidence=0.8,
+            cluster_id=2,
+            source="fastcoref"
+        )
+        relation = ExtractedRelation(
+            subject="Alice",
+            predicate="walks",
+            object="bridge",
+            span=span,
+            confidence=0.7,
+            source="spacy_svo"
+        )
+        dialogue = ExtractedDialogue(
+            speaker="Thomas",
+            text="wait",
+            span=span,
+            confidence=0.95,
+            attribution_method="explicit"
+        )
+
+        chapter = ChapterData(
+            chapter_number=3,
+            source_name="chapter_03.txt",
+            chapter_title="Chapter Three",
+            raw_text="Alice walks to the bridge.",
+            paragraphs=["Alice walks to the bridge."],
+            sentences=["Alice walks to the bridge."],
+            entities=[entity],
+            coreference_clusters=[["Alice", "she"]],
+            coreferences=[coref],
+            relations=[relation],
+            dialogues=[dialogue],
+            scenes=[{"id": "scene_1"}],
+            style_metrics={"word_count": 5},
+            validation_warnings=[],
+            extraction_notes=[]
+        )
+
+        # Serialize
+        serialized = chapter.to_dict()
+
+        # Deserialize
+        restored = ChapterData.from_dict(serialized)
+
+        assert restored.chapter_number == 3
+        assert restored.source_name == "chapter_03.txt"
+        assert restored.chapter_title == "Chapter Three"
+        assert len(restored.entities) == 1
+        assert restored.entities[0].text == "Alice"
+        assert restored.entities[0].span.start_char == 10
+        assert restored.entities[0].coreference_cluster == 2
+        assert len(restored.coreferences) == 1
+        assert restored.coreferences[0].canonical_mention == "Alice"
+        assert len(restored.relations) == 1
+        assert restored.relations[0].predicate == "walks"
+        assert len(restored.dialogues) == 1
+        assert restored.dialogues[0].speaker == "Thomas"
+        assert restored.scenes == [{"id": "scene_1"}]
+        assert restored.style_metrics == {"word_count": 5}
+
+    def test_pipeline_caching(self, tmp_path):
+        """Test that Pipeline caching prevents re-execution on identical text."""
+        from src.pipeline.pipeline import Pipeline
+        from src.utils.config import Config
+
+        class MockConfig(Config):
+            def __init__(self):
+                super().__init__()
+                self._config = {
+                    "paths": {
+                        "cache_dir": str(tmp_path / "cache")
+                    },
+                    "pipeline": {
+                        "use_cache": True
+                    }
+                }
+            @property
+            def cache_dir(self):
+                return tmp_path / "cache"
+
+        cfg = MockConfig()
+        cfg.ensure_directories()
+
+        # Counter for tracking gliner invocations
+        call_count = 0
+
+        class SpyEntityExtractor:
+            def extract(self, text, labels):
+                nonlocal call_count
+                call_count += 1
+                return []
+
+        class DummyCorefResolver:
+            def resolve(self, text):
+                return []
+
+        pipeline = Pipeline(
+            config=cfg,
+            entity_extractor=SpyEntityExtractor(),
+            coreference_resolver=DummyCorefResolver()
+        )
+
+        sample_text = "Alice stood in the room."
+
+        # First run (Cache Miss)
+        chapter_1 = pipeline.process_chapter(sample_text, chapter_num=1, is_file=False)
+        assert call_count == 1
+        
+        # Second run (Cache Hit)
+        chapter_2 = pipeline.process_chapter(sample_text, chapter_num=1, is_file=False)
+        assert call_count == 1  # Should not increase since it hit the cache!
+        assert chapter_1.chapter_number == chapter_2.chapter_number
+        assert chapter_1.raw_text == chapter_2.raw_text
+
+        # Third run with different text (Cache Miss)
+        chapter_3 = pipeline.process_chapter("Thomas stood in the room.", chapter_num=1, is_file=False)
+        assert call_count == 2  # Should increase since text is different

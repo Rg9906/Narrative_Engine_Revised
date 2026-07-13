@@ -1,0 +1,244 @@
+"""
+Narrative Graph Visualizer — Generates an interactive visual representation of the story state.
+
+Reads `narrative_graph.json` and produces a self-contained interactive HTML visualization
+using vis.js network modeling.
+"""
+
+import sys
+from pathlib import Path
+import json
+
+# Ensure project root is on sys.path
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from src.utils.config import get_config
+
+
+HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Narrative Intelligence Engine - Interactive Narrative Graph</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: #2d2d2d;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #4285F4;
+        }
+        #legend {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+        #container {
+            flex-grow: 1;
+            position: relative;
+        }
+        #network {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        #details {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(45, 45, 45, 0.9);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            max-width: 300px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 10;
+        }
+        #details h3 {
+            margin-top: 0;
+            color: #4285F4;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Narrative Intelligence Engine — Interactive Narrative Graph</h1>
+        <div id="legend">
+            <div class="legend-item"><div class="legend-color" style="background-color: #4285F4;"></div>Character</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #34A853;"></div>Location (World)</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #FBBC05;"></div>Event</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #AB47BC;"></div>Theme</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #9E9E9E;"></div>Chapter</div>
+        </div>
+    </header>
+    <div id="container">
+        <div id="network"></div>
+        <div id="details">
+            <h3 id="details-title">Element Details</h3>
+            <p id="details-body">Click an element to see more information.</p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Inject JSON data here
+        var graphData = {DATA_JSON};
+
+        // Color mapper based on node type
+        var colors = {
+            'character': { background: '#4285F4', border: '#1565C0', highlight: { background: '#64B5F6', border: '#1565C0' } },
+            'world': { background: '#34A853', border: '#2E7D32', highlight: { background: '#81C784', border: '#2E7D32' } },
+            'event': { background: '#FBBC05', border: '#F57F17', highlight: { background: '#FFE082', border: '#F57F17' } },
+            'theme': { background: '#AB47BC', border: '#6A1B9A', highlight: { background: '#E1BEE7', border: '#6A1B9A' } },
+            'chapter': { background: '#9E9E9E', border: '#424242', highlight: { background: '#E0E0E0', border: '#424242' } }
+        };
+
+        var defaultColor = { background: '#90A4AE', border: '#37474F', highlight: { background: '#CFD8DC', border: '#37474F' } };
+
+        // Process nodes
+        var nodes = graphData.nodes.map(function(node) {
+            var nodeColor = colors[node.type] || defaultColor;
+            return {
+                id: node.id,
+                label: node.label,
+                color: nodeColor,
+                font: { color: '#ffffff', size: 14 },
+                shape: node.type === 'chapter' ? 'square' : 'dot',
+                size: node.type === 'chapter' ? 18 : 25,
+                title: node.type.toUpperCase() + ': ' + node.label,
+                nodeType: node.type
+            };
+        });
+
+        // Process edges
+        var edges = graphData.edges.map(function(edge) {
+            return {
+                id: edge.id,
+                from: edge.source,
+                to: edge.target,
+                label: edge.label,
+                font: { color: '#aaaaaa', size: 11, align: 'top', background: '#1a1a1a' },
+                arrows: {
+                    to: { enabled: edge.type === 'event_chapter' }
+                },
+                color: { color: '#555555', highlight: '#4285F4' },
+                width: 1.5
+            };
+        });
+
+        var container = document.getElementById('network');
+        var data = {
+            nodes: new vis.DataSet(nodes),
+            edges: new vis.DataSet(edges)
+        };
+
+        var options = {
+            nodes: {
+                borderWidth: 2,
+                shadow: true
+            },
+            edges: {
+                smooth: {
+                    type: 'cubicBezier',
+                    forceDirection: 'none',
+                    roundness: 0.5
+                }
+            },
+            physics: {
+                forceAtlas2Based: {
+                    gravitationalConstant: -50,
+                    centralGravity: 0.01,
+                    springLength: 100,
+                    springConstant: 0.08
+                },
+                maxVelocity: 50,
+                solver: 'forceAtlas2Based',
+                timestep: 0.35,
+                stabilization: { iterations: 150 }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 200
+            }
+        };
+
+        var network = new vis.Network(container, data, options);
+
+        // Click handler to show details pane
+        network.on("selectNode", function (params) {
+            var nodeId = params.nodes[0];
+            var clickedNode = nodes.find(n => n.id === nodeId);
+            if (clickedNode) {
+                document.getElementById('details-title').innerText = clickedNode.label;
+                document.getElementById('details-body').innerHTML = 
+                    '<strong>Type:</strong> ' + clickedNode.nodeType + '<br/>' +
+                    '<strong>ID:</strong> ' + clickedNode.id;
+                document.getElementById('details').style.display = 'block';
+            }
+        });
+
+        network.on("deselectNode", function (params) {
+            document.getElementById('details').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+"""
+
+
+def main():
+    config = get_config()
+    graph_json_path = config.memory_dir / "narrative_graph.json"
+    if not graph_json_path.exists():
+        print(f"Narrative graph data not found at: {graph_json_path}")
+        print("Please process a chapter first to generate graph data.")
+        return
+
+    print(f"Loading graph data from: {graph_json_path.name}")
+    with open(graph_json_path, "r", encoding="utf-8") as f:
+        graph_data = json.load(f)
+
+    # Format the HTML template
+    html_content = HTML_TEMPLATE.replace("{DATA_JSON}", json.dumps(graph_data))
+
+    output_path = config.memory_dir / "narrative_graph.html"
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"Interactive graph successfully saved to: {output_path}")
+    print("Open this file in any modern web browser to interact with the narrative network.")
+
+
+if __name__ == "__main__":
+    main()

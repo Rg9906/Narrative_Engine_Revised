@@ -5,10 +5,12 @@ paths:
   data_dir: "data"
   memory_dir: "data/memory"
   output_dir: "data/output"
+  cache_dir: "data/cache"
 
-# NLP Pipeline configuration
+# Default pipeline settings
 pipeline:
   spacy_model: "en_core_web_sm"
+  use_cache: true
   # GLiNER model (Phase 4)
   gliner_model: "gliner-community/gliner_small-v2.5"
   gliner_threshold: 0.5

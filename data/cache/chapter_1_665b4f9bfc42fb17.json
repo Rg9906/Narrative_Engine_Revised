@@ -1,0 +1,1308 @@
+{
+  "chapter_number": 1,
+  "source_name": "example_chapter.txt",
+  "chapter_title": "Chapter 1: The Departure",
+  "raw_text": "Chapter 1: The Departure\n\nThe morning sun cast long shadows across the stone courtyard of Thornfield Hall. Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valley. She clutched a worn leather journal to her chest — the last gift from her mother.\n\n\"You don't have to go,\" said Thomas, her younger brother. He leaned against the doorframe, arms crossed, trying to look indifferent. But his voice cracked on the last word.\n\nAlice turned to him. \"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"\n\nThomas kicked at a loose stone. \"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"\n\n\"It got him answers,\" Alice said quietly. She reached out and squeezed his shoulder. \"I'll be back before the winter solstice. I promise.\"\n\nShe didn't mention the dreams — the ones where the Gate opened and a voice called her name. She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive. These things she kept locked away, afraid that speaking them would make them too real.\n\nThe road was muddy from last night's rain. Alice walked for three hours before she reached the crossroads at Millhaven. The village was small — a blacksmith, a tavern called The Copper Bell, and a handful of cottages with thatched roofs. An old woman sat outside the tavern, peeling apples.\n\n\"Heading north?\" the woman asked without looking up.\n\n\"Yes,\" Alice said.\n\n\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\" The woman paused her peeling. \"Your father passed through here, you know. Three months ago. Asked about the old road.\"\n\nAlice's heart quickened. \"Did he say where he was going?\"\n\n\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\" The woman resumed peeling. \"Be careful, girl. The north remembers what the south forgets.\"\n\nAlice thanked her and continued walking. The road narrowed as it climbed into the hills. By late afternoon, the trees had thickened into a canopy so dense that the sunlight came through in scattered coins of gold.\n\nShe made camp beside a stream, building a small fire from dry birch branches. As the flames danced, she opened her mother's journal. The handwriting was elegant but hurried, as if the words had been racing to escape the pen:\n\n\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"\n\nAlice closed the journal and stared into the fire. Somewhere in the darkness, an owl called. She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear.",
+  "paragraph_count": 17,
+  "paragraphs": [
+    "Chapter 1: The Departure",
+    "The morning sun cast long shadows across the stone courtyard of Thornfield Hall. Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valley. She clutched a worn leather journal to her chest — the last gift from her mother.",
+    "\"You don't have to go,\" said Thomas, her younger brother. He leaned against the doorframe, arms crossed, trying to look indifferent. But his voice cracked on the last word.",
+    "Alice turned to him. \"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
+    "Thomas kicked at a loose stone. \"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
+    "\"It got him answers,\" Alice said quietly. She reached out and squeezed his shoulder. \"I'll be back before the winter solstice. I promise.\"",
+    "She didn't mention the dreams — the ones where the Gate opened and a voice called her name. She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive. These things she kept locked away, afraid that speaking them would make them too real.",
+    "The road was muddy from last night's rain. Alice walked for three hours before she reached the crossroads at Millhaven. The village was small — a blacksmith, a tavern called The Copper Bell, and a handful of cottages with thatched roofs. An old woman sat outside the tavern, peeling apples.",
+    "\"Heading north?\" the woman asked without looking up.",
+    "\"Yes,\" Alice said.",
+    "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\" The woman paused her peeling. \"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
+    "Alice's heart quickened. \"Did he say where he was going?\"",
+    "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\" The woman resumed peeling. \"Be careful, girl. The north remembers what the south forgets.\"",
+    "Alice thanked her and continued walking. The road narrowed as it climbed into the hills. By late afternoon, the trees had thickened into a canopy so dense that the sunlight came through in scattered coins of gold.",
+    "She made camp beside a stream, building a small fire from dry birch branches. As the flames danced, she opened her mother's journal. The handwriting was elegant but hurried, as if the words had been racing to escape the pen:",
+    "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
+    "Alice closed the journal and stared into the fire. Somewhere in the darkness, an owl called. She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear."
+  ],
+  "sentence_count": 50,
+  "sentences": [
+    "Chapter 1: The Departure\n\nThe morning sun cast long shadows across the stone courtyard of Thornfield Hall.",
+    "Alice stood at the great oak door, her blue eyes fixed on the road that wound down through the valley.",
+    "She clutched a worn leather journal to her chest — the last gift from her mother.",
+    "\"You don't have to go,\" said Thomas, her younger brother.",
+    "He leaned against the doorframe, arms crossed, trying to look indifferent.",
+    "But his voice cracked on the last word.",
+    "Alice turned to him.",
+    "\"I do.",
+    "Father's letter was clear.",
+    "Something is wrong at the Silver Gate, and no one else will go.",
+    "\"\n\nThomas kicked at a loose stone.",
+    "\"The Silver Gate is a myth.",
+    "Father chased myths his whole life, and look where it got him.",
+    "\"\n\n\"It got him answers,\" Alice said quietly.",
+    "She reached out and squeezed his shoulder.",
+    "\"I'll be back before the winter solstice.",
+    "I promise.",
+    "\"\n\nShe didn't mention the dreams — the ones where the Gate opened and a voice called her name.",
+    "She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive.",
+    "These things she kept locked away, afraid that speaking them would make them too real.",
+    "The road was muddy from last night's rain.",
+    "Alice walked for three hours before she reached the crossroads at Millhaven.",
+    "The village was small — a blacksmith, a tavern called The Copper Bell, and a handful of cottages with thatched roofs.",
+    "An old woman sat outside the tavern, peeling apples.",
+    "\"Heading north?\"",
+    "the woman asked without looking up.",
+    "\"Yes,\" Alice said.",
+    "\"Then you'll want to avoid the Thornwood after dark.",
+    "Things move in those trees that don't have names.\"",
+    "The woman paused her peeling.",
+    "\"Your father passed through here, you know.",
+    "Three months ago.",
+    "Asked about the old road.",
+    "\"\n\nAlice's heart quickened.",
+    "\"Did he say where he was going?\"\n\n\"Said he was looking for something that was lost.",
+    "Said it like a man who'd already found it and wished he hadn't.\"",
+    "The woman resumed peeling.",
+    "\"Be careful, girl.",
+    "The north remembers what the south forgets.",
+    "\"\n\nAlice thanked her and continued walking.",
+    "The road narrowed as it climbed into the hills.",
+    "By late afternoon, the trees had thickened into a canopy so dense that the sunlight came through in scattered coins of gold.",
+    "She made camp beside a stream, building a small fire from dry birch branches.",
+    "As the flames danced, she opened her mother's journal.",
+    "The handwriting was elegant but hurried, as if the words had been racing to escape the pen:\n\n\"The Gate is not a door.",
+    "It is a question.",
+    "And the answer changes depending on who asks.",
+    "\"\n\nAlice closed the journal and stared into the fire.",
+    "Somewhere in the darkness, an owl called.",
+    "She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear."
+  ],
+  "entity_count": 24,
+  "entities": [
+    {
+      "text": "The Departure",
+      "label": "event",
+      "normalized_text": "the departure",
+      "confidence": 0.6490238308906555,
+      "span": {
+        "text": "The Departure",
+        "start_char": 11,
+        "end_char": 24,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Thornfield Hall",
+      "label": "location",
+      "normalized_text": "thornfield hall",
+      "confidence": 0.9550144076347351,
+      "span": {
+        "text": "Thornfield Hall",
+        "start_char": 90,
+        "end_char": 105,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9891757369041443,
+      "span": {
+        "text": "Alice",
+        "start_char": 107,
+        "end_char": 112,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "mother",
+      "label": "person",
+      "normalized_text": "mother",
+      "confidence": 0.7375738620758057,
+      "span": {
+        "text": "mother",
+        "start_char": 284,
+        "end_char": 290,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Thomas",
+      "label": "person",
+      "normalized_text": "thomas",
+      "confidence": 0.9974696636199951,
+      "span": {
+        "text": "Thomas",
+        "start_char": 322,
+        "end_char": 328,
+        "sentence_index": null
+      },
+      "coreference_cluster": 1,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9880730509757996,
+      "span": {
+        "text": "Alice",
+        "start_char": 467,
+        "end_char": 472,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "Father",
+      "label": "person",
+      "normalized_text": "father",
+      "confidence": 0.9742242097854614,
+      "span": {
+        "text": "Father",
+        "start_char": 495,
+        "end_char": 501,
+        "sentence_index": null
+      },
+      "coreference_cluster": 3,
+      "source": "gliner"
+    },
+    {
+      "text": "Silver Gate",
+      "label": "location",
+      "normalized_text": "silver gate",
+      "confidence": 0.6705626249313354,
+      "span": {
+        "text": "Silver Gate",
+        "start_char": 548,
+        "end_char": 559,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Thomas",
+      "label": "person",
+      "normalized_text": "thomas",
+      "confidence": 0.9890152812004089,
+      "span": {
+        "text": "Thomas",
+        "start_char": 588,
+        "end_char": 594,
+        "sentence_index": null
+      },
+      "coreference_cluster": 1,
+      "source": "gliner"
+    },
+    {
+      "text": "Silver Gate",
+      "label": "object",
+      "normalized_text": "silver gate",
+      "confidence": 0.6861565113067627,
+      "span": {
+        "text": "Silver Gate",
+        "start_char": 625,
+        "end_char": 636,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Father",
+      "label": "person",
+      "normalized_text": "father",
+      "confidence": 0.9853432178497314,
+      "span": {
+        "text": "Father",
+        "start_char": 648,
+        "end_char": 654,
+        "sentence_index": null
+      },
+      "coreference_cluster": 3,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9883019328117371,
+      "span": {
+        "text": "Alice",
+        "start_char": 735,
+        "end_char": 740,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "winter solstice",
+      "label": "event",
+      "normalized_text": "winter solstice",
+      "confidence": 0.9914668798446655,
+      "span": {
+        "text": "winter solstice",
+        "start_char": 823,
+        "end_char": 838,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9809001684188843,
+      "span": {
+        "text": "Alice",
+        "start_char": 1196,
+        "end_char": 1201,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "Millhaven",
+      "label": "location",
+      "normalized_text": "millhaven",
+      "confidence": 0.9775390625,
+      "span": {
+        "text": "Millhaven",
+        "start_char": 1262,
+        "end_char": 1271,
+        "sentence_index": null
+      },
+      "coreference_cluster": 9,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.989267110824585,
+      "span": {
+        "text": "Alice",
+        "start_char": 1506,
+        "end_char": 1511,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "Thornwood",
+      "label": "location",
+      "normalized_text": "thornwood",
+      "confidence": 0.8704156279563904,
+      "span": {
+        "text": "Thornwood",
+        "start_char": 1550,
+        "end_char": 1559,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "father",
+      "label": "person",
+      "normalized_text": "father",
+      "confidence": 0.9165157079696655,
+      "span": {
+        "text": "father",
+        "start_char": 1659,
+        "end_char": 1665,
+        "sentence_index": null
+      },
+      "coreference_cluster": 3,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9872716069221497,
+      "span": {
+        "text": "Alice",
+        "start_char": 1743,
+        "end_char": 1748,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9926241636276245,
+      "span": {
+        "text": "Alice",
+        "start_char": 2009,
+        "end_char": 2014,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "mother",
+      "label": "person",
+      "normalized_text": "mother",
+      "confidence": 0.8319657444953918,
+      "span": {
+        "text": "mother",
+        "start_char": 2339,
+        "end_char": 2345,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "Alice",
+      "label": "person",
+      "normalized_text": "alice",
+      "confidence": 0.9874936938285828,
+      "span": {
+        "text": "Alice",
+        "start_char": 2541,
+        "end_char": 2546,
+        "sentence_index": null
+      },
+      "coreference_cluster": 0,
+      "source": "gliner"
+    },
+    {
+      "text": "owl",
+      "label": "object",
+      "normalized_text": "owl",
+      "confidence": 0.5711669921875,
+      "span": {
+        "text": "owl",
+        "start_char": 2622,
+        "end_char": 2625,
+        "sentence_index": null
+      },
+      "coreference_cluster": null,
+      "source": "gliner"
+    },
+    {
+      "text": "father",
+      "label": "person",
+      "normalized_text": "father",
+      "confidence": 0.9028377532958984,
+      "span": {
+        "text": "father",
+        "start_char": 2745,
+        "end_char": 2751,
+        "sentence_index": null
+      },
+      "coreference_cluster": 3,
+      "source": "gliner"
+    }
+  ],
+  "coreference_clusters": [
+    [
+      "Alice",
+      "her",
+      "She",
+      "her",
+      "her",
+      "You",
+      "her",
+      "Alice",
+      "I",
+      "Alice",
+      "She",
+      "I",
+      "I",
+      "She",
+      "her",
+      "She",
+      "her",
+      "she",
+      "she",
+      "Alice",
+      "she",
+      "Alice",
+      "Your",
+      "Alice's",
+      "girl",
+      "Alice",
+      "She",
+      "she",
+      "her",
+      "Alice",
+      "She",
+      "her",
+      "her",
+      "her",
+      "she"
+    ],
+    [
+      "Thomas, her younger brother",
+      "He",
+      "his",
+      "him",
+      "Thomas"
+    ],
+    [
+      "the Silver Gate",
+      "The Silver Gate",
+      "the Gate",
+      "The Gate",
+      "It"
+    ],
+    [
+      "Father's",
+      "Father",
+      "his",
+      "him",
+      "him",
+      "his"
+    ],
+    [
+      "myths",
+      "it"
+    ],
+    [
+      "a worn leather journal",
+      "the journal"
+    ],
+    [
+      "the pages themselves",
+      "themselves"
+    ],
+    [
+      "These things she kept",
+      "them",
+      "them"
+    ],
+    [
+      "the road that wound down through the valley",
+      "The road",
+      "the old road",
+      "The road",
+      "it"
+    ],
+    [
+      "Millhaven",
+      "The village"
+    ],
+    [
+      "a tavern called The Copper Bell",
+      "the tavern"
+    ],
+    [
+      "An old woman",
+      "the woman",
+      "you",
+      "The woman",
+      "her",
+      "The woman",
+      "her"
+    ],
+    [
+      "peeling",
+      "her peeling"
+    ],
+    [
+      "Your father",
+      "he",
+      "he",
+      "he",
+      "her father's"
+    ],
+    [
+      "something that was lost",
+      "it"
+    ],
+    [
+      "a man who'd already found it and wished he hadn't",
+      "he"
+    ],
+    [
+      "her mother",
+      "her mother's"
+    ],
+    [
+      "her mother's journal",
+      "the journal"
+    ],
+    [
+      "a small fire",
+      "the fire"
+    ]
+  ],
+  "coreferences": [
+    {
+      "mentions": [
+        "Alice",
+        "her",
+        "She",
+        "her",
+        "her",
+        "You",
+        "her",
+        "Alice",
+        "I",
+        "Alice",
+        "She",
+        "I",
+        "I",
+        "She",
+        "her",
+        "She",
+        "her",
+        "she",
+        "she",
+        "Alice",
+        "she",
+        "Alice",
+        "Your",
+        "Alice's",
+        "girl",
+        "Alice",
+        "She",
+        "she",
+        "her",
+        "Alice",
+        "She",
+        "her",
+        "her",
+        "her",
+        "she"
+      ],
+      "canonical_mention": "Alice",
+      "confidence": 1.0,
+      "cluster_id": 0,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "Thomas, her younger brother",
+        "He",
+        "his",
+        "him",
+        "Thomas"
+      ],
+      "canonical_mention": "Thomas, her younger brother",
+      "confidence": 1.0,
+      "cluster_id": 1,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "the Silver Gate",
+        "The Silver Gate",
+        "the Gate",
+        "The Gate",
+        "It"
+      ],
+      "canonical_mention": "the Silver Gate",
+      "confidence": 1.0,
+      "cluster_id": 2,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "Father's",
+        "Father",
+        "his",
+        "him",
+        "him",
+        "his"
+      ],
+      "canonical_mention": "Father's",
+      "confidence": 1.0,
+      "cluster_id": 3,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "myths",
+        "it"
+      ],
+      "canonical_mention": "myths",
+      "confidence": 1.0,
+      "cluster_id": 4,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "a worn leather journal",
+        "the journal"
+      ],
+      "canonical_mention": "a worn leather journal",
+      "confidence": 1.0,
+      "cluster_id": 5,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "the pages themselves",
+        "themselves"
+      ],
+      "canonical_mention": "the pages themselves",
+      "confidence": 1.0,
+      "cluster_id": 6,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "These things she kept",
+        "them",
+        "them"
+      ],
+      "canonical_mention": "These things she kept",
+      "confidence": 1.0,
+      "cluster_id": 7,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "the road that wound down through the valley",
+        "The road",
+        "the old road",
+        "The road",
+        "it"
+      ],
+      "canonical_mention": "the road that wound down through the valley",
+      "confidence": 1.0,
+      "cluster_id": 8,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "Millhaven",
+        "The village"
+      ],
+      "canonical_mention": "Millhaven",
+      "confidence": 1.0,
+      "cluster_id": 9,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "a tavern called The Copper Bell",
+        "the tavern"
+      ],
+      "canonical_mention": "a tavern called The Copper Bell",
+      "confidence": 1.0,
+      "cluster_id": 10,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "An old woman",
+        "the woman",
+        "you",
+        "The woman",
+        "her",
+        "The woman",
+        "her"
+      ],
+      "canonical_mention": "An old woman",
+      "confidence": 1.0,
+      "cluster_id": 11,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "peeling",
+        "her peeling"
+      ],
+      "canonical_mention": "peeling",
+      "confidence": 1.0,
+      "cluster_id": 12,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "Your father",
+        "he",
+        "he",
+        "he",
+        "her father's"
+      ],
+      "canonical_mention": "Your father",
+      "confidence": 1.0,
+      "cluster_id": 13,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "something that was lost",
+        "it"
+      ],
+      "canonical_mention": "something that was lost",
+      "confidence": 1.0,
+      "cluster_id": 14,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "a man who'd already found it and wished he hadn't",
+        "he"
+      ],
+      "canonical_mention": "a man who'd already found it and wished he hadn't",
+      "confidence": 1.0,
+      "cluster_id": 15,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "her mother",
+        "her mother's"
+      ],
+      "canonical_mention": "her mother",
+      "confidence": 1.0,
+      "cluster_id": 16,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "her mother's journal",
+        "the journal"
+      ],
+      "canonical_mention": "her mother's journal",
+      "confidence": 1.0,
+      "cluster_id": 17,
+      "source": "fastcoref"
+    },
+    {
+      "mentions": [
+        "a small fire",
+        "the fire"
+      ],
+      "canonical_mention": "a small fire",
+      "confidence": 1.0,
+      "cluster_id": 18,
+      "source": "fastcoref"
+    }
+  ],
+  "relations": [
+    {
+      "subject": "sun",
+      "predicate": "cast",
+      "object": "shadows",
+      "span": {
+        "text": "Chapter 1: The Departure\n\nThe morning sun cast long shadows across the stone courtyard of Thornfield Hall.",
+        "start_char": 0,
+        "end_char": 106,
+        "sentence_index": 0
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "clutched",
+      "object": "journal",
+      "span": {
+        "text": "She clutched a worn leather journal to her chest — the last gift from her mother.\n\n",
+        "start_char": 210,
+        "end_char": 293,
+        "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "clutched",
+      "object": "gift",
+      "span": {
+        "text": "She clutched a worn leather journal to her chest — the last gift from her mother.\n\n",
+        "start_char": 210,
+        "end_char": 293,
+        "sentence_index": null
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Gate",
+      "predicate": "is",
+      "object": "myth",
+      "span": {
+        "text": "\"The Silver Gate is a myth.",
+        "start_char": 620,
+        "end_char": 647,
+        "sentence_index": 11
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Father",
+      "predicate": "chased",
+      "object": "myths",
+      "span": {
+        "text": "Father chased myths his whole life, and look where it got him.",
+        "start_char": 648,
+        "end_char": 710,
+        "sentence_index": 12
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Father",
+      "predicate": "chased",
+      "object": "life",
+      "span": {
+        "text": "Father chased myths his whole life, and look where it got him.",
+        "start_char": 648,
+        "end_char": 710,
+        "sentence_index": 12
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "it",
+      "predicate": "got",
+      "object": "him",
+      "span": {
+        "text": "Father chased myths his whole life, and look where it got him.",
+        "start_char": 648,
+        "end_char": 710,
+        "sentence_index": 12
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "It",
+      "predicate": "got",
+      "object": "answers",
+      "span": {
+        "text": "\"\n\n\"It got him answers,\" Alice said quietly.",
+        "start_char": 710,
+        "end_char": 754,
+        "sentence_index": 13
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "mention",
+      "object": "dreams",
+      "span": {
+        "text": "\"\n\nShe didn't mention the dreams — the ones where the Gate opened and a voice called her name.",
+        "start_char": 850,
+        "end_char": 944,
+        "sentence_index": 17
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "mention",
+      "object": "warmth",
+      "span": {
+        "text": "She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive.",
+        "start_char": 945,
+        "end_char": 1064,
+        "sentence_index": 18
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "she",
+      "predicate": "touched",
+      "object": "journal",
+      "span": {
+        "text": "She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive.",
+        "start_char": 945,
+        "end_char": 1064,
+        "sentence_index": 18
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "she",
+      "predicate": "reached",
+      "object": "crossroads",
+      "span": {
+        "text": "Alice walked for three hours before she reached the crossroads at Millhaven.",
+        "start_char": 1196,
+        "end_char": 1272,
+        "sentence_index": 21
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "village",
+      "predicate": "was",
+      "object": "blacksmith",
+      "span": {
+        "text": "The village was small — a blacksmith, a tavern called The Copper Bell, and a handful of cottages with thatched roofs.",
+        "start_char": 1273,
+        "end_char": 1390,
+        "sentence_index": 22
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "that",
+      "predicate": "have",
+      "object": "names",
+      "span": {
+        "text": "Things move in those trees that don't have names.\"",
+        "start_char": 1572,
+        "end_char": 1622,
+        "sentence_index": 28
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "woman",
+      "predicate": "paused",
+      "object": "peeling",
+      "span": {
+        "text": "The woman paused her peeling.",
+        "start_char": 1623,
+        "end_char": 1652,
+        "sentence_index": 29
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "who",
+      "predicate": "found",
+      "object": "it",
+      "span": {
+        "text": "Said it like a man who'd already found it and wished he hadn't.\"",
+        "start_char": 1852,
+        "end_char": 1916,
+        "sentence_index": 35
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Alice",
+      "predicate": "thanked",
+      "object": "her",
+      "span": {
+        "text": "\"\n\nAlice thanked her and continued walking.",
+        "start_char": 2006,
+        "end_char": 2049,
+        "sentence_index": 39
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "made",
+      "object": "camp",
+      "span": {
+        "text": "She made camp beside a stream, building a small fire from dry birch branches.",
+        "start_char": 2224,
+        "end_char": 2301,
+        "sentence_index": 42
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "she",
+      "predicate": "opened",
+      "object": "journal",
+      "span": {
+        "text": "As the flames danced, she opened her mother's journal.",
+        "start_char": 2302,
+        "end_char": 2356,
+        "sentence_index": 43
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Gate",
+      "predicate": "is",
+      "object": "door",
+      "span": {
+        "text": "The handwriting was elegant but hurried, as if the words had been racing to escape the pen:\n\n\"The Gate is not a door.",
+        "start_char": 2357,
+        "end_char": 2474,
+        "sentence_index": 44
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "It",
+      "predicate": "is",
+      "object": "question",
+      "span": {
+        "text": "It is a question.",
+        "start_char": 2475,
+        "end_char": 2492,
+        "sentence_index": 45
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "Alice",
+      "predicate": "closed",
+      "object": "journal",
+      "span": {
+        "text": "\"\n\nAlice closed the journal and stared into the fire.",
+        "start_char": 2538,
+        "end_char": 2591,
+        "sentence_index": 47
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "pulled",
+      "object": "cloak",
+      "span": {
+        "text": "She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear.",
+        "start_char": 2634,
+        "end_char": 2799,
+        "sentence_index": 49
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    },
+    {
+      "subject": "She",
+      "predicate": "pulled",
+      "object": "tighter",
+      "span": {
+        "text": "She pulled her cloak tighter and tried to sleep, but her dreams were full of silver light and the sound of her father's voice, saying words she could not quite hear.",
+        "start_char": 2634,
+        "end_char": 2799,
+        "sentence_index": 49
+      },
+      "confidence": 1.0,
+      "source": "spacy_svo"
+    }
+  ],
+  "dialogues": [
+    {
+      "speaker": "Thomas",
+      "text": "You don't have to go,",
+      "span": {
+        "text": "\"You don't have to go,\"",
+        "start_char": 293,
+        "end_char": 316,
+        "sentence_index": 3
+      },
+      "confidence": 0.8,
+      "attribution_method": "speech_tag_after"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.",
+      "span": {
+        "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
+        "start_char": 488,
+        "end_char": 586,
+        "sentence_index": 7
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.",
+      "span": {
+        "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
+        "start_char": 620,
+        "end_char": 711,
+        "sentence_index": 11
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Alice",
+      "text": "It got him answers,",
+      "span": {
+        "text": "\"It got him answers,\"",
+        "start_char": 713,
+        "end_char": 734,
+        "sentence_index": 13
+      },
+      "confidence": 0.8,
+      "attribution_method": "speaker_before_verb_after"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "I'll be back before the winter solstice. I promise.",
+      "span": {
+        "text": "\"I'll be back before the winter solstice. I promise.\"",
+        "start_char": 798,
+        "end_char": 851,
+        "sentence_index": 15
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "Heading north?",
+      "span": {
+        "text": "\"Heading north?\"",
+        "start_char": 1445,
+        "end_char": 1461,
+        "sentence_index": 24
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Alice",
+      "text": "Yes,",
+      "span": {
+        "text": "\"Yes,\"",
+        "start_char": 1499,
+        "end_char": 1505,
+        "sentence_index": 26
+      },
+      "confidence": 0.8,
+      "attribution_method": "speaker_before_verb_after"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.",
+      "span": {
+        "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
+        "start_char": 1519,
+        "end_char": 1622,
+        "sentence_index": 27
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "Your father passed through here, you know. Three months ago. Asked about the old road.",
+      "span": {
+        "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
+        "start_char": 1653,
+        "end_char": 1741,
+        "sentence_index": 30
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "Did he say where he was going?",
+      "span": {
+        "text": "\"Did he say where he was going?\"",
+        "start_char": 1768,
+        "end_char": 1800,
+        "sentence_index": 34
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.",
+      "span": {
+        "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
+        "start_char": 1802,
+        "end_char": 1916,
+        "sentence_index": 34
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "Be careful, girl. The north remembers what the south forgets.",
+      "span": {
+        "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
+        "start_char": 1944,
+        "end_char": 2007,
+        "sentence_index": 37
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    },
+    {
+      "speaker": "Unknown",
+      "text": "The Gate is not a door. It is a question. And the answer changes depending on who asks.",
+      "span": {
+        "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
+        "start_char": 2450,
+        "end_char": 2539,
+        "sentence_index": 44
+      },
+      "confidence": 0.25,
+      "attribution_method": "unattributed_quote"
+    }
+  ],
+  "scene_count": 0,
+  "scenes": [],
+  "style_metrics": {
+    "word_count": 503,
+    "sentence_count": 50,
+    "avg_sentence_length": 10.06,
+    "pos_distribution": {
+      "NOUN": 103,
+      "NUM": 3,
+      "PUNCT": 105,
+      "DET": 62,
+      "PROPN": 26,
+      "SPACE": 16,
+      "VERB": 90,
+      "ADJ": 32,
+      "ADP": 43,
+      "PRON": 58,
+      "AUX": 29,
+      "PART": 17,
+      "CCONJ": 14,
+      "ADV": 12,
+      "SCONJ": 13,
+      "INTJ": 1
+    },
+    "dialogue_density": 0.0517
+  },
+  "validation_warnings": [],
+  "extraction_notes": [],
+  "evidence_summary": {
+    "paragraphs": 17,
+    "sentences": 50,
+    "entities": 24,
+    "coreference_clusters": 19,
+    "relations": 24,
+    "dialogues": 13,
+    "scenes": 0,
+    "validation_warnings": 0
+  }
+}

@@ -257,6 +257,37 @@ The next day, Arthur woke up early in his quarters. This paragraph starts with a
         assert findings[0]["chapter"] == 5
         assert findings[0]["title"] == "Unresolved Mystery"
 
+    def test_editorial_engine_parse_json_findings_robust(self):
+        engine = EditorialEngine()
+        raw_output_conversational = """Here is the critique you requested:
+[
+  {
+    "severity": "warning",
+    "category": "consistency",
+    "title": "Unresolved Mystery",
+    "description": "The chalice is still missing.",
+    "confidence": 0.9
+  }
+]
+Hope that helps with your developmental editing process!"""
+        findings = engine._parse_json_findings(raw_output_conversational, chapter_num=5)
+        assert len(findings) == 1
+        assert findings[0]["chapter"] == 5
+        assert findings[0]["title"] == "Unresolved Mystery"
+
+        # Test single object returned instead of list
+        raw_output_single_object = """{
+    "severity": "suggestion",
+    "category": "pacing",
+    "title": "Slow Pacing",
+    "description": "Scene 2 drags on.",
+    "confidence": 0.8
+}"""
+        findings = engine._parse_json_findings(raw_output_single_object, chapter_num=2)
+        assert len(findings) == 1
+        assert findings[0]["chapter"] == 2
+        assert findings[0]["severity"] == "suggestion"
+
     def test_editorial_engine_llm_context_goals(self, monkeypatch):
         # Setup a state with a character having a goal
         state = NarrativeState()
