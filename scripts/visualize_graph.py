@@ -233,8 +233,11 @@ def main():
     html_content = HTML_TEMPLATE.replace("{DATA_JSON}", json.dumps(graph_data))
 
     output_path = config.memory_dir / "narrative_graph.html"
-    with open(output_path, "w", encoding="utf-8") as f:
+    tmp_path = output_path.with_suffix(".html.tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
         f.write(html_content)
+    import os
+    os.replace(tmp_path, output_path)
 
     print(f"Interactive graph successfully saved to: {output_path}")
     print("Open this file in any modern web browser to interact with the narrative network.")

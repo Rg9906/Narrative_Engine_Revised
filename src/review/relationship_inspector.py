@@ -48,7 +48,35 @@ class RelationshipInspector(BaseInspector):
                                 evidence_ids=list(set((getattr(snapshot, 'evidence_ids', []) or []) + (getattr(label_entry.current, 'evidence_ids', []) or []))),
                                 related_entities=char_parts,
                                 confidence=0.75,
-                            ))
+                             ))
                             break
+
+                # Emotional Inversion Check (skipping from Nemesis to Allied without transition)
+                trajectory = label_entry.get_trajectory()
+                nemesis_stances = {"ENMITY", "RIVALRY", "NEMESIS"}
+                allied_stances = {"ALLIANCE", "FRIENDSHIP", "ALLIED", "ROMANTIC"}
+                
+                for idx in range(1, len(trajectory)):
+                    prev_snap = trajectory[idx - 1]
+                    curr_snap = trajectory[idx]
+                    
+                    if prev_snap.value in nemesis_stances and curr_snap.value in allied_stances:
+                        # Direct shift without transitional event in the history
+                        char_parts = rel_id.split("::")
+                        findings.append(Finding(
+                            severity='warning',
+                            category='consistency',
+                            title='Emotional inversion warning',
+                            description=(
+                                f"Emotional Inversion: Stance between '{char_parts[0]}' and '{char_parts[1]}' jumped directly "
+                                f"from '{prev_snap.value}' (chapter {prev_snap.chapter}) to '{curr_snap.value}' (chapter {curr_snap.chapter}) "
+                                f"without mid-tier transitional interaction events."
+                            ),
+                            chapter=chapter,
+                            evidence_ids=list(set((getattr(prev_snap, 'evidence_ids', []) or []) + (getattr(curr_snap, 'evidence_ids', []) or []))),
+                            related_entities=char_parts,
+                            confidence=0.8,
+                        ))
+                        break
 
         return findings

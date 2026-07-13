@@ -161,8 +161,13 @@ class BaseMemory:
             },
         }
 
-        with open(path, "w", encoding="utf-8") as f:
+        # Atomic write
+        tmp_path = path.with_suffix(path.suffix + ".tmp")
+        with open(tmp_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
+        
+        import os
+        os.replace(tmp_path, path)
 
         logger.info(f"Memory saved to {path} ({len(self._entries)} entities)")
 

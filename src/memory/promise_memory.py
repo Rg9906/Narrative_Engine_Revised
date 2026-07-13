@@ -7,7 +7,7 @@ Tracks narrative promises and foreshadowing across chapters:
   - Promise resolution and payoff tracking
   - Unresolved promise detection
 
-Implementation: Phase 10
+Implementation: Phase 10, enriched in Enhancement Sprint
 """
 
 import re
@@ -20,10 +20,13 @@ from src.models.state import (
     StateChange,
     StateChangeType,
     NarrativeElementType,
+    StateSnapshot,
 )
 from src.utils import stable_hash
+
+
 class PromiseMemory(BaseMemory):
-    """Manages promise and foreshadowing tracking with full history."""
+    """Manages promise and foreshadowing tracking with full history and metadata."""
 
     # Promise indicators (Phase 10)
     PROMISE_INDICATORS = [
@@ -59,7 +62,7 @@ class PromiseMemory(BaseMemory):
         Detects promises, foreshadowing, and resolutions from the chapter text.
 
         Returns:
-            List of StateChange objects describing promise changes.
+             List of StateChange objects describing promise changes.
         """
         changes: List[StateChange] = []
 
@@ -75,6 +78,10 @@ class PromiseMemory(BaseMemory):
         resolution_changes = self._check_resolutions(chapter_data, chapter_num)
         changes.extend(resolution_changes)
 
+        # Check for semantic resolution markers
+        semantic_changes = self._check_semantic_resolutions(chapter_data, chapter_num)
+        changes.extend(semantic_changes)
+
         return changes
 
     def _extract_promises(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
@@ -86,11 +93,25 @@ class PromiseMemory(BaseMemory):
 
             for indicator in self.PROMISE_INDICATORS:
                 if indicator in sentence_lower:
-                    # Extract the promise text
                     promise_text = sentence.strip()
 
-                    # Try to identify speaker from dialogue
+                    # Identify speaker and listener
                     speaker = self._identify_speaker(sentence, chapter_data)
+                    speaker_id = self._normalize_entity_id(speaker) if speaker != "unknown" else "unknown"
+
+                    # Identify listener (first other person mentioned in the sentence, otherwise in scenecast)
+                    listener_id = "unknown"
+                    for entity in chapter_data.entities:
+                        if entity.label.lower() == "person" and entity.text.lower() != speaker.lower():
+                            if entity.text.lower() in sentence_lower:
+                                listener_id = self._normalize_entity_id(entity.text)
+                                break
+                    # Fallback to any other person in the chapter entities
+                    if listener_id == "unknown":
+                        for entity in chapter_data.entities:
+                            if entity.label.lower() == "person" and entity.text.lower() != speaker.lower():
+                                listener_id = self._normalize_entity_id(entity.text)
+                                break
 
                     # Generate a unique promise ID
                     promise_id = f"promise_{stable_hash(promise_text)}"
@@ -99,7 +120,7 @@ class PromiseMemory(BaseMemory):
                     existing_promise = self.get_entry(promise_id, "promise_text")
 
                     if not existing_promise or not existing_promise.current:
-                        # New promise
+                        # New promise (using new status OPEN, speaker_id, listener_id, climax_proximity_threshold)
                         self.update_entry(
                             promise_id,
                             "promise_text",
@@ -112,22 +133,32 @@ class PromiseMemory(BaseMemory):
                         )
                         self.update_entry(
                             promise_id,
-                            "speaker",
-                            speaker,
+                            "speaker_id",
+                            speaker_id,
                             chapter=chapter_num,
                             evidence_ids=[],
                             confidence=0.6,
-                            reasoning="Speaker identified from context.",
+                            reasoning="Speaker identified from dialogue context.",
                             importance=0.7,
                         )
                         self.update_entry(
                             promise_id,
+                            "listener_id",
+                            listener_id,
+                            chapter=chapter_num,
+                            evidence_ids=[],
+                            confidence=0.5,
+                            reasoning="Listener identified from neighboring entities.",
+                            importance=0.6,
+                        )
+                        self.update_entry(
+                            promise_id,
                             "status",
-                            "unresolved",
+                            "OPEN",
                             chapter=chapter_num,
                             evidence_ids=[],
                             confidence=0.9,
-                            reasoning="New promise marked as unresolved.",
+                            reasoning="New promise marked as OPEN.",
                             importance=0.9,
                         )
                         self.update_entry(
@@ -139,6 +170,16 @@ class PromiseMemory(BaseMemory):
                             confidence=1.0,
                             reasoning="Chapter where promise was made.",
                             importance=0.8,
+                        )
+                        self.update_entry(
+                            promise_id,
+                            "climax_proximity_threshold",
+                            3,
+                            chapter=chapter_num,
+                            evidence_ids=[],
+                            confidence=0.5,
+                            reasoning="Default climax proximity threshold.",
+                            importance=0.5,
                         )
 
                         changes.append(
@@ -153,19 +194,19 @@ class PromiseMemory(BaseMemory):
                             )
                         )
                     else:
-                        # Existing promise - confirm it's still unresolved
+                        # Existing promise - confirm it's still OPEN
                         status_entry = self.get_entry(promise_id, "status")
-                        if status_entry and status_entry.current and status_entry.current.value == "unresolved":
+                        if status_entry and status_entry.current and status_entry.current.value in ("unresolved", "OPEN"):
                             changes.append(
                                 StateChange(
                                     change_type=StateChangeType.CONFIRMATION,
                                     target_type=NarrativeElementType.PROMISE,
                                     target_id=promise_id,
                                     field_key="status",
-                                    old_value="unresolved",
-                                    new_value="unresolved",
+                                    old_value=status_entry.current.value,
+                                    new_value=status_entry.current.value,
                                     confidence=0.6,
-                                    reasoning=f"Promise remains unresolved.",
+                                    reasoning=f"Promise remains open.",
                                 )
                             )
 
@@ -182,17 +223,11 @@ class PromiseMemory(BaseMemory):
 
             for indicator in self.FORESHADOWING_INDICATORS:
                 if indicator in sentence_lower:
-                    # Extract the foreshadowing text
                     foreshadow_text = sentence.strip()
-
-                    # Generate a unique foreshadowing ID
                     foreshadow_id = f"foreshadow_{stable_hash(foreshadow_text)}"
-
-                    # Check if this foreshadowing already exists
                     existing_foreshadow = self.get_entry(foreshadow_id, "foreshadow_text")
 
                     if not existing_foreshadow or not existing_foreshadow.current:
-                        # New foreshadowing
                         self.update_entry(
                             foreshadow_id,
                             "foreshadow_text",
@@ -206,11 +241,11 @@ class PromiseMemory(BaseMemory):
                         self.update_entry(
                             foreshadow_id,
                             "status",
-                            "unresolved",
+                            "OPEN",
                             chapter=chapter_num,
                             evidence_ids=[],
                             confidence=0.8,
-                            reasoning="New foreshadowing marked as unresolved.",
+                            reasoning="New foreshadowing marked as OPEN.",
                             importance=0.8,
                         )
                         self.update_entry(
@@ -236,29 +271,32 @@ class PromiseMemory(BaseMemory):
                             )
                         )
 
-                    break  # Only count each sentence once
+                    break
 
         return changes
 
     def _check_resolutions(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
-        """Check if any existing promises or foreshadowing are resolved."""
+        """Check if any existing promises or foreshadowing are resolved via explicit keywords."""
         changes: List[StateChange] = []
         text = chapter_data.raw_text.lower()
 
-        # Check all unresolved promises
+        # Check all unresolved/OPEN promises
         for entry_id in self._entries.keys():
             if entry_id.startswith("promise_"):
+                # Ignore promises made in the current chapter
+                chapter_made_entry = self.get_entry(entry_id, "chapter_made")
+                if chapter_made_entry and chapter_made_entry.current and chapter_made_entry.current.value >= chapter_num:
+                    continue
+
                 status_entry = self.get_entry(entry_id, "status")
-                if status_entry and status_entry.current and status_entry.current.value == "unresolved":
-                    # Check for resolution indicators
+                if status_entry and status_entry.current and status_entry.current.value in ("unresolved", "OPEN"):
                     for indicator in self.RESOLUTION_INDICATORS:
                         if indicator in text:
-                            # Mark as resolved
                             old_status = status_entry.current.value
                             self.update_entry(
                                 entry_id,
                                 "status",
-                                "resolved",
+                                "FULFILLED",
                                 chapter=chapter_num,
                                 evidence_ids=[],
                                 confidence=0.7,
@@ -283,7 +321,7 @@ class PromiseMemory(BaseMemory):
                                     target_id=entry_id,
                                     field_key="status",
                                     old_value=old_status,
-                                    new_value="resolved",
+                                    new_value="FULFILLED",
                                     confidence=0.7,
                                     reasoning=f"Promise resolved in chapter.",
                                 )
@@ -292,17 +330,20 @@ class PromiseMemory(BaseMemory):
 
             # Check foreshadowing resolutions
             if entry_id.startswith("foreshadow_"):
+                # Ignore foreshadowing introduced in the current chapter
+                chapter_intro_entry = self.get_entry(entry_id, "chapter_introduced")
+                if chapter_intro_entry and chapter_intro_entry.current and chapter_intro_entry.current.value >= chapter_num:
+                    continue
+
                 status_entry = self.get_entry(entry_id, "status")
-                if status_entry and status_entry.current and status_entry.current.value == "unresolved":
-                    # Check for resolution indicators
+                if status_entry and status_entry.current and status_entry.current.value in ("unresolved", "OPEN"):
                     for indicator in self.RESOLUTION_INDICATORS:
                         if indicator in text:
-                            # Mark as resolved
                             old_status = status_entry.current.value
                             self.update_entry(
                                 entry_id,
                                 "status",
-                                "resolved",
+                                "FULFILLED",
                                 chapter=chapter_num,
                                 evidence_ids=[],
                                 confidence=0.6,
@@ -327,13 +368,108 @@ class PromiseMemory(BaseMemory):
                                     target_id=entry_id,
                                     field_key="status",
                                     old_value=old_status,
-                                    new_value="resolved",
+                                    new_value="FULFILLED",
                                     confidence=0.6,
                                     reasoning=f"Foreshadowing resolved in chapter.",
                                 )
                             )
                             break
 
+        return changes
+
+    def _check_semantic_resolutions(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
+        """Perform tokenized keyword-overlap and semantic checks to match unresolved threads."""
+        changes: List[StateChange] = []
+        stopwords = {
+            "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", 
+            "he", "him", "his", "she", "her", "hers", "it", "its", "they", "them", "their", 
+            "what", "which", "who", "whom", "this", "that", "am", "is", "are", "was", "were", 
+            "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", 
+            "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", 
+            "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", 
+            "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", 
+            "out", "on", "off", "over", "under", "again", "further", "then", "once", "promise", 
+            "swear", "vow"
+        }
+
+        for entry_id in self._entries.keys():
+            if entry_id.startswith("promise_"):
+                # Ignore promises made in the current chapter
+                chapter_made_entry = self.get_entry(entry_id, "chapter_made")
+                if chapter_made_entry and chapter_made_entry.current and chapter_made_entry.current.value >= chapter_num:
+                    continue
+
+                status_entry = self.get_entry(entry_id, "status")
+                if status_entry and status_entry.current and status_entry.current.value in ("unresolved", "OPEN"):
+                    promise_text_entry = self.get_entry(entry_id, "promise_text")
+                    if not promise_text_entry or not promise_text_entry.current:
+                        continue
+                    promise_text = promise_text_entry.current.value
+
+                    # Tokenize and extract key content words
+                    promise_words = [w.strip(".,!?\"'") for w in promise_text.lower().split()]
+                    promise_keywords = {w for w in promise_words if w and w not in stopwords and len(w) > 2}
+
+                    resolved = False
+                    reasoning = ""
+
+                    # 1. Search for keyword overlap in sentences
+                    for sentence in chapter_data.sentences:
+                        sent_words = {w.strip(".,!?\"'").lower() for w in sentence.split()}
+                        overlap = promise_keywords.intersection(sent_words)
+
+                        # High overlap threshold
+                        if len(overlap) >= max(1, int(len(promise_keywords) * 0.4)):
+                            resolution_words = {"kept", "fulfill", "done", "accomplished", "return", "back", "succeed", "happen", "did", "vow", "word"}
+                            if sent_words.intersection(resolution_words) or sent_words.intersection(self.RESOLUTION_INDICATORS):
+                                resolved = True
+                                reasoning = f"Semantic overlap found in sentence: '{sentence}' containing keywords {overlap}."
+                                break
+
+                    # 2. Search dialogue text
+                    if not resolved:
+                        for dialogue in chapter_data.dialogues:
+                            dialogue_words = {w.strip(".,!?\"'").lower() for w in dialogue.text.split()}
+                            overlap = promise_keywords.intersection(dialogue_words)
+                            if len(overlap) >= max(1, int(len(promise_keywords) * 0.4)):
+                                resolved = True
+                                reasoning = f"Dialogue from '{dialogue.speaker}' semantically matches promise: '{dialogue.text}'."
+                                break
+
+                    if resolved:
+                        old_status = status_entry.current.value
+                        self.update_entry(
+                            entry_id,
+                            "status",
+                            "FULFILLED",
+                            chapter=chapter_num,
+                            evidence_ids=[],
+                            confidence=0.8,
+                            reasoning=reasoning,
+                            importance=0.9,
+                        )
+                        self.update_entry(
+                            entry_id,
+                            "chapter_resolved",
+                            chapter_num,
+                            chapter=chapter_num,
+                            evidence_ids=[],
+                            confidence=0.8,
+                            reasoning="Marked FULFILLED via semantic resolution.",
+                            importance=0.9,
+                        )
+                        changes.append(
+                            StateChange(
+                                change_type=StateChangeType.RESOLUTION,
+                                target_type=NarrativeElementType.PROMISE,
+                                target_id=entry_id,
+                                field_key="status",
+                                old_value=old_status,
+                                new_value="FULFILLED",
+                                confidence=0.8,
+                                reasoning=reasoning,
+                            )
+                        )
         return changes
 
     def _identify_speaker(self, sentence: str, chapter_data: ChapterData) -> str:
@@ -343,22 +479,33 @@ class PromiseMemory(BaseMemory):
                 return dialogue.speaker or "unknown"
         return "unknown"
 
+    def _normalize_entity_id(self, text: str) -> str:
+        text = text.strip().lower()
+        text = re.sub(r"[^a-z0-9]+", "_", text)
+        return text.strip("_")
+
     def get_unresolved_promises(self) -> List[Dict]:
-        """Get all unresolved promises."""
+        """Get all unresolved/OPEN promises with complete fields."""
         unresolved = []
         for entry_id in self._entries.keys():
             if entry_id.startswith("promise_"):
                 status_entry = self.get_entry(entry_id, "status")
-                if status_entry and status_entry.current and status_entry.current.value == "unresolved":
+                if status_entry and status_entry.current and status_entry.current.value in ("unresolved", "OPEN"):
                     text_entry = self.get_entry(entry_id, "promise_text")
-                    speaker_entry = self.get_entry(entry_id, "speaker")
+                    speaker_entry = self.get_entry(entry_id, "speaker_id") or self.get_entry(entry_id, "speaker")
+                    listener_entry = self.get_entry(entry_id, "listener_id")
                     chapter_entry = self.get_entry(entry_id, "chapter_made")
+                    climax_entry = self.get_entry(entry_id, "climax_proximity_threshold")
 
                     unresolved.append({
                         "id": entry_id,
                         "text": text_entry.current.value if text_entry and text_entry.current else "",
                         "speaker": speaker_entry.current.value if speaker_entry and speaker_entry.current else "unknown",
+                        "speaker_id": speaker_entry.current.value if speaker_entry and speaker_entry.current else "unknown",
+                        "listener_id": listener_entry.current.value if listener_entry and listener_entry.current else "unknown",
                         "chapter_made": chapter_entry.current.value if chapter_entry and chapter_entry.current else 0,
+                        "climax_proximity_threshold": climax_entry.current.value if climax_entry and climax_entry.current else 3,
+                        "status": status_entry.current.value,
                     })
         return unresolved
 
@@ -368,7 +515,7 @@ class PromiseMemory(BaseMemory):
         for entry_id in self._entries.keys():
             if entry_id.startswith("foreshadow_"):
                 status_entry = self.get_entry(entry_id, "status")
-                if status_entry and status_entry.current and status_entry.current.value == "unresolved":
+                if status_entry and status_entry.current and status_entry.current.value in ("unresolved", "OPEN"):
                     text_entry = self.get_entry(entry_id, "foreshadow_text")
                     chapter_entry = self.get_entry(entry_id, "chapter_introduced")
 
@@ -376,5 +523,6 @@ class PromiseMemory(BaseMemory):
                         "id": entry_id,
                         "text": text_entry.current.value if text_entry and text_entry.current else "",
                         "chapter_introduced": chapter_entry.current.value if chapter_entry and chapter_entry.current else 0,
+                        "status": status_entry.current.value,
                     })
         return unresolved

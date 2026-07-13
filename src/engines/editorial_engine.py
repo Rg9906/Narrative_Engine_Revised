@@ -102,8 +102,11 @@ class EditorialEngine:
         out_dir = Path(self._config.memory_dir) if (self._config and getattr(self._config, 'memory_dir', None)) else Path('data') / 'memory'
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / f"editorial_report_ch{report['metadata']['chapter']}.json"
-        with open(out_file, 'w', encoding='utf-8') as fh:
+        tmp_file = out_file.with_suffix(".json.tmp")
+        with open(tmp_file, 'w', encoding='utf-8') as fh:
             json.dump(report, fh, indent=2, ensure_ascii=False)
+        import os
+        os.replace(tmp_file, out_file)
 
         return report
 

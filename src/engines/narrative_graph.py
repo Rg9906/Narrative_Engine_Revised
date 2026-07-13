@@ -80,6 +80,9 @@ class NarrativeGraph:
         out_path = Path(out_path or self.config.memory_dir) / 'narrative_graph.json'
         graph = self.build(state)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(out_path, 'w', encoding='utf-8') as f:
+        tmp_path = out_path.with_suffix('.json.tmp')
+        with open(tmp_path, 'w', encoding='utf-8') as f:
             json.dump(graph, f, indent=2, ensure_ascii=False)
+        import os
+        os.replace(tmp_path, out_path)
         return out_path

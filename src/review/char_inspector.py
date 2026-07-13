@@ -97,4 +97,42 @@ class CharacterInspector(BaseInspector):
             except Exception:
                 pass
 
+            # Inventory Teleportation Check
+            try:
+                inv_entry = entries.get("inventory")
+                if inv_entry and inv_entry.current and isinstance(inv_entry.current.value, list):
+                    char_loc_entry = entries.get("location") or entries.get("physical_location") or entries.get("current_location")
+                    char_loc = char_loc_entry.current.value if char_loc_entry and char_loc_entry.current else None
+                    
+                    for item in inv_entry.current.value:
+                        item_id = item.lower().replace(" ", "_")
+                        item_world = state.world.get(item_id)
+                        if item_world:
+                            item_loc_entry = item_world.get("location")
+                            item_owner_entry = item_world.get("owner")
+                            
+                            item_loc = item_loc_entry.current.value if item_loc_entry and item_loc_entry.current else None
+                            item_owner = item_owner_entry.current.value if item_owner_entry and item_owner_entry.current else None
+                            
+                            # If the item has a known location and no owner (i.e. left in that location)
+                            # but the character now has it in their inventory without being at that location
+                            if item_loc and not item_owner:
+                                if char_loc and char_loc != item_loc:
+                                    findings.append(Finding(
+                                        severity='warning',
+                                        category='consistency',
+                                        title='Inventory teleportation warning',
+                                        description=(
+                                            f"Character '{cid}' utilizes or possesses the item '{item}' in chapter {chapter}, "
+                                            f"but the item was left at '{item_loc}' (chapter {item_loc_entry.current.chapter}) "
+                                            f"and '{cid}' is currently at '{char_loc}'."
+                                        ),
+                                        chapter=chapter,
+                                        evidence_ids=list(set((getattr(inv_entry.current, 'evidence_ids', []) or []) + (getattr(item_loc_entry.current, 'evidence_ids', []) or []))),
+                                        related_entities=[cid, item_id],
+                                        confidence=0.8,
+                                    ))
+            except Exception:
+                pass
+
         return findings

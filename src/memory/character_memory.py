@@ -115,7 +115,7 @@ class CharacterMemory(BaseMemory):
         mentions = self._collect_character_mentions(chapter_data, coref_map)
 
         for mention_text in mentions:
-            char_id = self._normalize_entity_id(mention_text)
+            char_id = self.resolve_character_id(mention_text, self._entries)
             if not char_id:
                 continue
 
@@ -311,6 +311,12 @@ class CharacterMemory(BaseMemory):
                 chapter_data, char_id, name_variants, chapter_num, coref_map
             )
             changes.extend(arc_changes)
+
+            # Extract inventory items
+            inventory_changes = self._extract_inventory(
+                chapter_data, char_id, name_variants, chapter_num, coref_map
+            )
+            changes.extend(inventory_changes)
 
         return changes
 
@@ -750,3 +756,124 @@ class CharacterMemory(BaseMemory):
         text = re.sub(r"[^a-z0-9]+", "_", text)
         text = re.sub(r"_+", "_", text).strip("_")
         return text
+
+    def resolve_character_id(self, mention_text: str, existing_entries: Dict[str, Dict[str, object]]) -> str:
+        # First, check direct normalization
+        normalized_id = self._normalize_entity_id(mention_text)
+        if normalized_id in existing_entries:
+            return normalized_id
+        
+        # If not found directly, check for alias overlap
+        mention_lower = mention_text.strip().lower()
+        mention_words = set(w for w in mention_lower.split() if w not in {"mr", "mrs", "sir", "lord", "lady", "detective", "captain", "miss", "dr"})
+        
+        best_match_id = None
+        best_score = 0.0
+        
+        import logging
+        logger = logging.getLogger("NarrativeEngine.Memory.Character")
+        
+        for char_id, char_fields in existing_entries.items():
+            # Check canonical name
+            canonical_entry = char_fields.get("canonical_name")
+            canonical_name = canonical_entry.current.value.strip().lower() if canonical_entry and canonical_entry.current else ""
+            
+            # Check aliases
+            alias_entry = char_fields.get("aliases")
+            aliases = [a.strip().lower() for a in alias_entry.current.value] if alias_entry and alias_entry.current else []
+            
+            # Direct match with any alias or canonical name
+            if mention_lower == canonical_name or mention_lower in aliases:
+                return char_id
+            
+            # Word overlap match
+            for name in [canonical_name] + aliases:
+                name_words = set(w for w in name.split() if w not in {"mr", "mrs", "sir", "lord", "lady", "detective", "captain", "miss", "dr"})
+                if not name_words or not mention_words:
+                    continue
+                overlap = name_words.intersection(mention_words)
+                if overlap:
+                    score = len(overlap) / max(len(name_words), len(mention_words))
+                    # If substantial overlap (e.g. >= 0.5 or sharing key name), consider a match
+                    if score > best_score:
+                        best_score = score
+                        best_match_id = char_id
+                        
+        if best_score >= 0.5:
+            logger.info(f"Auto-merged mention '{mention_text}' into existing character ID '{best_match_id}' (overlap score: {best_score:.2f})")
+            return best_match_id
+            
+        return normalized_id
+
+    def _extract_inventory(self, chapter_data: ChapterData, char_id: str, name_variants: Set[str], chapter_num: int, coref_map: Dict[str, str]) -> List[StateChange]:
+        changes = []
+        text = chapter_data.raw_text.lower()
+        
+        # Find all objects mentioned in sentences containing the character name/alias
+        for ent in chapter_data.entities:
+            if ent.label.lower() != "object":
+                continue
+            item_name = ent.text.strip()
+            
+            for sentence in chapter_data.sentences:
+                sentence_lower = sentence.lower()
+                if item_name.lower() in sentence_lower and any(v in sentence_lower for v in name_variants):
+                    # Determine if obtaining or dropping
+                    obtaining_verbs = ["take", "took", "grab", "grabbed", "pick", "picked", "hold", "held", "find", "found", "has", "had", "wield", "wielded", "carry", "carried", "obtain", "obtained", "use", "used", "drew"]
+                    dropping_verbs = ["drop", "dropped", "lose", "lost", "leave", "left", "throw", "threw", "abandon", "abandoned", "put down"]
+                    
+                    is_obtaining = any(v in sentence_lower for v in obtaining_verbs)
+                    is_dropping = any(v in sentence_lower for v in dropping_verbs)
+                    
+                    # Get current inventory
+                    existing = self.get_entry(char_id, "inventory")
+                    current_inv = list(existing.current.value) if existing and existing.current else []
+                    
+                    if is_obtaining and item_name not in current_inv:
+                        new_inv = current_inv + [item_name]
+                        self.update_entry(
+                            char_id,
+                            "inventory",
+                            new_inv,
+                            chapter=chapter_num,
+                            evidence_ids=[ent.span.text] if ent.span else [],
+                            confidence=0.7,
+                            reasoning=f"Obtained '{item_name}' (implied by sentence: '{sentence}')",
+                        )
+                        changes.append(
+                            StateChange(
+                                change_type=StateChangeType.EVOLUTION,
+                                target_type=NarrativeElementType.CHARACTER,
+                                target_id=char_id,
+                                field_key="inventory",
+                                old_value=current_inv,
+                                new_value=new_inv,
+                                confidence=0.7,
+                                reasoning=f"Character obtained item: {item_name}",
+                            )
+                        )
+                        
+                    elif is_dropping and item_name in current_inv:
+                        new_inv = [i for i in current_inv if i != item_name]
+                        self.update_entry(
+                            char_id,
+                            "inventory",
+                            new_inv,
+                            chapter=chapter_num,
+                            evidence_ids=[ent.span.text] if ent.span else [],
+                            confidence=0.7,
+                            reasoning=f"Dropped '{item_name}' (implied by sentence: '{sentence}')",
+                        )
+                        changes.append(
+                            StateChange(
+                                change_type=StateChangeType.EVOLUTION,
+                                target_type=NarrativeElementType.CHARACTER,
+                                target_id=char_id,
+                                field_key="inventory",
+                                old_value=current_inv,
+                                new_value=new_inv,
+                                confidence=0.7,
+                                reasoning=f"Character dropped item: {item_name}",
+                            )
+                        )
+        return changes

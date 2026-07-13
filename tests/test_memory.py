@@ -246,3 +246,98 @@ def test_promise_and_mystery_id_determinism(empty_chapter_data):
     assert prom_id == prom_id2
 
 
+def test_promise_enriched_fields_and_semantic_resolution():
+    ch1_data = ChapterData(
+        chapter_number=1,
+        source_name="test.txt",
+        chapter_title="Chapter 1",
+        raw_text="I promise to return.",
+        paragraphs=["I promise to return."],
+        sentences=["I promise to return."],
+    )
+    ch1_data.entities = [
+        ExtractedEntity(text="Arthur", label="person", confidence=1.0),
+        ExtractedEntity(text="Merlin", label="person", confidence=1.0)
+    ]
+    ch1_data.dialogues = [
+        ExtractedDialogue(speaker="Arthur", text="I promise to return.", confidence=1.0)
+    ]
+    
+    memory = PromiseMemory()
+    memory.update_from_chapter(ch1_data, 1)
+    unresolved = memory.get_unresolved_promises()
+    
+    assert len(unresolved) == 1
+    assert unresolved[0]["speaker"] == "arthur"
+    assert unresolved[0]["listener_id"] == "merlin"
+    assert unresolved[0]["climax_proximity_threshold"] == 3
+    assert unresolved[0]["status"] == "OPEN"
+
+    # Chapter 2: semantic resolution without resolution keywords
+    ch2_data = ChapterData(
+        chapter_number=2,
+        source_name="test.txt",
+        chapter_title="Chapter 2",
+        raw_text="Arthur kept his word and decided to return to Merlin.",
+        paragraphs=["Arthur kept his word and decided to return to Merlin."],
+        sentences=["Arthur kept his word and decided to return to Merlin."],
+    )
+    memory.update_from_chapter(ch2_data, 2)
+    unresolved_after = memory.get_unresolved_promises()
+    assert len(unresolved_after) == 0
+
+
+def test_alias_overlap_auto_merge():
+    memory = CharacterMemory()
+    ch1_data = ChapterData(
+        chapter_number=1,
+        source_name="test.txt",
+        chapter_title="Chapter 1",
+        raw_text="Arthur was here.",
+        paragraphs=["Arthur was here."],
+        sentences=["Arthur was here."],
+    )
+    ch1_data.entities = [ExtractedEntity(text="Arthur", label="person", confidence=1.0)]
+    memory.update_from_chapter(ch1_data, 1)
+    
+    # Mention "Arthur Pendragon" should auto-merge to "arthur"
+    ch2_data = ChapterData(
+        chapter_number=2,
+        source_name="test.txt",
+        chapter_title="Chapter 2",
+        raw_text="Arthur Pendragon was here.",
+        paragraphs=["Arthur Pendragon was here."],
+        sentences=["Arthur Pendragon was here."],
+    )
+    ch2_data.entities = [ExtractedEntity(text="Arthur Pendragon", label="person", confidence=1.0)]
+    changes = memory.update_from_chapter(ch2_data, 2)
+    
+    assert "arthur" in memory.entries
+    assert "arthur_pendragon" not in memory.entries
+
+
+def test_inventory_extraction():
+    memory = CharacterMemory()
+    ch1_data = ChapterData(
+        chapter_number=1,
+        source_name="test.txt",
+        chapter_title="Chapter 1",
+        raw_text="Arthur took the sword.",
+        paragraphs=["Arthur took the sword."],
+        sentences=["Arthur took the sword."],
+    )
+    ch1_data.entities = [
+        ExtractedEntity(text="Arthur", label="person", confidence=1.0),
+        ExtractedEntity(text="sword", label="object", confidence=1.0)
+    ]
+    
+    # Set canonical name first
+    memory.update_from_chapter(ch1_data, 1)
+    memory.extract_advanced_attributes(ch1_data, 1)
+    
+    inv = memory.get_entry("arthur", "inventory")
+    assert inv is not None
+    assert "sword" in inv.current.value
+
+
+

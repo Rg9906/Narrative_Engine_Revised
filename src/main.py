@@ -57,11 +57,14 @@ def load_narrative_state(memory_dir: Path) -> NarrativeState:
 
 
 def save_narrative_state(state: NarrativeState, memory_dir: Path) -> None:
-    """Persist the narrative state to disk."""
+    """Persist the narrative state to disk atomically."""
     memory_dir.mkdir(parents=True, exist_ok=True)
     state_path = memory_dir / "narrative_state.json"
-    with open(state_path, "w", encoding="utf-8") as f:
+    tmp_path = state_path.with_suffix(".json.tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(state.to_dict(), f, indent=2, ensure_ascii=False)
+    import os
+    os.replace(tmp_path, state_path)
     logger.info(f"Narrative state saved to {state_path}")
 
 

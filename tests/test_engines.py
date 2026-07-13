@@ -389,3 +389,107 @@ class TestLLMProvider:
         provider = LLMProvider()
         with pytest.raises(RuntimeError, match="No LLM provider available"):
             provider.chat([{"role": "user", "content": "test"}])
+
+
+def test_narrative_state_engine_reconciliation_and_decay():
+    from src.engines.narrative_state import NarrativeStateEngine
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType, StateChange, StateChangeType, StateDelta
+    
+    # 1. Test Trait Decay
+    engine = NarrativeStateEngine(None)
+    state = NarrativeState()
+    
+    # Setup character with personality trait
+    char_entry = StateEntry(key="personality_traits", element_type=NarrativeElementType.CHARACTER)
+    char_entry.update(StateSnapshot(value=["brave"], chapter=1, confidence=0.8))
+    state.characters["arthur"] = {"personality_traits": char_entry}
+    
+    delta = StateDelta(chapter_number=2)
+    # Empty changes (Arthur's traits not updated in ch 2)
+    engine.apply_confidence_decay(state, delta)
+    
+    decayed_conf = state.characters["arthur"]["personality_traits"].current.confidence
+    assert decayed_conf == 0.78  # 0.8 - 0.02
+
+    # 2. Test Contradiction Reconciliation
+    hair_entry = StateEntry(key="physical_hair_color", element_type=NarrativeElementType.CHARACTER)
+    hair_entry.update(StateSnapshot(value="blonde", chapter=1, confidence=0.9))
+    state.characters["arthur"]["physical_hair_color"] = hair_entry
+    
+    # New conflicting change with lower confidence (0.5 < 0.9)
+    change = StateChange(
+        change_type=StateChangeType.EVOLUTION,
+        target_type=NarrativeElementType.CHARACTER,
+        target_id="arthur",
+        field_key="physical_hair_color",
+        old_value="blonde",
+        new_value="black",
+        confidence=0.5
+    )
+    delta.changes = [change]
+    
+    reconciled = engine.reconcile_state_changes(state, delta)
+    
+    # Conflicting change is turned to CONTRADICTION
+    assert reconciled[0].change_type == StateChangeType.CONTRADICTION
+    # Value is reverted to old_value in state entries
+    assert state.characters["arthur"]["physical_hair_color"].current.value == "blonde"
+    # Logged conflict mystery
+    assert len(state.mysteries) > 0
+    conflict_key = list(state.mysteries.keys())[0]
+    assert "conflict_arthur_physical_hair_color" in conflict_key
+
+
+def test_char_inspector_inventory_teleportation():
+    from src.review.char_inspector import CharacterInspector
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType
+    
+    state = NarrativeState()
+    state.last_processed_chapter = 2
+    
+    # Setup character with item in inventory but at different location
+    char_entry = {
+        "inventory": StateEntry(key="inventory", element_type=NarrativeElementType.CHARACTER),
+        "location": StateEntry(key="location", element_type=NarrativeElementType.CHARACTER)
+    }
+    char_entry["inventory"].update(StateSnapshot(value=["sword"], chapter=2))
+    char_entry["location"].update(StateSnapshot(value="castle", chapter=2))
+    state.characters["arthur"] = char_entry
+    
+    # Setup item in world left at cave
+    item_entry = {
+        "location": StateEntry(key="location", element_type=NarrativeElementType.OBJECT),
+        "owner": StateEntry(key="owner", element_type=NarrativeElementType.OBJECT)
+    }
+    item_entry["location"].update(StateSnapshot(value="cave", chapter=1))
+    item_entry["owner"].update(StateSnapshot(value=None, chapter=1)) # left there
+    state.world["sword"] = item_entry
+    
+    inspector = CharacterInspector()
+    findings = inspector.inspect(state, None)
+    
+    assert len(findings) > 0
+    assert any("teleportation" in f.title.lower() for f in findings)
+
+
+def test_relationship_inspector_emotional_inversion():
+    from src.review.relationship_inspector import RelationshipInspector
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType
+    
+    state = NarrativeState()
+    state.last_processed_chapter = 2
+    
+    rel_entry = {
+        "relationship_label": StateEntry(key="relationship_label", element_type=NarrativeElementType.CHARACTER)
+    }
+    # Direct jump: ENMITY -> ROMANTIC
+    rel_entry["relationship_label"].update(StateSnapshot(value="ENMITY", chapter=1))
+    rel_entry["relationship_label"].update(StateSnapshot(value="ROMANTIC", chapter=2))
+    state.relationships["arthur::guinevere"] = rel_entry
+    
+    inspector = RelationshipInspector()
+    findings = inspector.inspect(state, None)
+    
+    assert len(findings) > 0
+    assert any("emotional inversion" in f.title.lower() for f in findings)
+
