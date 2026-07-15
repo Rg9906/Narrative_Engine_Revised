@@ -1,30 +1,309 @@
 {
   "metadata": {
     "chapter": 1,
-    "generated_at": "2026-07-15T18:27:11.688686",
+    "generated_at": "2026-07-15T21:25:49.203368",
     "inspector_count": 8,
     "llm_provider": "groq"
   },
   "findings": [
     {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'alice' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "alice"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "warning",
+      "category": "consistency",
+      "title": "Physical consistency warning",
+      "description": "Character 'alice' has conflicting eye color descriptions: previously 'her' (chapter 1), currently 'blue' (chapter 1).",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "alice"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'thomas' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "thomas"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'father' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "father"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'millhaven' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "millhaven"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'heading' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "heading"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'yes' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "yes"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "warning",
+      "category": "consistency",
+      "title": "Physical consistency warning",
+      "description": "Character 'yes' has conflicting eye color descriptions: previously 'blue' (chapter 1), currently 'her' (chapter 1).",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "yes"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'then' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "then"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'three' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "three"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'asked' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "asked"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'did' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "did"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'said' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "said"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'be' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "be"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'somewhere' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [
+        "somewhere"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "pacing",
+      "title": "Chapter processing gap",
+      "description": "Expected 1 chapters but processed 3. There may be gaps in chapter numbering.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'The narrative jumps from Alice's departure to her arrival at the crossroads without detailing the events in between.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Father chased myths his whole life, and look where it got him.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery '\"\n\nShe didn't mention the dreams — the ones where the Gate opened and a voice called her name.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'She didn't mention the strange warmth in her palms when she touched the journal, as if the pages themselves were alive.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery '\"Did he say where he was going?\"\n\n\"Said he was looking for something that was lost.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Said it like a man who'd already found it and wished he hadn't.\"' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'The north remembers what the south forgets.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'And the answer changes depending on who asks.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Somewhere in the darkness, an owl called.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 1,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
       "severity": "note",
       "category": "consistency",
       "title": "Structural contradiction: TIMELINE_GAP",
-      "description": "The narrative jumps from Alice's departure to her arrival at the crossroads without detailing the events in between.",
+      "description": "The narrative jumps from Alice's departure to her arrival at Millhaven without detailing the journey.",
       "chapter": 1,
       "evidence_ids": [],
       "related_entities": [
         "alice",
-        "thornfield_hall",
-        "millhaven_village"
+        "thomas"
       ],
       "confidence": 0.9
     },
     {
       "severity": "suggestion",
       "category": "pacing",
-      "title": "Potential Pacing Issue",
-      "description": "The chapter transitions quickly from Alice's departure to her arrival at the crossroads, potentially leaving the reader without a clear sense of the journey's progression or Alice's emotional state during this time. Consider adding more detail or scenes to flesh out this section and create a more immersive experience.",
+      "title": "Pacing of Alice's Journey to Millhaven",
+      "description": "The narrative jumps abruptly from Alice's departure to her arrival at Millhaven without detailing the journey, which might leave readers feeling disconnected from her experience. Consider adding more sensory details or encounters during her travel to enhance the pacing and immersion.",
       "confidence": 0.8,
       "chapter": 1,
       "evidence_ids": [],
@@ -33,8 +312,8 @@
     {
       "severity": "note",
       "category": "character",
-      "title": "Character Development Opportunity",
-      "description": "While Alice's character is well-introduced, Thomas's personality and goals could be further developed to create a more nuanced and engaging relationship between the siblings. Consider adding more dialogue or interactions that reveal Thomas's motivations and fears.",
+      "title": "Characterization of Thomas",
+      "description": "Thomas's character, although introduced with a clear concern for Alice, feels somewhat one-dimensional. Adding more depth or backstory to his character could enrich the narrative and their relationship.",
       "confidence": 0.6,
       "chapter": 1,
       "evidence_ids": [],
@@ -43,8 +322,8 @@
     {
       "severity": "warning",
       "category": "consistency",
-      "title": "Potential Continuity Issue",
-      "description": "The old woman's statement that Alice's father passed through Millhaven three months ago may create a continuity issue if not properly addressed in future chapters. Ensure that the timeline and events surrounding Alice's father's journey are consistent and well-documented to avoid potential plot holes.",
+      "title": "Inconsistent Character Tracking",
+      "description": "The story memory state includes numerous characters that seem to be fragments of dialogue or actions rather than actual characters (e.g., 'Yes', 'Then', 'Three', 'Did', 'Said', 'Be', 'Somewhere'). This inconsistency might indicate a need to refine the character tracking system to focus on actual characters and their development.",
       "confidence": 0.9,
       "chapter": 1,
       "evidence_ids": [],
@@ -53,8 +332,8 @@
     {
       "severity": "suggestion",
       "category": "theme",
-      "title": "Thematic Resonance",
-      "description": "The chapter touches on the theme of uncertainty and the unknown, but could benefit from further exploration and resonance throughout the narrative. Consider incorporating more symbolic or metaphorical elements that reinforce this theme and create a richer, more immersive world.",
+      "title": "Thematic Introduction",
+      "description": "The chapter introduces the theme of the unknown and the allure of mysteries (e.g., the Silver Gate, the dreams, the journal's message). Consider how these themes will be developed throughout the narrative and ensure they are consistently woven into the story.",
       "confidence": 0.7,
       "chapter": 1,
       "evidence_ids": [],
@@ -63,8 +342,8 @@
     {
       "severity": "note",
       "category": "voice",
-      "title": "Narrative Voice Consistency",
-      "description": "The chapter's narrative voice is generally consistent, but there are moments where the tone shifts slightly, potentially disrupting the reader's immersion. Review the chapter to ensure that the narrative voice remains consistent and engaging throughout.",
+      "title": "Narrative Voice",
+      "description": "The narrative voice is generally consistent, but there are moments where the tone shifts slightly, particularly in dialogue. For example, the old woman's warning about the Thornwood feels somewhat ominous and might benefit from a more nuanced delivery to match the overall narrative tone.",
       "confidence": 0.5,
       "chapter": 1,
       "evidence_ids": [],

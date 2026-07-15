@@ -13,6 +13,7 @@ Flow:
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 from typing import Optional
@@ -153,9 +154,30 @@ class Pipeline:
         llm = LLMProvider(self._config)
 
         if llm.is_available:
-            import json
-            # Serialize current state
-            state_summary = self._serialize_state(current_state)
+            # Stage-1 and Stage-2 RAG Context Preprocessing
+            from src.pipeline.context_retriever import ContextRetriever
+            retriever = ContextRetriever(self._config)
+            context_block, active_characters = retriever.retrieve_context(cleaned_text)
+
+            # System prompt compilation based on pre-scan
+            if active_characters:
+                logger.info(f"[RAG Context] Active characters detected in pre-scan: {', '.join(active_characters)}")
+                token_weight = len(context_block) if context_block else 0
+                logger.info(f"[RAG Context] Injected context token weight (char count): {token_weight}")
+                
+                system_content = (
+                    "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
+                    "Never include explanations, intro/outro, or markdown backticks. Output pure JSON.\n\n"
+                    "--- HISTORIC CONTEXT ---\n"
+                    f"{context_block}\n\n"
+                    "Please explicitly contrast the new chapter text against this provided historic context to identify any discrepancies, stance shifts, or inventory/world changes."
+                )
+            else:
+                logger.info("[RAG Context] No active characters detected in pre-scan. Defaulting to minimal system prompt.")
+                system_content = (
+                    "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
+                    "Never include explanations, intro/outro, or markdown backticks. Output pure JSON."
+                )
             
             prompt = (
                 f"You are a World-Class Developmental Editor. Analyze Chapter {chapter_num} raw text and update the story state. "
@@ -165,8 +187,6 @@ class Pipeline:
                 f"2. **Artifact Matching**: Run cross-description alignment. For example, if Chapter 1 has 'wedding band' and Chapter 3 has 'wedding ring', align and track them as the same item asset 'wedding_ring'.\n"
                 f"3. **Environmental Exclusions**: Completely bar immovable spatial structures ('fireplace', 'staircase', 'hearth', 'floorboard', 'desk', 'bookshelf', 'mantlepiece') from ever being written into character inventory deltas. Only portable items can be inventory items.\n"
                 f"4. **No duplicate characters**: Ensure family members (like Marlene Whitmore and Sebastian Whitmore) are tracked as distinct characters with separate canonical IDs and canonical names.\n\n"
-                f"--- Current Global Narrative State ---\n"
-                f"{state_summary}\n\n"
                 f"--- Chapter {chapter_num} Raw Text ---\n"
                 f"{cleaned_text}\n\n"
                 f"--- Output Requirements ---\n"
@@ -231,7 +251,7 @@ class Pipeline:
             )
             
             messages = [
-                {"role": "system", "content": "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. Never include explanations, intro/outro, or markdown backticks. Output pure JSON."},
+                {"role": "system", "content": system_content},
                 {"role": "user", "content": prompt}
             ]
             
