@@ -73,6 +73,7 @@ def main():
     parser = argparse.ArgumentParser(description="Bulk Manuscript Splitter Utility")
     parser.add_argument(
         "--manuscript",
+        "--input",
         type=str,
         required=True,
         help="Path to the monolithic manuscript .txt file.",

@@ -114,7 +114,7 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
 
     # === Phase 2+: Pipeline evidence extraction ===
     pipeline = Pipeline(config)
-    chapter_data = pipeline.process_chapter(str(chapter_file), chapter_num=chapter_num, is_file=True)
+    chapter_data = pipeline.process_chapter(str(chapter_file), chapter_num=chapter_num, is_file=True, current_state=state)
 
     # === Phase 6+: Narrative State Engine ===
     engine = NarrativeStateEngine(config)
@@ -127,6 +127,21 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
 
     # Persist updated state and report artifacts
     save_narrative_state(state, config.memory_dir)
+
+    # Save character memory as character_memory.json for Principal Architect validation
+    try:
+        char_mem_file = config.memory_dir / "character_memory.json"
+        char_mem_tmp = char_mem_file.with_suffix(".json.tmp")
+        char_dict = {
+            k: {sk: sv.to_dict() for sk, sv in v.items()}
+            for k, v in state.characters.items()
+        }
+        with open(char_mem_tmp, "w", encoding="utf-8") as f:
+            json.dump(char_dict, f, indent=2, ensure_ascii=False)
+        import os
+        os.replace(char_mem_tmp, char_mem_file)
+    except Exception as e:
+        logger.error(f"Failed to write character_memory.json: {e}")
 
     # Export narrative graph from updated state
     graph_builder = NarrativeGraph(config)

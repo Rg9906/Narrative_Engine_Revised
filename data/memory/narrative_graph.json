@@ -1,54 +1,24 @@
 {
   "nodes": [
     {
-      "id": "char::lord_alistair_vance",
-      "label": "lord_alistair_vance",
+      "id": "char::alice",
+      "label": "alice",
       "type": "character"
     },
     {
-      "id": "char::jonathan_drake",
-      "label": "jonathan_drake",
+      "id": "char::thomas",
+      "label": "thomas",
       "type": "character"
     },
     {
-      "id": "char::box",
-      "label": "box",
+      "id": "char::old_woman",
+      "label": "old_woman",
       "type": "character"
     },
     {
-      "id": "char::other",
-      "label": "other",
-      "type": "character"
-    },
-    {
-      "id": "char::hatred",
-      "label": "hatred",
-      "type": "character"
-    },
-    {
-      "id": "world::iron_citadel",
-      "label": "iron_citadel",
+      "id": "world::leather_journal",
+      "label": "leather_journal",
       "type": "world"
-    },
-    {
-      "id": "world::emperor_s_scarab",
-      "label": "emperor_s_scarab",
-      "type": "world"
-    },
-    {
-      "id": "world::obsidian_sarcophagus",
-      "label": "obsidian_sarcophagus",
-      "type": "world"
-    },
-    {
-      "id": "theme::symbol_water",
-      "label": "symbol_water",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_key",
-      "label": "symbol_key",
-      "type": "theme"
     },
     {
       "id": "event::evt::1",
@@ -71,26 +41,6 @@
       "type": "event"
     },
     {
-      "id": "event::evt::5",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::6",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::7",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::8",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
       "id": "chapter::1",
       "label": "Chapter 1",
       "type": "chapter"
@@ -98,37 +48,16 @@
   ],
   "edges": [
     {
-      "id": "grandmaster::stones",
-      "source": "char::grandmaster",
-      "target": "char::stones",
+      "id": "alice::thomas",
+      "source": "char::alice",
+      "target": "char::thomas",
       "label": "UNKNOWN",
       "type": "relationship"
     },
     {
-      "id": "jonathan_drake::box",
-      "source": "char::jonathan_drake",
-      "target": "char::box",
-      "label": "UNKNOWN",
-      "type": "relationship"
-    },
-    {
-      "id": "lord_alistair_vance::order",
-      "source": "char::lord_alistair_vance",
-      "target": "char::order",
-      "label": "UNKNOWN",
-      "type": "relationship"
-    },
-    {
-      "id": "lord_alistair_vance::courtyard",
-      "source": "char::lord_alistair_vance",
-      "target": "char::courtyard",
-      "label": "UNKNOWN",
-      "type": "relationship"
-    },
-    {
-      "id": "other::hatred",
-      "source": "char::other",
-      "target": "char::hatred",
+      "id": "alice::old_woman",
+      "source": "char::alice",
+      "target": "char::old_woman",
       "label": "UNKNOWN",
       "type": "relationship"
     },
@@ -156,34 +85,6 @@
     {
       "id": "evt_edge::evt::4",
       "source": "event::evt::4",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::5",
-      "source": "event::evt::5",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::6",
-      "source": "event::evt::6",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::7",
-      "source": "event::evt::7",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::8",
-      "source": "event::evt::8",
       "target": "chapter::1",
       "label": "occurs_in",
       "type": "event_chapter"

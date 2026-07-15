@@ -535,9 +535,10 @@ def test_main_cli_chapter_parsing(tmp_path, monkeypatch):
     class MockPipeline:
         def __init__(self, config):
             pass
-        def process_chapter(self, path, chapter_num, is_file):
+        def process_chapter(self, path, chapter_num, is_file, current_state=None):
             class MockChapterData:
                 raw_text = "Arthur was a king."
+                chapter_number = chapter_num
             return MockChapterData()
             
     class MockStateEngine:

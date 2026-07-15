@@ -69,6 +69,20 @@ class EditorialEngine:
                     "confidence": 0.0,
                 })
 
+        # Add LLM structural mysteries from delta if available
+        if delta and hasattr(delta, 'structural_mysteries'):
+            for mystery in delta.structural_mysteries:
+                findings.append({
+                    "severity": mystery.get("severity", "warning").lower(),
+                    "category": "consistency",
+                    "title": f"Structural contradiction: {mystery.get('issue_type')}",
+                    "description": mystery.get("description"),
+                    "chapter": delta.chapter_number,
+                    "evidence_ids": [],
+                    "related_entities": mystery.get("related_entities", []),
+                    "confidence": 0.9,
+                })
+
         # Run LLM-based critique (Gemini / Groq / Ollama — auto-detected)
         try:
             llm_findings = self._run_llm_critique(state, delta, raw_text=raw_text)
@@ -103,10 +117,19 @@ class EditorialEngine:
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / f"editorial_report_ch{report['metadata']['chapter']}.json"
         tmp_file = out_file.with_suffix(".json.tmp")
-        with open(tmp_file, 'w', encoding='utf-8') as fh:
-            json.dump(report, fh, indent=2, ensure_ascii=False)
-        import os
-        os.replace(tmp_file, out_file)
+        
+        try:
+            with open(tmp_file, 'w', encoding='utf-8') as fh:
+                json.dump(report, fh, indent=2, ensure_ascii=False)
+            import os
+            os.replace(tmp_file, out_file)
+        except OSError as e:
+            logger.warning(f"Atomic save of editorial report failed ({e}). Attempting direct write to {out_file}...")
+            try:
+                with open(out_file, 'w', encoding='utf-8') as fh:
+                    json.dump(report, fh, indent=2, ensure_ascii=False)
+            except OSError as e2:
+                logger.error(f"Failed to write editorial report directly to {out_file}: {e2}")
 
         return report
 

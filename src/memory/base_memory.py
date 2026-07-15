@@ -163,13 +163,20 @@ class BaseMemory:
 
         # Atomic write
         tmp_path = path.with_suffix(path.suffix + ".tmp")
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        
-        import os
-        os.replace(tmp_path, path)
+        try:
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            import os
+            os.replace(tmp_path, path)
+        except OSError as e:
+            logger.warning(f"Atomic save of memory file failed ({e}). Attempting direct write to {path}...")
+            try:
+                with open(path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+            except OSError as e2:
+                logger.error(f"Failed to write memory file directly to {path}: {e2}")
 
-        logger.info(f"Memory saved to {path} ({len(self._entries)} entities)")
+        logger.info(f"Memory saved to {path} ({len(self._entries)} entries)")
 
     def load(self, file_path: Optional[Any] = None) -> None:
         """Load the memory state from a JSON file or from an in-memory dict."""

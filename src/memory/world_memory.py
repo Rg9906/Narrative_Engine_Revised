@@ -95,19 +95,18 @@ class WorldMemory(BaseMemory):
                     )
                 )
 
-        # Extract object locations if objects and locations appear in the same sentence
+        # Extract object locations if objects and locations/containers appear in the same sentence
         objects = []
-        locations = []
         for ent in getattr(chapter_data, "entities", []):
             label = (ent.label or "").lower()
             if label == "object":
                 objects.append(ent)
-            elif label == "location":
-                locations.append(ent)
 
         for obj in objects:
             oid = _idify(obj.text)
-            for loc in locations:
+            for loc in getattr(chapter_data, "entities", []):
+                if loc.label.lower() not in ("location", "object") or loc.text.lower() == obj.text.lower():
+                    continue
                 lid = _idify(loc.text)
                 for sentence in chapter_data.sentences:
                     sentence_lower = sentence.lower()

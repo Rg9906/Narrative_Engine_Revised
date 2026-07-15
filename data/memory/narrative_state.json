@@ -2,41 +2,77 @@
   "metadata": {
     "last_processed_chapter": 1,
     "total_chapters_processed": 1,
-    "created_at": "2026-07-13T22:37:36.418385",
-    "last_updated": "2026-07-13T22:38:01.023687"
+    "created_at": "2026-07-15T18:26:14.474884",
+    "last_updated": "2026-07-15T18:26:56.518860"
   },
   "characters": {
-    "lord_alistair_vance": {
+    "alice": {
       "canonical_name": {
         "key": "canonical_name",
         "current": {
-          "value": "Lord Alistair Vance",
+          "value": "Alice",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T22:38:00.310912"
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
-        "importance": 0.9,
+        "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "aliases": {
-        "key": "aliases",
+      "brave": {
+        "key": "brave",
+        "current": {
+          "value": true,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.8,
+          "reasoning": "She decides to go to the Silver Gate despite the potential dangers.",
+          "timestamp": "2026-07-15T18:26:56.512753"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "determined": {
+        "key": "determined",
+        "current": {
+          "value": true,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "She is resolute in her decision to find out what is wrong at the Silver Gate.",
+          "timestamp": "2026-07-15T18:26:56.512753"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "goals": {
+        "key": "goals",
         "current": {
           "value": [
-            "Lord Alistair Vance"
+            "Find out what is wrong at the Silver Gate"
           ],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T22:38:00.310912"
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -45,57 +81,21 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "last_seen_chapter": {
-        "key": "last_seen_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T22:38:00.310912"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T22:38:00.310912"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "personality_traits": {
-        "key": "personality_traits",
+      "fears": {
+        "key": "fears",
         "current": {
           "value": [
-            "cruel"
+            "The unknown dangers at the Silver Gate"
           ],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Personality trait 'cruel' inferred from narration.",
-          "timestamp": "2026-07-13T22:38:00.421412"
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
-        "importance": 0.7,
+        "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
         "version": 2,
@@ -104,15 +104,33 @@
       "location": {
         "key": "location",
         "current": {
-          "value": "Iron Citadel",
+          "value": "stream_side_camp",
           "chapter": 1,
           "scene": null,
-          "evidence_ids": [
-            "Iron Citadel"
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "inventory": {
+        "key": "inventory",
+        "current": {
+          "value": [
+            "leather_journal"
           ],
-          "confidence": 0.7,
-          "reasoning": "Located at 'Iron Citadel' (implied by sentence: 'The grandmaster, Lord Alistair Vance, stood within the cold stones of the Iron Citadel.')",
-          "timestamp": "2026-07-13T22:38:00.421412"
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -122,37 +140,73 @@
         "last_mentioned_chapter": 1
       }
     },
-    "jonathan_drake": {
+    "thomas": {
       "canonical_name": {
         "key": "canonical_name",
         "current": {
-          "value": "Jonathan Drake",
+          "value": "Thomas",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T22:38:00.326913"
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
-        "importance": 0.9,
+        "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "aliases": {
-        "key": "aliases",
+      "concerned": {
+        "key": "concerned",
+        "current": {
+          "value": true,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "He shows concern for Alice's safety.",
+          "timestamp": "2026-07-15T18:26:56.512753"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "goals": {
+        "key": "goals",
+        "current": {
+          "value": [],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "fears": {
+        "key": "fears",
         "current": {
           "value": [
-            "Jonathan Drake"
+            "Losing Alice"
           ],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T22:38:00.326913"
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -161,16 +215,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "last_seen_chapter": {
-        "key": "last_seen_chapter",
+      "location": {
+        "key": "location",
         "current": {
-          "value": 1,
+          "value": "thornfield_hall",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T22:38:00.326913"
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -179,16 +233,36 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "mention_count": {
-        "key": "mention_count",
+      "inventory": {
+        "key": "inventory",
         "current": {
-          "value": 1,
+          "value": [],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T22:38:00.326913"
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      }
+    },
+    "old_woman": {
+      "canonical_name": {
+        "key": "canonical_name",
+        "current": {
+          "value": "Old Woman",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -197,58 +271,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "personality_traits": {
-        "key": "personality_traits",
+      "knowledgeable": {
+        "key": "knowledgeable",
         "current": {
-          "value": [
-            "cruel"
-          ],
+          "value": true,
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.6,
-          "reasoning": "Personality trait 'cruel' inferred from narration.",
-          "timestamp": "2026-07-13T22:38:00.421412"
-        },
-        "history": [],
-        "importance": 0.7,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "box": {
-      "canonical_name": {
-        "key": "canonical_name",
-        "current": {
-          "value": "box",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T22:38:00.349912"
-        },
-        "history": [],
-        "importance": 0.9,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "aliases": {
-        "key": "aliases",
-        "current": {
-          "value": [
-            "box"
-          ],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T22:38:00.349912"
+          "reasoning": "She seems to know about the Silver Gate and the old road.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -257,16 +289,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "last_seen_chapter": {
-        "key": "last_seen_chapter",
+      "goals": {
+        "key": "goals",
         "current": {
-          "value": 1,
+          "value": [],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T22:38:00.349912"
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -275,56 +307,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "mention_count": {
-        "key": "mention_count",
+      "fears": {
+        "key": "fears",
         "current": {
-          "value": 1,
+          "value": [],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T22:38:00.349912"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "other": {
-      "canonical_name": {
-        "key": "canonical_name",
-        "current": {
-          "value": "other",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T22:38:00.377911"
-        },
-        "history": [],
-        "importance": 0.9,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "aliases": {
-        "key": "aliases",
-        "current": {
-          "value": [
-            "other"
-          ],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T22:38:00.377911"
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -333,16 +325,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "last_seen_chapter": {
-        "key": "last_seen_chapter",
+      "location": {
+        "key": "location",
         "current": {
-          "value": 1,
+          "value": "millhaven_village",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T22:38:00.377911"
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -351,92 +343,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "mention_count": {
-        "key": "mention_count",
+      "inventory": {
+        "key": "inventory",
         "current": {
-          "value": 1,
+          "value": [],
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T22:38:00.377911"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "hatred": {
-      "canonical_name": {
-        "key": "canonical_name",
-        "current": {
-          "value": "hatred",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-13T22:38:00.420408"
-        },
-        "history": [],
-        "importance": 0.9,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "aliases": {
-        "key": "aliases",
-        "current": {
-          "value": [
-            "hatred"
-          ],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-13T22:38:00.420408"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "last_seen_chapter": {
-        "key": "last_seen_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-13T22:38:00.420408"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-13T22:38:00.420408"
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -448,119 +364,7 @@
     }
   },
   "relationships": {
-    "grandmaster::stones": {
-      "relationship_label": {
-        "key": "relationship_label",
-        "current": {
-          "value": "UNKNOWN",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'stood' between grandmaster and stones.",
-          "timestamp": "2026-07-13T22:38:00.571588"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T22:38:00.571588"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "last_interaction_chapter": {
-        "key": "last_interaction_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T22:38:00.571588"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "jonathan_drake::box": {
-      "relationship_label": {
-        "key": "relationship_label",
-        "current": {
-          "value": "UNKNOWN",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'looked' between He and box.",
-          "timestamp": "2026-07-13T22:38:00.584587"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T22:38:00.584587"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "last_interaction_chapter": {
-        "key": "last_interaction_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T22:38:00.584587"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "lord_alistair_vance::order": {
+    "alice::thomas": {
       "relationship_label": {
         "key": "relationship_label",
         "current": {
@@ -568,45 +372,9 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'give' between I and Order.",
-          "timestamp": "2026-07-13T22:38:00.737586"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T22:38:00.737586"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "last_interaction_chapter": {
-        "key": "last_interaction_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T22:38:00.737586"
+          "reasoning": "They are siblings and care about each other's well-being.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -616,109 +384,17 @@
         "last_mentioned_chapter": 1
       }
     },
-    "lord_alistair_vance::courtyard": {
+    "alice::old_woman": {
       "relationship_label": {
         "key": "relationship_label",
         "current": {
-          "value": "UNKNOWN",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'walked' between Vance and courtyard.",
-          "timestamp": "2026-07-13T22:38:00.890485"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T22:38:00.890485"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "last_interaction_chapter": {
-        "key": "last_interaction_chapter",
-        "current": {
-          "value": 1,
+          "value": "NEUTRAL",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T22:38:00.890485"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "other::hatred": {
-      "relationship_label": {
-        "key": "relationship_label",
-        "current": {
-          "value": "ENMITY",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'glared' between They and hatred.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "last_interaction_chapter": {
-        "key": "last_interaction_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-07-13T22:38:01.009880"
+          "reasoning": "The old woman provides Alice with information, but their interaction is brief and lacks emotional depth.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
@@ -730,63 +406,7 @@
     }
   },
   "world": {
-    "iron_citadel": {
-      "type": {
-        "key": "type",
-        "current": {
-          "value": "location",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "first_mentioned_chapter": {
-        "key": "first_mentioned_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.95,
-          "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "emperor_s_scarab": {
+    "leather_journal": {
       "type": {
         "key": "type",
         "current": {
@@ -794,106 +414,50 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T22:38:01.009880"
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "OBJECT",
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "first_mentioned_chapter": {
-        "key": "first_mentioned_chapter",
+      "owner": {
+        "key": "owner",
         "current": {
-          "value": 1,
+          "value": "alice",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.95,
-          "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T22:38:01.009880"
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "OBJECT",
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "mention_count": {
-        "key": "mention_count",
+      "location": {
+        "key": "location",
         "current": {
-          "value": 1,
+          "value": "stream_side_camp",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T22:38:01.009880"
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "obsidian_sarcophagus": {
-      "type": {
-        "key": "type",
-        "current": {
-          "value": "object",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "First mention of world element.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "first_mentioned_chapter": {
-        "key": "first_mentioned_chapter",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.95,
-          "reasoning": "Recorded first mention chapter.",
-          "timestamp": "2026-07-13T22:38:01.009880"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "First mention count.",
-          "timestamp": "2026-07-13T22:38:01.010723"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "OBJECT",
         "version": 2,
         "last_mentioned_chapter": 1
       }
@@ -902,224 +466,83 @@
   "timeline": [
     {
       "chapter": 1,
-      "subject": "grandmaster",
-      "predicate": "stood",
-      "object": "stones"
+      "subject": "alice",
+      "predicate": "moves_to",
+      "object": "stream_side_camp"
     },
     {
       "chapter": 1,
-      "subject": "He",
-      "predicate": "looked",
-      "object": "box"
+      "subject": "alice",
+      "predicate": "acquires",
+      "object": "leather_journal"
     },
     {
       "chapter": 1,
-      "subject": "I",
-      "predicate": "give",
-      "object": "oath"
+      "subject": "thomas",
+      "predicate": "moves_to",
+      "object": "thornfield_hall"
     },
     {
       "chapter": 1,
-      "subject": "I",
-      "predicate": "give",
-      "object": "Order"
-    },
-    {
-      "chapter": 1,
-      "subject": "I",
-      "predicate": "return",
-      "object": "that"
-    },
-    {
-      "chapter": 1,
-      "subject": "Vance",
-      "predicate": "walked",
-      "object": "courtyard"
-    },
-    {
-      "chapter": 1,
-      "subject": "They",
-      "predicate": "glared",
-      "object": "other"
-    },
-    {
-      "chapter": 1,
-      "subject": "They",
-      "predicate": "glared",
-      "object": "hatred"
+      "subject": "old_woman",
+      "predicate": "moves_to",
+      "object": "millhaven_village"
     }
   ],
-  "themes": {
-    "symbol_water": {
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.7,
-          "reasoning": "Symbol 'water' mentioned 1 times in chapter.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.7,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "chapters_present": {
-        "key": "chapters_present",
-        "current": {
-          "value": [
-            1
-          ],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Symbol 'water' appears in new chapter.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.6,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "symbol_name": {
-        "key": "symbol_name",
-        "current": {
-          "value": "water",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "Symbol 'water' introduced in chapter.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.8,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "symbol_key": {
-      "mention_count": {
-        "key": "mention_count",
-        "current": {
-          "value": 2,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.7,
-          "reasoning": "Symbol 'key' mentioned 2 times in chapter.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.7,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "chapters_present": {
-        "key": "chapters_present",
-        "current": {
-          "value": [
-            1
-          ],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Symbol 'key' appears in new chapter.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.6,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "symbol_name": {
-        "key": "symbol_name",
-        "current": {
-          "value": "key",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "Symbol 'key' introduced in chapter.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.8,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    }
-  },
+  "themes": {},
   "promises": {
-    "promise_3fb4aa4efe42c5ee": {
+    "alice_return_promise": {
       "promise_text": {
         "key": "promise_text",
         "current": {
-          "value": "He looked at the locked stone box and declared aloud, 'I give my solemn oath to the Order that I shall return to melt this scarab down before the midwinter snows fall.'",
+          "value": "I'll be back before the winter solstice.",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.7,
-          "reasoning": "Promise extracted from text containing 'i shall'.",
-          "timestamp": "2026-07-13T22:38:01.021702"
+          "confidence": 0.95,
+          "reasoning": "Alice makes a promise to Thomas before she leaves.",
+          "timestamp": "2026-07-15T18:26:56.512753"
         },
         "history": [],
-        "importance": 0.9,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "PROMISE",
         "version": 2,
         "last_mentioned_chapter": 1
       },
       "speaker_id": {
         "key": "speaker_id",
         "current": {
-          "value": "unknown",
+          "value": "alice",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Speaker identified from dialogue context.",
-          "timestamp": "2026-07-13T22:38:01.021702"
+          "confidence": 0.95,
+          "reasoning": "Alice makes a promise to Thomas before she leaves.",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.7,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "PROMISE",
         "version": 2,
         "last_mentioned_chapter": 1
       },
       "listener_id": {
         "key": "listener_id",
         "current": {
-          "value": "lord_alistair_vance",
+          "value": "thomas",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.5,
-          "reasoning": "Listener identified from neighboring entities.",
-          "timestamp": "2026-07-13T22:38:01.021702"
+          "confidence": 0.95,
+          "reasoning": "Alice makes a promise to Thomas before she leaves.",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.6,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "PROMISE",
         "version": 2,
         "last_mentioned_chapter": 1
       },
@@ -1130,14 +553,14 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "New promise marked as OPEN.",
-          "timestamp": "2026-07-13T22:38:01.021702"
+          "confidence": 0.95,
+          "reasoning": "Alice makes a promise to Thomas before she leaves.",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.9,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "PROMISE",
         "version": 2,
         "last_mentioned_chapter": 1
       },
@@ -1148,54 +571,36 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Chapter where promise was made.",
-          "timestamp": "2026-07-13T22:38:01.021702"
-        },
-        "history": [],
-        "importance": 0.8,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "climax_proximity_threshold": {
-        "key": "climax_proximity_threshold",
-        "current": {
-          "value": 3,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.5,
-          "reasoning": "Default climax proximity threshold.",
-          "timestamp": "2026-07-13T22:38:01.021702"
+          "confidence": 0.95,
+          "reasoning": "Alice makes a promise to Thomas before she leaves.",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "PROMISE",
         "version": 2,
         "last_mentioned_chapter": 1
       }
     }
   },
   "mysteries": {
-    "mystery_4b208c071bfe3bb3": {
+    "mystery_timeline_gap_1_64828": {
       "mystery_text": {
         "key": "mystery_text",
         "current": {
-          "value": "Vance walked out to the courtyard where his bitter nemesis, a ruthless captain named Jonathan Drake, stood waiting.",
+          "value": "The narrative jumps from Alice's departure to her arrival at the crossroads without detailing the events in between.",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Mystery extracted from text containing 'where'.",
-          "timestamp": "2026-07-13T22:38:01.022453"
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.85,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "MYSTERY",
         "version": 2,
         "last_mentioned_chapter": 1
       },
@@ -1206,14 +611,14 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "New mystery marked as unresolved.",
-          "timestamp": "2026-07-13T22:38:01.022453"
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.85,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "MYSTERY",
         "version": 2,
         "last_mentioned_chapter": 1
       },
@@ -1225,31 +630,71 @@
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Chapter where mystery was introduced.",
-          "timestamp": "2026-07-13T22:38:01.022453"
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.8,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "MYSTERY",
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "clue_count": {
-        "key": "clue_count",
+      "severity": {
+        "key": "severity",
         "current": {
-          "value": 0,
+          "value": "NOTE",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "Initial clue count set to zero.",
-          "timestamp": "2026-07-13T22:38:01.022453"
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.513764"
         },
         "history": [],
-        "importance": 0.6,
+        "importance": 0.5,
         "dependencies": [],
-        "element_type": "CHARACTER",
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "issue_type": {
+        "key": "issue_type",
+        "current": {
+          "value": "TIMELINE_GAP",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.513764"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "related_entities": {
+        "key": "related_entities",
+        "current": {
+          "value": [
+            "alice",
+            "thornfield_hall",
+            "millhaven_village"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-15T18:26:56.513764"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
         "version": 2,
         "last_mentioned_chapter": 1
       }
@@ -1257,542 +702,976 @@
   },
   "conflicts": {},
   "arcs": {},
-  "style": {
-    "global_style": {
-      "word_count": {
-        "key": "word_count",
-        "current": {
-          "value": 118,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Extracted stylistic metric 'word_count' from Chapter 1.",
-          "timestamp": "2026-07-13T22:38:01.023039"
-        },
-        "history": [],
-        "importance": 0.4,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "sentence_count": {
-        "key": "sentence_count",
-        "current": {
-          "value": 7,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Extracted stylistic metric 'sentence_count' from Chapter 1.",
-          "timestamp": "2026-07-13T22:38:01.023039"
-        },
-        "history": [],
-        "importance": 0.4,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "avg_sentence_length": {
-        "key": "avg_sentence_length",
-        "current": {
-          "value": 16.86,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Extracted stylistic metric 'avg_sentence_length' from Chapter 1.",
-          "timestamp": "2026-07-13T22:38:01.023039"
-        },
-        "history": [],
-        "importance": 0.4,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "dialogue_density": {
-        "key": "dialogue_density",
-        "current": {
-          "value": 0.0169,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Extracted stylistic metric 'dialogue_density' from Chapter 1.",
-          "timestamp": "2026-07-13T22:38:01.023039"
-        },
-        "history": [],
-        "importance": 0.4,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    }
-  },
+  "style": {},
   "evidence_store": {
-    "847cf773": {
-      "id": "847cf773",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "grandmaster",
-        "stones"
-      ],
-      "interpretation_hint": "Relation evidence: grandmaster stood stones",
-      "timestamp": "2026-07-13T22:38:01.023039"
-    },
-    "764ca0e5": {
-      "id": "764ca0e5",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "He",
-        "box"
-      ],
-      "interpretation_hint": "Relation evidence: He looked box",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "ffe3a2ec": {
-      "id": "ffe3a2ec",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "I",
-        "oath"
-      ],
-      "interpretation_hint": "Relation evidence: I give oath",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "6b4f4812": {
-      "id": "6b4f4812",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "I",
-        "Order"
-      ],
-      "interpretation_hint": "Relation evidence: I give Order",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "8d7158e5": {
-      "id": "8d7158e5",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "I",
-        "that"
-      ],
-      "interpretation_hint": "Relation evidence: I return that",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "b8ba04a4": {
-      "id": "b8ba04a4",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "Vance",
-        "courtyard"
-      ],
-      "interpretation_hint": "Relation evidence: Vance walked courtyard",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "b790e24d": {
-      "id": "b790e24d",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "They",
-        "other"
-      ],
-      "interpretation_hint": "Relation evidence: They glared other",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "bd1e61f3": {
-      "id": "bd1e61f3",
-      "text_span": null,
-      "evidence_type": "ACTION",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 1.0,
-      "related_entities": [
-        "They",
-        "hatred"
-      ],
-      "interpretation_hint": "Relation evidence: They glared hatred",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "996f0819": {
-      "id": "996f0819",
+    "64ae9867": {
+      "id": "64ae9867",
       "text_span": {
-        "text": "Lord Alistair Vance",
-        "start_char": 50,
-        "end_char": 69,
+        "text": "Departure",
+        "start_char": 15,
+        "end_char": 24,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.987044632434845,
+      "confidence": 0.8,
       "related_entities": [
-        "Lord Alistair Vance"
+        "Departure"
       ],
-      "interpretation_hint": "Entity evidence: Lord Alistair Vance (person)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Departure (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
     },
-    "5e64cf1f": {
-      "id": "5e64cf1f",
+    "0286befd": {
+      "id": "0286befd",
       "text_span": {
-        "text": "Iron Citadel",
+        "text": "Thornfield",
+        "start_char": 90,
+        "end_char": 100,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Thornfield"
+      ],
+      "interpretation_hint": "Entity evidence: Thornfield (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "bb197f60": {
+      "id": "bb197f60",
+      "text_span": {
+        "text": "Hall",
+        "start_char": 101,
+        "end_char": 105,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Hall"
+      ],
+      "interpretation_hint": "Entity evidence: Hall (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "8a5a5f90": {
+      "id": "8a5a5f90",
+      "text_span": {
+        "text": "Alice",
         "start_char": 107,
-        "end_char": 119,
+        "end_char": 112,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.9894422292709351,
+      "confidence": 0.8,
       "related_entities": [
-        "Iron Citadel"
+        "Alice"
       ],
-      "interpretation_hint": "Entity evidence: Iron Citadel (location)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Alice (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
     },
-    "143a0298": {
-      "id": "143a0298",
+    "b7389b4e": {
+      "id": "b7389b4e",
       "text_span": {
-        "text": "Emperor's Scarab",
-        "start_char": 179,
-        "end_char": 195,
-        "sentence_index": null
-      },
-      "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 0.775458037853241,
-      "related_entities": [
-        "Emperor's Scarab"
-      ],
-      "interpretation_hint": "Entity evidence: Emperor's Scarab (object)",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "3610598c": {
-      "id": "3610598c",
-      "text_span": {
-        "text": "Obsidian Sarcophagus",
-        "start_char": 217,
-        "end_char": 237,
-        "sentence_index": null
-      },
-      "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 0.9816555380821228,
-      "related_entities": [
-        "Obsidian Sarcophagus"
-      ],
-      "interpretation_hint": "Entity evidence: Obsidian Sarcophagus (object)",
-      "timestamp": "2026-07-13T22:38:01.023687"
-    },
-    "b7a5eae5": {
-      "id": "b7a5eae5",
-      "text_span": {
-        "text": "Order",
-        "start_char": 323,
+        "text": "Thomas",
+        "start_char": 322,
         "end_char": 328,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.9861236810684204,
+      "confidence": 0.8,
       "related_entities": [
-        "Order"
+        "Thomas"
       ],
-      "interpretation_hint": "Entity evidence: Order (organization)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Thomas (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
     },
-    "2916857f": {
-      "id": "2916857f",
+    "f269ba3d": {
+      "id": "f269ba3d",
       "text_span": {
-        "text": "midwinter",
-        "start_char": 385,
-        "end_char": 394,
+        "text": "Father",
+        "start_char": 495,
+        "end_char": 501,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.9499818682670593,
+      "confidence": 0.8,
       "related_entities": [
-        "midwinter"
+        "Father"
       ],
-      "interpretation_hint": "Entity evidence: midwinter (time)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Father (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
     },
-    "2f1cb50d": {
-      "id": "2f1cb50d",
+    "a3d87c70": {
+      "id": "a3d87c70",
       "text_span": {
-        "text": "Vance",
-        "start_char": 409,
-        "end_char": 414,
+        "text": "Something",
+        "start_char": 522,
+        "end_char": 531,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.7154942154884338,
+      "confidence": 0.8,
       "related_entities": [
-        "Vance"
+        "Something"
       ],
-      "interpretation_hint": "Entity evidence: Vance (person)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Something (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
     },
-    "aecfd898": {
-      "id": "aecfd898",
+    "a1e94b95": {
+      "id": "a1e94b95",
       "text_span": {
-        "text": "Jonathan Drake",
-        "start_char": 494,
-        "end_char": 508,
+        "text": "Silver",
+        "start_char": 548,
+        "end_char": 554,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.9940693378448486,
+      "confidence": 0.8,
       "related_entities": [
-        "Jonathan Drake"
+        "Silver"
       ],
-      "interpretation_hint": "Entity evidence: Jonathan Drake (person)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Silver (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
     },
-    "33594875": {
-      "id": "33594875",
+    "c7a28237": {
+      "id": "c7a28237",
       "text_span": {
-        "text": "Vance",
-        "start_char": 635,
-        "end_char": 640,
+        "text": "Gate",
+        "start_char": 555,
+        "end_char": 559,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
       "source_chapter": 1,
       "source_scene": null,
-      "confidence": 0.6292533874511719,
+      "confidence": 0.8,
       "related_entities": [
-        "Vance"
+        "Gate"
       ],
-      "interpretation_hint": "Entity evidence: Vance (person)",
-      "timestamp": "2026-07-13T22:38:01.023687"
+      "interpretation_hint": "Entity evidence: Gate (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "220fc3df": {
+      "id": "220fc3df",
+      "text_span": {
+        "text": "These",
+        "start_char": 1065,
+        "end_char": 1070,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "These"
+      ],
+      "interpretation_hint": "Entity evidence: These (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "938562e8": {
+      "id": "938562e8",
+      "text_span": {
+        "text": "Millhaven",
+        "start_char": 1262,
+        "end_char": 1271,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Millhaven"
+      ],
+      "interpretation_hint": "Entity evidence: Millhaven (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "5f22b222": {
+      "id": "5f22b222",
+      "text_span": {
+        "text": "Copper",
+        "start_char": 1331,
+        "end_char": 1337,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Copper"
+      ],
+      "interpretation_hint": "Entity evidence: Copper (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "722212fe": {
+      "id": "722212fe",
+      "text_span": {
+        "text": "Bell",
+        "start_char": 1338,
+        "end_char": 1342,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Bell"
+      ],
+      "interpretation_hint": "Entity evidence: Bell (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "21366c22": {
+      "id": "21366c22",
+      "text_span": {
+        "text": "Heading",
+        "start_char": 1446,
+        "end_char": 1453,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Heading"
+      ],
+      "interpretation_hint": "Entity evidence: Heading (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "f3430bb6": {
+      "id": "f3430bb6",
+      "text_span": {
+        "text": "Yes",
+        "start_char": 1500,
+        "end_char": 1503,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Yes"
+      ],
+      "interpretation_hint": "Entity evidence: Yes (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "b470e6a1": {
+      "id": "b470e6a1",
+      "text_span": {
+        "text": "Then",
+        "start_char": 1520,
+        "end_char": 1524,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Then"
+      ],
+      "interpretation_hint": "Entity evidence: Then (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "511656b8": {
+      "id": "511656b8",
+      "text_span": {
+        "text": "Thornwood",
+        "start_char": 1550,
+        "end_char": 1559,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Thornwood"
+      ],
+      "interpretation_hint": "Entity evidence: Thornwood (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "ab480da1": {
+      "id": "ab480da1",
+      "text_span": {
+        "text": "Things",
+        "start_char": 1572,
+        "end_char": 1578,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Things"
+      ],
+      "interpretation_hint": "Entity evidence: Things (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "ddd6c297": {
+      "id": "ddd6c297",
+      "text_span": {
+        "text": "Your",
+        "start_char": 1654,
+        "end_char": 1658,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Your"
+      ],
+      "interpretation_hint": "Entity evidence: Your (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "34eaca83": {
+      "id": "34eaca83",
+      "text_span": {
+        "text": "Three",
+        "start_char": 1697,
+        "end_char": 1702,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Three"
+      ],
+      "interpretation_hint": "Entity evidence: Three (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "b71407f5": {
+      "id": "b71407f5",
+      "text_span": {
+        "text": "Asked",
+        "start_char": 1715,
+        "end_char": 1720,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Asked"
+      ],
+      "interpretation_hint": "Entity evidence: Asked (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "6ed22156": {
+      "id": "6ed22156",
+      "text_span": {
+        "text": "Did",
+        "start_char": 1769,
+        "end_char": 1772,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Did"
+      ],
+      "interpretation_hint": "Entity evidence: Did (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "1b74bb3d": {
+      "id": "1b74bb3d",
+      "text_span": {
+        "text": "Said",
+        "start_char": 1803,
+        "end_char": 1807,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Said"
+      ],
+      "interpretation_hint": "Entity evidence: Said (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "315ee02f": {
+      "id": "315ee02f",
+      "text_span": {
+        "text": "Be",
+        "start_char": 1945,
+        "end_char": 1947,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Be"
+      ],
+      "interpretation_hint": "Entity evidence: Be (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "812d9a9e": {
+      "id": "812d9a9e",
+      "text_span": {
+        "text": "As",
+        "start_char": 2302,
+        "end_char": 2304,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "As"
+      ],
+      "interpretation_hint": "Entity evidence: As (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "09fe12ea": {
+      "id": "09fe12ea",
+      "text_span": {
+        "text": "Somewhere",
+        "start_char": 2592,
+        "end_char": 2601,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Somewhere"
+      ],
+      "interpretation_hint": "Entity evidence: Somewhere (person)",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "15a00d7b": {
+      "id": "15a00d7b",
+      "text_span": {
+        "text": "\"You don't have to go,\"",
+        "start_char": 293,
+        "end_char": 316,
+        "sentence_index": 3
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Thomas"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Thomas",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "191a4eb0": {
+      "id": "191a4eb0",
+      "text_span": {
+        "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
+        "start_char": 488,
+        "end_char": 586,
+        "sentence_index": 7
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "1446222d": {
+      "id": "1446222d",
+      "text_span": {
+        "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
+        "start_char": 620,
+        "end_char": 711,
+        "sentence_index": 11
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.517856"
+    },
+    "ea961922": {
+      "id": "ea961922",
+      "text_span": {
+        "text": "\"It got him answers,\"",
+        "start_char": 713,
+        "end_char": 734,
+        "sentence_index": 13
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Alice"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Alice",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "1f2e1af5": {
+      "id": "1f2e1af5",
+      "text_span": {
+        "text": "\"I'll be back before the winter solstice. I promise.\"",
+        "start_char": 798,
+        "end_char": 851,
+        "sentence_index": 15
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "f1e15106": {
+      "id": "f1e15106",
+      "text_span": {
+        "text": "\"Heading north?\"",
+        "start_char": 1445,
+        "end_char": 1461,
+        "sentence_index": 24
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "09411c6a": {
+      "id": "09411c6a",
+      "text_span": {
+        "text": "\"Yes,\"",
+        "start_char": 1499,
+        "end_char": 1505,
+        "sentence_index": 26
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Alice"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Alice",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "8556f36b": {
+      "id": "8556f36b",
+      "text_span": {
+        "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
+        "start_char": 1519,
+        "end_char": 1622,
+        "sentence_index": 27
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "86df3516": {
+      "id": "86df3516",
+      "text_span": {
+        "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
+        "start_char": 1653,
+        "end_char": 1741,
+        "sentence_index": 30
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "d6a9b956": {
+      "id": "d6a9b956",
+      "text_span": {
+        "text": "\"Did he say where he was going?\"",
+        "start_char": 1768,
+        "end_char": 1800,
+        "sentence_index": 34
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "4c22e445": {
+      "id": "4c22e445",
+      "text_span": {
+        "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
+        "start_char": 1802,
+        "end_char": 1916,
+        "sentence_index": 34
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "6dac4a3a": {
+      "id": "6dac4a3a",
+      "text_span": {
+        "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
+        "start_char": 1944,
+        "end_char": 2007,
+        "sentence_index": 37
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
+    },
+    "5858092d": {
+      "id": "5858092d",
+      "text_span": {
+        "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
+        "start_char": 2450,
+        "end_char": 2539,
+        "sentence_index": 44
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-15T18:26:56.518860"
     }
   },
   "delta_history": [
     {
       "chapter_number": 1,
-      "change_count": 33,
+      "change_count": 24,
       "changes": [
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "lord_alistair_vance",
+          "target_id": "alice",
           "field_key": "canonical_name",
           "old_value": null,
-          "new_value": "Lord Alistair Vance",
+          "new_value": "Alice",
           "evidence": [],
           "confidence": 1.0,
-          "reasoning": "New character introduced from chapter evidence."
+          "reasoning": "Canonical name set by LLM."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "jonathan_drake",
-          "field_key": "canonical_name",
+          "target_id": "alice",
+          "field_key": "brave",
           "old_value": null,
-          "new_value": "Jonathan Drake",
+          "new_value": true,
           "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "New character introduced from chapter evidence."
+          "confidence": 0.8,
+          "reasoning": "She decides to go to the Silver Gate despite the potential dangers."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "box",
-          "field_key": "canonical_name",
+          "target_id": "alice",
+          "field_key": "determined",
           "old_value": null,
-          "new_value": "box",
+          "new_value": true,
           "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "New character introduced from chapter evidence."
+          "confidence": 0.9,
+          "reasoning": "She is resolute in her decision to find out what is wrong at the Silver Gate."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "other",
-          "field_key": "canonical_name",
+          "target_id": "alice",
+          "field_key": "goals",
           "old_value": null,
-          "new_value": "other",
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "New character introduced from chapter evidence."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "hatred",
-          "field_key": "canonical_name",
-          "old_value": null,
-          "new_value": "hatred",
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "New character introduced from chapter evidence."
-        },
-        {
-          "change_type": "EVOLUTION",
-          "target_type": "CHARACTER",
-          "target_id": "lord_alistair_vance",
-          "field_key": "personality_traits",
-          "old_value": [],
           "new_value": [
-            "cruel"
+            "Find out what is wrong at the Silver Gate"
           ],
           "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "Personality trait extracted from narration."
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "lord_alistair_vance",
+          "target_id": "alice",
+          "field_key": "fears",
+          "old_value": null,
+          "new_value": [
+            "The unknown dangers at the Silver Gate"
+          ],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "alice",
           "field_key": "location",
           "old_value": null,
-          "new_value": "Iron Citadel",
+          "new_value": "stream_side_camp",
           "evidence": [],
-          "confidence": 0.7,
-          "reasoning": "Character location updated to: Iron Citadel"
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM."
         },
         {
-          "change_type": "EVOLUTION",
+          "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "jonathan_drake",
-          "field_key": "personality_traits",
-          "old_value": [],
+          "target_id": "alice",
+          "field_key": "inventory",
+          "old_value": null,
           "new_value": [
-            "cruel"
+            "leather_journal"
           ],
           "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "Personality trait extracted from narration."
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "grandmaster::stones",
-          "field_key": "relationship_label",
+          "target_id": "thomas",
+          "field_key": "canonical_name",
           "old_value": null,
-          "new_value": "UNKNOWN",
+          "new_value": "Thomas",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "thomas",
+          "field_key": "concerned",
+          "old_value": null,
+          "new_value": true,
+          "evidence": [],
+          "confidence": 0.7,
+          "reasoning": "He shows concern for Alice's safety."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "thomas",
+          "field_key": "goals",
+          "old_value": null,
+          "new_value": [],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "thomas",
+          "field_key": "fears",
+          "old_value": null,
+          "new_value": [
+            "Losing Alice"
+          ],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "thomas",
+          "field_key": "location",
+          "old_value": null,
+          "new_value": "thornfield_hall",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "thomas",
+          "field_key": "inventory",
+          "old_value": null,
+          "new_value": [],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "old_woman",
+          "field_key": "canonical_name",
+          "old_value": null,
+          "new_value": "Old Woman",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "old_woman",
+          "field_key": "knowledgeable",
+          "old_value": null,
+          "new_value": true,
           "evidence": [],
           "confidence": 0.6,
-          "reasoning": "New relationship observed between grandmaster and stones."
+          "reasoning": "She seems to know about the Silver Gate and the old road."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "jonathan_drake::box",
-          "field_key": "relationship_label",
+          "target_id": "old_woman",
+          "field_key": "goals",
           "old_value": null,
-          "new_value": "UNKNOWN",
+          "new_value": [],
           "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "New relationship observed between He and box."
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "lord_alistair_vance::order",
+          "target_id": "old_woman",
+          "field_key": "fears",
+          "old_value": null,
+          "new_value": [],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "old_woman",
+          "field_key": "location",
+          "old_value": null,
+          "new_value": "millhaven_village",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "old_woman",
+          "field_key": "inventory",
+          "old_value": null,
+          "new_value": [],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "alice::thomas",
           "field_key": "relationship_label",
           "old_value": null,
           "new_value": "ALLIANCE",
           "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "New relationship observed between I and Order."
+          "confidence": 0.9,
+          "reasoning": "They are siblings and care about each other's well-being."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "lord_alistair_vance::courtyard",
+          "target_id": "alice::old_woman",
           "field_key": "relationship_label",
           "old_value": null,
-          "new_value": "UNKNOWN",
-          "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "New relationship observed between Vance and courtyard."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "other::hatred",
-          "field_key": "relationship_label",
-          "old_value": null,
-          "new_value": "ENMITY",
-          "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "New relationship observed between They and hatred."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "LOCATION",
-          "target_id": "iron_citadel",
-          "field_key": "type",
-          "old_value": null,
-          "new_value": "location",
+          "new_value": "NEUTRAL",
           "evidence": [],
           "confidence": 0.9,
-          "reasoning": "New world element 'Iron Citadel' introduced as location."
+          "reasoning": "The old woman provides Alice with information, but their interaction is brief and lacks emotional depth."
+        },
+        {
+          "change_type": "EVOLUTION",
+          "target_type": "PROMISE",
+          "target_id": "alice_return_promise",
+          "field_key": "status",
+          "old_value": null,
+          "new_value": "OPEN",
+          "evidence": [],
+          "confidence": 0.95,
+          "reasoning": "Alice makes a promise to Thomas before she leaves."
         },
         {
           "change_type": "INTRODUCTION",
-          "target_type": "OBJECT",
-          "target_id": "emperor_s_scarab",
-          "field_key": "type",
+          "target_type": "MYSTERY",
+          "target_id": "mystery_timeline_gap_1_64828",
+          "field_key": "status",
           "old_value": null,
-          "new_value": "object",
+          "new_value": "unresolved",
           "evidence": [],
           "confidence": 0.9,
-          "reasoning": "New world element 'Emperor's Scarab' introduced as object."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "OBJECT",
-          "target_id": "obsidian_sarcophagus",
-          "field_key": "type",
-          "old_value": null,
-          "new_value": "object",
-          "evidence": [],
-          "confidence": 0.9,
-          "reasoning": "New world element 'Obsidian Sarcophagus' introduced as object."
+          "reasoning": "LLM contradiction flagged: The narrative jumps from Alice's departure to her arrival at the crossroads without detailing the events in between."
         },
         {
           "change_type": "INTRODUCTION",
@@ -1800,467 +1679,719 @@
           "target_id": "ch1.sc1",
           "field_key": "scene_text",
           "old_value": null,
-          "new_value": "Chapter I: The Vow of the Vault. The grandmaster, Lord Alistair Vance, stood within the cold stones of the Iron Citadel. He reached out and locked the ancient relic, known as the Emperor's Scarab, sec",
+          "new_value": "Chapter 1: The Departure",
           "evidence": [],
           "confidence": 0.7,
           "reasoning": "Scene detected by SceneEngine."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt1",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "grandmaster stood stones",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt2",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "He looked box",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt3",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "I give oath",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt4",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "I give Order",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt5",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "I return that",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt6",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "Vance walked courtyard",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt7",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "They glared other",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "EVENT",
-          "target_id": "ch1_evt8",
-          "field_key": "description",
-          "old_value": null,
-          "new_value": "They glared hatred",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "Timeline event created from relation."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "THEME",
-          "target_id": "symbol_water",
-          "field_key": "symbol_name",
-          "old_value": null,
-          "new_value": "water",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "New symbol detected in chapter."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "THEME",
-          "target_id": "symbol_key",
-          "field_key": "symbol_name",
-          "old_value": null,
-          "new_value": "key",
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "New symbol detected in chapter."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "PROMISE",
-          "target_id": "promise_3fb4aa4efe42c5ee",
-          "field_key": "promise_text",
-          "old_value": null,
-          "new_value": "He looked at the locked stone box and declared aloud, 'I give my solemn oath to the Order that I shall return to melt this scarab down before the midwinter snows fall.'",
-          "evidence": [],
-          "confidence": 0.7,
-          "reasoning": "New promise detected in chapter."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "MYSTERY",
-          "target_id": "mystery_4b208c071bfe3bb3",
-          "field_key": "mystery_text",
-          "old_value": null,
-          "new_value": "Vance walked out to the courtyard where his bitter nemesis, a ruthless captain named Jonathan Drake, stood waiting.",
-          "evidence": [],
-          "confidence": 0.6,
-          "reasoning": "New mystery detected in chapter."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "STYLE",
-          "target_id": "global_style",
-          "field_key": "word_count",
-          "old_value": null,
-          "new_value": 118,
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Style metric 'word_count' tracked for the first time."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "STYLE",
-          "target_id": "global_style",
-          "field_key": "sentence_count",
-          "old_value": null,
-          "new_value": 7,
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Style metric 'sentence_count' tracked for the first time."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "STYLE",
-          "target_id": "global_style",
-          "field_key": "avg_sentence_length",
-          "old_value": null,
-          "new_value": 16.86,
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Style metric 'avg_sentence_length' tracked for the first time."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "STYLE",
-          "target_id": "global_style",
-          "field_key": "dialogue_density",
-          "old_value": null,
-          "new_value": 0.0169,
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Style metric 'dialogue_density' tracked for the first time."
         }
       ],
-      "new_evidence_count": 17,
+      "new_evidence_count": 39,
       "new_evidence": [
         {
-          "id": "847cf773",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "grandmaster",
-            "stones"
-          ],
-          "interpretation_hint": "Relation evidence: grandmaster stood stones",
-          "timestamp": "2026-07-13T22:38:01.023039"
-        },
-        {
-          "id": "764ca0e5",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "He",
-            "box"
-          ],
-          "interpretation_hint": "Relation evidence: He looked box",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "ffe3a2ec",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "I",
-            "oath"
-          ],
-          "interpretation_hint": "Relation evidence: I give oath",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "6b4f4812",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "I",
-            "Order"
-          ],
-          "interpretation_hint": "Relation evidence: I give Order",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "8d7158e5",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "I",
-            "that"
-          ],
-          "interpretation_hint": "Relation evidence: I return that",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "b8ba04a4",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "Vance",
-            "courtyard"
-          ],
-          "interpretation_hint": "Relation evidence: Vance walked courtyard",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "b790e24d",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "They",
-            "other"
-          ],
-          "interpretation_hint": "Relation evidence: They glared other",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "bd1e61f3",
-          "text_span": null,
-          "evidence_type": "ACTION",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 1.0,
-          "related_entities": [
-            "They",
-            "hatred"
-          ],
-          "interpretation_hint": "Relation evidence: They glared hatred",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "996f0819",
+          "id": "64ae9867",
           "text_span": {
-            "text": "Lord Alistair Vance",
-            "start_char": 50,
-            "end_char": 69,
+            "text": "Departure",
+            "start_char": 15,
+            "end_char": 24,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.987044632434845,
+          "confidence": 0.8,
           "related_entities": [
-            "Lord Alistair Vance"
+            "Departure"
           ],
-          "interpretation_hint": "Entity evidence: Lord Alistair Vance (person)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Departure (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
         },
         {
-          "id": "5e64cf1f",
+          "id": "0286befd",
           "text_span": {
-            "text": "Iron Citadel",
+            "text": "Thornfield",
+            "start_char": 90,
+            "end_char": 100,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Thornfield"
+          ],
+          "interpretation_hint": "Entity evidence: Thornfield (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "bb197f60",
+          "text_span": {
+            "text": "Hall",
+            "start_char": 101,
+            "end_char": 105,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Hall"
+          ],
+          "interpretation_hint": "Entity evidence: Hall (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "8a5a5f90",
+          "text_span": {
+            "text": "Alice",
             "start_char": 107,
-            "end_char": 119,
+            "end_char": 112,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.9894422292709351,
+          "confidence": 0.8,
           "related_entities": [
-            "Iron Citadel"
+            "Alice"
           ],
-          "interpretation_hint": "Entity evidence: Iron Citadel (location)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Alice (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
         },
         {
-          "id": "143a0298",
+          "id": "b7389b4e",
           "text_span": {
-            "text": "Emperor's Scarab",
-            "start_char": 179,
-            "end_char": 195,
-            "sentence_index": null
-          },
-          "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.775458037853241,
-          "related_entities": [
-            "Emperor's Scarab"
-          ],
-          "interpretation_hint": "Entity evidence: Emperor's Scarab (object)",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "3610598c",
-          "text_span": {
-            "text": "Obsidian Sarcophagus",
-            "start_char": 217,
-            "end_char": 237,
-            "sentence_index": null
-          },
-          "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.9816555380821228,
-          "related_entities": [
-            "Obsidian Sarcophagus"
-          ],
-          "interpretation_hint": "Entity evidence: Obsidian Sarcophagus (object)",
-          "timestamp": "2026-07-13T22:38:01.023687"
-        },
-        {
-          "id": "b7a5eae5",
-          "text_span": {
-            "text": "Order",
-            "start_char": 323,
+            "text": "Thomas",
+            "start_char": 322,
             "end_char": 328,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.9861236810684204,
+          "confidence": 0.8,
           "related_entities": [
-            "Order"
+            "Thomas"
           ],
-          "interpretation_hint": "Entity evidence: Order (organization)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Thomas (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
         },
         {
-          "id": "2916857f",
+          "id": "f269ba3d",
           "text_span": {
-            "text": "midwinter",
-            "start_char": 385,
-            "end_char": 394,
+            "text": "Father",
+            "start_char": 495,
+            "end_char": 501,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.9499818682670593,
+          "confidence": 0.8,
           "related_entities": [
-            "midwinter"
+            "Father"
           ],
-          "interpretation_hint": "Entity evidence: midwinter (time)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Father (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
         },
         {
-          "id": "2f1cb50d",
+          "id": "a3d87c70",
           "text_span": {
-            "text": "Vance",
-            "start_char": 409,
-            "end_char": 414,
+            "text": "Something",
+            "start_char": 522,
+            "end_char": 531,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.7154942154884338,
+          "confidence": 0.8,
           "related_entities": [
-            "Vance"
+            "Something"
           ],
-          "interpretation_hint": "Entity evidence: Vance (person)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Something (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
         },
         {
-          "id": "aecfd898",
+          "id": "a1e94b95",
           "text_span": {
-            "text": "Jonathan Drake",
-            "start_char": 494,
-            "end_char": 508,
+            "text": "Silver",
+            "start_char": 548,
+            "end_char": 554,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.9940693378448486,
+          "confidence": 0.8,
           "related_entities": [
-            "Jonathan Drake"
+            "Silver"
           ],
-          "interpretation_hint": "Entity evidence: Jonathan Drake (person)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Silver (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
         },
         {
-          "id": "33594875",
+          "id": "c7a28237",
           "text_span": {
-            "text": "Vance",
-            "start_char": 635,
-            "end_char": 640,
+            "text": "Gate",
+            "start_char": 555,
+            "end_char": 559,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
           "source_chapter": 1,
           "source_scene": null,
-          "confidence": 0.6292533874511719,
+          "confidence": 0.8,
           "related_entities": [
-            "Vance"
+            "Gate"
           ],
-          "interpretation_hint": "Entity evidence: Vance (person)",
-          "timestamp": "2026-07-13T22:38:01.023687"
+          "interpretation_hint": "Entity evidence: Gate (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "220fc3df",
+          "text_span": {
+            "text": "These",
+            "start_char": 1065,
+            "end_char": 1070,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "These"
+          ],
+          "interpretation_hint": "Entity evidence: These (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "938562e8",
+          "text_span": {
+            "text": "Millhaven",
+            "start_char": 1262,
+            "end_char": 1271,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Millhaven"
+          ],
+          "interpretation_hint": "Entity evidence: Millhaven (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "5f22b222",
+          "text_span": {
+            "text": "Copper",
+            "start_char": 1331,
+            "end_char": 1337,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Copper"
+          ],
+          "interpretation_hint": "Entity evidence: Copper (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "722212fe",
+          "text_span": {
+            "text": "Bell",
+            "start_char": 1338,
+            "end_char": 1342,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Bell"
+          ],
+          "interpretation_hint": "Entity evidence: Bell (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "21366c22",
+          "text_span": {
+            "text": "Heading",
+            "start_char": 1446,
+            "end_char": 1453,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Heading"
+          ],
+          "interpretation_hint": "Entity evidence: Heading (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "f3430bb6",
+          "text_span": {
+            "text": "Yes",
+            "start_char": 1500,
+            "end_char": 1503,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Yes"
+          ],
+          "interpretation_hint": "Entity evidence: Yes (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "b470e6a1",
+          "text_span": {
+            "text": "Then",
+            "start_char": 1520,
+            "end_char": 1524,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Then"
+          ],
+          "interpretation_hint": "Entity evidence: Then (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "511656b8",
+          "text_span": {
+            "text": "Thornwood",
+            "start_char": 1550,
+            "end_char": 1559,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Thornwood"
+          ],
+          "interpretation_hint": "Entity evidence: Thornwood (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "ab480da1",
+          "text_span": {
+            "text": "Things",
+            "start_char": 1572,
+            "end_char": 1578,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Things"
+          ],
+          "interpretation_hint": "Entity evidence: Things (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "ddd6c297",
+          "text_span": {
+            "text": "Your",
+            "start_char": 1654,
+            "end_char": 1658,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Your"
+          ],
+          "interpretation_hint": "Entity evidence: Your (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "34eaca83",
+          "text_span": {
+            "text": "Three",
+            "start_char": 1697,
+            "end_char": 1702,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Three"
+          ],
+          "interpretation_hint": "Entity evidence: Three (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "b71407f5",
+          "text_span": {
+            "text": "Asked",
+            "start_char": 1715,
+            "end_char": 1720,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Asked"
+          ],
+          "interpretation_hint": "Entity evidence: Asked (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "6ed22156",
+          "text_span": {
+            "text": "Did",
+            "start_char": 1769,
+            "end_char": 1772,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Did"
+          ],
+          "interpretation_hint": "Entity evidence: Did (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "1b74bb3d",
+          "text_span": {
+            "text": "Said",
+            "start_char": 1803,
+            "end_char": 1807,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Said"
+          ],
+          "interpretation_hint": "Entity evidence: Said (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "315ee02f",
+          "text_span": {
+            "text": "Be",
+            "start_char": 1945,
+            "end_char": 1947,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Be"
+          ],
+          "interpretation_hint": "Entity evidence: Be (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "812d9a9e",
+          "text_span": {
+            "text": "As",
+            "start_char": 2302,
+            "end_char": 2304,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "As"
+          ],
+          "interpretation_hint": "Entity evidence: As (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "09fe12ea",
+          "text_span": {
+            "text": "Somewhere",
+            "start_char": 2592,
+            "end_char": 2601,
+            "sentence_index": null
+          },
+          "evidence_type": "DIRECT_STATEMENT",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Somewhere"
+          ],
+          "interpretation_hint": "Entity evidence: Somewhere (person)",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "15a00d7b",
+          "text_span": {
+            "text": "\"You don't have to go,\"",
+            "start_char": 293,
+            "end_char": 316,
+            "sentence_index": 3
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Thomas"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Thomas",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "191a4eb0",
+          "text_span": {
+            "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
+            "start_char": 488,
+            "end_char": 586,
+            "sentence_index": 7
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "1446222d",
+          "text_span": {
+            "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
+            "start_char": 620,
+            "end_char": 711,
+            "sentence_index": 11
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.517856"
+        },
+        {
+          "id": "ea961922",
+          "text_span": {
+            "text": "\"It got him answers,\"",
+            "start_char": 713,
+            "end_char": 734,
+            "sentence_index": 13
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Alice"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Alice",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "1f2e1af5",
+          "text_span": {
+            "text": "\"I'll be back before the winter solstice. I promise.\"",
+            "start_char": 798,
+            "end_char": 851,
+            "sentence_index": 15
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "f1e15106",
+          "text_span": {
+            "text": "\"Heading north?\"",
+            "start_char": 1445,
+            "end_char": 1461,
+            "sentence_index": 24
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "09411c6a",
+          "text_span": {
+            "text": "\"Yes,\"",
+            "start_char": 1499,
+            "end_char": 1505,
+            "sentence_index": 26
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Alice"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Alice",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "8556f36b",
+          "text_span": {
+            "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
+            "start_char": 1519,
+            "end_char": 1622,
+            "sentence_index": 27
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "86df3516",
+          "text_span": {
+            "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
+            "start_char": 1653,
+            "end_char": 1741,
+            "sentence_index": 30
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "d6a9b956",
+          "text_span": {
+            "text": "\"Did he say where he was going?\"",
+            "start_char": 1768,
+            "end_char": 1800,
+            "sentence_index": 34
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "4c22e445",
+          "text_span": {
+            "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
+            "start_char": 1802,
+            "end_char": 1916,
+            "sentence_index": 34
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "6dac4a3a",
+          "text_span": {
+            "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
+            "start_char": 1944,
+            "end_char": 2007,
+            "sentence_index": 37
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
+        },
+        {
+          "id": "5858092d",
+          "text_span": {
+            "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
+            "start_char": 2450,
+            "end_char": 2539,
+            "sentence_index": 44
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 1,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-15T18:26:56.518860"
         }
       ],
-      "summary": "Chapter 1 produced 33 state changes: 31 introductions, 2 evolutions, 0 confirmations, 0 contradictions. Collected 17 evidence items.",
-      "timestamp": "2026-07-13T22:37:59.750802"
+      "summary": "Chapter 1 produced 24 state changes: 23 introductions, 1 evolutions, 0 confirmations, 0 contradictions. Collected 39 evidence items.",
+      "timestamp": "2026-07-15T18:26:56.512753"
     }
   ]
 }

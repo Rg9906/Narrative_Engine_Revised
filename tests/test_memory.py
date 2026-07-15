@@ -80,6 +80,36 @@ class TestWorldMemory:
         assert memory.get_entry("thornfield_hall", "type").current.value == "location"
         assert memory.get_entry("sword_of_truth", "type").current.value == "object"
 
+    def test_object_containment_in_object(self, empty_chapter_data):
+        empty_chapter_data.raw_text = "The Emperor's Scarab was hidden within the Obsidian Sarcophagus."
+        empty_chapter_data.sentences = ["The Emperor's Scarab was hidden within the Obsidian Sarcophagus."]
+        from src.models.state import TextSpan
+        empty_chapter_data.entities = [
+            ExtractedEntity(
+                text="Emperor's Scarab",
+                label="object",
+                span=TextSpan(text="Emperor's Scarab", start_char=4, end_char=20, sentence_index=0),
+                confidence=1.0
+            ),
+            ExtractedEntity(
+                text="Obsidian Sarcophagus",
+                label="object",
+                span=TextSpan(text="Obsidian Sarcophagus", start_char=43, end_char=63, sentence_index=0),
+                confidence=1.0
+            )
+        ]
+        memory = WorldMemory()
+        changes = memory.update_from_chapter(empty_chapter_data, 1)
+
+        # Locate the change representing containment
+        loc_changes = [c for c in changes if c.field_key == "location"]
+        assert len(loc_changes) > 0
+        assert loc_changes[0].new_value == "obsidian_sarcophagus"
+        
+        scarab_entry = memory.get_entry("emperor_s_scarab", "location")
+        assert scarab_entry is not None
+        assert scarab_entry.current.value == "obsidian_sarcophagus"
+
 
 class TestThemeMemory:
     def test_theme_and_symbol_detection(self, empty_chapter_data):

@@ -80,38 +80,17 @@ class NarrativeStateEngine:
         Returns:
             StateDelta describing all state changes.
         """
-        delta = StateDelta(chapter_number=chapter_data.chapter_number)
+        from src.engines.state_engine import StateEngine
+        engine = StateEngine(self._config)
+        delta = engine.process_chapter(chapter_data, current_state)
 
-        # Phase 6: Character updates from evidence
-        character_memory = CharacterMemory(existing_entries=current_state.characters)
-        character_changes = character_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(character_changes)
-
-        # Phase 9: Advanced character attribute extraction
-        advanced_character_changes = character_memory.extract_advanced_attributes(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(advanced_character_changes)
-
-        # Phase 7: Relationship updates
-        relationship_memory = RelationshipMemory()
-        # Load existing relationships into memory helper so updates persist
-        relationship_memory.load(self._wrap_entries(current_state.relationships))
-        relationship_changes = relationship_memory.update_from_chapter(
-            chapter_data, chapter_data.chapter_number, existing_characters=current_state.characters
-        )
-        delta.changes.extend(relationship_changes)
-
-        # Phase 7: World updates
-        world_memory = WorldMemory()
-        world_memory.load(self._wrap_entries(current_state.world))
-        world_changes = world_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(world_changes)
-
-        # Phase 8: Scene detection (attach scenes to chapter evidence)
-        scene_engine = SceneEngine(self._config)
+        # Scene detection (attach scenes to chapter evidence)
         try:
+            from src.engines.scene_engine import SceneEngine
+            from src.models.state import StateChange, StateChangeType, NarrativeElementType
+            scene_engine = SceneEngine(self._config)
             scenes = scene_engine.detect_scenes(chapter_data.raw_text, chapter_data.chapter_number)
 
-            # Phase 12: Rich scene analysis
             character_names = set()
             for char_id, char_state in current_state.characters.items():
                 name_entry = char_state.get("canonical_name")
@@ -135,53 +114,6 @@ class NarrativeStateEngine:
                         reasoning="Scene detected by SceneEngine.",
                     )
                 )
-        except Exception:
-            # Scene detection is best-effort
-            pass
-
-        # Phase 8: Timeline updates — append simple events to the global timeline
-        timeline_memory = TimelineMemory()
-        timeline_changes = timeline_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(timeline_changes)
-
-        # Phase 10: Theme tracking
-        theme_memory = ThemeMemory(existing_entries=current_state.themes)
-        theme_changes = theme_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(theme_changes)
-
-        # Phase 10: Promise and foreshadowing tracking
-        promise_memory = PromiseMemory(existing_entries=current_state.promises)
-        promise_changes = promise_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(promise_changes)
-
-        # Phase 10: Mystery tracking
-        mystery_memory = MysteryMemory(existing_entries=current_state.mysteries)
-        mystery_changes = mystery_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(mystery_changes)
-
-        # Phase 11: Style tracking
-        style_memory = StyleMemory(existing_entries=current_state.style)
-        style_changes = style_memory.update_from_chapter(chapter_data, chapter_data.chapter_number)
-        delta.changes.extend(style_changes)
-
-        # Persist memory entries back into the current NarrativeState
-        try:
-            current_state.characters = character_memory.entries
-            current_state.relationships = relationship_memory.entries
-            current_state.world = world_memory.entries
-            current_state.themes = theme_memory.entries
-            current_state.promises = promise_memory.entries
-            current_state.mysteries = mystery_memory.entries
-            current_state.style = style_memory.entries
-            # Append extracted relations as simple timeline events
-            for rel in getattr(chapter_data, "relations", []):
-                event = {
-                    "chapter": chapter_data.chapter_number,
-                    "subject": getattr(rel, "subject", None),
-                    "predicate": getattr(rel, "predicate", None),
-                    "object": getattr(rel, "object", None),
-                }
-                current_state.timeline.append(event)
         except Exception:
             pass
 
