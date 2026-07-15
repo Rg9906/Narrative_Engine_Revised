@@ -1,0 +1,94 @@
+{
+  "alice_return_promise": {
+    "promise_text": {
+      "key": "promise_text",
+      "current": {
+        "value": "I'll be back before the winter solstice.",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Alice makes a promise to Thomas before she leaves.",
+        "timestamp": "2026-07-15T22:34:41.021119"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "speaker_id": {
+      "key": "speaker_id",
+      "current": {
+        "value": "alice",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Alice makes a promise to Thomas before she leaves.",
+        "timestamp": "2026-07-15T22:34:41.021119"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "listener_id": {
+      "key": "listener_id",
+      "current": {
+        "value": "thomas",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Alice makes a promise to Thomas before she leaves.",
+        "timestamp": "2026-07-15T22:34:41.021119"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "OPEN",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Alice makes a promise to Thomas before she leaves.",
+        "timestamp": "2026-07-15T22:34:41.021119"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "chapter_made": {
+      "key": "chapter_made",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Alice makes a promise to Thomas before she leaves.",
+        "timestamp": "2026-07-15T22:34:41.021119"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

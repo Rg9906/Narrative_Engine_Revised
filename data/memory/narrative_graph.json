@@ -16,129 +16,9 @@
       "type": "character"
     },
     {
-      "id": "char::father",
-      "label": "father",
-      "type": "character"
-    },
-    {
-      "id": "char::millhaven",
-      "label": "millhaven",
-      "type": "character"
-    },
-    {
-      "id": "char::heading",
-      "label": "heading",
-      "type": "character"
-    },
-    {
-      "id": "char::yes",
-      "label": "yes",
-      "type": "character"
-    },
-    {
-      "id": "char::then",
-      "label": "then",
-      "type": "character"
-    },
-    {
-      "id": "char::three",
-      "label": "three",
-      "type": "character"
-    },
-    {
-      "id": "char::asked",
-      "label": "asked",
-      "type": "character"
-    },
-    {
-      "id": "char::did",
-      "label": "did",
-      "type": "character"
-    },
-    {
-      "id": "char::said",
-      "label": "said",
-      "type": "character"
-    },
-    {
-      "id": "char::be",
-      "label": "be",
-      "type": "character"
-    },
-    {
-      "id": "char::somewhere",
-      "label": "somewhere",
-      "type": "character"
-    },
-    {
       "id": "world::leather_journal",
       "label": "leather_journal",
       "type": "world"
-    },
-    {
-      "id": "world::staff_of_dark_wood",
-      "label": "staff_of_dark_wood",
-      "type": "world"
-    },
-    {
-      "id": "theme::theme_love",
-      "label": "theme_love",
-      "type": "theme"
-    },
-    {
-      "id": "theme::theme_freedom",
-      "label": "theme_freedom",
-      "type": "theme"
-    },
-    {
-      "id": "theme::theme_good_vs_evil",
-      "label": "theme_good_vs_evil",
-      "type": "theme"
-    },
-    {
-      "id": "theme::theme_hope",
-      "label": "theme_hope",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_light",
-      "label": "symbol_light",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_darkness",
-      "label": "symbol_darkness",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_water",
-      "label": "symbol_water",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_fire",
-      "label": "symbol_fire",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_blood",
-      "label": "symbol_blood",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_door",
-      "label": "symbol_door",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_key",
-      "label": "symbol_key",
-      "type": "theme"
-    },
-    {
-      "id": "theme::symbol_tree",
-      "label": "symbol_tree",
-      "type": "theme"
     },
     {
       "id": "event::evt::1",
@@ -156,63 +36,8 @@
       "type": "event"
     },
     {
-      "id": "event::evt::4",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::5",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::6",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::7",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::8",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::9",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::10",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::11",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
       "id": "chapter::1",
       "label": "Chapter 1",
-      "type": "chapter"
-    },
-    {
-      "id": "chapter::2",
-      "label": "Chapter 2",
-      "type": "chapter"
-    },
-    {
-      "id": "chapter::3",
-      "label": "Chapter 3",
-      "type": "chapter"
-    },
-    {
-      "id": "chapter::4",
-      "label": "Chapter 4",
       "type": "chapter"
     }
   ],
@@ -249,62 +74,6 @@
       "id": "evt_edge::evt::3",
       "source": "event::evt::3",
       "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::4",
-      "source": "event::evt::4",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::5",
-      "source": "event::evt::5",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::6",
-      "source": "event::evt::6",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::7",
-      "source": "event::evt::7",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::8",
-      "source": "event::evt::8",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::9",
-      "source": "event::evt::9",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::10",
-      "source": "event::evt::10",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::11",
-      "source": "event::evt::11",
-      "target": "chapter::2",
       "label": "occurs_in",
       "type": "event_chapter"
     }

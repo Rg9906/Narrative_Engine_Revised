@@ -108,9 +108,57 @@ class Config:
         """Path to the pipeline cache directory."""
         return PROJECT_ROOT / self.get("paths.cache_dir", "data/cache")
 
+    @property
+    def chapters_dir(self) -> Path:
+        """Path to raw chapter text files."""
+        return self.data_dir / "chapters"
+
+    @property
+    def summaries_dir(self) -> Path:
+        """Path to chapter summaries and baseline outlines."""
+        return self.data_dir / "summaries"
+
+    @property
+    def profiles_dir(self) -> Path:
+        """Path to individual character profile JSON files."""
+        return self.data_dir / "profiles"
+
+    @property
+    def relationships_dir(self) -> Path:
+        """Path to individual relationship states."""
+        return self.data_dir / "relationships"
+
+    @property
+    def clues_dir(self) -> Path:
+        """Path to physical item/clue states."""
+        return self.data_dir / "clues"
+
+    @property
+    def promises_dir(self) -> Path:
+        """Path to open/unresolved plot promises."""
+        return self.data_dir / "promises"
+
+    @property
+    def reports_dir(self) -> Path:
+        """Path to raw editorial reports."""
+        return self.data_dir / "reports"
+
     def ensure_directories(self) -> None:
         """Create necessary directories if they don't exist."""
-        for d in [self.data_dir, self.memory_dir, self.output_dir, self.cache_dir]:
+        dirs = [
+            self.data_dir,
+            self.memory_dir,
+            self.output_dir,
+            self.cache_dir,
+            self.chapters_dir,
+            self.summaries_dir,
+            self.profiles_dir,
+            self.relationships_dir,
+            self.clues_dir,
+            self.promises_dir,
+            self.reports_dir,
+        ]
+        for d in dirs:
             d.mkdir(parents=True, exist_ok=True)
 
 

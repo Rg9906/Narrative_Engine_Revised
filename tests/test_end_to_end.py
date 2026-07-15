@@ -92,7 +92,7 @@ def test_full_pipeline_end_to_end(temp_project_dir):
     
     # Check that output files were generated
     state_file = config.memory_dir / "narrative_state.json"
-    report_file = config.memory_dir / "editorial_report_ch1.json"
+    report_file = config.reports_dir / "editorial_report_ch1.json"
     graph_file = config.memory_dir / "narrative_graph.json"
     
     # Mock manual save since main.py usually does this

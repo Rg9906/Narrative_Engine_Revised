@@ -168,9 +168,9 @@ class Pipeline:
                 system_content = (
                     "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
                     "Never include explanations, intro/outro, or markdown backticks. Output pure JSON.\n\n"
-                    "--- HISTORIC CONTEXT ---\n"
                     f"{context_block}\n\n"
-                    "Please explicitly contrast the new chapter text against this provided historic context to identify any discrepancies, stance shifts, or inventory/world changes."
+                    "Contrast the raw text of the incoming chapter against the provided <StoryContext> to identify any logical discrepancies, "
+                    "physical teleportation of items, breaking of character promises, or sudden unearned shifts in relationships."
                 )
             else:
                 logger.info("[RAG Context] No active characters detected in pre-scan. Defaulting to minimal system prompt.")

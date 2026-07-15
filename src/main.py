@@ -68,6 +68,95 @@ def save_narrative_state(state: NarrativeState, memory_dir: Path) -> None:
     logger.info(f"Narrative state saved to {state_path}")
 
 
+def save_modular_state(state: NarrativeState, config) -> None:
+    """Persist characters, relationships, clues, and promises as separate, modular files."""
+    import os
+    
+    # 1. Save character profiles to data/profiles/
+    config.profiles_dir.mkdir(parents=True, exist_ok=True)
+    for char_id, profile in state.characters.items():
+        char_file = config.profiles_dir / f"{char_id}.json"
+        tmp_file = char_file.with_suffix(".json.tmp")
+        profile_dict = {
+            char_id: {sk: sv.to_dict() for sk, sv in profile.items()}
+        }
+        with open(tmp_file, "w", encoding="utf-8") as f:
+            json.dump(profile_dict, f, indent=2, ensure_ascii=False)
+        os.replace(tmp_file, char_file)
+        logger.info(f"Profile saved: {char_file}")
+
+    # 2. Save relationships to data/relationships/
+    config.relationships_dir.mkdir(parents=True, exist_ok=True)
+    for rel_key, rel_entry in state.relationships.items():
+        safe_key = rel_key.replace("::", "__")
+        rel_file = config.relationships_dir / f"{safe_key}.json"
+        tmp_file = rel_file.with_suffix(".json.tmp")
+        rel_dict = {
+            rel_key: {sk: sv.to_dict() for sk, sv in rel_entry.items()}
+        }
+        with open(tmp_file, "w", encoding="utf-8") as f:
+            json.dump(rel_dict, f, indent=2, ensure_ascii=False)
+        os.replace(tmp_file, rel_file)
+        logger.info(f"Relationship saved: {rel_file}")
+
+    # 3. Save promises to data/promises/
+    config.promises_dir.mkdir(parents=True, exist_ok=True)
+    for promise_id, promise_entry in state.promises.items():
+        promise_file = config.promises_dir / f"{promise_id}.json"
+        tmp_file = promise_file.with_suffix(".json.tmp")
+        promise_dict = {
+            promise_id: {sk: sv.to_dict() for sk, sv in promise_entry.items()}
+        }
+        with open(tmp_file, "w", encoding="utf-8") as f:
+            json.dump(promise_dict, f, indent=2, ensure_ascii=False)
+        os.replace(tmp_file, promise_file)
+        logger.info(f"Promise saved: {promise_file}")
+
+    # 4. Save clues to data/clues/
+    config.clues_dir.mkdir(parents=True, exist_ok=True)
+    for elem_id, elem_entry in state.world.items():
+        type_entry = elem_entry.get("type")
+        type_val = type_entry.current.value if type_entry and type_entry.current else None
+        if type_val == "object":
+            clue_file = config.clues_dir / f"{elem_id}.json"
+            tmp_file = clue_file.with_suffix(".json.tmp")
+            clue_dict = {
+                elem_id: {sk: sv.to_dict() for sk, sv in elem_entry.items()}
+            }
+            with open(tmp_file, "w", encoding="utf-8") as f:
+                json.dump(clue_dict, f, indent=2, ensure_ascii=False)
+            os.replace(tmp_file, clue_file)
+            logger.info(f"Clue saved: {clue_file}")
+
+
+def clear_subdirectories(config) -> None:
+    """Recursively purges all files across all 7 subdirectories."""
+    import shutil
+    dirs = [
+        config.chapters_dir,
+        config.summaries_dir,
+        config.profiles_dir,
+        config.relationships_dir,
+        config.clues_dir,
+        config.promises_dir,
+        config.reports_dir,
+        config.cache_dir,
+        config.memory_dir
+    ]
+    for d in dirs:
+        if d.exists():
+            for item in d.iterdir():
+                try:
+                    if item.is_file():
+                        item.unlink()
+                        logger.info(f"Deleted file: {item}")
+                    elif item.is_dir():
+                        shutil.rmtree(item)
+                        logger.info(f"Deleted dir: {item}")
+                except Exception as e:
+                    logger.warning(f"Failed to clear {item}: {e}")
+
+
 def process_chapter(chapter_path: str, config_path: str = None) -> None:
     """
     Process a single chapter through the full engine.
@@ -127,6 +216,7 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
 
     # Persist updated state and report artifacts
     save_narrative_state(state, config.memory_dir)
+    save_modular_state(state, config)
 
     # Save character memory as character_memory.json for Principal Architect validation
     try:
@@ -175,8 +265,19 @@ def main():
         action="store_true",
         help="Print the current narrative state summary and exit.",
     )
+    parser.add_argument(
+        "--clear",
+        action="store_true",
+        help="Recursively purge all narrative databases, cache, and split chapters to start fresh.",
+    )
 
     args = parser.parse_args()
+
+    if args.clear:
+        config = get_config(args.config)
+        clear_subdirectories(config)
+        print("Storage directories cleared successfully.")
+        return
 
     if args.status:
         config = get_config(args.config)

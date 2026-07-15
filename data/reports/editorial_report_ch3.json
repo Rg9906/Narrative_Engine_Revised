@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "chapter": 3,
+    "generated_at": "2026-07-15T22:47:29.823219",
+    "inspector_count": 8,
+    "llm_provider": "none"
+  },
+  "findings": [
+    {
+      "severity": "note",
+      "category": "scene",
+      "title": "No scene boundaries detected",
+      "description": "Timeline events were extracted but no scene boundaries were introduced. Consider explicit scene markers or stronger transitions.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.5
+    },
+    {
+      "severity": "note",
+      "category": "consistency",
+      "title": "Timeline jump detected",
+      "description": "Event 'Merlin brews potion' in chapter 1 occurs after events from chapter 2. This indicates a flashback or non-linear timeline sequence.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "Merlin"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "error",
+      "category": "consistency",
+      "title": "Post-mortem action anomaly",
+      "description": "Deceased character 'Arthur' (died in chapter 2) is performing an action 'revives the crown' in later chapter 3.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "Arthur"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "severity": "suggestion",
+      "category": "conflict",
+      "title": "No active narrative drivers",
+      "description": "As of chapter 3, there are no active, unresolved mysteries or narrative promises. Consider introducing a new conflict or mystery to hook reader interest.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.6
+    }
+  ]
+}

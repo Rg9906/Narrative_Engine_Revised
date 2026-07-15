@@ -113,7 +113,7 @@ class EditorialEngine:
             "findings": norm,
         }
 
-        out_dir = Path(self._config.memory_dir) if (self._config and getattr(self._config, 'memory_dir', None)) else Path('data') / 'memory'
+        out_dir = Path(self._config.reports_dir) if (self._config and getattr(self._config, 'reports_dir', None)) else Path('data') / 'reports'
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / f"editorial_report_ch{report['metadata']['chapter']}.json"
         tmp_file = out_file.with_suffix(".json.tmp")
