@@ -1,0 +1,40 @@
+{
+  "milk_bottle": {
+    "type": {
+      "key": "type",
+      "current": {
+        "value": "object",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "study",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

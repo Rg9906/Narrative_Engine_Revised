@@ -1,58 +1,58 @@
 {
-  "leather_journal": {
+  "brass_pocket_watch": {
     "type": {
       "key": "type",
       "current": {
         "value": "object",
-        "chapter": 1,
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:16:40.972710"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "OBJECT",
       "version": 2,
-      "last_mentioned_chapter": 1
-    },
-    "location": {
-      "key": "location",
-      "current": {
-        "value": "stream_side_camp",
-        "chapter": 1,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "",
-        "timestamp": "2026-07-15T22:34:41.021119"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "OBJECT",
-      "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 3
     },
     "owner": {
       "key": "owner",
       "current": {
-        "value": "alice",
-        "chapter": 1,
+        "value": "detective_alfred",
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:16:40.972710"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "OBJECT",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 3
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "detective_alfred",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-07-16T08:16:40.972710"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }

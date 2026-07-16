@@ -1,0 +1,32 @@
+{
+  "sebastian_whitmore::laurie": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "ENMITY",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Sebastian's accusation against Laurie creates tension and hostility between them.",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [
+        {
+          "value": "NEUTRAL",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "There is no indication of a specific relationship or interaction between Sebastian and Laurie beyond Laurie entering the drawing room where Sebastian was present.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

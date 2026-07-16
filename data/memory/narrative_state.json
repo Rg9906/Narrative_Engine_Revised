@@ -1,22 +1,22 @@
 {
   "metadata": {
-    "last_processed_chapter": 1,
-    "total_chapters_processed": 1,
-    "created_at": "2026-07-15T22:34:02.218985",
-    "last_updated": "2026-07-15T22:34:41.030357"
+    "last_processed_chapter": 3,
+    "total_chapters_processed": 3,
+    "created_at": "2026-07-16T08:02:14.671724",
+    "last_updated": "2026-07-16T08:16:40.976351"
   },
   "characters": {
-    "alice": {
+    "sebastian_whitmore": {
       "canonical_name": {
         "key": "canonical_name",
         "current": {
-          "value": "Alice",
+          "value": "Sebastian Whitmore",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Canonical name set by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -25,16 +25,16 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "brave": {
-        "key": "brave",
+      "restlessness": {
+        "key": "restlessness",
         "current": {
           "value": true,
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.8,
-          "reasoning": "She decides to go to the Silver Gate despite the potential dangers.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "confidence": 1.0,
+          "reasoning": "Sebastian is described as feeling restless, which led him to stand up and leave the drawing room.",
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -43,81 +43,273 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "determined": {
-        "key": "determined",
+      "goals": {
+        "key": "goals",
+        "current": {
+          "value": [],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [
+          {
+            "value": [],
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Goals updated by LLM.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          },
+          {
+            "value": [
+              "uncover the truth"
+            ],
+            "chapter": 2,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Goals updated by LLM.",
+            "timestamp": "2026-07-16T08:04:29.554737"
+          }
+        ],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 4,
+        "last_mentioned_chapter": 3
+      },
+      "fears": {
+        "key": "fears",
+        "current": {
+          "value": [],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.96,
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "drawing_room",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [
+          {
+            "value": "carriage_house",
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Character location updated by LLM.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          }
+        ],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 3,
+        "last_mentioned_chapter": 2
+      },
+      "inventory": {
+        "key": "inventory",
+        "current": {
+          "value": [
+            "overcoat"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "suspicious": {
+        "key": "suspicious",
         "current": {
           "value": true,
-          "chapter": 1,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "She is resolute in her decision to find out what is wrong at the Silver Gate.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Sebastian's sudden appearance in the drawing room without walking back raises suspicions about his actions and intentions.",
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
+      },
+      "physical_condition": {
+        "key": "physical_condition",
+        "current": {
+          "value": "breathless",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "He had a breathless run from the carriage house to the drawing room.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "laurie": {
+      "canonical_name": {
+        "key": "canonical_name",
+        "current": {
+          "value": "Laurie Whitmore",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [
+          {
+            "value": "Laurie",
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Canonical name set by LLM.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          }
+        ],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 3,
+        "last_mentioned_chapter": 3
       },
       "goals": {
         "key": "goals",
         "current": {
           "value": [
-            "Find out what is wrong at the Silver Gate"
+            "clear his name"
           ],
-          "chapter": 1,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 1.0,
+          "confidence": 0.98,
           "reasoning": "Goals updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
-        "history": [],
+        "history": [
+          {
+            "value": [],
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Goals updated by LLM.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          }
+        ],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
+        "version": 3,
+        "last_mentioned_chapter": 2
       },
       "fears": {
         "key": "fears",
         "current": {
           "value": [
-            "The unknown dangers at the Silver Gate"
+            "being accused of a crime"
           ],
-          "chapter": 1,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 1.0,
+          "confidence": 0.98,
           "reasoning": "Fears updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
-        "history": [],
+        "history": [
+          {
+            "value": [],
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Fears updated by LLM.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          }
+        ],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
+        "version": 3,
+        "last_mentioned_chapter": 2
       },
       "location": {
         "key": "location",
         "current": {
-          "value": "stream_side_camp",
-          "chapter": 1,
+          "value": "drawing_room",
+          "chapter": 3,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character location updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:16:40.972204"
         },
-        "history": [],
+        "history": [
+          {
+            "value": "study",
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Character location updated by LLM.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          },
+          {
+            "value": "morning_room",
+            "chapter": 2,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Character location updated by LLM.",
+            "timestamp": "2026-07-16T08:04:29.554737"
+          }
+        ],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
+        "version": 4,
+        "last_mentioned_chapter": 3
       },
       "inventory": {
         "key": "inventory",
@@ -128,27 +320,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Inventory delta applied by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "thomas": {
-      "canonical_name": {
-        "key": "canonical_name",
-        "current": {
-          "value": "Thomas",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Canonical name set by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -157,128 +329,36 @@
         "version": 2,
         "last_mentioned_chapter": 1
       },
-      "concerned": {
-        "key": "concerned",
+      "deceptive": {
+        "key": "deceptive",
         "current": {
           "value": true,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.7,
-          "reasoning": "He expresses worry about Alice's decision to go to the Silver Gate.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "goals": {
-        "key": "goals",
-        "current": {
-          "value": [],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Goals updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "fears": {
-        "key": "fears",
-        "current": {
-          "value": [
-            "Losing Alice"
-          ],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Fears updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "location": {
-        "key": "location",
-        "current": {
-          "value": "thornfield_hall",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Character location updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "inventory": {
-        "key": "inventory",
-        "current": {
-          "value": [],
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Inventory delta applied by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      }
-    },
-    "old_woman": {
-      "canonical_name": {
-        "key": "canonical_name",
-        "current": {
-          "value": "Old Woman",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "Canonical name set by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "knowledgeable": {
-        "key": "knowledgeable",
-        "current": {
-          "value": true,
-          "chapter": 1,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.8,
-          "reasoning": "She provides information about Alice's father and the old road.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Laurie claimed to have a perfect alibi, but Sebastian's statement contradicts this, suggesting Laurie might be hiding something.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      }
+    },
+    "talia": {
+      "canonical_name": {
+        "key": "canonical_name",
+        "current": {
+          "value": "Talia",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -294,9 +374,9 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 1.0,
+          "confidence": 0.96,
           "reasoning": "Goals updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -312,9 +392,9 @@
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 1.0,
+          "confidence": 0.96,
           "reasoning": "Fears updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -326,13 +406,13 @@
       "location": {
         "key": "location",
         "current": {
-          "value": "millhaven_village",
+          "value": "private_bedchamber",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character location updated by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -350,7 +430,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Inventory delta applied by LLM.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -358,31 +438,400 @@
         "element_type": "CHARACTER",
         "version": 2,
         "last_mentioned_chapter": 1
+      }
+    },
+    "detective_alfred": {
+      "canonical_name": {
+        "key": "canonical_name",
+        "current": {
+          "value": "Detective Alfred",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "investigative": {
+        "key": "investigative",
+        "current": {
+          "value": true,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Detective Alfred is questioning the family, indicating he is actively investigating the situation.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "goals": {
+        "key": "goals",
+        "current": {
+          "value": [
+            "solve the mystery"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.98,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "fears": {
+        "key": "fears",
+        "current": {
+          "value": [],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.98,
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "drawing_room",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [
+          {
+            "value": "morning_room",
+            "chapter": 2,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Character location updated by LLM.",
+            "timestamp": "2026-07-16T08:04:29.554737"
+          }
+        ],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 3,
+        "last_mentioned_chapter": 3
+      },
+      "inventory": {
+        "key": "inventory",
+        "current": {
+          "value": [
+            "brass_pocket_watch"
+          ],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [
+          {
+            "value": [],
+            "chapter": 2,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 1.0,
+            "reasoning": "Inventory delta applied by LLM.",
+            "timestamp": "2026-07-16T08:04:29.554737"
+          }
+        ],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 3,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "winnie": {
+      "canonical_name": {
+        "key": "canonical_name",
+        "current": {
+          "value": "Winnie",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "aliases": {
+        "key": "aliases",
+        "current": {
+          "value": [
+            "Talia's maid",
+            "Winnie"
+          ],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Aliases updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "loyal": {
+        "key": "loyal",
+        "current": {
+          "value": true,
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "She is described as a loyal servant.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "goals": {
+        "key": "goals",
+        "current": {
+          "value": [],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "fears": {
+        "key": "fears",
+        "current": {
+          "value": [],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "ante_room",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "inventory": {
+        "key": "inventory",
+        "current": {
+          "value": [
+            "timepiece"
+          ],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "lucius": {
+      "canonical_name": {
+        "key": "canonical_name",
+        "current": {
+          "value": "Lucius",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "goals": {
+        "key": "goals",
+        "current": {
+          "value": [],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "fears": {
+        "key": "fears",
+        "current": {
+          "value": [],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972204"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "drawing_room",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "inventory": {
+        "key": "inventory",
+        "current": {
+          "value": [],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM.",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
       }
     }
   },
   "relationships": {
-    "alice::thomas": {
+    "sebastian_whitmore::laurie": {
       "relationship_label": {
         "key": "relationship_label",
         "current": {
-          "value": "ALLIANCE",
-          "chapter": 1,
+          "value": "ENMITY",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "They share a close bond as siblings.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Sebastian's accusation against Laurie creates tension and hostility between them.",
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
-        "history": [],
+        "history": [
+          {
+            "value": "NEUTRAL",
+            "chapter": 1,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 0.9,
+            "reasoning": "There is no indication of a specific relationship or interaction between Sebastian and Laurie beyond Laurie entering the drawing room where Sebastian was present.",
+            "timestamp": "2026-07-16T08:02:36.081645"
+          }
+        ],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "CHARACTER",
-        "version": 2,
-        "last_mentioned_chapter": 1
+        "version": 3,
+        "last_mentioned_chapter": 2
       }
     },
-    "alice::old_woman": {
+    "sebastian_whitmore::talia": {
       "relationship_label": {
         "key": "relationship_label",
         "current": {
@@ -391,8 +840,8 @@
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "The old woman provides information to Alice without any apparent motive.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Talia is mentioned as being upstairs, but there is no direct interaction or indication of a specific relationship with Sebastian.",
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -401,10 +850,70 @@
         "version": 2,
         "last_mentioned_chapter": 1
       }
+    },
+    "laurie::talia": {
+      "relationship_label": {
+        "key": "relationship_label",
+        "current": {
+          "value": "NEUTRAL",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "There is no direct interaction or mention of a relationship between Laurie and Talia in this chapter.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      }
+    },
+    "detective_alfred::laurie": {
+      "relationship_label": {
+        "key": "relationship_label",
+        "current": {
+          "value": "ENMITY",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Detective Alfred is questioning Laurie's alibi, and Laurie seems to be hiding something, indicating a tense relationship.",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "sebastian_whitmore::detective_alfred": {
+      "relationship_label": {
+        "key": "relationship_label",
+        "current": {
+          "value": "NEUTRAL",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Sebastian is explaining his actions to Detective Alfred, and there is no indication of hostility or friendship.",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "CHARACTER",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
     }
   },
   "world": {
-    "leather_journal": {
+    "overcoat": {
       "type": {
         "key": "type",
         "current": {
@@ -414,25 +923,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
-        },
-        "history": [],
-        "importance": 0.5,
-        "dependencies": [],
-        "element_type": "OBJECT",
-        "version": 2,
-        "last_mentioned_chapter": 1
-      },
-      "location": {
-        "key": "location",
-        "current": {
-          "value": "stream_side_camp",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -444,13 +935,31 @@
       "owner": {
         "key": "owner",
         "current": {
-          "value": "alice",
+          "value": "sebastian_whitmore",
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "carriage_house",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:02:36.081645"
         },
         "history": [],
         "importance": 0.5,
@@ -459,236 +968,931 @@
         "version": 2,
         "last_mentioned_chapter": 1
       }
+    },
+    "sealed_milk_bottle": {
+      "type": {
+        "key": "type",
+        "current": {
+          "value": "object",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "owner": {
+        "key": "owner",
+        "current": {
+          "value": null,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "side_table",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 1
+      }
+    },
+    "milk_bottle": {
+      "type": {
+        "key": "type",
+        "current": {
+          "value": "object",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "study",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      }
+    },
+    "brass_pocket_watch": {
+      "type": {
+        "key": "type",
+        "current": {
+          "value": "object",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "owner": {
+        "key": "owner",
+        "current": {
+          "value": "detective_alfred",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "detective_alfred",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "timepiece": {
+      "type": {
+        "key": "type",
+        "current": {
+          "value": "object",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "owner": {
+        "key": "owner",
+        "current": {
+          "value": "winnie",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "winnie",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "glass_milk_bottle": {
+      "type": {
+        "key": "type",
+        "current": {
+          "value": "object",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "location": {
+        "key": "location",
+        "current": {
+          "value": "drawing_room",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "OBJECT",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
     }
   },
   "timeline": [
     {
       "chapter": 1,
-      "subject": "alice",
+      "subject": "sebastian_whitmore",
       "predicate": "moves_to",
-      "object": "stream_side_camp"
+      "object": "carriage_house"
     },
     {
       "chapter": 1,
-      "subject": "thomas",
-      "predicate": "moves_to",
-      "object": "thornfield_hall"
+      "subject": "sebastian_whitmore",
+      "predicate": "acquires",
+      "object": "overcoat"
     },
     {
       "chapter": 1,
-      "subject": "old_woman",
+      "subject": "laurie",
       "predicate": "moves_to",
-      "object": "millhaven_village"
+      "object": "study"
+    },
+    {
+      "chapter": 1,
+      "subject": "laurie",
+      "predicate": "acquires",
+      "object": "sealed_milk_bottle"
+    },
+    {
+      "chapter": 1,
+      "subject": "laurie",
+      "predicate": "discards",
+      "object": "sealed_milk_bottle"
+    },
+    {
+      "chapter": 1,
+      "subject": "talia",
+      "predicate": "moves_to",
+      "object": "private_bedchamber"
+    },
+    {
+      "chapter": 2,
+      "subject": "laurie",
+      "predicate": "moves_to",
+      "object": "morning_room"
+    },
+    {
+      "chapter": 2,
+      "subject": "sebastian_whitmore",
+      "predicate": "moves_to",
+      "object": "drawing_room"
+    },
+    {
+      "chapter": 2,
+      "subject": "talia",
+      "predicate": "moves_to",
+      "object": "private_bedchamber"
+    },
+    {
+      "chapter": 2,
+      "subject": "detective_alfred",
+      "predicate": "moves_to",
+      "object": "morning_room"
+    },
+    {
+      "chapter": 3,
+      "subject": "detective_alfred",
+      "predicate": "moves_to",
+      "object": "drawing_room"
+    },
+    {
+      "chapter": 3,
+      "subject": "detective_alfred",
+      "predicate": "acquires",
+      "object": "brass_pocket_watch"
+    },
+    {
+      "chapter": 3,
+      "subject": "laurie",
+      "predicate": "moves_to",
+      "object": "drawing_room"
+    },
+    {
+      "chapter": 3,
+      "subject": "sebastian_whitmore",
+      "predicate": "moves_to",
+      "object": "drawing_room"
+    },
+    {
+      "chapter": 3,
+      "subject": "talia",
+      "predicate": "moves_to",
+      "object": "private_bedchamber"
+    },
+    {
+      "chapter": 3,
+      "subject": "winnie",
+      "predicate": "moves_to",
+      "object": "ante_room"
+    },
+    {
+      "chapter": 3,
+      "subject": "winnie",
+      "predicate": "acquires",
+      "object": "timepiece"
+    },
+    {
+      "chapter": 3,
+      "subject": "lucius",
+      "predicate": "moves_to",
+      "object": "drawing_room"
     }
   ],
   "themes": {},
   "promises": {
-    "alice_return_promise": {
+    "laurie_alibi": {
       "promise_text": {
         "key": "promise_text",
         "current": {
-          "value": "I'll be back before the winter solstice.",
-          "chapter": 1,
+          "value": "I was in the study playing chess with Talia the entire evening.",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Alice makes a promise to Thomas before she leaves.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Laurie's alibi is currently being questioned and has not been confirmed or denied.",
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "PROMISE",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "speaker_id": {
         "key": "speaker_id",
         "current": {
-          "value": "alice",
-          "chapter": 1,
+          "value": "laurie",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Alice makes a promise to Thomas before she leaves.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Laurie's alibi is currently being questioned and has not been confirmed or denied.",
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "PROMISE",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "listener_id": {
         "key": "listener_id",
         "current": {
-          "value": "thomas",
-          "chapter": 1,
+          "value": "detective_alfred",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Alice makes a promise to Thomas before she leaves.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Laurie's alibi is currently being questioned and has not been confirmed or denied.",
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "PROMISE",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "status": {
         "key": "status",
         "current": {
-          "value": "OPEN",
-          "chapter": 1,
+          "value": "BROKEN",
+          "chapter": 3,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Alice makes a promise to Thomas before she leaves.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Laurie's alibi is questioned, and it is revealed that Talia was asleep in her bedchamber, making his statement false.",
+          "timestamp": "2026-07-16T08:16:40.972710"
         },
-        "history": [],
+        "history": [
+          {
+            "value": "OPEN",
+            "chapter": 2,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 0.95,
+            "reasoning": "Laurie's alibi is currently being questioned and has not been confirmed or denied.",
+            "timestamp": "2026-07-16T08:04:29.554737"
+          }
+        ],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "PROMISE",
-        "version": 2,
-        "last_mentioned_chapter": 1
+        "version": 3,
+        "last_mentioned_chapter": 3
       },
       "chapter_made": {
         "key": "chapter_made",
         "current": {
-          "value": 1,
-          "chapter": 1,
+          "value": 3,
+          "chapter": 3,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Alice makes a promise to Thomas before she leaves.",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "reasoning": "Laurie's alibi is questioned, and it is revealed that Talia was asleep in her bedchamber, making his statement false.",
+          "timestamp": "2026-07-16T08:16:40.972710"
         },
-        "history": [],
+        "history": [
+          {
+            "value": 2,
+            "chapter": 2,
+            "scene": null,
+            "evidence_ids": [],
+            "confidence": 0.95,
+            "reasoning": "Laurie's alibi is currently being questioned and has not been confirmed or denied.",
+            "timestamp": "2026-07-16T08:04:29.554737"
+          }
+        ],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "PROMISE",
-        "version": 2,
-        "last_mentioned_chapter": 1
+        "version": 3,
+        "last_mentioned_chapter": 3
       }
     }
   },
   "mysteries": {
-    "mystery_timeline_gap_1_65137": {
+    "mystery_inventory_teleportation_2_52834": {
       "mystery_text": {
         "key": "mystery_text",
         "current": {
-          "value": "There is a gap in the timeline between Alice's father's visit to Millhaven and Alice's departure from Thornfield Hall.",
-          "chapter": 1,
+          "value": "The milk bottle moved from its original location to the study without explanation, and it was found open and poisoned.",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "MYSTERY",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "status": {
         "key": "status",
         "current": {
           "value": "unresolved",
-          "chapter": 1,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "MYSTERY",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "chapter_introduced": {
         "key": "chapter_introduced",
         "current": {
-          "value": 1,
-          "chapter": 1,
+          "value": 2,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "MYSTERY",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "severity": {
         "key": "severity",
         "current": {
-          "value": "NOTE",
-          "chapter": 1,
+          "value": "WARNING",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "MYSTERY",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "issue_type": {
         "key": "issue_type",
         "current": {
-          "value": "TIMELINE_GAP",
-          "chapter": 1,
+          "value": "INVENTORY_TELEPORTATION",
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "MYSTERY",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
       },
       "related_entities": {
         "key": "related_entities",
         "current": {
           "value": [
-            "alice",
-            "thomas",
-            "old_woman"
+            "milk_bottle",
+            "study"
           ],
-          "chapter": 1,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "",
-          "timestamp": "2026-07-15T22:34:41.021119"
+          "timestamp": "2026-07-16T08:04:29.554737"
         },
         "history": [],
         "importance": 0.5,
         "dependencies": [],
         "element_type": "MYSTERY",
         "version": 2,
-        "last_mentioned_chapter": 1
+        "last_mentioned_chapter": 2
+      }
+    },
+    "mystery_timeline_gap_2_14869": {
+      "mystery_text": {
+        "key": "mystery_text",
+        "current": {
+          "value": "Sebastian materialized in the drawing room without walking back, suggesting a possible timeline gap or unexplained event.",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "status": {
+        "key": "status",
+        "current": {
+          "value": "unresolved",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "chapter_introduced": {
+        "key": "chapter_introduced",
+        "current": {
+          "value": 2,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "severity": {
+        "key": "severity",
+        "current": {
+          "value": "WARNING",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "issue_type": {
+        "key": "issue_type",
+        "current": {
+          "value": "TIMELINE_GAP",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      },
+      "related_entities": {
+        "key": "related_entities",
+        "current": {
+          "value": [
+            "sebastian_whitmore",
+            "drawing_room"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 2
+      }
+    },
+    "mystery_alibi_discrepancy_3_40063": {
+      "mystery_text": {
+        "key": "mystery_text",
+        "current": {
+          "value": "Laurie's alibi is disputed, and it is unclear what he was doing during the time the milk bottle was tampered with.",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "status": {
+        "key": "status",
+        "current": {
+          "value": "unresolved",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "chapter_introduced": {
+        "key": "chapter_introduced",
+        "current": {
+          "value": 3,
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "severity": {
+        "key": "severity",
+        "current": {
+          "value": "CRITICAL",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "issue_type": {
+        "key": "issue_type",
+        "current": {
+          "value": "ALIBI_DISCREPANCY",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "related_entities": {
+        "key": "related_entities",
+        "current": {
+          "value": [
+            "laurie",
+            "talia",
+            "detective_alfred"
+          ],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      }
+    },
+    "mystery_inconsistent_timeline_3_51682": {
+      "mystery_text": {
+        "key": "mystery_text",
+        "current": {
+          "value": "The timeline of events is unclear, and it is difficult to determine the order in which things happened.",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "status": {
+        "key": "status",
+        "current": {
+          "value": "unresolved",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "chapter_introduced": {
+        "key": "chapter_introduced",
+        "current": {
+          "value": 3,
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "severity": {
+        "key": "severity",
+        "current": {
+          "value": "WARNING",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "issue_type": {
+        "key": "issue_type",
+        "current": {
+          "value": "INCONSISTENT_TIMELINE",
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
+      },
+      "related_entities": {
+        "key": "related_entities",
+        "current": {
+          "value": [
+            "laurie",
+            "sebastian_whitmore",
+            "talia",
+            "winnie"
+          ],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "",
+          "timestamp": "2026-07-16T08:16:40.972710"
+        },
+        "history": [],
+        "importance": 0.5,
+        "dependencies": [],
+        "element_type": "MYSTERY",
+        "version": 2,
+        "last_mentioned_chapter": 3
       }
     }
   },
@@ -696,12 +1900,12 @@
   "arcs": {},
   "style": {},
   "evidence_store": {
-    "d85d55a5": {
-      "id": "d85d55a5",
+    "a8085535": {
+      "id": "a8085535",
       "text_span": {
-        "text": "Departure",
+        "text": "Evening",
         "start_char": 15,
-        "end_char": 24,
+        "end_char": 22,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
@@ -709,17 +1913,17 @@
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Departure"
+        "Evening"
       ],
-      "interpretation_hint": "Entity evidence: Departure (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Evening (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
     },
-    "a53ce43c": {
-      "id": "a53ce43c",
+    "36a6148a": {
+      "id": "36a6148a",
       "text_span": {
-        "text": "Thornfield",
-        "start_char": 90,
-        "end_char": 100,
+        "text": "Tea",
+        "start_char": 23,
+        "end_char": 26,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
@@ -727,16 +1931,70 @@
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Thornfield"
+        "Tea"
       ],
-      "interpretation_hint": "Entity evidence: Thornfield (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Tea (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
     },
-    "4c2005b2": {
-      "id": "4c2005b2",
+    "7e6c1f7a": {
+      "id": "7e6c1f7a",
       "text_span": {
-        "text": "Hall",
-        "start_char": 101,
+        "text": "Whitmore",
+        "start_char": 57,
+        "end_char": 65,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Whitmore"
+      ],
+      "interpretation_hint": "Entity evidence: Whitmore (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
+    },
+    "59ffd548": {
+      "id": "59ffd548",
+      "text_span": {
+        "text": "Manor",
+        "start_char": 66,
+        "end_char": 71,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Manor"
+      ],
+      "interpretation_hint": "Entity evidence: Manor (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
+    },
+    "33a0a765": {
+      "id": "33a0a765",
+      "text_span": {
+        "text": "Sebastian",
+        "start_char": 73,
+        "end_char": 82,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 1,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Sebastian"
+      ],
+      "interpretation_hint": "Entity evidence: Sebastian (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
+    },
+    "5b178917": {
+      "id": "5b178917",
+      "text_span": {
+        "text": "Talia",
+        "start_char": 100,
         "end_char": 105,
         "sentence_index": null
       },
@@ -745,17 +2003,17 @@
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Hall"
+        "Talia"
       ],
-      "interpretation_hint": "Entity evidence: Hall (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Talia (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
     },
-    "9a172d30": {
-      "id": "9a172d30",
+    "65e4b2d3": {
+      "id": "65e4b2d3",
       "text_span": {
-        "text": "Alice",
-        "start_char": 107,
-        "end_char": 112,
+        "text": "Laurie",
+        "start_char": 154,
+        "end_char": 160,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
@@ -763,17 +2021,17 @@
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Alice"
+        "Laurie"
       ],
-      "interpretation_hint": "Entity evidence: Alice (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Laurie (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
     },
-    "c85f5f6a": {
-      "id": "c85f5f6a",
+    "6d5643cc": {
+      "id": "6d5643cc",
       "text_span": {
-        "text": "Thomas",
-        "start_char": 322,
-        "end_char": 328,
+        "text": "Meanwhile",
+        "start_char": 418,
+        "end_char": 427,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
@@ -781,695 +2039,905 @@
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Thomas"
+        "Meanwhile"
       ],
-      "interpretation_hint": "Entity evidence: Thomas (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Meanwhile (person)",
+      "timestamp": "2026-07-16T08:02:36.084374"
     },
-    "943b7bbf": {
-      "id": "943b7bbf",
+    "0d1473d3": {
+      "id": "0d1473d3",
       "text_span": {
-        "text": "Father",
-        "start_char": 495,
-        "end_char": 501,
+        "text": "II",
+        "start_char": 8,
+        "end_char": 10,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Father"
+        "II"
       ],
-      "interpretation_hint": "Entity evidence: Father (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: II (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "9842b22e": {
-      "id": "9842b22e",
+    "39e7af25": {
+      "id": "39e7af25",
       "text_span": {
-        "text": "Something",
-        "start_char": 522,
-        "end_char": 531,
+        "text": "Midnight",
+        "start_char": 12,
+        "end_char": 20,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Something"
+        "Midnight"
       ],
-      "interpretation_hint": "Entity evidence: Something (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Midnight (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "77ebae84": {
-      "id": "77ebae84",
+    "621a0217": {
+      "id": "621a0217",
       "text_span": {
-        "text": "Silver",
-        "start_char": 548,
-        "end_char": 554,
+        "text": "Accusations",
+        "start_char": 21,
+        "end_char": 32,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Silver"
+        "Accusations"
       ],
-      "interpretation_hint": "Entity evidence: Silver (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Accusations (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "41aedad0": {
-      "id": "41aedad0",
+    "76085c8e": {
+      "id": "76085c8e",
       "text_span": {
-        "text": "Gate",
-        "start_char": 555,
-        "end_char": 559,
+        "text": "Hours",
+        "start_char": 34,
+        "end_char": 39,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Gate"
+        "Hours"
       ],
-      "interpretation_hint": "Entity evidence: Gate (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Hours (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "65691a40": {
-      "id": "65691a40",
+    "599ce206": {
+      "id": "599ce206",
       "text_span": {
-        "text": "These",
-        "start_char": 1065,
-        "end_char": 1070,
+        "text": "Detective",
+        "start_char": 249,
+        "end_char": 258,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "These"
+        "Detective"
       ],
-      "interpretation_hint": "Entity evidence: These (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Detective (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "dc283c0e": {
-      "id": "dc283c0e",
+    "269f7421": {
+      "id": "269f7421",
       "text_span": {
-        "text": "Millhaven",
-        "start_char": 1262,
-        "end_char": 1271,
+        "text": "Alfred",
+        "start_char": 259,
+        "end_char": 265,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Millhaven"
+        "Alfred"
       ],
-      "interpretation_hint": "Entity evidence: Millhaven (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Alfred (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "76eca1d0": {
-      "id": "76eca1d0",
+    "fd17fa0d": {
+      "id": "fd17fa0d",
       "text_span": {
-        "text": "Copper",
-        "start_char": 1331,
-        "end_char": 1337,
+        "text": "Laurie",
+        "start_char": 294,
+        "end_char": 300,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Copper"
+        "Laurie"
       ],
-      "interpretation_hint": "Entity evidence: Copper (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Laurie (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "d0e7a32e": {
-      "id": "d0e7a32e",
+    "d90ba2a6": {
+      "id": "d90ba2a6",
       "text_span": {
-        "text": "Bell",
-        "start_char": 1338,
-        "end_char": 1342,
+        "text": "Talia",
+        "start_char": 395,
+        "end_char": 400,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Bell"
+        "Talia"
       ],
-      "interpretation_hint": "Entity evidence: Bell (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Talia (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "1aa101f8": {
-      "id": "1aa101f8",
+    "4bf4ef2e": {
+      "id": "4bf4ef2e",
       "text_span": {
-        "text": "Heading",
-        "start_char": 1446,
-        "end_char": 1453,
+        "text": "However",
+        "start_char": 422,
+        "end_char": 429,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Heading"
+        "However"
       ],
-      "interpretation_hint": "Entity evidence: Heading (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: However (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "823ef02d": {
-      "id": "823ef02d",
+    "16095962": {
+      "id": "16095962",
       "text_span": {
-        "text": "Yes",
-        "start_char": 1500,
-        "end_char": 1503,
+        "text": "Sebastian",
+        "start_char": 431,
+        "end_char": 440,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Yes"
+        "Sebastian"
       ],
-      "interpretation_hint": "Entity evidence: Yes (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Sebastian (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "95323d23": {
-      "id": "95323d23",
+    "295ac346": {
+      "id": "295ac346",
       "text_span": {
-        "text": "Then",
-        "start_char": 1520,
-        "end_char": 1524,
+        "text": "Suddenly",
+        "start_char": 499,
+        "end_char": 507,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 2,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Then"
+        "Suddenly"
       ],
-      "interpretation_hint": "Entity evidence: Then (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Suddenly (person)",
+      "timestamp": "2026-07-16T08:04:29.557043"
     },
-    "3cb9b961": {
-      "id": "3cb9b961",
+    "9ae78aa2": {
+      "id": "9ae78aa2",
       "text_span": {
-        "text": "Thornwood",
-        "start_char": 1550,
-        "end_char": 1559,
+        "text": "Fractured",
+        "start_char": 15,
+        "end_char": 24,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Thornwood"
+        "Fractured"
       ],
-      "interpretation_hint": "Entity evidence: Thornwood (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Fractured (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
     },
-    "3f7f9a01": {
-      "id": "3f7f9a01",
+    "f446f6af": {
+      "id": "f446f6af",
       "text_span": {
-        "text": "Things",
-        "start_char": 1572,
-        "end_char": 1578,
+        "text": "Alibi",
+        "start_char": 25,
+        "end_char": 30,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Things"
+        "Alibi"
       ],
-      "interpretation_hint": "Entity evidence: Things (person)",
-      "timestamp": "2026-07-15T22:34:41.029804"
+      "interpretation_hint": "Entity evidence: Alibi (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
     },
-    "e99a28da": {
-      "id": "e99a28da",
+    "68d0c59d": {
+      "id": "68d0c59d",
+      "text_span": {
+        "text": "Whitmore",
+        "start_char": 49,
+        "end_char": 57,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Whitmore"
+      ],
+      "interpretation_hint": "Entity evidence: Whitmore (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
+    },
+    "5b56ef4f": {
+      "id": "5b56ef4f",
+      "text_span": {
+        "text": "Manor",
+        "start_char": 58,
+        "end_char": 63,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Manor"
+      ],
+      "interpretation_hint": "Entity evidence: Manor (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
+    },
+    "8919e44c": {
+      "id": "8919e44c",
+      "text_span": {
+        "text": "Rain",
+        "start_char": 191,
+        "end_char": 195,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Rain"
+      ],
+      "interpretation_hint": "Entity evidence: Rain (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
+    },
+    "6ede8865": {
+      "id": "6ede8865",
+      "text_span": {
+        "text": "Detective",
+        "start_char": 304,
+        "end_char": 313,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Detective"
+      ],
+      "interpretation_hint": "Entity evidence: Detective (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
+    },
+    "da8ab402": {
+      "id": "da8ab402",
+      "text_span": {
+        "text": "Alfred",
+        "start_char": 314,
+        "end_char": 320,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Alfred"
+      ],
+      "interpretation_hint": "Entity evidence: Alfred (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
+    },
+    "630ba2ae": {
+      "id": "630ba2ae",
+      "text_span": {
+        "text": "Laurie",
+        "start_char": 363,
+        "end_char": 369,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Laurie"
+      ],
+      "interpretation_hint": "Entity evidence: Laurie (person)",
+      "timestamp": "2026-07-16T08:16:40.975845"
+    },
+    "f12c4934": {
+      "id": "f12c4934",
+      "text_span": {
+        "text": "Lucius",
+        "start_char": 508,
+        "end_char": 514,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Lucius"
+      ],
+      "interpretation_hint": "Entity evidence: Lucius (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "c68012b6": {
+      "id": "c68012b6",
+      "text_span": {
+        "text": "Sebastian",
+        "start_char": 559,
+        "end_char": 568,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Sebastian"
+      ],
+      "interpretation_hint": "Entity evidence: Sebastian (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "e762f243": {
+      "id": "e762f243",
+      "text_span": {
+        "text": "Let",
+        "start_char": 671,
+        "end_char": 674,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Let"
+      ],
+      "interpretation_hint": "Entity evidence: Let (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "d19e17a4": {
+      "id": "d19e17a4",
+      "text_span": {
+        "text": "Miss",
+        "start_char": 1025,
+        "end_char": 1029,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Miss"
+      ],
+      "interpretation_hint": "Entity evidence: Miss (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "10195b93": {
+      "id": "10195b93",
+      "text_span": {
+        "text": "Talia",
+        "start_char": 1030,
+        "end_char": 1035,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Talia"
+      ],
+      "interpretation_hint": "Entity evidence: Talia (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "568bb34d": {
+      "id": "568bb34d",
+      "text_span": {
+        "text": "That",
+        "start_char": 1078,
+        "end_char": 1082,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "That"
+      ],
+      "interpretation_hint": "Entity evidence: That (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "1268c658": {
+      "id": "1268c658",
+      "text_span": {
+        "text": "Inspector",
+        "start_char": 1095,
+        "end_char": 1104,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Inspector"
+      ],
+      "interpretation_hint": "Entity evidence: Inspector (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "273dc931": {
+      "id": "273dc931",
+      "text_span": {
+        "text": "There",
+        "start_char": 1248,
+        "end_char": 1253,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "There"
+      ],
+      "interpretation_hint": "Entity evidence: There (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "a8c77ae5": {
+      "id": "a8c77ae5",
+      "text_span": {
+        "text": "Winnie",
+        "start_char": 1324,
+        "end_char": 1330,
+        "sentence_index": null
+      },
+      "evidence_type": "DIRECT_STATEMENT",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Winnie"
+      ],
+      "interpretation_hint": "Entity evidence: Winnie (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "eca9d7d9": {
+      "id": "eca9d7d9",
       "text_span": {
         "text": "Your",
-        "start_char": 1654,
-        "end_char": 1658,
+        "start_char": 2024,
+        "end_char": 2028,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
         "Your"
       ],
       "interpretation_hint": "Entity evidence: Your (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "8b826a38": {
-      "id": "8b826a38",
+    "78da9159": {
+      "id": "78da9159",
       "text_span": {
-        "text": "Three",
-        "start_char": 1697,
-        "end_char": 1702,
+        "text": "When",
+        "start_char": 2239,
+        "end_char": 2243,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Three"
+        "When"
       ],
-      "interpretation_hint": "Entity evidence: Three (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Entity evidence: When (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "a3c38c56": {
-      "id": "a3c38c56",
+    "878530c3": {
+      "id": "878530c3",
       "text_span": {
-        "text": "Asked",
-        "start_char": 1715,
-        "end_char": 1720,
+        "text": "Yes",
+        "start_char": 2732,
+        "end_char": 2735,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Asked"
+        "Yes"
       ],
-      "interpretation_hint": "Entity evidence: Asked (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Entity evidence: Yes (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "9a43df74": {
-      "id": "9a43df74",
+    "a0b27436": {
+      "id": "a0b27436",
       "text_span": {
-        "text": "Did",
-        "start_char": 1769,
-        "end_char": 1772,
+        "text": "Mr",
+        "start_char": 2775,
+        "end_char": 2777,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Did"
+        "Mr"
       ],
-      "interpretation_hint": "Entity evidence: Did (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Entity evidence: Mr (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "70b0c2b9": {
-      "id": "70b0c2b9",
+    "8fa67108": {
+      "id": "8fa67108",
       "text_span": {
-        "text": "Said",
-        "start_char": 1803,
-        "end_char": 1807,
+        "text": "Resting",
+        "start_char": 2864,
+        "end_char": 2871,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Said"
+        "Resting"
       ],
-      "interpretation_hint": "Entity evidence: Said (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Entity evidence: Resting (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "f9e02f1d": {
-      "id": "f9e02f1d",
+    "c059e66b": {
+      "id": "c059e66b",
       "text_span": {
-        "text": "Be",
-        "start_char": 1945,
-        "end_char": 1947,
+        "text": "So",
+        "start_char": 3004,
+        "end_char": 3006,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Be"
+        "So"
       ],
-      "interpretation_hint": "Entity evidence: Be (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Entity evidence: So (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "f68ab6fd": {
-      "id": "f68ab6fd",
+    "d51bfb9c": {
+      "id": "d51bfb9c",
       "text_span": {
-        "text": "As",
-        "start_char": 2302,
-        "end_char": 2304,
+        "text": "Someone",
+        "start_char": 3291,
+        "end_char": 3298,
         "sentence_index": null
       },
       "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "As"
+        "Someone"
       ],
-      "interpretation_hint": "Entity evidence: As (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Entity evidence: Someone (person)",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "fa21e632": {
-      "id": "fa21e632",
+    "4157cc91": {
+      "id": "4157cc91",
       "text_span": {
-        "text": "Somewhere",
-        "start_char": 2592,
-        "end_char": 2601,
-        "sentence_index": null
-      },
-      "evidence_type": "DIRECT_STATEMENT",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 0.8,
-      "related_entities": [
-        "Somewhere"
-      ],
-      "interpretation_hint": "Entity evidence: Somewhere (person)",
-      "timestamp": "2026-07-15T22:34:41.030357"
-    },
-    "222d53a3": {
-      "id": "222d53a3",
-      "text_span": {
-        "text": "\"You don't have to go,\"",
-        "start_char": 293,
-        "end_char": 316,
-        "sentence_index": 3
-      },
-      "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 0.8,
-      "related_entities": [
-        "Thomas"
-      ],
-      "interpretation_hint": "Dialogue evidence attributed to Thomas",
-      "timestamp": "2026-07-15T22:34:41.030357"
-    },
-    "44263c55": {
-      "id": "44263c55",
-      "text_span": {
-        "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
-        "start_char": 488,
-        "end_char": 586,
+        "text": "\"Let us return to your timeline, Laurie,\"",
+        "start_char": 670,
+        "end_char": 711,
         "sentence_index": 7
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.8,
+      "related_entities": [
+        "Alfred"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Alfred",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "b139be16": {
+      "id": "b139be16",
+      "text_span": {
+        "text": "\"You claimed that during the hour of the storm—the very hour the milk bottle in the study was tampered with—you were in the library, and subsequently the study, accompanied by Miss Talia.\"",
+        "start_char": 849,
+        "end_char": 1037,
+        "sentence_index": 9
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "692cd758": {
-      "id": "692cd758",
+    "24e06d1f": {
+      "id": "24e06d1f",
       "text_span": {
-        "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
-        "start_char": 620,
-        "end_char": 711,
+        "text": "\"That is correct, Inspector. We were discussing the family archives. The rain had made us restless.\"",
+        "start_char": 1077,
+        "end_char": 1177,
         "sentence_index": 11
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "78540c87": {
-      "id": "78540c87",
+    "c98c9374": {
+      "id": "c98c9374",
       "text_span": {
-        "text": "\"It got him answers,\"",
-        "start_char": 713,
-        "end_char": 734,
-        "sentence_index": 13
+        "text": "\"A charming picture,\"",
+        "start_char": 1179,
+        "end_char": 1200,
+        "sentence_index": 14
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.8,
       "related_entities": [
-        "Alice"
+        "Alfred"
       ],
-      "interpretation_hint": "Dialogue evidence attributed to Alice",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "interpretation_hint": "Dialogue evidence attributed to Alfred",
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "4912e803": {
-      "id": "4912e803",
+    "5471bf66": {
+      "id": "5471bf66",
       "text_span": {
-        "text": "\"I'll be back before the winter solstice. I promise.\"",
-        "start_char": 798,
-        "end_char": 851,
-        "sentence_index": 15
+        "text": "\"There is only one minor complication. I have just spoken with Talia's maid, Winnie. Winnie spent the entire night in the ante-room adjoining Miss Talia's private bedchamber. She is quite adamant that her mistress never left her bed all evening, having taken a mild sedative for her headache at nine o'clock.\"",
+        "start_char": 1247,
+        "end_char": 1556,
+        "sentence_index": 16
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "7ec8778c": {
-      "id": "7ec8778c",
+    "1141152f": {
+      "id": "1141152f",
       "text_span": {
-        "text": "\"Heading north?\"",
-        "start_char": 1445,
-        "end_char": 1461,
+        "text": "\"Winnie is a loyal servant, Inspector, but perhaps her own fatigue got the better of her. Or perhaps... she is mistaken about the time.\"",
+        "start_char": 1725,
+        "end_char": 1861,
+        "sentence_index": 22
+      },
+      "evidence_type": "DIALOGUE",
+      "source_chapter": 3,
+      "source_scene": null,
+      "confidence": 0.25,
+      "related_entities": [
+        "Unknown"
+      ],
+      "interpretation_hint": "Dialogue evidence attributed to Unknown",
+      "timestamp": "2026-07-16T08:16:40.976351"
+    },
+    "d121d478": {
+      "id": "d121d478",
+      "text_span": {
+        "text": "\"Winnie's timepiece is synchronized with the grandfather clock in the hall, which I have just verified,\"",
+        "start_char": 1863,
+        "end_char": 1967,
         "sentence_index": 24
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "4bae1e39": {
-      "id": "4bae1e39",
+    "3c583530": {
+      "id": "3c583530",
       "text_span": {
-        "text": "\"Yes,\"",
-        "start_char": 1499,
-        "end_char": 1505,
-        "sentence_index": 26
+        "text": "\"And what of you, Sebastian? Your sudden entrance earlier was... striking. You appeared in the drawing room almost as if by magic.\"",
+        "start_char": 1995,
+        "end_char": 2126,
+        "sentence_index": 25
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 0.8,
-      "related_entities": [
-        "Alice"
-      ],
-      "interpretation_hint": "Dialogue evidence attributed to Alice",
-      "timestamp": "2026-07-15T22:34:41.030357"
-    },
-    "f76f06cb": {
-      "id": "f76f06cb",
-      "text_span": {
-        "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
-        "start_char": 1519,
-        "end_char": 1622,
-        "sentence_index": 27
-      },
-      "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "efdbf7d1": {
-      "id": "efdbf7d1",
+    "47917457": {
+      "id": "47917457",
       "text_span": {
-        "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
-        "start_char": 1653,
-        "end_char": 1741,
-        "sentence_index": 30
+        "text": "\"I apologize if my arrival startled the household, Inspector. When I heard the glass shatter from the carriage house, I ran back across the courtyard. The mud was thick, and I nearly lost my footing twice, which is why my boots are caked in clay. The side door was bolted, so I had to circle around to the terrace doors. I burst in as quickly as my lungs would allow.\"",
+        "start_char": 2177,
+        "end_char": 2545,
+        "sentence_index": 29
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "2b09883a": {
-      "id": "2b09883a",
+    "3c7a0535": {
+      "id": "3c7a0535",
       "text_span": {
-        "text": "\"Did he say where he was going?\"",
-        "start_char": 1768,
-        "end_char": 1800,
-        "sentence_index": 34
+        "text": "\"A breathless run. Yes, that explains the state of your coat, Mr. Whitmore.\"",
+        "start_char": 2713,
+        "end_char": 2789,
+        "sentence_index": 35
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "dc7ce51e": {
-      "id": "dc7ce51e",
+    "c8350a7a": {
+      "id": "c8350a7a",
       "text_span": {
-        "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
-        "start_char": 1802,
-        "end_char": 1916,
-        "sentence_index": 34
+        "text": "\"So,\"",
+        "start_char": 3003,
+        "end_char": 3008,
+        "sentence_index": 39
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     },
-    "203944d2": {
-      "id": "203944d2",
+    "ee99fcc1": {
+      "id": "ee99fcc1",
       "text_span": {
-        "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
-        "start_char": 1944,
-        "end_char": 2007,
-        "sentence_index": 37
+        "text": "\"We have a bottle of milk laced with cyanide sitting in a study that was supposed to be empty. We have a young lady asleep in her chambers while her cousin claims her as an alibi. And we have a shattered window with no culprit in sight. Someone in this house is spinning a very delicate web. But webs, gentlemen, are incredibly easy to tear.\"",
+        "start_char": 3054,
+        "end_char": 3396,
+        "sentence_index": 40
       },
       "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
+      "source_chapter": 3,
       "source_scene": null,
       "confidence": 0.25,
       "related_entities": [
         "Unknown"
       ],
       "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
-    },
-    "8441b3e0": {
-      "id": "8441b3e0",
-      "text_span": {
-        "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
-        "start_char": 2450,
-        "end_char": 2539,
-        "sentence_index": 44
-      },
-      "evidence_type": "DIALOGUE",
-      "source_chapter": 1,
-      "source_scene": null,
-      "confidence": 0.25,
-      "related_entities": [
-        "Unknown"
-      ],
-      "interpretation_hint": "Dialogue evidence attributed to Unknown",
-      "timestamp": "2026-07-15T22:34:41.030357"
+      "timestamp": "2026-07-16T08:16:40.976351"
     }
   },
   "delta_history": [
     {
-      "chapter_number": 1,
+      "chapter_number": 3,
       "change_count": 24,
       "changes": [
         {
-          "change_type": "INTRODUCTION",
+          "change_type": "EVOLUTION",
           "target_type": "CHARACTER",
-          "target_id": "alice",
+          "target_id": "detective_alfred",
+          "field_key": "location",
+          "old_value": "morning_room",
+          "new_value": "drawing_room",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM."
+        },
+        {
+          "change_type": "EVOLUTION",
+          "target_type": "CHARACTER",
+          "target_id": "detective_alfred",
+          "field_key": "inventory",
+          "old_value": [],
+          "new_value": [
+            "brass_pocket_watch"
+          ],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM."
+        },
+        {
+          "change_type": "EVOLUTION",
+          "target_type": "CHARACTER",
+          "target_id": "laurie",
           "field_key": "canonical_name",
-          "old_value": null,
-          "new_value": "Alice",
+          "old_value": "Laurie",
+          "new_value": "Laurie Whitmore",
           "evidence": [],
           "confidence": 1.0,
           "reasoning": "Canonical name set by LLM."
         },
         {
-          "change_type": "INTRODUCTION",
+          "change_type": "EVOLUTION",
           "target_type": "CHARACTER",
-          "target_id": "alice",
-          "field_key": "brave",
-          "old_value": null,
-          "new_value": true,
-          "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "She decides to go to the Silver Gate despite the potential dangers."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "alice",
-          "field_key": "determined",
-          "old_value": null,
-          "new_value": true,
-          "evidence": [],
-          "confidence": 0.9,
-          "reasoning": "She is resolute in her decision to find out what is wrong at the Silver Gate."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "alice",
-          "field_key": "goals",
-          "old_value": null,
-          "new_value": [
-            "Find out what is wrong at the Silver Gate"
-          ],
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Goals updated by LLM."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "alice",
-          "field_key": "fears",
-          "old_value": null,
-          "new_value": [
-            "The unknown dangers at the Silver Gate"
-          ],
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Fears updated by LLM."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "alice",
+          "target_id": "laurie",
           "field_key": "location",
-          "old_value": null,
-          "new_value": "stream_side_camp",
+          "old_value": "morning_room",
+          "new_value": "drawing_room",
           "evidence": [],
           "confidence": 1.0,
           "reasoning": "Character location updated by LLM."
@@ -1477,42 +2945,22 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "alice",
-          "field_key": "inventory",
+          "target_id": "sebastian_whitmore",
+          "field_key": "physical_condition",
           "old_value": null,
-          "new_value": [],
+          "new_value": "breathless",
           "evidence": [],
           "confidence": 1.0,
-          "reasoning": "Inventory delta applied by LLM."
+          "reasoning": "He had a breathless run from the carriage house to the drawing room."
         },
         {
-          "change_type": "INTRODUCTION",
+          "change_type": "EVOLUTION",
           "target_type": "CHARACTER",
-          "target_id": "thomas",
-          "field_key": "canonical_name",
-          "old_value": null,
-          "new_value": "Thomas",
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Canonical name set by LLM."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "thomas",
-          "field_key": "concerned",
-          "old_value": null,
-          "new_value": true,
-          "evidence": [],
-          "confidence": 0.7,
-          "reasoning": "He expresses worry about Alice's decision to go to the Silver Gate."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "thomas",
+          "target_id": "sebastian_whitmore",
           "field_key": "goals",
-          "old_value": null,
+          "old_value": [
+            "uncover the truth"
+          ],
           "new_value": [],
           "evidence": [],
           "confidence": 1.0,
@@ -1521,45 +2969,10 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "thomas",
-          "field_key": "fears",
-          "old_value": null,
-          "new_value": [
-            "Losing Alice"
-          ],
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Fears updated by LLM."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "thomas",
-          "field_key": "location",
-          "old_value": null,
-          "new_value": "thornfield_hall",
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Character location updated by LLM."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "thomas",
-          "field_key": "inventory",
-          "old_value": null,
-          "new_value": [],
-          "evidence": [],
-          "confidence": 1.0,
-          "reasoning": "Inventory delta applied by LLM."
-        },
-        {
-          "change_type": "INTRODUCTION",
-          "target_type": "CHARACTER",
-          "target_id": "old_woman",
+          "target_id": "winnie",
           "field_key": "canonical_name",
           "old_value": null,
-          "new_value": "Old Woman",
+          "new_value": "Winnie",
           "evidence": [],
           "confidence": 1.0,
           "reasoning": "Canonical name set by LLM."
@@ -1567,18 +2980,32 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "old_woman",
-          "field_key": "knowledgeable",
+          "target_id": "winnie",
+          "field_key": "aliases",
           "old_value": null,
-          "new_value": true,
+          "new_value": [
+            "Talia's maid",
+            "Winnie"
+          ],
           "evidence": [],
-          "confidence": 0.8,
-          "reasoning": "She provides information about Alice's father and the old road."
+          "confidence": 1.0,
+          "reasoning": "Aliases updated by LLM."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "old_woman",
+          "target_id": "winnie",
+          "field_key": "loyal",
+          "old_value": null,
+          "new_value": true,
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "She is described as a loyal servant."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "winnie",
           "field_key": "goals",
           "old_value": null,
           "new_value": [],
@@ -1589,7 +3016,7 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "old_woman",
+          "target_id": "winnie",
           "field_key": "fears",
           "old_value": null,
           "new_value": [],
@@ -1600,10 +3027,10 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "old_woman",
+          "target_id": "winnie",
           "field_key": "location",
           "old_value": null,
-          "new_value": "millhaven_village",
+          "new_value": "ante_room",
           "evidence": [],
           "confidence": 1.0,
           "reasoning": "Character location updated by LLM."
@@ -1611,7 +3038,64 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "old_woman",
+          "target_id": "winnie",
+          "field_key": "inventory",
+          "old_value": null,
+          "new_value": [
+            "timepiece"
+          ],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Inventory delta applied by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "lucius",
+          "field_key": "canonical_name",
+          "old_value": null,
+          "new_value": "Lucius",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "lucius",
+          "field_key": "goals",
+          "old_value": null,
+          "new_value": [],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "lucius",
+          "field_key": "fears",
+          "old_value": null,
+          "new_value": [],
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "lucius",
+          "field_key": "location",
+          "old_value": null,
+          "new_value": "drawing_room",
+          "evidence": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "CHARACTER",
+          "target_id": "lucius",
           "field_key": "inventory",
           "old_value": null,
           "new_value": [],
@@ -1622,766 +3106,723 @@
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "alice::thomas",
+          "target_id": "detective_alfred::laurie",
           "field_key": "relationship_label",
           "old_value": null,
-          "new_value": "ALLIANCE",
+          "new_value": "ENMITY",
           "evidence": [],
           "confidence": 0.9,
-          "reasoning": "They share a close bond as siblings."
+          "reasoning": "Detective Alfred is questioning Laurie's alibi, and Laurie seems to be hiding something, indicating a tense relationship."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "CHARACTER",
-          "target_id": "alice::old_woman",
+          "target_id": "sebastian_whitmore::detective_alfred",
           "field_key": "relationship_label",
           "old_value": null,
           "new_value": "NEUTRAL",
           "evidence": [],
           "confidence": 0.9,
-          "reasoning": "The old woman provides information to Alice without any apparent motive."
+          "reasoning": "Sebastian is explaining his actions to Detective Alfred, and there is no indication of hostility or friendship."
         },
         {
           "change_type": "EVOLUTION",
           "target_type": "PROMISE",
-          "target_id": "alice_return_promise",
+          "target_id": "laurie_alibi",
           "field_key": "status",
           "old_value": null,
-          "new_value": "OPEN",
+          "new_value": "BROKEN",
           "evidence": [],
           "confidence": 0.95,
-          "reasoning": "Alice makes a promise to Thomas before she leaves."
+          "reasoning": "Laurie's alibi is questioned, and it is revealed that Talia was asleep in her bedchamber, making his statement false."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "MYSTERY",
-          "target_id": "mystery_timeline_gap_1_65137",
+          "target_id": "mystery_alibi_discrepancy_3_40063",
           "field_key": "status",
           "old_value": null,
           "new_value": "unresolved",
           "evidence": [],
           "confidence": 0.9,
-          "reasoning": "LLM contradiction flagged: There is a gap in the timeline between Alice's father's visit to Millhaven and Alice's departure from Thornfield Hall."
+          "reasoning": "LLM contradiction flagged: Laurie's alibi is disputed, and it is unclear what he was doing during the time the milk bottle was tampered with."
+        },
+        {
+          "change_type": "INTRODUCTION",
+          "target_type": "MYSTERY",
+          "target_id": "mystery_inconsistent_timeline_3_51682",
+          "field_key": "status",
+          "old_value": null,
+          "new_value": "unresolved",
+          "evidence": [],
+          "confidence": 0.9,
+          "reasoning": "LLM contradiction flagged: The timeline of events is unclear, and it is difficult to determine the order in which things happened."
         },
         {
           "change_type": "INTRODUCTION",
           "target_type": "SCENE",
-          "target_id": "ch1.sc1",
+          "target_id": "ch3.sc1",
           "field_key": "scene_text",
           "old_value": null,
-          "new_value": "Chapter 1: The Departure",
+          "new_value": "Chapter 3: The Fractured Alibi The storm outside Whitmore Manor seemed to mimic the rising panic within. In the drawing room, the air was thick with the scent of damp wool and old coal dust. Rain lash",
           "evidence": [],
           "confidence": 0.7,
           "reasoning": "Scene detected by SceneEngine."
         }
       ],
-      "new_evidence_count": 39,
+      "new_evidence_count": 36,
       "new_evidence": [
         {
-          "id": "d85d55a5",
+          "id": "9ae78aa2",
           "text_span": {
-            "text": "Departure",
+            "text": "Fractured",
             "start_char": 15,
             "end_char": 24,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Departure"
+            "Fractured"
           ],
-          "interpretation_hint": "Entity evidence: Departure (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Fractured (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "a53ce43c",
+          "id": "f446f6af",
           "text_span": {
-            "text": "Thornfield",
-            "start_char": 90,
-            "end_char": 100,
+            "text": "Alibi",
+            "start_char": 25,
+            "end_char": 30,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Thornfield"
+            "Alibi"
           ],
-          "interpretation_hint": "Entity evidence: Thornfield (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Alibi (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "4c2005b2",
+          "id": "68d0c59d",
           "text_span": {
-            "text": "Hall",
-            "start_char": 101,
-            "end_char": 105,
+            "text": "Whitmore",
+            "start_char": 49,
+            "end_char": 57,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Hall"
+            "Whitmore"
           ],
-          "interpretation_hint": "Entity evidence: Hall (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Whitmore (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "9a172d30",
+          "id": "5b56ef4f",
           "text_span": {
-            "text": "Alice",
-            "start_char": 107,
-            "end_char": 112,
+            "text": "Manor",
+            "start_char": 58,
+            "end_char": 63,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Alice"
+            "Manor"
           ],
-          "interpretation_hint": "Entity evidence: Alice (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Manor (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "c85f5f6a",
+          "id": "8919e44c",
           "text_span": {
-            "text": "Thomas",
-            "start_char": 322,
-            "end_char": 328,
+            "text": "Rain",
+            "start_char": 191,
+            "end_char": 195,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Thomas"
+            "Rain"
           ],
-          "interpretation_hint": "Entity evidence: Thomas (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Rain (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "943b7bbf",
+          "id": "6ede8865",
           "text_span": {
-            "text": "Father",
-            "start_char": 495,
-            "end_char": 501,
+            "text": "Detective",
+            "start_char": 304,
+            "end_char": 313,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Father"
+            "Detective"
           ],
-          "interpretation_hint": "Entity evidence: Father (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Detective (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "9842b22e",
+          "id": "da8ab402",
           "text_span": {
-            "text": "Something",
-            "start_char": 522,
-            "end_char": 531,
+            "text": "Alfred",
+            "start_char": 314,
+            "end_char": 320,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Something"
+            "Alfred"
           ],
-          "interpretation_hint": "Entity evidence: Something (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Alfred (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "77ebae84",
+          "id": "630ba2ae",
           "text_span": {
-            "text": "Silver",
-            "start_char": 548,
-            "end_char": 554,
+            "text": "Laurie",
+            "start_char": 363,
+            "end_char": 369,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Silver"
+            "Laurie"
           ],
-          "interpretation_hint": "Entity evidence: Silver (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Laurie (person)",
+          "timestamp": "2026-07-16T08:16:40.975845"
         },
         {
-          "id": "41aedad0",
+          "id": "f12c4934",
           "text_span": {
-            "text": "Gate",
-            "start_char": 555,
-            "end_char": 559,
+            "text": "Lucius",
+            "start_char": 508,
+            "end_char": 514,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Gate"
+            "Lucius"
           ],
-          "interpretation_hint": "Entity evidence: Gate (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Lucius (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "65691a40",
+          "id": "c68012b6",
           "text_span": {
-            "text": "These",
-            "start_char": 1065,
-            "end_char": 1070,
+            "text": "Sebastian",
+            "start_char": 559,
+            "end_char": 568,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "These"
+            "Sebastian"
           ],
-          "interpretation_hint": "Entity evidence: These (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Sebastian (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "dc283c0e",
+          "id": "e762f243",
           "text_span": {
-            "text": "Millhaven",
-            "start_char": 1262,
-            "end_char": 1271,
+            "text": "Let",
+            "start_char": 671,
+            "end_char": 674,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Millhaven"
+            "Let"
           ],
-          "interpretation_hint": "Entity evidence: Millhaven (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Let (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "76eca1d0",
+          "id": "d19e17a4",
           "text_span": {
-            "text": "Copper",
-            "start_char": 1331,
-            "end_char": 1337,
+            "text": "Miss",
+            "start_char": 1025,
+            "end_char": 1029,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Copper"
+            "Miss"
           ],
-          "interpretation_hint": "Entity evidence: Copper (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Miss (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "d0e7a32e",
+          "id": "10195b93",
           "text_span": {
-            "text": "Bell",
-            "start_char": 1338,
-            "end_char": 1342,
+            "text": "Talia",
+            "start_char": 1030,
+            "end_char": 1035,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Bell"
+            "Talia"
           ],
-          "interpretation_hint": "Entity evidence: Bell (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Talia (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "1aa101f8",
+          "id": "568bb34d",
           "text_span": {
-            "text": "Heading",
-            "start_char": 1446,
-            "end_char": 1453,
+            "text": "That",
+            "start_char": 1078,
+            "end_char": 1082,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Heading"
+            "That"
           ],
-          "interpretation_hint": "Entity evidence: Heading (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: That (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "823ef02d",
+          "id": "1268c658",
           "text_span": {
-            "text": "Yes",
-            "start_char": 1500,
-            "end_char": 1503,
+            "text": "Inspector",
+            "start_char": 1095,
+            "end_char": 1104,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Yes"
+            "Inspector"
           ],
-          "interpretation_hint": "Entity evidence: Yes (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Inspector (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "95323d23",
+          "id": "273dc931",
           "text_span": {
-            "text": "Then",
-            "start_char": 1520,
-            "end_char": 1524,
+            "text": "There",
+            "start_char": 1248,
+            "end_char": 1253,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Then"
+            "There"
           ],
-          "interpretation_hint": "Entity evidence: Then (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: There (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "3cb9b961",
+          "id": "a8c77ae5",
           "text_span": {
-            "text": "Thornwood",
-            "start_char": 1550,
-            "end_char": 1559,
+            "text": "Winnie",
+            "start_char": 1324,
+            "end_char": 1330,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Thornwood"
+            "Winnie"
           ],
-          "interpretation_hint": "Entity evidence: Thornwood (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
+          "interpretation_hint": "Entity evidence: Winnie (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "3f7f9a01",
-          "text_span": {
-            "text": "Things",
-            "start_char": 1572,
-            "end_char": 1578,
-            "sentence_index": null
-          },
-          "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.8,
-          "related_entities": [
-            "Things"
-          ],
-          "interpretation_hint": "Entity evidence: Things (person)",
-          "timestamp": "2026-07-15T22:34:41.029804"
-        },
-        {
-          "id": "e99a28da",
+          "id": "eca9d7d9",
           "text_span": {
             "text": "Your",
-            "start_char": 1654,
-            "end_char": 1658,
+            "start_char": 2024,
+            "end_char": 2028,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
             "Your"
           ],
           "interpretation_hint": "Entity evidence: Your (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "8b826a38",
+          "id": "78da9159",
           "text_span": {
-            "text": "Three",
-            "start_char": 1697,
-            "end_char": 1702,
+            "text": "When",
+            "start_char": 2239,
+            "end_char": 2243,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Three"
+            "When"
           ],
-          "interpretation_hint": "Entity evidence: Three (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Entity evidence: When (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "a3c38c56",
+          "id": "878530c3",
           "text_span": {
-            "text": "Asked",
-            "start_char": 1715,
-            "end_char": 1720,
+            "text": "Yes",
+            "start_char": 2732,
+            "end_char": 2735,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Asked"
+            "Yes"
           ],
-          "interpretation_hint": "Entity evidence: Asked (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Entity evidence: Yes (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "9a43df74",
+          "id": "a0b27436",
           "text_span": {
-            "text": "Did",
-            "start_char": 1769,
-            "end_char": 1772,
+            "text": "Mr",
+            "start_char": 2775,
+            "end_char": 2777,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Did"
+            "Mr"
           ],
-          "interpretation_hint": "Entity evidence: Did (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Entity evidence: Mr (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "70b0c2b9",
+          "id": "8fa67108",
           "text_span": {
-            "text": "Said",
-            "start_char": 1803,
-            "end_char": 1807,
+            "text": "Resting",
+            "start_char": 2864,
+            "end_char": 2871,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Said"
+            "Resting"
           ],
-          "interpretation_hint": "Entity evidence: Said (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Entity evidence: Resting (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "f9e02f1d",
+          "id": "c059e66b",
           "text_span": {
-            "text": "Be",
-            "start_char": 1945,
-            "end_char": 1947,
+            "text": "So",
+            "start_char": 3004,
+            "end_char": 3006,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Be"
+            "So"
           ],
-          "interpretation_hint": "Entity evidence: Be (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Entity evidence: So (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "f68ab6fd",
+          "id": "d51bfb9c",
           "text_span": {
-            "text": "As",
-            "start_char": 2302,
-            "end_char": 2304,
+            "text": "Someone",
+            "start_char": 3291,
+            "end_char": 3298,
             "sentence_index": null
           },
           "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "As"
+            "Someone"
           ],
-          "interpretation_hint": "Entity evidence: As (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Entity evidence: Someone (person)",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "fa21e632",
+          "id": "4157cc91",
           "text_span": {
-            "text": "Somewhere",
-            "start_char": 2592,
-            "end_char": 2601,
-            "sentence_index": null
-          },
-          "evidence_type": "DIRECT_STATEMENT",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.8,
-          "related_entities": [
-            "Somewhere"
-          ],
-          "interpretation_hint": "Entity evidence: Somewhere (person)",
-          "timestamp": "2026-07-15T22:34:41.030357"
-        },
-        {
-          "id": "222d53a3",
-          "text_span": {
-            "text": "\"You don't have to go,\"",
-            "start_char": 293,
-            "end_char": 316,
-            "sentence_index": 3
-          },
-          "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.8,
-          "related_entities": [
-            "Thomas"
-          ],
-          "interpretation_hint": "Dialogue evidence attributed to Thomas",
-          "timestamp": "2026-07-15T22:34:41.030357"
-        },
-        {
-          "id": "44263c55",
-          "text_span": {
-            "text": "\"I do. Father's letter was clear. Something is wrong at the Silver Gate, and no one else will go.\"",
-            "start_char": 488,
-            "end_char": 586,
+            "text": "\"Let us return to your timeline, Laurie,\"",
+            "start_char": 670,
+            "end_char": 711,
             "sentence_index": 7
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
+          "source_scene": null,
+          "confidence": 0.8,
+          "related_entities": [
+            "Alfred"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Alfred",
+          "timestamp": "2026-07-16T08:16:40.976351"
+        },
+        {
+          "id": "b139be16",
+          "text_span": {
+            "text": "\"You claimed that during the hour of the storm—the very hour the milk bottle in the study was tampered with—you were in the library, and subsequently the study, accompanied by Miss Talia.\"",
+            "start_char": 849,
+            "end_char": 1037,
+            "sentence_index": 9
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "692cd758",
+          "id": "24e06d1f",
           "text_span": {
-            "text": "\"The Silver Gate is a myth. Father chased myths his whole life, and look where it got him.\"",
-            "start_char": 620,
-            "end_char": 711,
+            "text": "\"That is correct, Inspector. We were discussing the family archives. The rain had made us restless.\"",
+            "start_char": 1077,
+            "end_char": 1177,
             "sentence_index": 11
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "78540c87",
+          "id": "c98c9374",
           "text_span": {
-            "text": "\"It got him answers,\"",
-            "start_char": 713,
-            "end_char": 734,
-            "sentence_index": 13
+            "text": "\"A charming picture,\"",
+            "start_char": 1179,
+            "end_char": 1200,
+            "sentence_index": 14
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.8,
           "related_entities": [
-            "Alice"
+            "Alfred"
           ],
-          "interpretation_hint": "Dialogue evidence attributed to Alice",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "interpretation_hint": "Dialogue evidence attributed to Alfred",
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "4912e803",
+          "id": "5471bf66",
           "text_span": {
-            "text": "\"I'll be back before the winter solstice. I promise.\"",
-            "start_char": 798,
-            "end_char": 851,
-            "sentence_index": 15
+            "text": "\"There is only one minor complication. I have just spoken with Talia's maid, Winnie. Winnie spent the entire night in the ante-room adjoining Miss Talia's private bedchamber. She is quite adamant that her mistress never left her bed all evening, having taken a mild sedative for her headache at nine o'clock.\"",
+            "start_char": 1247,
+            "end_char": 1556,
+            "sentence_index": 16
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "7ec8778c",
+          "id": "1141152f",
           "text_span": {
-            "text": "\"Heading north?\"",
-            "start_char": 1445,
-            "end_char": 1461,
+            "text": "\"Winnie is a loyal servant, Inspector, but perhaps her own fatigue got the better of her. Or perhaps... she is mistaken about the time.\"",
+            "start_char": 1725,
+            "end_char": 1861,
+            "sentence_index": 22
+          },
+          "evidence_type": "DIALOGUE",
+          "source_chapter": 3,
+          "source_scene": null,
+          "confidence": 0.25,
+          "related_entities": [
+            "Unknown"
+          ],
+          "interpretation_hint": "Dialogue evidence attributed to Unknown",
+          "timestamp": "2026-07-16T08:16:40.976351"
+        },
+        {
+          "id": "d121d478",
+          "text_span": {
+            "text": "\"Winnie's timepiece is synchronized with the grandfather clock in the hall, which I have just verified,\"",
+            "start_char": 1863,
+            "end_char": 1967,
             "sentence_index": 24
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "4bae1e39",
+          "id": "3c583530",
           "text_span": {
-            "text": "\"Yes,\"",
-            "start_char": 1499,
-            "end_char": 1505,
-            "sentence_index": 26
+            "text": "\"And what of you, Sebastian? Your sudden entrance earlier was... striking. You appeared in the drawing room almost as if by magic.\"",
+            "start_char": 1995,
+            "end_char": 2126,
+            "sentence_index": 25
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.8,
-          "related_entities": [
-            "Alice"
-          ],
-          "interpretation_hint": "Dialogue evidence attributed to Alice",
-          "timestamp": "2026-07-15T22:34:41.030357"
-        },
-        {
-          "id": "f76f06cb",
-          "text_span": {
-            "text": "\"Then you'll want to avoid the Thornwood after dark. Things move in those trees that don't have names.\"",
-            "start_char": 1519,
-            "end_char": 1622,
-            "sentence_index": 27
-          },
-          "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "efdbf7d1",
+          "id": "47917457",
           "text_span": {
-            "text": "\"Your father passed through here, you know. Three months ago. Asked about the old road.\"",
-            "start_char": 1653,
-            "end_char": 1741,
-            "sentence_index": 30
+            "text": "\"I apologize if my arrival startled the household, Inspector. When I heard the glass shatter from the carriage house, I ran back across the courtyard. The mud was thick, and I nearly lost my footing twice, which is why my boots are caked in clay. The side door was bolted, so I had to circle around to the terrace doors. I burst in as quickly as my lungs would allow.\"",
+            "start_char": 2177,
+            "end_char": 2545,
+            "sentence_index": 29
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "2b09883a",
+          "id": "3c7a0535",
           "text_span": {
-            "text": "\"Did he say where he was going?\"",
-            "start_char": 1768,
-            "end_char": 1800,
-            "sentence_index": 34
+            "text": "\"A breathless run. Yes, that explains the state of your coat, Mr. Whitmore.\"",
+            "start_char": 2713,
+            "end_char": 2789,
+            "sentence_index": 35
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "dc7ce51e",
+          "id": "c8350a7a",
           "text_span": {
-            "text": "\"Said he was looking for something that was lost. Said it like a man who'd already found it and wished he hadn't.\"",
-            "start_char": 1802,
-            "end_char": 1916,
-            "sentence_index": 34
+            "text": "\"So,\"",
+            "start_char": 3003,
+            "end_char": 3008,
+            "sentence_index": 39
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         },
         {
-          "id": "203944d2",
+          "id": "ee99fcc1",
           "text_span": {
-            "text": "\"Be careful, girl. The north remembers what the south forgets.\"",
-            "start_char": 1944,
-            "end_char": 2007,
-            "sentence_index": 37
+            "text": "\"We have a bottle of milk laced with cyanide sitting in a study that was supposed to be empty. We have a young lady asleep in her chambers while her cousin claims her as an alibi. And we have a shattered window with no culprit in sight. Someone in this house is spinning a very delicate web. But webs, gentlemen, are incredibly easy to tear.\"",
+            "start_char": 3054,
+            "end_char": 3396,
+            "sentence_index": 40
           },
           "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
+          "source_chapter": 3,
           "source_scene": null,
           "confidence": 0.25,
           "related_entities": [
             "Unknown"
           ],
           "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
-        },
-        {
-          "id": "8441b3e0",
-          "text_span": {
-            "text": "\"The Gate is not a door. It is a question. And the answer changes depending on who asks.\"",
-            "start_char": 2450,
-            "end_char": 2539,
-            "sentence_index": 44
-          },
-          "evidence_type": "DIALOGUE",
-          "source_chapter": 1,
-          "source_scene": null,
-          "confidence": 0.25,
-          "related_entities": [
-            "Unknown"
-          ],
-          "interpretation_hint": "Dialogue evidence attributed to Unknown",
-          "timestamp": "2026-07-15T22:34:41.030357"
+          "timestamp": "2026-07-16T08:16:40.976351"
         }
       ],
-      "summary": "Chapter 1 produced 24 state changes: 23 introductions, 1 evolutions, 0 confirmations, 0 contradictions. Collected 39 evidence items.",
-      "timestamp": "2026-07-15T22:34:41.020565"
+      "summary": "Chapter 3 produced 24 state changes: 18 introductions, 6 evolutions, 0 confirmations, 0 contradictions. Collected 36 evidence items.",
+      "timestamp": "2026-07-16T08:16:40.972204"
     }
   ]
 }

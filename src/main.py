@@ -218,6 +218,26 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
     save_narrative_state(state, config.memory_dir)
     save_modular_state(state, config)
 
+    # Run SpatiotemporalInspector after state files are saved
+    try:
+        from src.review.alibi_inspector import SpatiotemporalInspector
+        inspector = SpatiotemporalInspector(config.profiles_dir, config.relationships_dir, config.clues_dir)
+        anomalies = inspector.run_checks(chapter_num)
+        
+        # Load the existing editorial report and append anomalies
+        report_path = config.reports_dir / f"editorial_report_ch{chapter_num}.json"
+        if report_path.exists():
+            with open(report_path, "r", encoding="utf-8") as f:
+                report_data = json.load(f)
+            
+            report_data["spatiotemporal_anomalies"] = anomalies
+            
+            with open(report_path, "w", encoding="utf-8") as f:
+                json.dump(report_data, f, indent=2, ensure_ascii=False)
+            logger.info(f"Spatiotemporal anomalies injected into {report_path.name}")
+    except Exception as e:
+        logger.error(f"Failed to run SpatiotemporalInspector: {e}")
+
     # Save character memory as character_memory.json for Principal Architect validation
     try:
         char_mem_file = config.memory_dir / "character_memory.json"

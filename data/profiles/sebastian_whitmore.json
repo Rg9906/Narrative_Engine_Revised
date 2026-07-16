@@ -1,0 +1,181 @@
+{
+  "sebastian_whitmore": {
+    "canonical_name": {
+      "key": "canonical_name",
+      "current": {
+        "value": "Sebastian Whitmore",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "restlessness": {
+      "key": "restlessness",
+      "current": {
+        "value": true,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Sebastian is described as feeling restless, which led him to stand up and leave the drawing room.",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-07-16T08:16:40.972204"
+      },
+      "history": [
+        {
+          "value": [],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        {
+          "value": [
+            "uncover the truth"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 3
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "drawing_room",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [
+        {
+          "value": "carriage_house",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [
+          "overcoat"
+        ],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "suspicious": {
+      "key": "suspicious",
+      "current": {
+        "value": true,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Sebastian's sudden appearance in the drawing room without walking back raises suspicions about his actions and intentions.",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "physical_condition": {
+      "key": "physical_condition",
+      "current": {
+        "value": "breathless",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "He had a breathless run from the carriage house to the drawing room.",
+        "timestamp": "2026-07-16T08:16:40.972204"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    }
+  }
+}

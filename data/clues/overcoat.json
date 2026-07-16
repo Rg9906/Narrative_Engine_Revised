@@ -1,0 +1,58 @@
+{
+  "overcoat": {
+    "type": {
+      "key": "type",
+      "current": {
+        "value": "object",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "owner": {
+      "key": "owner",
+      "current": {
+        "value": "sebastian_whitmore",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "carriage_house",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

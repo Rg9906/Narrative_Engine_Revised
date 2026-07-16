@@ -1,0 +1,165 @@
+{
+  "laurie": {
+    "canonical_name": {
+      "key": "canonical_name",
+      "current": {
+        "value": "Laurie Whitmore",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-07-16T08:16:40.972204"
+      },
+      "history": [
+        {
+          "value": "Laurie",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Canonical name set by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "clear his name"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [
+        {
+          "value": [],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [
+          "being accused of a crime"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [
+        {
+          "value": [],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Fears updated by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "drawing_room",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-07-16T08:16:40.972204"
+      },
+      "history": [
+        {
+          "value": "study",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:02:36.081645"
+        },
+        {
+          "value": "morning_room",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-07-16T08:04:29.554737"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 3
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-07-16T08:02:36.081645"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "deceptive": {
+      "key": "deceptive",
+      "current": {
+        "value": true,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.8,
+        "reasoning": "Laurie claimed to have a perfect alibi, but Sebastian's statement contradicts this, suggesting Laurie might be hiding something.",
+        "timestamp": "2026-07-16T08:04:29.554737"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

@@ -1,51 +1,15 @@
 {
-  "alice": {
+  "talia": {
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Alice",
+        "value": "Talia",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Canonical name set by LLM.",
-        "timestamp": "2026-07-15T22:34:41.021119"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 1
-    },
-    "brave": {
-      "key": "brave",
-      "current": {
-        "value": true,
-        "chapter": 1,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "She decides to go to the Silver Gate despite the potential dangers.",
-        "timestamp": "2026-07-15T22:34:41.021119"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 1
-    },
-    "determined": {
-      "key": "determined",
-      "current": {
-        "value": true,
-        "chapter": 1,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.9,
-        "reasoning": "She is resolute in her decision to find out what is wrong at the Silver Gate.",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:02:36.081645"
       },
       "history": [],
       "importance": 0.5,
@@ -57,15 +21,13 @@
     "goals": {
       "key": "goals",
       "current": {
-        "value": [
-          "Find out what is wrong at the Silver Gate"
-        ],
+        "value": [],
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
+        "confidence": 0.96,
         "reasoning": "Goals updated by LLM.",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:02:36.081645"
       },
       "history": [],
       "importance": 0.5,
@@ -77,15 +39,13 @@
     "fears": {
       "key": "fears",
       "current": {
-        "value": [
-          "The unknown dangers at the Silver Gate"
-        ],
+        "value": [],
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
+        "confidence": 0.96,
         "reasoning": "Fears updated by LLM.",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:02:36.081645"
       },
       "history": [],
       "importance": 0.5,
@@ -97,13 +57,13 @@
     "location": {
       "key": "location",
       "current": {
-        "value": "stream_side_camp",
+        "value": "private_bedchamber",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character location updated by LLM.",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:02:36.081645"
       },
       "history": [],
       "importance": 0.5,
@@ -121,7 +81,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Inventory delta applied by LLM.",
-        "timestamp": "2026-07-15T22:34:41.021119"
+        "timestamp": "2026-07-16T08:02:36.081645"
       },
       "history": [],
       "importance": 0.5,
