@@ -83,11 +83,13 @@ class NarrativeElementType(Enum):
     EVENT = auto()
     THEME = auto()
     PROMISE = auto()
+    THREAT = auto()
     CONFLICT = auto()
     MYSTERY = auto()
     SCENE = auto()
     ARC = auto()
     STYLE = auto()
+    MOTIF = auto()
 
 
 # =============================================================================
@@ -678,12 +680,17 @@ class NarrativeState:
     # Timeline (ordered list of events)
     timeline: List[Dict[str, Any]] = field(default_factory=list)
 
-    # Themes and symbols
+    # Themes and motifs
     themes: Dict[str, StateEntry] = field(default_factory=dict)
+    motifs: Dict[str, StateEntry] = field(default_factory=dict)
 
-    # Promises, foreshadowing, mysteries (keyed by unique ID)
+    # Promises, threats, foreshadowing, mysteries (keyed by unique ID)
     promises: Dict[str, StateEntry] = field(default_factory=dict)
+    threats: Dict[str, StateEntry] = field(default_factory=dict)
     mysteries: Dict[str, StateEntry] = field(default_factory=dict)
+
+    # Chapter summaries
+    chapter_summaries: Dict[int, str] = field(default_factory=dict)
 
     # Conflicts and arcs
     conflicts: Dict[str, StateEntry] = field(default_factory=dict)
@@ -746,8 +753,11 @@ class NarrativeState:
             "world": _serialize_state_dict(self.world),
             "timeline": self.timeline,
             "themes": _serialize_state_dict(self.themes),
+            "motifs": _serialize_state_dict(self.motifs),
             "promises": _serialize_state_dict(self.promises),
+            "threats": _serialize_state_dict(self.threats),
             "mysteries": _serialize_state_dict(self.mysteries),
+            "chapter_summaries": self.chapter_summaries,
             "conflicts": _serialize_state_dict(self.conflicts),
             "arcs": _serialize_state_dict(self.arcs),
             "style": _serialize_state_dict(self.style),
@@ -782,8 +792,14 @@ class NarrativeState:
         state.world = _deserialize_state_dict(data.get("world", {}))
         state.timeline = data.get("timeline", [])
         state.themes = _deserialize_state_dict(data.get("themes", {}))
+        state.motifs = _deserialize_state_dict(data.get("motifs", {}))
         state.promises = _deserialize_state_dict(data.get("promises", {}))
+        state.threats = _deserialize_state_dict(data.get("threats", {}))
         state.mysteries = _deserialize_state_dict(data.get("mysteries", {}))
+        
+        # Keys in JSON might be strings, cast to int for chapter summaries
+        raw_summaries = data.get("chapter_summaries", {})
+        state.chapter_summaries = {int(k): v for k, v in raw_summaries.items()}
         state.conflicts = _deserialize_state_dict(data.get("conflicts", {}))
         state.arcs = _deserialize_state_dict(data.get("arcs", {}))
         state.style = _deserialize_state_dict(data.get("style", {}))

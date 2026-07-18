@@ -60,7 +60,11 @@ class ContextRetriever:
             char_data=char_data,
             relationships_data=relationships_data,
             promises_data=promises_data,
-            world_data=world_data
+            world_data=world_data,
+            threats_data=data_sources.get("threats", {}),
+            themes_data=data_sources.get("themes", {}),
+            motifs_data=data_sources.get("motifs", {}),
+            chapter_summaries_data=data_sources.get("chapter_summaries", {})
         )
 
         return context_str, sorted(list(active_characters))
@@ -74,6 +78,10 @@ class ContextRetriever:
         relationships_data = {}
         promises_data = {}
         world_data = {}
+        threats_data = {}
+        themes_data = {}
+        motifs_data = {}
+        chapter_summaries_data = {}
 
         # 1. Try global state narrative_state.json as fallback source
         state_path = self._memory_dir / "narrative_state.json"
@@ -85,6 +93,10 @@ class ContextRetriever:
                     relationships_data = sdata.get("relationships", {})
                     promises_data = sdata.get("promises", {})
                     world_data = sdata.get("world", {})
+                    threats_data = sdata.get("threats", {})
+                    themes_data = sdata.get("themes", {})
+                    motifs_data = sdata.get("motifs", {})
+                    chapter_summaries_data = sdata.get("chapter_summaries", {})
             except Exception as e:
                 logger.warning(f"Graceful fallback: Failed to load narrative_state.json: {e}")
 
@@ -203,6 +215,10 @@ class ContextRetriever:
             "relationships": relationships_data,
             "promises": promises_data,
             "world": world_data,
+            "threats": threats_data,
+            "themes": themes_data,
+            "motifs": motifs_data,
+            "chapter_summaries": chapter_summaries_data,
         }
 
     def _detect_active_characters(self, raw_text: str, char_data: Dict[str, Any]) -> Set[str]:
@@ -285,10 +301,14 @@ class ContextRetriever:
         char_data: Dict[str, Any],
         relationships_data: Dict[str, Any],
         promises_data: Dict[str, Any],
-        world_data: Dict[str, Any]
+        world_data: Dict[str, Any],
+        threats_data: Dict[str, Any],
+        themes_data: Dict[str, Any],
+        motifs_data: Dict[str, Any],
+        chapter_summaries_data: Dict[str, Any]
     ) -> str:
         """
-        Hydrates Tier A, B, C, D and compiles them into a token-budgeted XML structure.
+        Hydrates Tiers and compiles them into a token-budgeted XML structure.
         """
         # Tier A: Characters Profile XML Parts
         char_xmls = []
@@ -416,6 +436,41 @@ class ContextRetriever:
                     f"    </Promise>"
                 )
 
+        # Tier E: Threats XML Parts
+        threat_xmls = []
+        for tid, tentry in sorted(threats_data.items()):
+            if not isinstance(tentry, dict): continue
+            status = tentry.get("status", {}).get("current", {}).get("value", "ACTIVE")
+            if status not in ("ACTIVE", "unresolved"): continue
+            source = tentry.get("source_id", {}).get("current", {}).get("value", "unknown")
+            target = tentry.get("target_id", {}).get("current", {}).get("value", "unknown")
+            if source in active_characters or target in active_characters:
+                text = tentry.get("threat_text", {}).get("current", {}).get("value", "")
+                chapter = tentry.get("chapter_made", {}).get("current", {}).get("value", "unknown")
+                threat_xmls.append(
+                    f"    <Threat source=\"{source}\" target=\"{target}\" status=\"{status}\" chapter_made=\"{chapter}\">\n"
+                    f"      {str(text).strip()}\n"
+                    f"    </Threat>"
+                )
+
+        # Tier F & G: Themes and Motifs
+        theme_xmls = []
+        for thid, thentry in sorted(themes_data.items()):
+            if not isinstance(thentry, dict): continue
+            desc = thentry.get("description", {}).get("current", {}).get("value", "")
+            theme_xmls.append(f"    <Theme id=\"{thid}\">{str(desc).strip()}</Theme>")
+            
+        motif_xmls = []
+        for mid, mentry in sorted(motifs_data.items()):
+            if not isinstance(mentry, dict): continue
+            desc = mentry.get("description", {}).get("current", {}).get("value", "")
+            motif_xmls.append(f"    <Motif id=\"{mid}\">{str(desc).strip()}</Motif>")
+
+        # Tier H: Chapter Summaries
+        summary_xmls = []
+        for ch_num, summ in sorted(chapter_summaries_data.items(), key=lambda x: int(x[0]) if str(x[0]).isdigit() else 0):
+            summary_xmls.append(f"    <Summary chapter=\"{ch_num}\">{str(summ).strip()}</Summary>")
+
         # Stage 3: Token budget XML assembly
         # XML tags layout size overhead
         wrapper_start = "<StoryContext>\n"
@@ -423,6 +478,10 @@ class ContextRetriever:
         clue_start, clue_end = "  <SceneClues>\n", "  </SceneClues>\n"
         rel_start, rel_end = "  <ActiveRelationships>\n", "  </ActiveRelationships>\n"
         prom_start, prom_end = "  <OpenPromises>\n", "  </OpenPromises>\n"
+        threat_start, threat_end = "  <ActiveThreats>\n", "  </ActiveThreats>\n"
+        theme_start, theme_end = "  <CoreThemes>\n", "  </CoreThemes>\n"
+        motif_start, motif_end = "  <CoreMotifs>\n", "  </CoreMotifs>\n"
+        summ_start, summ_end = "  <ChapterSummaries>\n", "  </ChapterSummaries>\n"
         wrapper_end = "</StoryContext>"
 
         # Compile Tiers A & D (Characters & Clues)
@@ -430,39 +489,39 @@ class ContextRetriever:
         clues_xml_str = "\n".join(clue_xmls)
 
         current_xml = wrapper_start
-        if char_xmls:
-            current_xml += char_start + chars_xml_str + "\n" + char_end
-        if clue_xmls:
-            current_xml += clue_start + clues_xml_str + "\n" + clue_end
+        if char_xmls: current_xml += char_start + chars_xml_str + "\n" + char_end
+        if clue_xmls: current_xml += clue_start + clues_xml_str + "\n" + clue_end
+        if theme_xmls: current_xml += theme_start + "\n".join(theme_xmls) + "\n" + theme_end
+        if motif_xmls: current_xml += motif_start + "\n".join(motif_xmls) + "\n" + motif_end
+        if summary_xmls: current_xml += summ_start + "\n".join(summary_xmls) + "\n" + summ_end
 
-        # Calculate budget for Relationships and Promises
-        budget = 3000 - len(current_xml) - len(wrapper_end) - 100 # Add a small buffer
+        # Calculate budget for Relationships, Promises, Threats
+        budget = 6000 - len(current_xml) - len(wrapper_end) - 200 # Add buffer
 
         included_rels = []
         included_proms = []
+        included_threats = []
 
         if budget > 0:
-            # Try to add Relationships one by one
             for rel in relationship_xmls:
                 if len(rel) + len(rel_start) + len(rel_end) < budget:
                     included_rels.append(rel)
                     budget -= len(rel)
-                else:
-                    logger.warning("RAG token limit: relationship entry truncated.")
             
-            # Try to add Promises one by one
             for prom in promise_xmls:
                 if len(prom) + len(prom_start) + len(prom_end) < budget:
                     included_proms.append(prom)
                     budget -= len(prom)
-                else:
-                    logger.warning("RAG token limit: promise entry truncated.")
+
+            for threat in threat_xmls:
+                if len(threat) + len(threat_start) + len(threat_end) < budget:
+                    included_threats.append(threat)
+                    budget -= len(threat)
 
         # Build final budgeted XML block
-        if included_rels:
-            current_xml += rel_start + "\n".join(included_rels) + "\n" + rel_end
-        if included_proms:
-            current_xml += prom_start + "\n".join(included_proms) + "\n" + prom_end
+        if included_rels: current_xml += rel_start + "\n".join(included_rels) + "\n" + rel_end
+        if included_proms: current_xml += prom_start + "\n".join(included_proms) + "\n" + prom_end
+        if included_threats: current_xml += threat_start + "\n".join(included_threats) + "\n" + threat_end
 
         current_xml += wrapper_end
         return current_xml

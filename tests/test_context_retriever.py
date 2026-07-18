@@ -146,8 +146,8 @@ def test_context_retriever_budget_truncation(tmp_path):
     with open(tmp_path / "character_memory.json", "w", encoding="utf-8") as f:
         json.dump(char_mem, f)
 
-    # Setup a giant relationship profile (Tier B) and giant promise (Tier C) that exceeds 3000 chars
-    giant_text = "A" * 4000
+    # Setup a giant relationship profile (Tier B) and giant promise (Tier C) that exceeds 6000 chars
+    giant_text = "A" * 7000
     relationships = {
         "mr_whitmore::talia": {
             "relationship_label": {"current": {"value": "ENMITY"}},
@@ -161,8 +161,8 @@ def test_context_retriever_budget_truncation(tmp_path):
     assert "talia" in active_chars
     assert "mr_whitmore" in active_chars
 
-    # The total length must be constrained under 3000 chars (plus small tag buffer)
-    assert len(context) < 3200
+    # The total length must be constrained under 6000 chars (plus small tag buffer)
+    assert len(context) < 6200
     # Tier A must still be present
     assert "<Character id=\"talia\">" in context
     # Relationship with giant text must have been truncated/omitted

@@ -1,94 +1,114 @@
 {
-  "talia": {
+  "Talia": {
     "canonical_name": {
       "key": "canonical_name",
       "current": {
         "value": "Talia",
-        "chapter": 1,
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Canonical name set by LLM.",
-        "timestamp": "2026-07-16T08:02:36.081645"
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 4
+    },
+    "perceptive": {
+      "key": "perceptive",
+      "current": {
+        "value": "increased",
+        "chapter": 4,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Talia's ability to notice Laurie's actions and her knowledge of his whereabouts",
+        "timestamp": "2026-07-16T19:18:55.947515"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 4
     },
     "goals": {
       "key": "goals",
       "current": {
-        "value": [],
-        "chapter": 1,
+        "value": [
+          "confront Laurie about his actions"
+        ],
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.96,
+        "confidence": 1.0,
         "reasoning": "Goals updated by LLM.",
-        "timestamp": "2026-07-16T08:02:36.081645"
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 4
     },
     "fears": {
       "key": "fears",
       "current": {
         "value": [],
-        "chapter": 1,
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.96,
+        "confidence": 1.0,
         "reasoning": "Fears updated by LLM.",
-        "timestamp": "2026-07-16T08:02:36.081645"
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 4
     },
     "location": {
       "key": "location",
       "current": {
-        "value": "private_bedchamber",
-        "chapter": 1,
+        "value": "study",
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character location updated by LLM.",
-        "timestamp": "2026-07-16T08:02:36.081645"
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 4
     },
     "inventory": {
       "key": "inventory",
       "current": {
         "value": [],
-        "chapter": 1,
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Inventory delta applied by LLM.",
-        "timestamp": "2026-07-16T08:02:36.081645"
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 4
     }
   }
 }

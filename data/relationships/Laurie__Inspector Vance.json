@@ -1,22 +1,22 @@
 {
-  "detective_alfred::laurie": {
+  "Laurie::Inspector Vance": {
     "relationship_label": {
       "key": "relationship_label",
       "current": {
         "value": "ENMITY",
-        "chapter": 3,
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "Detective Alfred is questioning Laurie's alibi, and Laurie seems to be hiding something, indicating a tense relationship.",
-        "timestamp": "2026-07-16T08:16:40.972710"
+        "reasoning": "Laurie's fear of Talia going to Inspector Vance implies that Laurie sees the inspector as a threat, indicating an adversarial relationship.",
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 4
     }
   }
 }

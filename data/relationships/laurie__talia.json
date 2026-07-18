@@ -1,22 +1,22 @@
 {
-  "laurie::talia": {
+  "Laurie::Talia": {
     "relationship_label": {
       "key": "relationship_label",
       "current": {
-        "value": "NEUTRAL",
-        "chapter": 1,
+        "value": "ENMITY",
+        "chapter": 4,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "There is no direct interaction or mention of a relationship between Laurie and Talia in this chapter.",
-        "timestamp": "2026-07-16T08:02:36.081645"
+        "reasoning": "Talia's knowledge of Laurie's whereabouts and her calculated approach suggest a confrontational and possibly threatening stance towards him.",
+        "timestamp": "2026-07-16T19:18:55.947515"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 1
+      "last_mentioned_chapter": 4
     }
   }
 }

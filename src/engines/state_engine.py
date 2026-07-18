@@ -136,6 +136,11 @@ class StateEngine:
                 
             return delta
 
+        # 0. Apply Chapter Summary
+        summary = llm_delta.get("chapter_summary")
+        if summary:
+            current_state.chapter_summaries[chapter_num] = summary
+
         # Normalize item names (Artifact Matching)
         def normalize_item_name(item: str) -> str:
             item_clean = item.strip().lower()
@@ -234,8 +239,16 @@ class StateEngine:
             curr_inv = list(existing_inv.current.value) if existing_inv and existing_inv.current else []
             
             # Apply additions
-            for item in inv_delta.get("added", []):
+            for item_obj in inv_delta.get("added", []):
+                if isinstance(item_obj, dict):
+                    item = item_obj.get("item_id", "")
+                    causal_actor = item_obj.get("causal_actor")
+                else:
+                    item = str(item_obj)
+                    causal_actor = None
+                    
                 norm_item = normalize_item_name(item)
+                if not norm_item: continue
                 if norm_item in IMMOVABLE_STRUCTURES:
                     logger.info(f"Defensive exclusion: barred immovable structure '{item}' from character '{char_id}' inventory.")
                     continue
@@ -249,10 +262,28 @@ class StateEngine:
                     item_world["owner"].update(StateSnapshot(value=char_id, chapter=chapter_num))
                     item_world["location"] = StateEntry(key="location", element_type=NarrativeElementType.OBJECT)
                     item_world["location"].update(StateSnapshot(value=None, chapter=chapter_num))
+                    
+                    if causal_actor == "UNKNOWN_ACTOR":
+                        myst_id = f"mystery_ghost_inventory_{chapter_num}_{hash(norm_item) & 0xffff}"
+                        myst_entry = current_state.mysteries.setdefault(myst_id, {})
+                        if "mystery_text" not in myst_entry: myst_entry["mystery_text"] = StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY)
+                        myst_entry["mystery_text"].update(StateSnapshot(value=f"Item {norm_item} was acquired but the causal actor is unknown.", chapter=chapter_num))
+                        if "status" not in myst_entry: myst_entry["status"] = StateEntry(key="status", element_type=NarrativeElementType.MYSTERY)
+                        myst_entry["status"].update(StateSnapshot(value="unresolved", chapter=chapter_num))
+                        if "type" not in myst_entry: myst_entry["type"] = StateEntry(key="type", element_type=NarrativeElementType.MYSTERY)
+                        myst_entry["type"].update(StateSnapshot(value="ghost_interaction", chapter=chapter_num))
 
             # Apply removals
-            for item in inv_delta.get("removed", []):
+            for item_obj in inv_delta.get("removed", []):
+                if isinstance(item_obj, dict):
+                    item = item_obj.get("item_id", "")
+                    causal_actor = item_obj.get("causal_actor")
+                else:
+                    item = str(item_obj)
+                    causal_actor = None
+
                 norm_item = normalize_item_name(item)
+                if not norm_item: continue
                 if norm_item in curr_inv:
                     curr_inv.remove(norm_item)
                     # Sync world item ownership
@@ -264,6 +295,16 @@ class StateEngine:
                         if loc_id:
                             item_world["location"] = StateEntry(key="location", element_type=NarrativeElementType.OBJECT)
                             item_world["location"].update(StateSnapshot(value=loc_id, chapter=chapter_num))
+                            
+                    if causal_actor == "UNKNOWN_ACTOR":
+                        myst_id = f"mystery_ghost_inventory_{chapter_num}_{hash(norm_item) & 0xffff}"
+                        myst_entry = current_state.mysteries.setdefault(myst_id, {})
+                        if "mystery_text" not in myst_entry: myst_entry["mystery_text"] = StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY)
+                        myst_entry["mystery_text"].update(StateSnapshot(value=f"Item {norm_item} was tampered with or removed but the causal actor is unknown.", chapter=chapter_num))
+                        if "status" not in myst_entry: myst_entry["status"] = StateEntry(key="status", element_type=NarrativeElementType.MYSTERY)
+                        myst_entry["status"].update(StateSnapshot(value="unresolved", chapter=chapter_num))
+                        if "type" not in myst_entry: myst_entry["type"] = StateEntry(key="type", element_type=NarrativeElementType.MYSTERY)
+                        myst_entry["type"].update(StateSnapshot(value="ghost_interaction", chapter=chapter_num))
 
             update_field("inventory", curr_inv, "Inventory delta applied by LLM.")
 
@@ -378,6 +419,66 @@ class StateEngine:
                 reasoning=reasoning
             ))
 
+        # 4a. Apply Threats Delta
+        for threat_delta in llm_delta.get("threats_delta", []):
+            threat_id = threat_delta.get("threat_id")
+            text = threat_delta.get("text")
+            target = threat_delta.get("target_id")
+            source = threat_delta.get("source_id")
+            status = threat_delta.get("status", "ACTIVE")
+            reasoning = threat_delta.get("reasoning", "Threat updated by LLM.")
+
+            if not threat_id or not text: continue
+            threat_entry = current_state.threats.setdefault(threat_id, {})
+
+            def update_threat_field(key: str, val: Any):
+                if key not in threat_entry:
+                    threat_entry[key] = StateEntry(key=key, element_type=NarrativeElementType.THREAT)
+                threat_entry[key].update(StateSnapshot(value=val, chapter=chapter_num, confidence=0.95, reasoning=reasoning))
+
+            update_threat_field("threat_text", text)
+            update_threat_field("target_id", target)
+            update_threat_field("source_id", source)
+            update_threat_field("status", status)
+            update_threat_field("chapter_made", chapter_num)
+
+            delta.changes.append(StateChange(
+                change_type=StateChangeType.EVOLUTION,
+                target_type=NarrativeElementType.THREAT,
+                target_id=threat_id,
+                field_key="status",
+                old_value=None,
+                new_value=status,
+                confidence=0.95,
+                reasoning=reasoning
+            ))
+
+        # 4b. Apply Themes Delta
+        for theme_delta in llm_delta.get("themes_delta", []):
+            theme_id = theme_delta.get("theme_id")
+            desc = theme_delta.get("description")
+            reasoning = theme_delta.get("reasoning", "Theme updated by LLM.")
+
+            if not theme_id or not desc: continue
+            theme_entry = current_state.themes.setdefault(theme_id, {})
+            
+            if "description" not in theme_entry:
+                theme_entry["description"] = StateEntry(key="description", element_type=NarrativeElementType.THEME)
+            theme_entry["description"].update(StateSnapshot(value=desc, chapter=chapter_num, confidence=0.9, reasoning=reasoning))
+
+        # 4c. Apply Motifs Delta
+        for motif_delta in llm_delta.get("motifs_delta", []):
+            motif_id = motif_delta.get("motif_id")
+            desc = motif_delta.get("description")
+            reasoning = motif_delta.get("reasoning", "Motif updated by LLM.")
+
+            if not motif_id or not desc: continue
+            motif_entry = current_state.motifs.setdefault(motif_id, {})
+            
+            if "description" not in motif_entry:
+                motif_entry["description"] = StateEntry(key="description", element_type=NarrativeElementType.MOTIF)
+            motif_entry["description"].update(StateSnapshot(value=desc, chapter=chapter_num, confidence=0.9, reasoning=reasoning))
+
         # 5. Extract and persist LLM structural mysteries
         delta.structural_mysteries = []
         for mystery in llm_delta.get("structural_mysteries", []):
@@ -450,14 +551,18 @@ class StateEngine:
                     })
                 # Check for inventory actions
                 inv_delta = char_update.get("inventory_delta", {})
-                for item in inv_delta.get("added", []):
+                for item_obj in inv_delta.get("added", []):
+                    item = item_obj.get("item_id", "") if isinstance(item_obj, dict) else str(item_obj)
+                    if not item: continue
                     current_state.timeline.append({
                         "chapter": chapter_num,
                         "subject": char_id,
                         "predicate": "draws" if "whisperwind" in item.lower() else "acquires",
                         "object": item
                     })
-                for item in inv_delta.get("removed", []):
+                for item_obj in inv_delta.get("removed", []):
+                    item = item_obj.get("item_id", "") if isinstance(item_obj, dict) else str(item_obj)
+                    if not item: continue
                     current_state.timeline.append({
                         "chapter": chapter_num,
                         "subject": char_id,

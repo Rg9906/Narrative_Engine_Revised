@@ -149,135 +149,170 @@ class Pipeline:
         # Initialize default llm_delta attribute
         chapter_data.llm_delta = {}
 
-        # 4. UNIFIED LLM SENSORY EXTRACTOR
-        from src.utils.llm_provider import LLMProvider
-        llm = LLMProvider(self._config)
+        # 4. UNIFIED LLM SENSORY EXTRACTOR (PARALLELIZED)
+        import concurrent.futures
 
-        if llm.is_available:
+        if self._config:
+            from src.utils.llm_provider import LLMProvider
             # Stage-1 and Stage-2 RAG Context Preprocessing
             from src.pipeline.context_retriever import ContextRetriever
             retriever = ContextRetriever(self._config)
             context_block, active_characters = retriever.retrieve_context(cleaned_text)
 
-            # System prompt compilation based on pre-scan
-            if active_characters:
-                logger.info(f"[RAG Context] Active characters detected in pre-scan: {', '.join(active_characters)}")
-                token_weight = len(context_block) if context_block else 0
-                logger.info(f"[RAG Context] Injected context token weight (char count): {token_weight}")
-                
-                system_content = (
-                    "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
-                    "Never include explanations, intro/outro, or markdown backticks. Output pure JSON.\n\n"
-                    f"{context_block}\n\n"
-                    "Contrast the raw text of the incoming chapter against the provided <StoryContext> to identify any logical discrepancies, "
-                    "physical teleportation of items, breaking of character promises, or sudden unearned shifts in relationships."
-                )
-            else:
-                logger.info("[RAG Context] No active characters detected in pre-scan. Defaulting to minimal system prompt.")
-                system_content = (
-                    "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
-                    "Never include explanations, intro/outro, or markdown backticks. Output pure JSON."
-                )
-            
-            prompt = (
-                f"You are a World-Class Developmental Editor. Analyze Chapter {chapter_num} raw text and update the story state. "
-                f"You must capture subtextual stances, stance shifts, and promise updates embedded within internal monologues, thoughts, or solitary scene descriptions.\n\n"
-                f"--- Editorial and Guardrail Instructions ---\n"
-                f"1. **Subtext & Exposition Ingestion**: Explicitly extract stance shifts or promise updates even when embedded in internal monologues or character thoughts.\n"
-                f"2. **Artifact Matching**: Run cross-description alignment. For example, if Chapter 1 has 'wedding band' and Chapter 3 has 'wedding ring', align and track them as the same item asset 'wedding_ring'.\n"
-                f"3. **Environmental Exclusions**: Completely bar immovable spatial structures ('fireplace', 'staircase', 'hearth', 'floorboard', 'desk', 'bookshelf', 'mantlepiece') from ever being written into character inventory deltas. Only portable items can be inventory items.\n"
-                f"4. **No duplicate characters**: Ensure family members (like Marlene Whitmore and Sebastian Whitmore) are tracked as distinct characters with separate canonical IDs and canonical names.\n\n"
-                f"--- Chapter {chapter_num} Raw Text ---\n"
-                f"{cleaned_text}\n\n"
+            system_content = (
+                "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
+                "Never include explanations, intro/outro, or markdown backticks. Output pure JSON.\n\n"
+                f"{context_block if context_block else ''}\n\n"
+                "Contrast the raw text of the incoming chapter against the provided <StoryContext> to identify logical discrepancies."
+            )
+
+            prompt_entities = (
+                f"You are a World-Class Developmental Editor. Analyze Chapter {chapter_num} raw text.\n\n"
+                f"--- Chapter {chapter_num} Raw Text ---\n{cleaned_text}\n\n"
                 f"--- Output Requirements ---\n"
-                f"Return a single JSON object strictly matching this schema:\n"
+                f"Extract Character and World updates. Return JSON matching:\n"
                 f"{{\n"
+                f"  \"chapter_summary\": \"A concise paragraph summarizing the events of this chapter\",\n"
                 f"  \"character_updates\": [\n"
                 f"    {{\n"
-                f"      \"character_id\": \"canonical_lowercase_id (e.g. marlene_whitmore, sebastian_whitmore)\",\n"
-                f"      \"canonical_name\": \"Clean Proper Name Only (e.g. Marlene Whitmore, Sebastian Whitmore)\",\n"
-                f"      \"aliases_discovered\": [\"list\", \"of\", \"aliases\"],\n"
-                f"      \"traits_mutated\": {{\n"
-                f"        \"trait_name (e.g. hair_color, eye_color, age, height, build, brave, kind, cruel)\": {{\n"
-                f"          \"value\": \"trait value or boolean\",\n"
-                f"          \"confidence\": 1.0,\n"
-                f"          \"reasoning\": \"...\"\n"
-                f"        }}\n"
-                f"      }},\n"
-                f"      \"goals_updated\": [\"active\", \"goals\"],\n"
-                f"      \"fears_updated\": [\"active\", \"fears\"],\n"
+                f"      \"character_id\": \"id\",\n"
+                f"      \"canonical_name\": \"Name\",\n"
+                f"      \"aliases_discovered\": [\"aliases\"],\n"
+                f"      \"traits_mutated\": {{ \"trait\": {{\"value\": \"val\", \"confidence\": 1.0, \"reasoning\": \"...\"}} }},\n"
+                f"      \"goals_updated\": [\"goals\"],\n"
+                f"      \"fears_updated\": [\"fears\"],\n"
                 f"      \"inventory_delta\": {{\n"
-                f"        \"added\": [\"item_id (e.g. wedding_ring)\"],\n"
-                f"        \"removed\": [\"item_id\"]\n"
+                f"        \"added\": [{{ \"item_id\": \"id\", \"causal_actor\": \"character_id or UNKNOWN_ACTOR\", \"timestamp_inferred\": \"time\" }}],\n"
+                f"        \"removed\": [{{ \"item_id\": \"id\", \"causal_actor\": \"character_id or UNKNOWN_ACTOR\", \"timestamp_inferred\": \"time\" }}]\n"
                 f"      }},\n"
-                f"      \"current_location_id\": \"location_id (e.g. drawing_room, family_library, morning_room)\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"relationship_mutations\": [\n"
-                f"    {{\n"
-                f"      \"party_a\": \"character_id_1\",\n"
-                f"      \"party_b\": \"character_id_2\",\n"
-                f"      \"stance\": \"ROMANTIC|ENMITY|ALLIANCE|NEUTRAL\",\n"
-                f"      \"reasoning\": \"Captured from narrative interaction or subtextual internal monologue\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"promises_delta\": [\n"
-                f"    {{\n"
-                f"      \"promise_id\": \"optional_hash_or_new (e.g. sebastian_library_vow)\",\n"
-                f"      \"text\": \"vow text\",\n"
-                f"      \"speaker_id\": \"character_id\",\n"
-                f"      \"listener_id\": \"character_id\",\n"
-                f"      \"status\": \"OPEN|FULFILLED|BROKEN\",\n"
-                f"      \"reasoning\": \"...\"\n"
+                f"      \"current_location_id\": \"location_id\",\n"
+                f"      \"timestamp_inferred\": \"time\"\n"
                 f"    }}\n"
                 f"  ],\n"
                 f"  \"world_updates\": [\n"
                 f"    {{\n"
-                f"      \"item_id\": \"wedding_ring\",\n"
+                f"      \"item_id\": \"item_id\",\n"
                 f"      \"type\": \"object\",\n"
-                f"      \"current_location_id\": \"marble_mantlepiece\",\n"
-                f"      \"owner_character_id\": null\n"
+                f"      \"current_location_id\": \"location\",\n"
+                f"      \"owner_character_id\": null,\n"
+                f"      \"causal_actor\": \"character_id or UNKNOWN_ACTOR\",\n"
+                f"      \"timestamp_inferred\": \"time\"\n"
+                f"    }}\n"
+                f"  ]\n"
+                f"}}\n"
+            )
+
+            prompt_relations = (
+                f"You are a World-Class Developmental Editor. Analyze Chapter {chapter_num} raw text.\n\n"
+                f"--- Chapter {chapter_num} Raw Text ---\n{cleaned_text}\n\n"
+                f"--- Output Requirements ---\n"
+                f"Extract Relationships, Promises, and Structural Mysteries. Return JSON matching:\n"
+                f"{{\n"
+                f"  \"relationship_mutations\": [\n"
+                f"    {{\n"
+                f"      \"party_a\": \"id1\",\n"
+                f"      \"party_b\": \"id2\",\n"
+                f"      \"stance\": \"ROMANTIC|ENMITY|ALLIANCE|NEUTRAL\",\n"
+                f"      \"reasoning\": \"...\"\n"
+                f"    }}\n"
+                f"  ],\n"
+                f"  \"promises_delta\": [\n"
+                f"    {{\n"
+                f"      \"promise_id\": \"id\",\n"
+                f"      \"text\": \"text\",\n"
+                f"      \"speaker_id\": \"id\",\n"
+                f"      \"listener_id\": \"id\",\n"
+                f"      \"status\": \"OPEN|FULFILLED|BROKEN\",\n"
+                f"      \"reasoning\": \"...\"\n"
+                f"    }}\n"
+                f"  ],\n"
+                f"  \"threats_delta\": [\n"
+                f"    {{\n"
+                f"      \"threat_id\": \"id\",\n"
+                f"      \"text\": \"text\",\n"
+                f"      \"target_id\": \"id\",\n"
+                f"      \"source_id\": \"id\",\n"
+                f"      \"status\": \"ACTIVE|RESOLVED\",\n"
+                f"      \"reasoning\": \"...\"\n"
+                f"    }}\n"
+                f"  ],\n"
+                f"  \"themes_delta\": [\n"
+                f"    {{\n"
+                f"      \"theme_id\": \"id\",\n"
+                f"      \"description\": \"description\",\n"
+                f"      \"reasoning\": \"...\"\n"
+                f"    }}\n"
+                f"  ],\n"
+                f"  \"motifs_delta\": [\n"
+                f"    {{\n"
+                f"      \"motif_id\": \"id\",\n"
+                f"      \"description\": \"description\",\n"
+                f"      \"reasoning\": \"...\"\n"
                 f"    }}\n"
                 f"  ],\n"
                 f"  \"structural_mysteries\": [\n"
                 f"    {{\n"
                 f"      \"issue_type\": \"INVENTORY_TELEPORTATION|EMOTIONAL_INVERSION|TIMELINE_GAP\",\n"
                 f"      \"severity\": \"CRITICAL|WARNING|NOTE\",\n"
-                f"      \"description\": \"Clean, logical explanation of the contradiction\",\n"
+                f"      \"description\": \"...\",\n"
                 f"      \"related_entities\": [\"ids\"]\n"
                 f"    }}\n"
                 f"  ]\n"
                 f"}}\n"
             )
-            
-            messages = [
-                {"role": "system", "content": system_content},
-                {"role": "user", "content": prompt}
-            ]
-            
-            try:
-                raw_resp = llm.chat(messages, response_format={"type": "json_object"})
-                # Clean response (remove markdown backticks if present)
-                cleaned_resp = raw_resp.strip()
-                if cleaned_resp.startswith("```"):
-                    lines = cleaned_resp.split("\n")
-                    if lines[0].startswith("```"):
-                        lines = lines[1:]
-                    if lines[-1].startswith("```"):
-                        lines = lines[:-1]
-                    cleaned_resp = "\n".join(lines).strip()
+
+            def fetch_llm(prompt):
+                try:
+                    # Instantiate fresh provider per thread
+                    from src.utils.llm_provider import LLMProvider
+                    local_llm = LLMProvider(self._config)
+                    if not local_llm.is_available:
+                        return {}
+                    resp = local_llm.chat(
+                        [
+                            {"role": "system", "content": system_content},
+                            {"role": "user", "content": prompt}
+                        ],
+                        response_format={"type": "json_object"}
+                    )
+                    cleaned = resp.strip()
+                    if cleaned.startswith("```"):
+                        lines = cleaned.split("\n")
+                        if lines[0].startswith("```"): lines = lines[1:]
+                        if lines[-1].startswith("```"): lines = lines[:-1]
+                        cleaned = "\n".join(lines).strip()
+                    return json.loads(cleaned)
+                except Exception as e:
+                    logger.error(f"LLM fetch failed: {e}")
+                    return {}
+
+            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                future_entities = executor.submit(fetch_llm, prompt_entities)
+                future_relations = executor.submit(fetch_llm, prompt_relations)
                 
-                chapter_data.llm_delta = json.loads(cleaned_resp)
-                logger.info(f"Successfully received and parsed structured JSON State Delta from Gemini for Chapter {chapter_num}")
-            except Exception as e:
-                logger.error(f"Failed to fetch or parse structured LLM sensory delta: {e}")
-                import os
-                if "PYTEST_CURRENT_TEST" in os.environ:
-                    chapter_data.llm_delta = {}
-                else:
-                    raise RuntimeError(
-                        "CRITICAL PIPELINE ERROR: Narrative Intelligence Engine requires an active internet connection to execute dynamic narrative analysis. Local fallback is disabled."
-                    ) from e
+                try:
+                    entities_data = future_entities.result(timeout=300)
+                    relations_data = future_relations.result(timeout=300)
+                    
+                    chapter_data.llm_delta = {
+                        "chapter_summary": entities_data.get("chapter_summary", ""),
+                        "character_updates": entities_data.get("character_updates", []),
+                        "world_updates": entities_data.get("world_updates", []),
+                        "relationship_mutations": relations_data.get("relationship_mutations", []),
+                        "promises_delta": relations_data.get("promises_delta", []),
+                        "threats_delta": relations_data.get("threats_delta", []),
+                        "themes_delta": relations_data.get("themes_delta", []),
+                        "motifs_delta": relations_data.get("motifs_delta", []),
+                        "structural_mysteries": relations_data.get("structural_mysteries", [])
+                    }
+                    logger.info(f"Successfully received parallel JSON State Deltas for Chapter {chapter_num}")
+                except Exception as e:
+                    logger.error(f"Failed parallel LLM sensory delta: {e}")
+                    import os
+                    if "PYTEST_CURRENT_TEST" in os.environ:
+                        chapter_data.llm_delta = {}
+                    else:
+                        raise RuntimeError("CRITICAL PIPELINE ERROR: LLM parallel fetch failed.") from e
         else:
             logger.info("LLM provider not available.")
             import os

@@ -205,8 +205,8 @@ class LLMProvider:
             self._model = model
 
             # Exponential backoff parameters
-            max_retries = 3
-            initial_delay = 1.0  # seconds
+            max_retries = 5
+            initial_delay = 2.0  # seconds
             backoff_factor = 2.0
 
             for attempt in range(max_retries + 1):

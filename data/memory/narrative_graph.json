@@ -1,44 +1,14 @@
 {
   "nodes": [
     {
-      "id": "char::sebastian_whitmore",
-      "label": "sebastian_whitmore",
+      "id": "char::Laurie",
+      "label": "Laurie",
       "type": "character"
     },
     {
-      "id": "char::laurie",
-      "label": "laurie",
+      "id": "char::Talia",
+      "label": "Talia",
       "type": "character"
-    },
-    {
-      "id": "char::talia",
-      "label": "talia",
-      "type": "character"
-    },
-    {
-      "id": "char::detective_alfred",
-      "label": "detective_alfred",
-      "type": "character"
-    },
-    {
-      "id": "char::winnie",
-      "label": "winnie",
-      "type": "character"
-    },
-    {
-      "id": "char::lucius",
-      "label": "lucius",
-      "type": "character"
-    },
-    {
-      "id": "world::overcoat",
-      "label": "overcoat",
-      "type": "world"
-    },
-    {
-      "id": "world::sealed_milk_bottle",
-      "label": "sealed_milk_bottle",
-      "type": "world"
     },
     {
       "id": "world::milk_bottle",
@@ -46,19 +16,19 @@
       "type": "world"
     },
     {
-      "id": "world::brass_pocket_watch",
-      "label": "brass_pocket_watch",
+      "id": "world::key",
+      "label": "key",
       "type": "world"
     },
     {
-      "id": "world::timepiece",
-      "label": "timepiece",
-      "type": "world"
+      "id": "theme::Deception",
+      "label": "Deception",
+      "type": "theme"
     },
     {
-      "id": "world::glass_milk_bottle",
-      "label": "glass_milk_bottle",
-      "type": "world"
+      "id": "theme::Vulnerability",
+      "label": "Vulnerability",
+      "type": "theme"
     },
     {
       "id": "event::evt::1",
@@ -71,260 +41,37 @@
       "type": "event"
     },
     {
-      "id": "event::evt::3",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::4",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::5",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::6",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::7",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::8",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::9",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::10",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::11",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::12",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::13",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::14",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::15",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::16",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::17",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
-      "id": "event::evt::18",
-      "label": "timeline_event",
-      "type": "event"
-    },
-    {
       "id": "chapter::1",
       "label": "Chapter 1",
-      "type": "chapter"
-    },
-    {
-      "id": "chapter::2",
-      "label": "Chapter 2",
-      "type": "chapter"
-    },
-    {
-      "id": "chapter::3",
-      "label": "Chapter 3",
       "type": "chapter"
     }
   ],
   "edges": [
     {
-      "id": "sebastian_whitmore::laurie",
-      "source": "char::sebastian_whitmore",
-      "target": "char::laurie",
+      "id": "Laurie::Talia",
+      "source": "char::Laurie",
+      "target": "char::Talia",
       "label": "UNKNOWN",
       "type": "relationship"
     },
     {
-      "id": "sebastian_whitmore::talia",
-      "source": "char::sebastian_whitmore",
-      "target": "char::talia",
-      "label": "UNKNOWN",
-      "type": "relationship"
-    },
-    {
-      "id": "laurie::talia",
-      "source": "char::laurie",
-      "target": "char::talia",
-      "label": "UNKNOWN",
-      "type": "relationship"
-    },
-    {
-      "id": "detective_alfred::laurie",
-      "source": "char::detective_alfred",
-      "target": "char::laurie",
-      "label": "UNKNOWN",
-      "type": "relationship"
-    },
-    {
-      "id": "sebastian_whitmore::detective_alfred",
-      "source": "char::sebastian_whitmore",
-      "target": "char::detective_alfred",
+      "id": "Laurie::Inspector Vance",
+      "source": "char::Laurie",
+      "target": "char::Inspector Vance",
       "label": "UNKNOWN",
       "type": "relationship"
     },
     {
       "id": "evt_edge::evt::1",
       "source": "event::evt::1",
-      "target": "chapter::1",
+      "target": "chapter::4",
       "label": "occurs_in",
       "type": "event_chapter"
     },
     {
       "id": "evt_edge::evt::2",
       "source": "event::evt::2",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::3",
-      "source": "event::evt::3",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::4",
-      "source": "event::evt::4",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::5",
-      "source": "event::evt::5",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::6",
-      "source": "event::evt::6",
-      "target": "chapter::1",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::7",
-      "source": "event::evt::7",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::8",
-      "source": "event::evt::8",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::9",
-      "source": "event::evt::9",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::10",
-      "source": "event::evt::10",
-      "target": "chapter::2",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::11",
-      "source": "event::evt::11",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::12",
-      "source": "event::evt::12",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::13",
-      "source": "event::evt::13",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::14",
-      "source": "event::evt::14",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::15",
-      "source": "event::evt::15",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::16",
-      "source": "event::evt::16",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::17",
-      "source": "event::evt::17",
-      "target": "chapter::3",
-      "label": "occurs_in",
-      "type": "event_chapter"
-    },
-    {
-      "id": "evt_edge::evt::18",
-      "source": "event::evt::18",
-      "target": "chapter::3",
+      "target": "chapter::4",
       "label": "occurs_in",
       "type": "event_chapter"
     }
