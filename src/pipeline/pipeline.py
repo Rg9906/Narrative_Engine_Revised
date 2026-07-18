@@ -149,218 +149,56 @@ class Pipeline:
         # Initialize default llm_delta attribute
         chapter_data.llm_delta = {}
 
-        # 4. UNIFIED LLM SENSORY EXTRACTOR (PARALLELIZED)
-        import concurrent.futures
+        # 4. DETERMINISTIC NLP EXTRACTION — PRIMARY evidence source, runs BEFORE any LLM call so
+        # every LLM stage below can ground itself in what's already known instead of rediscovering it.
+        #
+        # GLiNER NER + FastCoref coreference: always run in real usage via the lazy loaders below.
+        # Explicit injection (tests) is always honored. Under pytest without injection, real model
+        # loading is skipped so unit tests stay fast and offline — mirroring the same
+        # PYTEST_CURRENT_TEST convention already used by LLMProvider._detect_backend().
+        import os
+        in_pytest = "PYTEST_CURRENT_TEST" in os.environ
+        ner_ran_ok = False
+        coref_ran_ok = False
 
-        if self._config:
-            from src.utils.llm_provider import LLMProvider
-            # Stage-1 and Stage-2 RAG Context Preprocessing
-            from src.pipeline.context_retriever import ContextRetriever
-            retriever = ContextRetriever(self._config)
-            context_block, active_characters = retriever.retrieve_context(cleaned_text)
-
-            system_content = (
-                "You are a professional developmental editor. You output strictly a single JSON object matching the requested schema and nothing else. "
-                "Never include explanations, intro/outro, or markdown backticks. Output pure JSON.\n\n"
-                f"{context_block if context_block else ''}\n\n"
-                "Contrast the raw text of the incoming chapter against the provided <StoryContext> to identify logical discrepancies."
-            )
-
-            prompt_entities = (
-                f"You are a World-Class Developmental Editor. Analyze Chapter {chapter_num} raw text.\n\n"
-                f"--- Chapter {chapter_num} Raw Text ---\n{cleaned_text}\n\n"
-                f"--- Output Requirements ---\n"
-                f"Extract Character and World updates. Return JSON matching:\n"
-                f"{{\n"
-                f"  \"chapter_summary\": \"A concise paragraph summarizing the events of this chapter\",\n"
-                f"  \"character_updates\": [\n"
-                f"    {{\n"
-                f"      \"character_id\": \"id\",\n"
-                f"      \"canonical_name\": \"Name\",\n"
-                f"      \"aliases_discovered\": [\"aliases\"],\n"
-                f"      \"traits_mutated\": {{ \"trait\": {{\"value\": \"val\", \"confidence\": 1.0, \"reasoning\": \"...\"}} }},\n"
-                f"      \"goals_updated\": [\"goals\"],\n"
-                f"      \"fears_updated\": [\"fears\"],\n"
-                f"      \"inventory_delta\": {{\n"
-                f"        \"added\": [{{ \"item_id\": \"id\", \"causal_actor\": \"character_id or UNKNOWN_ACTOR\", \"timestamp_inferred\": \"time\" }}],\n"
-                f"        \"removed\": [{{ \"item_id\": \"id\", \"causal_actor\": \"character_id or UNKNOWN_ACTOR\", \"timestamp_inferred\": \"time\" }}]\n"
-                f"      }},\n"
-                f"      \"current_location_id\": \"location_id\",\n"
-                f"      \"timestamp_inferred\": \"time\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"world_updates\": [\n"
-                f"    {{\n"
-                f"      \"item_id\": \"item_id\",\n"
-                f"      \"type\": \"object\",\n"
-                f"      \"current_location_id\": \"location\",\n"
-                f"      \"owner_character_id\": null,\n"
-                f"      \"causal_actor\": \"character_id or UNKNOWN_ACTOR\",\n"
-                f"      \"timestamp_inferred\": \"time\"\n"
-                f"    }}\n"
-                f"  ]\n"
-                f"}}\n"
-            )
-
-            prompt_relations = (
-                f"You are a World-Class Developmental Editor. Analyze Chapter {chapter_num} raw text.\n\n"
-                f"--- Chapter {chapter_num} Raw Text ---\n{cleaned_text}\n\n"
-                f"--- Output Requirements ---\n"
-                f"Extract Relationships, Promises, and Structural Mysteries. Return JSON matching:\n"
-                f"{{\n"
-                f"  \"relationship_mutations\": [\n"
-                f"    {{\n"
-                f"      \"party_a\": \"id1\",\n"
-                f"      \"party_b\": \"id2\",\n"
-                f"      \"stance\": \"ROMANTIC|ENMITY|ALLIANCE|NEUTRAL\",\n"
-                f"      \"reasoning\": \"...\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"promises_delta\": [\n"
-                f"    {{\n"
-                f"      \"promise_id\": \"id\",\n"
-                f"      \"text\": \"text\",\n"
-                f"      \"speaker_id\": \"id\",\n"
-                f"      \"listener_id\": \"id\",\n"
-                f"      \"status\": \"OPEN|FULFILLED|BROKEN\",\n"
-                f"      \"reasoning\": \"...\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"threats_delta\": [\n"
-                f"    {{\n"
-                f"      \"threat_id\": \"id\",\n"
-                f"      \"text\": \"text\",\n"
-                f"      \"target_id\": \"id\",\n"
-                f"      \"source_id\": \"id\",\n"
-                f"      \"status\": \"ACTIVE|RESOLVED\",\n"
-                f"      \"reasoning\": \"...\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"themes_delta\": [\n"
-                f"    {{\n"
-                f"      \"theme_id\": \"id\",\n"
-                f"      \"description\": \"description\",\n"
-                f"      \"reasoning\": \"...\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"motifs_delta\": [\n"
-                f"    {{\n"
-                f"      \"motif_id\": \"id\",\n"
-                f"      \"description\": \"description\",\n"
-                f"      \"reasoning\": \"...\"\n"
-                f"    }}\n"
-                f"  ],\n"
-                f"  \"structural_mysteries\": [\n"
-                f"    {{\n"
-                f"      \"issue_type\": \"INVENTORY_TELEPORTATION|EMOTIONAL_INVERSION|TIMELINE_GAP\",\n"
-                f"      \"severity\": \"CRITICAL|WARNING|NOTE\",\n"
-                f"      \"description\": \"...\",\n"
-                f"      \"related_entities\": [\"ids\"]\n"
-                f"    }}\n"
-                f"  ]\n"
-                f"}}\n"
-            )
-
-            def fetch_llm(prompt):
-                try:
-                    # Instantiate fresh provider per thread
-                    from src.utils.llm_provider import LLMProvider
-                    local_llm = LLMProvider(self._config)
-                    if not local_llm.is_available:
-                        return {}
-                    resp = local_llm.chat(
-                        [
-                            {"role": "system", "content": system_content},
-                            {"role": "user", "content": prompt}
-                        ],
-                        response_format={"type": "json_object"}
+        if self._ner is not None or not in_pytest:
+            try:
+                extractor = self._get_entity_extractor()
+                import inspect
+                sig = inspect.signature(extractor.extract)
+                if "doc" in sig.parameters:
+                    chapter_data.entities = extractor.extract(
+                        cleaned_text,
+                        labels=self._entity_labels(),
+                        doc=None
                     )
-                    cleaned = resp.strip()
-                    if cleaned.startswith("```"):
-                        lines = cleaned.split("\n")
-                        if lines[0].startswith("```"): lines = lines[1:]
-                        if lines[-1].startswith("```"): lines = lines[:-1]
-                        cleaned = "\n".join(lines).strip()
-                    return json.loads(cleaned)
-                except Exception as e:
-                    logger.error(f"LLM fetch failed: {e}")
-                    return {}
+                else:
+                    chapter_data.entities = extractor.extract(
+                        cleaned_text,
+                        labels=self._entity_labels(),
+                    )
+                self._normalize_entities(chapter_data)
+                ner_ran_ok = True
+            except Exception as e:
+                logger.warning(f"Deterministic NER extraction failed, will fall back to regex entities: {e}")
 
-            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-                future_entities = executor.submit(fetch_llm, prompt_entities)
-                future_relations = executor.submit(fetch_llm, prompt_relations)
-                
-                try:
-                    entities_data = future_entities.result(timeout=300)
-                    relations_data = future_relations.result(timeout=300)
-                    
-                    chapter_data.llm_delta = {
-                        "chapter_summary": entities_data.get("chapter_summary", ""),
-                        "character_updates": entities_data.get("character_updates", []),
-                        "world_updates": entities_data.get("world_updates", []),
-                        "relationship_mutations": relations_data.get("relationship_mutations", []),
-                        "promises_delta": relations_data.get("promises_delta", []),
-                        "threats_delta": relations_data.get("threats_delta", []),
-                        "themes_delta": relations_data.get("themes_delta", []),
-                        "motifs_delta": relations_data.get("motifs_delta", []),
-                        "structural_mysteries": relations_data.get("structural_mysteries", [])
-                    }
-                    logger.info(f"Successfully received parallel JSON State Deltas for Chapter {chapter_num}")
-                except Exception as e:
-                    logger.error(f"Failed parallel LLM sensory delta: {e}")
-                    import os
-                    if "PYTEST_CURRENT_TEST" in os.environ:
-                        chapter_data.llm_delta = {}
-                    else:
-                        raise RuntimeError("CRITICAL PIPELINE ERROR: LLM parallel fetch failed.") from e
-        else:
-            logger.info("LLM provider not available.")
-            import os
-            if "PYTEST_CURRENT_TEST" in os.environ:
-                chapter_data.llm_delta = {}
-            else:
-                raise RuntimeError(
-                    "CRITICAL PIPELINE ERROR: Narrative Intelligence Engine requires an active internet connection to execute dynamic narrative analysis. Local fallback is disabled."
-                )
+        if self._coref is not None or not in_pytest:
+            try:
+                chapter_data.coreferences = self._get_coreference_resolver().resolve(cleaned_text)
+                self._normalize_coreferences(chapter_data)
+                chapter_data.coreference_clusters = [
+                    cluster.mentions for cluster in chapter_data.coreferences
+                ]
+                self._attach_coreference_ids(chapter_data)
+                coref_ran_ok = True
+            except Exception as e:
+                logger.warning(f"Deterministic coreference resolution failed: {e}")
 
-        # If entity extractor or coreference resolver are explicitly injected (e.g. mock/test environments), execute them
-        if self._ner is not None or self._coref is not None:
-            if self._ner is not None:
-                try:
-                    extractor = self._get_entity_extractor()
-                    import inspect
-                    sig = inspect.signature(extractor.extract)
-                    if "doc" in sig.parameters:
-                        chapter_data.entities = extractor.extract(
-                            cleaned_text,
-                            labels=self._entity_labels(),
-                            doc=None
-                        )
-                    else:
-                        chapter_data.entities = extractor.extract(
-                            cleaned_text,
-                            labels=self._entity_labels(),
-                        )
-                    self._normalize_entities(chapter_data)
-                except Exception as e:
-                    logger.warning(f"Injected NER extractor failed: {e}")
-            if self._coref is not None:
-                try:
-                    chapter_data.coreferences = self._get_coreference_resolver().resolve(cleaned_text)
-                    self._normalize_coreferences(chapter_data)
-                    chapter_data.coreference_clusters = [
-                        cluster.mentions for cluster in chapter_data.coreferences
-                    ]
-                    self._attach_coreference_ids(chapter_data)
-                except Exception as e:
-                    logger.warning(f"Injected Coref resolver failed: {e}")
-
-        # Fast Rule-based Fallback Parser (Offline/Test compatibility and local NLP deprecation)
+        # Fast Rule-based Fallback Parser — only used if deterministic NER didn't run/succeed
+        # (test mode without injection, or a genuine GLiNER load/runtime failure).
         from src.models.state import ExtractedEntity, ExtractedDialogue, TextSpan
-        
-        # Extract capitalized words as fallback entities to maintain general compatibility if no custom extractor is injected
-        text_lower = cleaned_text.lower()
-        if self._ner is None:
+
+        if not ner_ran_ok:
             existing_texts = {e.text.lower() for e in chapter_data.entities}
             import re
             matches = re.finditer(r'\b[A-Z][a-zA-Z]+\b', cleaned_text)
@@ -379,18 +217,66 @@ class Pipeline:
                         ))
                         existing_texts.add(name.lower())
 
-        # Build fallback llm_delta if it's empty
+        # Unconditionally run Dialogue Extraction (fast, rule-based)
+        chapter_data.dialogues = self._dialogue_extractor.extract(cleaned_text, sentence_spans)
+
+        # Dependency-parsed relation extraction (subject/verb/object) + style metrics. Both were
+        # previously dormant: NLPProcessor.extract_subject_verb_object() and
+        # Pipeline._compute_style_metrics() existed but nothing called them, leaving
+        # chapter_data.relations always empty (silently no-opping TimelineMemory,
+        # character_memory's relation-based mention collection, and StyleMemory) and
+        # chapter_data.style_metrics always empty (silently no-opping StyleMemory entirely).
+        try:
+            doc = self._nlp_processor.process(cleaned_text)
+            chapter_data.relations = self._extract_relations(doc, chapter_data)
+            chapter_data.style_metrics = self._compute_style_metrics(doc, sentences)
+        except Exception as e:
+            logger.warning(f"Dependency-parsed relation/style extraction failed: {e}")
+
+        # 5. SPECIALIZED LLM EXTRACTION STAGES — interpretation layered on top of the deterministic
+        # evidence above via focused, context-aware calls (see src/pipeline/llm_extraction.py).
+        # Never runs on raw text alone: always grounded in ContextRetriever's relevant-history slice
+        # and the deterministic entities/coreferences/relations/dialogue just extracted.
+        chapter_data.llm_delta = {}
+        if self._config:
+            from src.pipeline.context_retriever import ContextRetriever
+            from src.pipeline.llm_extraction import LLMExtractionEngine
+
+            retriever = ContextRetriever(self._config)
+            context_block, active_characters = retriever.retrieve_context(cleaned_text)
+
+            try:
+                extractor_engine = LLMExtractionEngine(self._config)
+                chapter_data.llm_delta = extractor_engine.extract(
+                    chapter_num=chapter_num,
+                    cleaned_text=cleaned_text,
+                    chapter_data=chapter_data,
+                    context_block=context_block,
+                )
+                logger.info(f"LLM extraction stages complete for Chapter {chapter_num}.")
+            except Exception as e:
+                # Deterministic NLP evidence above is gathered independently of this LLM delta,
+                # so a failure here degrades the chapter rather than blocking it.
+                logger.warning(
+                    f"LLM extraction stages unavailable for Chapter {chapter_num} ({e}). "
+                    "Continuing with deterministic evidence only; no LLM-authored state delta this chapter."
+                )
+        else:
+            logger.info(
+                "No config available for LLM provider lookup. Continuing with deterministic evidence only "
+                "(GLiNER/FastCoref/dependency-parse/dialogue extraction); no LLM-authored state delta or critique this chapter."
+            )
+
+        # Guarantee a consistently-shaped llm_delta even if extraction was skipped entirely above.
         if not chapter_data.llm_delta:
             chapter_data.llm_delta = {
                 "character_updates": [],
                 "relationship_mutations": [],
                 "promises_delta": [],
                 "world_updates": [],
-                "structural_mysteries": []
+                "timeline_events": [],
+                "structural_mysteries": [],
             }
-
-        # Unconditionally run Dialogue Extraction (fast, rule-based)
-        chapter_data.dialogues = self._dialogue_extractor.extract(cleaned_text, sentence_spans)
 
         # Apply final validation checks
         chapter_data.validate()
@@ -535,6 +421,61 @@ class Pipeline:
             "pos_distribution": pos_counts,
             "dialogue_density": round(dialogue_density, 4),
         }
+
+    def _extract_relations(self, doc, chapter_data: ChapterData) -> list:
+        """Extract (subject, predicate, object) evidence via dependency parsing.
+
+        Wraps NLPProcessor.extract_subject_verb_object(), resolving pronoun
+        subjects/objects to their coreference cluster's canonical mention where
+        possible so downstream consumers (TimelineMemory, character mention
+        collection, LLM evidence grounding) see "Laurie paced" rather than
+        "he paced" whenever FastCoref already linked the two.
+        """
+        from src.models.state import ExtractedRelation
+
+        pronoun_to_canonical = {}
+        for cluster in getattr(chapter_data, "coreferences", []):
+            # Guard against a mis-clustered or mis-picked canonical mention (FastCoref isn't
+            # perfect, and _canonical_mention() just takes the first non-pronoun span in the
+            # cluster): a "canonical mention" that's really a long descriptive noun phrase (e.g.
+            # "the servant's passage behind the bookshelf") is a sign the cluster or the pick is
+            # wrong, not a usable substitute for "he"/"she". Skip substitution in that case rather
+            # than propagate the error into every relation touching that pronoun.
+            if not cluster.canonical_mention or len(cluster.canonical_mention.split()) > 4:
+                continue
+            for mention in cluster.mentions:
+                pronoun_to_canonical[mention.strip().lower()] = cluster.canonical_mention
+
+        def resolve(text: str) -> str:
+            return pronoun_to_canonical.get(text.strip().lower(), text)
+
+        relations = []
+        seen = set()
+        for triple in self._nlp_processor.extract_subject_verb_object(doc):
+            subject = resolve(triple["subject"]).strip()
+            obj = resolve(triple["object"]).strip()
+            predicate = triple["verb"].strip()
+            if not subject or not predicate or not obj:
+                continue
+            if subject.lower() in ("it", "this", "that", "there") or obj.lower() in ("it", "this", "that", "there"):
+                continue
+            # Skip subjects/objects that are long noun phrases rather than entity-like mentions —
+            # keeps relation evidence (and everything downstream: character mention collection,
+            # TimelineMemory, the LLM evidence block) focused on names/short referents.
+            if len(subject.split()) > 5 or len(obj.split()) > 5:
+                continue
+            dedup_key = (subject.lower(), predicate.lower(), obj.lower())
+            if dedup_key in seen:
+                continue
+            seen.add(dedup_key)
+            relations.append(ExtractedRelation(
+                subject=subject,
+                predicate=predicate,
+                object=obj,
+                confidence=0.7,
+                source="spacy_dependency",
+            ))
+        return relations
 
     def _serialize_state(self, state: Optional[NarrativeState]) -> str:
         if state is None:

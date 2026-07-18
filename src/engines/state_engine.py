@@ -57,84 +57,95 @@ class StateEngine:
             isinstance(llm_delta.get(k), list) and len(llm_delta[k]) > 0
             for k in ("character_updates", "relationship_mutations", "promises_delta", "world_updates", "structural_mysteries")
         )
+
+        # --- PASS 1: Deterministic memory update — ALWAYS runs first. ---
+        # GLiNER/FastCoref/dialogue evidence already attached to chapter_data seeds candidate
+        # characters, relationships, world objects, timeline entries, themes, promises, mysteries
+        # and style stats via the src/memory/*.py update_from_chapter() chain. Any LLM-authored
+        # delta (Pass 2 below) is layered on top of this deterministic baseline as a refinement,
+        # never as a replacement for it.
+        logger.info(f"Running deterministic memory update pass for chapter {chapter_num}.")
+        from src.memory.character_memory import CharacterMemory
+        from src.memory.relationship_memory import RelationshipMemory
+        from src.memory.world_memory import WorldMemory
+        from src.memory.timeline_memory import TimelineMemory
+        from src.memory.theme_memory import ThemeMemory
+        from src.memory.promise_memory import PromiseMemory
+        from src.memory.mystery_memory import MysteryMemory
+        from src.memory.style_memory import StyleMemory
+
+        character_memory = CharacterMemory(existing_entries=current_state.characters)
+        character_changes = character_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(character_changes)
+
+        advanced_character_changes = character_memory.extract_advanced_attributes(chapter_data, chapter_num)
+        delta.changes.extend(advanced_character_changes)
+
+        relationship_memory = RelationshipMemory()
+        relationship_memory.load(current_state.relationships)
+        relationship_changes = relationship_memory.update_from_chapter(
+            chapter_data, chapter_num, existing_characters=current_state.characters
+        )
+        delta.changes.extend(relationship_changes)
+
+        world_memory = WorldMemory()
+        world_memory.load(current_state.world)
+        world_changes = world_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(world_changes)
+
+        timeline_memory = TimelineMemory()
+        timeline_changes = timeline_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(timeline_changes)
+
+        theme_memory = ThemeMemory(existing_entries=current_state.themes)
+        theme_changes = theme_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(theme_changes)
+
+        promise_memory = PromiseMemory(existing_entries=current_state.promises)
+        promise_changes = promise_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(promise_changes)
+
+        mystery_memory = MysteryMemory(existing_entries=current_state.mysteries)
+        mystery_changes = mystery_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(mystery_changes)
+
+        style_memory = StyleMemory(existing_entries=current_state.style)
+        style_changes = style_memory.update_from_chapter(chapter_data, chapter_num)
+        delta.changes.extend(style_changes)
+
+        # Persist deterministic pass back onto current_state
+        current_state.characters = character_memory.entries
+        current_state.relationships = relationship_memory.entries
+        current_state.world = world_memory.entries
+        current_state.themes = theme_memory.entries
+        current_state.promises = promise_memory.entries
+        current_state.mysteries = mystery_memory.entries
+        current_state.style = style_memory.entries
+
+        # Append timeline events from deterministic relation evidence
+        for rel in getattr(chapter_data, "relations", []):
+            event = {
+                "chapter": chapter_num,
+                "subject": getattr(rel, "subject", None),
+                "predicate": getattr(rel, "predicate", None),
+                "object": getattr(rel, "object", None),
+            }
+            current_state.timeline.append(event)
+
+        if not current_state.timeline:
+            current_state.timeline.append({
+                "chapter": chapter_num,
+                "subject": "System",
+                "predicate": "initiated",
+                "object": "Chapter"
+            })
+
+        # --- PASS 2: LLM-authored delta refinement — only if the pipeline produced one. ---
         if not llm_delta or not has_updates:
-            logger.info(f"No LLM delta found or empty delta for chapter {chapter_num}. Falling back to legacy memory updates.")
-            from src.memory.character_memory import CharacterMemory
-            from src.memory.relationship_memory import RelationshipMemory
-            from src.memory.world_memory import WorldMemory
-            from src.memory.timeline_memory import TimelineMemory
-            from src.memory.theme_memory import ThemeMemory
-            from src.memory.promise_memory import PromiseMemory
-            from src.memory.mystery_memory import MysteryMemory
-            from src.memory.style_memory import StyleMemory
-
-            character_memory = CharacterMemory(existing_entries=current_state.characters)
-            character_changes = character_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(character_changes)
-
-            advanced_character_changes = character_memory.extract_advanced_attributes(chapter_data, chapter_num)
-            delta.changes.extend(advanced_character_changes)
-
-            relationship_memory = RelationshipMemory()
-            relationship_memory.load(current_state.relationships)
-            relationship_changes = relationship_memory.update_from_chapter(
-                chapter_data, chapter_num, existing_characters=current_state.characters
-            )
-            delta.changes.extend(relationship_changes)
-
-            world_memory = WorldMemory()
-            world_memory.load(current_state.world)
-            world_changes = world_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(world_changes)
-
-            timeline_memory = TimelineMemory()
-            timeline_changes = timeline_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(timeline_changes)
-
-            theme_memory = ThemeMemory(existing_entries=current_state.themes)
-            theme_changes = theme_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(theme_changes)
-
-            promise_memory = PromiseMemory(existing_entries=current_state.promises)
-            promise_changes = promise_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(promise_changes)
-
-            mystery_memory = MysteryMemory(existing_entries=current_state.mysteries)
-            mystery_changes = mystery_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(mystery_changes)
-
-            style_memory = StyleMemory(existing_entries=current_state.style)
-            style_changes = style_memory.update_from_chapter(chapter_data, chapter_num)
-            delta.changes.extend(style_changes)
-
-            # Persist back
-            current_state.characters = character_memory.entries
-            current_state.relationships = relationship_memory.entries
-            current_state.world = world_memory.entries
-            current_state.themes = theme_memory.entries
-            current_state.promises = promise_memory.entries
-            current_state.mysteries = mystery_memory.entries
-            current_state.style = style_memory.entries
-
-            # Append timeline events
-            for rel in getattr(chapter_data, "relations", []):
-                event = {
-                    "chapter": chapter_num,
-                    "subject": getattr(rel, "subject", None),
-                    "predicate": getattr(rel, "predicate", None),
-                    "object": getattr(rel, "object", None),
-                }
-                current_state.timeline.append(event)
-
-            if not current_state.timeline:
-                current_state.timeline.append({
-                    "chapter": chapter_num,
-                    "subject": "System",
-                    "predicate": "initiated",
-                    "object": "Chapter"
-                })
-                
+            logger.info(f"No LLM delta for chapter {chapter_num}; deterministic pass is the final result.")
             return delta
+
+        logger.info(f"Layering LLM-authored delta refinement onto deterministic baseline for chapter {chapter_num}.")
 
         # 0. Apply Chapter Summary
         summary = llm_delta.get("chapter_summary")
@@ -155,10 +166,18 @@ class StateEngine:
 
         # 1. Apply Character Updates
         for char_update in llm_delta.get("character_updates", []):
-            char_id = char_update.get("character_id")
-            if not char_id:
+            raw_char_id = char_update.get("character_id")
+            if not raw_char_id:
                 continue
-            
+
+            # Resolve against characters the deterministic Pass 1 (above) already seeded,
+            # so the LLM's own id/casing for someone it already knows about (e.g. "Laurie")
+            # doesn't create a duplicate of what Pass 1 identified as "laurie". Reuses
+            # CharacterMemory's existing alias/proper-noun resolution rather than trusting
+            # the LLM's raw id verbatim.
+            resolution_source = char_update.get("canonical_name") or raw_char_id
+            char_id = character_memory.resolve_character_id(resolution_source, current_state.characters)
+
             char_entry = current_state.characters.setdefault(char_id, {})
 
             # Helper for updating a StateEntry
@@ -478,6 +497,41 @@ class StateEngine:
             if "description" not in motif_entry:
                 motif_entry["description"] = StateEntry(key="description", element_type=NarrativeElementType.MOTIF)
             motif_entry["description"].update(StateSnapshot(value=desc, chapter=chapter_num, confidence=0.9, reasoning=reasoning))
+
+        # 4d. Apply Timeline Events — explicit, structured events proposed by the World+Timeline
+        # LLM stage. This is the first real source of chapter_data-independent timeline content:
+        # previously current_state.timeline was populated only by the death/moves_to/acquires
+        # inference hack below (section "Synchronize LLM updates..."), since the deterministic
+        # TimelineMemory path has nothing to work with until relation extraction feeds it (see
+        # Pipeline._extract_relations). Kept additive alongside that hack rather than replacing it,
+        # since TimelineInspector's post-mortem detection depends on the "dies" predicate it emits.
+        for idx, event in enumerate(llm_delta.get("timeline_events", [])):
+            subject = event.get("subject")
+            predicate = event.get("predicate")
+            obj = event.get("object")
+            if not subject or not predicate:
+                continue
+
+            timeline_entry = {
+                "chapter": chapter_num,
+                "subject": subject,
+                "predicate": predicate,
+                "object": obj,
+                "time": event.get("time"),
+                "source": "llm_timeline_stage",
+            }
+            current_state.timeline.append(timeline_entry)
+
+            event_id = f"ch{chapter_num}_llm_evt{idx}"
+            delta.changes.append(StateChange(
+                change_type=StateChangeType.INTRODUCTION,
+                target_type=NarrativeElementType.EVENT,
+                target_id=event_id,
+                field_key="description",
+                new_value=f"{subject} {predicate} {obj or ''}".strip(),
+                confidence=event.get("confidence", 0.8),
+                reasoning="Timeline event proposed by World+Timeline LLM stage.",
+            ))
 
         # 5. Extract and persist LLM structural mysteries
         delta.structural_mysteries = []

@@ -909,7 +909,15 @@ class CharacterMemory(BaseMemory):
                 if not name_propns:
                     name_propns = {w for w in name.split() if w and w[0].isupper()}
 
-                titles_to_exclude = {"Lord", "Lady", "Sir", "Mr", "Mrs", "Miss", "Dr", "Captain", "Nemesis", "Grandmaster"}
+                # Includes common capitalized function words (articles/demonstratives) so that
+                # long, non-name noun phrases sharing only a sentence-initial "The" (e.g. "The cab
+                # driver" vs. "The servant's passage behind the bookshelf") don't falsely match —
+                # these reach here via the word-initial-capital fallback below when spaCy's small
+                # model finds no true PROPN token in either name.
+                titles_to_exclude = {
+                    "Lord", "Lady", "Sir", "Mr", "Mrs", "Miss", "Dr", "Captain", "Nemesis", "Grandmaster",
+                    "The", "A", "An", "This", "That", "These", "Those", "It", "He", "She", "They",
+                }
                 shared_propns = (mention_propns & name_propns) - titles_to_exclude
                 if shared_propns:
                     import logging
