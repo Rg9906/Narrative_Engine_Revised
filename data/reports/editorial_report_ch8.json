@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "chapter": 8,
+    "generated_at": "2026-07-18T21:04:07.082646",
+    "inspector_count": 8,
+    "llm_provider": "none"
+  },
+  "findings": [
+    {
+      "severity": "warning",
+      "category": "conflict",
+      "title": "Neglected mystery / question",
+      "description": "The mystery 'Who stole the chalice?' (introduced in chapter 1) remains unresolved for 7 chapters. Consider dropping a clue or advancing this plot point.",
+      "chapter": 8,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.8
+    }
+  ]
+}

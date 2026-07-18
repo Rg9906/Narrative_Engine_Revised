@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "chapter": 2,
+    "generated_at": "2026-07-18T21:04:07.094726",
+    "inspector_count": 8,
+    "llm_provider": "none"
+  },
+  "findings": [
+    {
+      "severity": "warning",
+      "category": "voice",
+      "title": "Sudden prose style shift",
+      "description": "Average sentence length changed significantly in chapter 2 (25.0 words) compared to historical average (15.0 words). Verify if this tempo change is intentional.",
+      "chapter": 2,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.8
+    }
+  ]
+}
