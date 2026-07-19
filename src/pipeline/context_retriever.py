@@ -8,10 +8,19 @@ logger = logging.getLogger("NarrativeEngine.Pipeline.ContextRetriever")
 
 class ContextRetriever:
     """
-    Production-grade RAG Context Preprocessing Pipeline.
+    RAG Context Preprocessing Pipeline, built around a single source of truth.
     Stage 1: Boundary-Safe Entity and Location Scanner.
-    Stage 2: Four-Tier Surgical State Hydration (Profiles, Relationships, Promises, Clues).
+    Stage 2: Four-Tier Surgical State Hydration (Characters, Relationships, Promises, World).
     Stage 3: Token-budgeted XML Context Compilation.
+
+    Data source: the canonical NarrativeState — either the live in-memory object
+    (the normal case: the caller already has it) or, only if none is provided,
+    the canonical narrative_state.json file on disk (cold start / standalone use).
+    No other file is ever read. A prior version of this class tried up to nine
+    different files — narrative_state.json, three separate legacy top-level JSON
+    files, and four data/{profiles,relationships,promises,clues} folders — and
+    merged whatever partial, possibly-stale data each happened to contain, with
+    no way to tell which source actually won for a given field.
     """
 
     def __init__(self, config=None):
@@ -20,13 +29,19 @@ class ContextRetriever:
         if config and hasattr(config, "memory_dir"):
             self._memory_dir = Path(config.memory_dir)
 
-    def retrieve_context(self, raw_text: str) -> Tuple[Optional[str], List[str]]:
+    def retrieve_context(self, raw_text: str, current_state: Optional[Any] = None) -> Tuple[Optional[str], List[str]]:
         """
         Runs entity pre-scans, hydrates data structures, compiles budgeted XML block.
+
+        Args:
+            raw_text: The incoming chapter text to scan for active entities.
+            current_state: The live NarrativeState, if the caller has one (Pipeline
+                always does). When omitted, falls back to reading the canonical
+                narrative_state.json from disk — the only supported fallback.
+
         Returns a tuple: (context_block_str, list_of_active_character_ids)
         """
-        # Wrap database loading in try-except block to handle cold start safely
-        data_sources = self._load_data_sources()
+        data_sources = self._load_data_sources(current_state)
         char_data = data_sources["characters"]
         relationships_data = data_sources["relationships"]
         promises_data = data_sources["promises"]
@@ -64,161 +79,59 @@ class ContextRetriever:
             threats_data=data_sources.get("threats", {}),
             themes_data=data_sources.get("themes", {}),
             motifs_data=data_sources.get("motifs", {}),
-            chapter_summaries_data=data_sources.get("chapter_summaries", {})
+            chapter_summaries_data=data_sources.get("chapter_summaries", {}),
+            timeline_data=data_sources.get("timeline", []),
         )
 
         return context_str, sorted(list(active_characters))
 
-    def _load_data_sources(self) -> Dict[str, Dict[str, Any]]:
+    def _load_data_sources(self, current_state: Optional[Any] = None) -> Dict[str, Dict[str, Any]]:
         """
-        Loads all required memory databases safely from disk.
-        Returns empty structures if files do not exist or fail to parse.
-        """
-        char_data = {}
-        relationships_data = {}
-        promises_data = {}
-        world_data = {}
-        threats_data = {}
-        themes_data = {}
-        motifs_data = {}
-        chapter_summaries_data = {}
+        Single source of truth, with exactly one explicit fallback.
 
-        # 1. Try global state narrative_state.json as fallback source
+        If the caller already has a live NarrativeState (the normal case — Pipeline
+        always does), use it directly: no disk read at all, and no risk of the
+        in-memory state and an on-disk snapshot disagreeing. Only when no state
+        object is provided (cold start, or a caller that genuinely doesn't have
+        one yet) does this read the canonical narrative_state.json — and if that
+        doesn't exist or fails to parse, it returns empty structures rather than
+        guessing from some other file.
+        """
+        if current_state is not None:
+            return self._extract_sources(current_state.to_dict())
+
         state_path = self._memory_dir / "narrative_state.json"
-        if state_path.exists():
-            try:
-                with open(state_path, "r", encoding="utf-8") as f:
-                    sdata = json.load(f)
-                    char_data = sdata.get("characters", {})
-                    relationships_data = sdata.get("relationships", {})
-                    promises_data = sdata.get("promises", {})
-                    world_data = sdata.get("world", {})
-                    threats_data = sdata.get("threats", {})
-                    themes_data = sdata.get("themes", {})
-                    motifs_data = sdata.get("motifs", {})
-                    chapter_summaries_data = sdata.get("chapter_summaries", {})
-            except Exception as e:
-                logger.warning(f"Graceful fallback: Failed to load narrative_state.json: {e}")
+        if not state_path.exists():
+            logger.info("No canonical narrative_state.json found yet (cold start). No context to retrieve.")
+            return self._empty_data_sources()
 
-        # 2. Try loading from individual legacy files as fallback
-        char_mem_path = self._memory_dir / "character_memory.json"
-        if char_mem_path.exists():
-            try:
-                with open(char_mem_path, "r", encoding="utf-8") as f:
-                    char_data.update(json.load(f))
-            except Exception as e:
-                logger.warning(f"Graceful fallback: Failed to load character_memory.json: {e}")
+        try:
+            with open(state_path, "r", encoding="utf-8") as f:
+                sdata = json.load(f)
+        except (OSError, json.JSONDecodeError) as e:
+            logger.error(f"Canonical narrative_state.json exists but could not be read/parsed: {e}")
+            return self._empty_data_sources()
 
-        rel_mem_path = self._memory_dir / "relationship_memory.json"
-        if rel_mem_path.exists():
-            try:
-                with open(rel_mem_path, "r", encoding="utf-8") as f:
-                    relationships_data.update(json.load(f))
-            except Exception as e:
-                logger.warning(f"Graceful fallback: Failed to load relationship_memory.json: {e}")
+        return self._extract_sources(sdata)
 
-        world_mem_path = self._memory_dir / "world_memory.json"
-        if world_mem_path.exists():
-            try:
-                with open(world_mem_path, "r", encoding="utf-8") as f:
-                    wdata = json.load(f)
-                    if isinstance(wdata, dict):
-                        if "world" in wdata:
-                            world_data.update(wdata.get("world", {}))
-                        else:
-                            world_data.update(wdata)
-                        if "promises" in wdata:
-                            promises_data.update(wdata.get("promises", {}))
-            except Exception as e:
-                logger.warning(f"Graceful fallback: Failed to load world_memory.json: {e}")
-
-        vows_path = self._memory_dir / "vows.json"
-        if vows_path.exists():
-            try:
-                with open(vows_path, "r", encoding="utf-8") as f:
-                    promises_data.update(json.load(f))
-            except Exception as e:
-                logger.warning(f"Graceful fallback: Failed to load vows.json: {e}")
-
-        # 3. Load from the new folder-based file database (data/profiles, data/relationships, data/clues, data/promises)
-        profiles_dir = Path("data/profiles")
-        if self._config and hasattr(self._config, "profiles_dir"):
-            profiles_dir = self._config.profiles_dir
-        if profiles_dir.exists():
-            for fpath in profiles_dir.glob("*.json"):
-                try:
-                    with open(fpath, "r", encoding="utf-8") as f:
-                        cdata = json.load(f)
-                        if isinstance(cdata, dict):
-                            char_id = fpath.stem.lower()
-                            if char_id in cdata and isinstance(cdata[char_id], dict):
-                                char_data.update(cdata)
-                            else:
-                                char_data[char_id] = cdata
-                except Exception as e:
-                    logger.warning(f"Failed to load profile from {fpath.name}: {e}")
-
-        relationships_dir = Path("data/relationships")
-        if self._config and hasattr(self._config, "relationships_dir"):
-            relationships_dir = self._config.relationships_dir
-        if relationships_dir.exists():
-            for fpath in relationships_dir.glob("*.json"):
-                try:
-                    with open(fpath, "r", encoding="utf-8") as f:
-                        rdata = json.load(f)
-                        if isinstance(rdata, dict):
-                            stem = fpath.stem.lower()
-                            rel_key = stem.replace("__", "::")
-                            if rel_key in rdata and isinstance(rdata[rel_key], dict):
-                                relationships_data.update(rdata)
-                            else:
-                                relationships_data[rel_key] = rdata
-                except Exception as e:
-                    logger.warning(f"Failed to load relationship from {fpath.name}: {e}")
-
-        promises_dir = Path("data/promises")
-        if self._config and hasattr(self._config, "promises_dir"):
-            promises_dir = self._config.promises_dir
-        if promises_dir.exists():
-            for fpath in promises_dir.glob("*.json"):
-                try:
-                    with open(fpath, "r", encoding="utf-8") as f:
-                        pdata = json.load(f)
-                        if isinstance(pdata, dict):
-                            promise_id = fpath.stem.lower()
-                            if promise_id in pdata and isinstance(pdata[promise_id], dict):
-                                promises_data.update(pdata)
-                            else:
-                                promises_data[promise_id] = pdata
-                except Exception as e:
-                    logger.warning(f"Failed to load promise from {fpath.name}: {e}")
-
-        clues_dir = Path("data/clues")
-        if self._config and hasattr(self._config, "clues_dir"):
-            clues_dir = self._config.clues_dir
-        if clues_dir.exists():
-            for fpath in clues_dir.glob("*.json"):
-                try:
-                    with open(fpath, "r", encoding="utf-8") as f:
-                        cldata = json.load(f)
-                        if isinstance(cldata, dict):
-                            clue_id = fpath.stem.lower()
-                            if clue_id in cldata and isinstance(cldata[clue_id], dict):
-                                world_data.update(cldata)
-                            else:
-                                world_data[clue_id] = cldata
-                except Exception as e:
-                    logger.warning(f"Failed to load clue from {fpath.name}: {e}")
-
+    def _extract_sources(self, sdata: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
         return {
-            "characters": char_data,
-            "relationships": relationships_data,
-            "promises": promises_data,
-            "world": world_data,
-            "threats": threats_data,
-            "themes": themes_data,
-            "motifs": motifs_data,
-            "chapter_summaries": chapter_summaries_data,
+            "characters": sdata.get("characters", {}),
+            "relationships": sdata.get("relationships", {}),
+            "promises": sdata.get("promises", {}),
+            "world": sdata.get("world", {}),
+            "threats": sdata.get("threats", {}),
+            "themes": sdata.get("themes", {}),
+            "motifs": sdata.get("motifs", {}),
+            "chapter_summaries": sdata.get("chapter_summaries", {}),
+            "timeline": sdata.get("timeline", []),
+        }
+
+    def _empty_data_sources(self) -> Dict[str, Dict[str, Any]]:
+        return {
+            "characters": {}, "relationships": {}, "promises": {}, "world": {},
+            "threats": {}, "themes": {}, "motifs": {}, "chapter_summaries": {},
+            "timeline": [],
         }
 
     def _detect_active_characters(self, raw_text: str, char_data: Dict[str, Any]) -> Set[str]:
@@ -305,7 +218,8 @@ class ContextRetriever:
         threats_data: Dict[str, Any],
         themes_data: Dict[str, Any],
         motifs_data: Dict[str, Any],
-        chapter_summaries_data: Dict[str, Any]
+        chapter_summaries_data: Dict[str, Any],
+        timeline_data: Optional[List[Dict[str, Any]]] = None,
     ) -> str:
         """
         Hydrates Tiers and compiles them into a token-budgeted XML structure.
@@ -471,6 +385,20 @@ class ContextRetriever:
         for ch_num, summ in sorted(chapter_summaries_data.items(), key=lambda x: int(x[0]) if str(x[0]).isdigit() else 0):
             summary_xmls.append(f"    <Summary chapter=\"{ch_num}\">{str(summ).strip()}</Summary>")
 
+        # Tier I: Recent Timeline — the last 15 recorded events, so every LLM call (extraction
+        # stages and editorial critique alike) has some cross-chapter continuity beyond just
+        # chapter summaries: what actually just happened, in what order. Capped by count rather
+        # than folded into the byte-budget accounting below, since it's naturally small and a
+        # fixed cap is simpler to reason about than adding a fourth thing fighting for the same
+        # budget.
+        timeline_xmls = []
+        for event in (timeline_data or [])[-15:]:
+            subject = event.get("subject") or "?"
+            predicate = event.get("predicate") or "?"
+            obj = event.get("object") or ""
+            chapter = event.get("chapter")
+            timeline_xmls.append(f"    <Event chapter=\"{chapter}\">{subject} {predicate} {obj}</Event>".rstrip())
+
         # Stage 3: Token budget XML assembly
         # XML tags layout size overhead
         wrapper_start = "<StoryContext>\n"
@@ -482,6 +410,7 @@ class ContextRetriever:
         theme_start, theme_end = "  <CoreThemes>\n", "  </CoreThemes>\n"
         motif_start, motif_end = "  <CoreMotifs>\n", "  </CoreMotifs>\n"
         summ_start, summ_end = "  <ChapterSummaries>\n", "  </ChapterSummaries>\n"
+        timeline_start, timeline_end = "  <RecentTimeline>\n", "  </RecentTimeline>\n"
         wrapper_end = "</StoryContext>"
 
         # Compile Tiers A & D (Characters & Clues)
@@ -494,6 +423,7 @@ class ContextRetriever:
         if theme_xmls: current_xml += theme_start + "\n".join(theme_xmls) + "\n" + theme_end
         if motif_xmls: current_xml += motif_start + "\n".join(motif_xmls) + "\n" + motif_end
         if summary_xmls: current_xml += summ_start + "\n".join(summary_xmls) + "\n" + summ_end
+        if timeline_xmls: current_xml += timeline_start + "\n".join(timeline_xmls) + "\n" + timeline_end
 
         # Calculate budget for Relationships, Promises, Threats
         budget = 6000 - len(current_xml) - len(wrapper_end) - 200 # Add buffer

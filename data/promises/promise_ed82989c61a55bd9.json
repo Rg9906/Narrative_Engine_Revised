@@ -1,0 +1,140 @@
+{
+  "promise_ed82989c61a55bd9": {
+    "promise_text": {
+      "key": "promise_text",
+      "current": {
+        "value": "Once I comeback, I promise.\"",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Promise extracted from text containing 'i promise'.",
+        "timestamp": "2026-07-19T10:43:40.741607"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "speaker_id": {
+      "key": "speaker_id",
+      "current": {
+        "value": "unknown",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Speaker identified from dialogue context.",
+        "timestamp": "2026-07-19T10:43:40.741607"
+      },
+      "history": [],
+      "importance": 0.7,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "listener_id": {
+      "key": "listener_id",
+      "current": {
+        "value": "arden_whitmore",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Listener identified from neighboring entities.",
+        "timestamp": "2026-07-19T10:43:40.741607"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "FULFILLED",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Resolution detected via 'finished' in chapter.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [
+        {
+          "value": "OPEN",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "New promise marked as OPEN.",
+          "timestamp": "2026-07-19T10:43:40.741607"
+        }
+      ],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "chapter_made": {
+      "key": "chapter_made",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Chapter where promise was made.",
+        "timestamp": "2026-07-19T10:43:40.741607"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "climax_proximity_threshold": {
+      "key": "climax_proximity_threshold",
+      "current": {
+        "value": 3,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Default climax proximity threshold.",
+        "timestamp": "2026-07-19T10:43:40.741607"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "chapter_resolved": {
+      "key": "chapter_resolved",
+      "current": {
+        "value": 2,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Chapter where promise was resolved.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

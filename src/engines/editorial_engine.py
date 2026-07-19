@@ -28,6 +28,7 @@ from src.review.arc_inspector import ArcInspector
 from src.review.relationship_inspector import RelationshipInspector
 from src.review.timeline_inspector import TimelineInspector
 from src.review.conflict_inspector import ConflictInspector
+from src.review.spatiotemporal_inspector import SpatiotemporalInspector
 from src.models.state import NarrativeState, StateDelta
 from src.utils.llm_provider import LLMProvider
 
@@ -49,6 +50,7 @@ class EditorialEngine:
             RelationshipInspector(),
             TimelineInspector(),
             ConflictInspector(),
+            SpatiotemporalInspector(),
         ]
 
     def review(self, state: NarrativeState, delta: StateDelta | None = None, raw_text: str = "") -> dict:
@@ -81,6 +83,22 @@ class EditorialEngine:
                     "evidence_ids": [],
                     "related_entities": mystery.get("related_entities", []),
                     "confidence": 0.9,
+                })
+
+        # Surface ValidationEngine rejections (src/engines/validation_engine.py) — proposals
+        # from the LLM extraction stages that never reached NarrativeState. Shown here rather
+        # than only logged, so a human editor can see what the engine chose not to trust.
+        if delta and hasattr(delta, 'rejected_proposals'):
+            for rejected in delta.rejected_proposals:
+                findings.append({
+                    "severity": "note",
+                    "category": "validation",
+                    "title": f"Proposal rejected: {rejected.get('kind')}",
+                    "description": rejected.get("reason"),
+                    "chapter": delta.chapter_number,
+                    "evidence_ids": [],
+                    "related_entities": [rejected.get("entity_id")] if rejected.get("entity_id") else [],
+                    "confidence": 1.0,
                 })
 
         # Run LLM-based critique (Gemini / Groq / Ollama — auto-detected)
@@ -138,32 +156,20 @@ class EditorialEngine:
             logger.info(f"No LLM provider available (provider: {self._llm.provider_name}). Skipping LLM critique.")
             return []
 
-        # Prepare narrative state summary for LLM context
-        char_list = []
-        for cid, cdata in state.characters.items():
-            name = cid
-            if "canonical_name" in cdata and cdata["canonical_name"].current:
-                name = cdata["canonical_name"].current.value
-            goals = cdata.get("goals").current.value if "goals" in cdata and cdata["goals"].current else "unknown"
-            fears = cdata.get("fears").current.value if "fears" in cdata and cdata["fears"].current else "unknown"
-            traits = cdata.get("personality_traits").current.value if "personality_traits" in cdata and cdata["personality_traits"].current else []
-            char_list.append(f"- Character '{name}' (Aliases: {cid}): Goals: {goals}, Fears: {fears}, Personality: {traits}")
+        # Reuse the same token-budgeted, single-source-of-truth context hydration every other
+        # LLM call in this codebase uses (src/pipeline/llm_extraction.py's stages), instead of a
+        # separate ad hoc, unbounded serialization. This is what actually gives the critique
+        # cross-chapter awareness: ContextRetriever's <ChapterSummaries> and <RecentTimeline>
+        # tiers carry accumulated history forward, which the prior inline version never
+        # included at all — it only ever saw the current chapter's raw text against the
+        # current-moment state, with nothing preventing unbounded prompt growth as the novel
+        # (and the number of characters/relationships/promises) grows over many chapters.
+        from src.pipeline.context_retriever import ContextRetriever
+        context_block, _ = ContextRetriever(self._config).retrieve_context(raw_text, current_state=state)
 
-        # Active relationship statuses
-        relations = []
-        for rid, rdata in state.relationships.items():
-            label = rdata.get("relationship_label").current.value if "relationship_label" in rdata and rdata["relationship_label"].current else "unknown"
-            char_parts = rid.split("::")
-            relations.append(f"- Relationship between '{char_parts[0]}' and '{char_parts[1]}': Status: {label}")
-
-        # Count unresolved promises
-        promises = []
-        for pid, pdata in state.promises.items():
-            status = pdata.get("status").current.value if "status" in pdata and pdata["status"].current else "unresolved"
-            if status in ("unresolved", "OPEN"):
-                text = pdata.get("promise_text").current.value if "promise_text" in pdata and pdata["promise_text"].current else ""
-                promises.append(f"- {text} (Chapter {pdata.get('chapter_made').current.value if 'chapter_made' in pdata and pdata['chapter_made'].current else 'unknown'})")
-
+        # Unresolved mysteries aren't a ContextRetriever tier (they're not filtered by whether
+        # they're textually "active" in this chapter — an editor should see ALL open mysteries
+        # regardless), so they're still built directly here.
         mysteries = []
         for mid, mdata in state.mysteries.items():
             status = mdata.get("status").current.value if "status" in mdata and mdata["status"].current else "unresolved"
@@ -175,16 +181,20 @@ class EditorialEngine:
             f"You are a developmental editor reviewing Chapter {state.last_processed_chapter}.\n\n"
             f"--- Current Chapter Raw Text ---\n"
             f"{raw_text if raw_text else 'No raw text provided.'}\n\n"
-            f"--- Current Story Memory State ---\n"
-            f"Characters tracked (Goals, Fears, Personality):\n" + ("\n".join(char_list) if char_list else "None") + "\n\n"
-            f"Unresolved promises/foreshadows:\n" + ("\n".join(promises) if promises else "None") + "\n\n"
-            f"Active relationship statuses:\n" + ("\n".join(relations) if relations else "None") + "\n\n"
+            f"--- Story Memory (accumulated across all prior chapters) ---\n"
+            f"{context_block if context_block else 'No prior story memory yet — this is likely the first chapter.'}\n\n"
             f"Unresolved mysteries & conflict events:\n" + ("\n".join(mysteries) if mysteries else "None") + "\n\n"
             f"--- Editorial Instructions ---\n"
-            f"Please critique the current chapter based on the provided story memory state. Specifically, critique:\n"
-            f"1. **Thematic Pacing Drift**: Analyze whether the chapter's pacing is consistent with the current narrative arc or if it introduces sudden shifts, drag, or rushed scenes.\n"
-            f"2. **Stylistic Variance**: Detect if there is a noticeable stylistic, voice, or tone variance in this chapter compared to the standard narrative flow.\n"
-            f"3. **Mystery/Conflict cross-referencing**: Cross-reference newly emerged conflict events from mysteries (e.g. contradiction events, inventory dual-ownership, or physical description mismatches) to flag contradictions.\n\n"
+            f"Please critique the current chapter based on the provided story memory, reasoning across the "
+            f"accumulated chapter summaries and recent timeline above — not just this chapter in isolation. "
+            f"Specifically, critique:\n"
+            f"1. **Thematic Pacing Drift**: Analyze whether the chapter's pacing is consistent with the narrative "
+            f"arc established across prior chapters, or if it introduces sudden shifts, drag, or rushed scenes.\n"
+            f"2. **Stylistic Variance**: Detect if there is a noticeable stylistic, voice, or tone variance in this "
+            f"chapter compared to the standard narrative flow.\n"
+            f"3. **Mystery/Conflict cross-referencing**: Cross-reference newly emerged conflict events from "
+            f"mysteries (e.g. contradiction events, inventory dual-ownership, or physical description mismatches) "
+            f"to flag contradictions.\n\n"
             f"Format your response EXACTLY as a JSON array of objects. Do not include markdown code block syntax (like ```json). "
             f"Each object must have the following fields:\n"
             f"- 'severity': 'error' | 'warning' | 'suggestion' | 'note'\n"

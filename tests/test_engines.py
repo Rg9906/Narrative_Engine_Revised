@@ -319,11 +319,14 @@ Hope that helps with your developmental editing process!"""
         monkeypatch.setattr(engine._llm, "chat", mock_chat)
         
         delta = StateDelta(chapter_number=1)
-        engine._run_llm_critique(state, delta)
-        
+        # raw_text must actually mention "Arthur" — the critique now goes through
+        # ContextRetriever (see Phase 8), which only includes characters textually
+        # active in the chapter being reviewed, not the whole character roster.
+        engine._run_llm_critique(state, delta, raw_text="Arthur searched the castle for the grail.")
+
         assert len(captured_messages) == 2
         user_prompt = captured_messages[1]["content"]
-        assert "Goals: ['find the grail']" in user_prompt
+        assert "<Goals>find the grail</Goals>" in user_prompt
 
 
 
@@ -411,33 +414,68 @@ def test_narrative_state_engine_reconciliation_and_decay():
     decayed_conf = state.characters["arthur"]["personality_traits"].current.confidence
     assert decayed_conf == 0.78  # 0.8 - 0.02
 
-    # 2. Test Contradiction Reconciliation
-    hair_entry = StateEntry(key="physical_hair_color", element_type=NarrativeElementType.CHARACTER)
-    hair_entry.update(StateSnapshot(value="blonde", chapter=1, confidence=0.9))
-    state.characters["arthur"]["physical_hair_color"] = hair_entry
-    
-    # New conflicting change with lower confidence (0.5 < 0.9)
-    change = StateChange(
+    # 2. Test cross-character inventory conflict detection — the one responsibility
+    # reconcile_state_changes still has (see its docstring: per-field contradiction
+    # detection moved to ValidationEngine, called pre-write from StateEngine, since this
+    # method used to read state AFTER the write already landed and could never actually
+    # catch a same-chapter contradiction).
+    state.characters["arthur"]["inventory"] = StateEntry(key="inventory", element_type=NarrativeElementType.CHARACTER)
+    state.characters["arthur"]["inventory"].update(StateSnapshot(value=["sword"], chapter=2, confidence=0.9))
+    state.characters["merlin"] = {
+        "inventory": StateEntry(key="inventory", element_type=NarrativeElementType.CHARACTER)
+    }
+    state.characters["merlin"]["inventory"].update(StateSnapshot(value=["sword", "staff"], chapter=2, confidence=0.9))
+
+    inv_change = StateChange(
         change_type=StateChangeType.EVOLUTION,
         target_type=NarrativeElementType.CHARACTER,
         target_id="arthur",
-        field_key="physical_hair_color",
-        old_value="blonde",
-        new_value="black",
-        confidence=0.5
+        field_key="inventory",
+        old_value=[],
+        new_value=["sword"],
+        confidence=0.9,
     )
-    delta.changes = [change]
-    
+    delta.changes = [inv_change]
+
     reconciled = engine.reconcile_state_changes(state, delta)
-    
-    # Conflicting change is turned to CONTRADICTION
-    assert reconciled[0].change_type == StateChangeType.CONTRADICTION
-    # Value is reverted to old_value in state entries
-    assert state.characters["arthur"]["physical_hair_color"].current.value == "blonde"
-    # Logged conflict mystery
-    assert len(state.mysteries) > 0
-    conflict_key = list(state.mysteries.keys())[0]
-    assert "conflict_arthur_physical_hair_color" in conflict_key
+
+    # The change itself passes through unmodified (this layer flags, it doesn't revert)
+    assert reconciled[0].change_type == StateChangeType.EVOLUTION
+    # But a dual-ownership conflict mystery was logged for the shared "sword"
+    assert any("conflict_inv_sword" in k for k in state.mysteries.keys())
+
+
+def test_validation_engine_field_contradiction():
+    """Field-level contradiction detection now lives in ValidationEngine, applied BEFORE
+    a value is written (see src/engines/validation_engine.py and StateEngine's character/
+    world update loops) rather than after, so it can actually suppress a bad write."""
+    from src.engines.validation_engine import ValidationEngine
+
+    validator = ValidationEngine(None)
+
+    # Lower-confidence contradiction on a stability-expected field: flagged AND suppressed.
+    result = validator.check_field_contradiction(
+        field_key="physical_hair_color", old_value="blonde", old_confidence=0.9,
+        new_value="black", new_confidence=0.5,
+    )
+    assert result.is_contradiction is True
+    assert result.should_apply is False
+
+    # Equal-or-higher confidence contradiction: flagged, but still applied.
+    result2 = validator.check_field_contradiction(
+        field_key="physical_hair_color", old_value="blonde", old_confidence=0.5,
+        new_value="black", new_confidence=0.9,
+    )
+    assert result2.is_contradiction is True
+    assert result2.should_apply is True
+
+    # Fields expected to evolve every chapter (goals, location, ...) are never flagged.
+    result3 = validator.check_field_contradiction(
+        field_key="goals", old_value=["escape"], old_confidence=0.9,
+        new_value=["confront the king"], new_confidence=0.5,
+    )
+    assert result3.is_contradiction is False
+    assert result3.should_apply is True
 
 
 def test_char_inspector_inventory_teleportation():
@@ -595,14 +633,24 @@ def test_optimized_llm_prompt_generator(monkeypatch):
     char_entry["fears"].update(StateSnapshot(value="Failure", chapter=1))
     char_entry["personality_traits"].update(StateSnapshot(value=["brave"], chapter=1))
     state.characters["arthur"] = char_entry
-    
+
+    # Merlin needs to be a real character entry, not just a relationship-key reference —
+    # ContextRetriever's relationship tier only surfaces a relationship when BOTH parties
+    # are "active" (in state.characters AND mentioned in raw_text), matching how it works
+    # for the LLM extraction stages too.
+    merlin_entry = {
+        "canonical_name": StateEntry(key="canonical_name", element_type=NarrativeElementType.CHARACTER),
+    }
+    merlin_entry["canonical_name"].update(StateSnapshot(value="Merlin", chapter=1))
+    state.characters["merlin"] = merlin_entry
+
     # Setup active relationship
     rel_entry = {
         "relationship_label": StateEntry(key="relationship_label", element_type=NarrativeElementType.CHARACTER)
     }
     rel_entry["relationship_label"].update(StateSnapshot(value="ALLIANCE", chapter=1))
     state.relationships["arthur::merlin"] = rel_entry
-    
+
     # Mock LLM provider to capture the prompt
     captured_messages = []
     class MockLLM:
@@ -613,15 +661,17 @@ def test_optimized_llm_prompt_generator(monkeypatch):
             nonlocal captured_messages
             captured_messages = messages
             return "[]"
-            
+
     engine = EditorialEngine()
     monkeypatch.setattr(engine, "_llm", MockLLM())
-    
-    engine.review(state, None, raw_text="Chapter 1 content.")
-    
+
+    # raw_text must actually mention both characters for ContextRetriever to consider
+    # them active (see the comment above about the relationship tier).
+    engine.review(state, None, raw_text="Chapter 1 content. Arthur spoke with Merlin.")
+
     assert len(captured_messages) > 0
     prompt_content = captured_messages[1]["content"]
-    
+
     # Assert that all required context is in the prompt payload
     assert "Chapter 1 content." in prompt_content
     assert "Arthur" in prompt_content
@@ -629,6 +679,52 @@ def test_optimized_llm_prompt_generator(monkeypatch):
     assert "Failure" in prompt_content
     assert "brave" in prompt_content
     assert "ALLIANCE" in prompt_content
+
+
+def test_editorial_critique_carries_cross_chapter_history(monkeypatch):
+    """Phase 8 deliverable: the critique must reason over accumulated history (chapter
+    summaries, recent timeline), not just the current chapter in isolation. The prior
+    implementation never included either — this proves both actually reach the prompt."""
+    from src.engines.editorial_engine import EditorialEngine
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType
+
+    state = NarrativeState()
+    state.last_processed_chapter = 3
+
+    name_entry = StateEntry(key="canonical_name", element_type=NarrativeElementType.CHARACTER)
+    name_entry.update(StateSnapshot(value="Arthur", chapter=1))
+    state.characters["arthur"] = {"canonical_name": name_entry}
+
+    state.chapter_summaries = {
+        1: "Arthur pulled the sword from the stone.",
+        2: "Arthur was crowned king amid growing unrest.",
+    }
+    state.timeline = [
+        {"chapter": 1, "subject": "arthur", "predicate": "draws", "object": "excalibur"},
+        {"chapter": 2, "subject": "arthur", "predicate": "crowned_at", "object": "camelot"},
+    ]
+
+    captured_messages = []
+
+    class MockLLM:
+        is_available = True
+        provider_name = "mock"
+        model = "mock-model"
+        def chat(self, messages):
+            nonlocal captured_messages
+            captured_messages = messages
+            return "[]"
+
+    engine = EditorialEngine()
+    monkeypatch.setattr(engine, "_llm", MockLLM())
+
+    engine.review(state, None, raw_text="Arthur faced the first rebellion of his reign.")
+
+    prompt_content = captured_messages[1]["content"]
+    assert "Arthur pulled the sword from the stone." in prompt_content
+    assert "Arthur was crowned king amid growing unrest." in prompt_content
+    assert "draws excalibur" in prompt_content
+    assert "crowned_at camelot" in prompt_content
     assert "Thematic Pacing Drift" in prompt_content
     assert "Stylistic Variance" in prompt_content
 

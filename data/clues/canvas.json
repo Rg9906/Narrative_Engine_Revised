@@ -1,0 +1,141 @@
+{
+  "canvas": {
+    "type": {
+      "key": "type",
+      "current": {
+        "value": "object",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "First mention of world element.",
+        "timestamp": "2026-07-19T10:35:29.181208"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "first_mentioned_chapter": {
+      "key": "first_mentioned_chapter",
+      "current": {
+        "value": 0,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Recorded first mention chapter.",
+        "timestamp": "2026-07-19T10:35:29.181208"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 5,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Incremented world element mention count.",
+        "timestamp": "2026-07-19T10:35:29.181208"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "First mention count.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        },
+        {
+          "value": 2,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Incremented world element mention count.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        },
+        {
+          "value": 3,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Incremented world element mention count.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        },
+        {
+          "value": 4,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Incremented world element mention count.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 6,
+      "last_mentioned_chapter": 0
+    },
+    "last_mentioned_chapter": {
+      "key": "last_mentioned_chapter",
+      "current": {
+        "value": 0,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Updated last mention chapter.",
+        "timestamp": "2026-07-19T10:35:29.181208"
+      },
+      "history": [
+        {
+          "value": 0,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Updated last mention chapter.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        },
+        {
+          "value": 0,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Updated last mention chapter.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        },
+        {
+          "value": 0,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Updated last mention chapter.",
+          "timestamp": "2026-07-19T10:35:29.181208"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 0
+    }
+  }
+}

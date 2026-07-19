@@ -1,0 +1,94 @@
+{
+  "p1": {
+    "promise_text": {
+      "key": "promise_text",
+      "current": {
+        "value": "she would paint white over it",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
+        "timestamp": "2026-07-19T10:35:29.194207"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "speaker_id": {
+      "key": "speaker_id",
+      "current": {
+        "value": "Giselle",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
+        "timestamp": "2026-07-19T10:35:29.194207"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "listener_id": {
+      "key": "listener_id",
+      "current": {
+        "value": "herself",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
+        "timestamp": "2026-07-19T10:35:29.194207"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "OPEN",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
+        "timestamp": "2026-07-19T10:35:29.194207"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "chapter_made": {
+      "key": "chapter_made",
+      "current": {
+        "value": 0,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
+        "timestamp": "2026-07-19T10:35:29.194207"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    }
+  }
+}

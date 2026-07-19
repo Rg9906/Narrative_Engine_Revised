@@ -26,6 +26,7 @@ from src.models.state import (
     StateSnapshot,
     StateEntry,
 )
+from src.engines.validation_engine import ValidationEngine
 
 logger = logging.getLogger("NarrativeEngine.Engines.StateEngine")
 
@@ -33,13 +34,14 @@ logger = logging.getLogger("NarrativeEngine.Engines.StateEngine")
 class StateEngine:
     """
     Unified LLM State Engine.
-    
+
     Parses LLM sensory delta outputs and applies updates to the NarrativeState
     with defensive guardrails and atomic persistence.
     """
 
     def __init__(self, config=None):
         self._config = config
+        self._validator = ValidationEngine(config)
 
     def process_chapter(
         self,
@@ -83,8 +85,12 @@ class StateEngine:
 
         relationship_memory = RelationshipMemory()
         relationship_memory.load(current_state.relationships)
+        # Pass character_memory.entries (just updated above), not current_state.characters
+        # (which still reflects the state BEFORE this chapter's characters were added) — a
+        # character introduced for the first time this chapter must still be recognizable
+        # as a character when RelationshipMemory checks relation participants below.
         relationship_changes = relationship_memory.update_from_chapter(
-            chapter_data, chapter_num, existing_characters=current_state.characters
+            chapter_data, chapter_num, existing_characters=character_memory.entries
         )
         delta.changes.extend(relationship_changes)
 
@@ -147,21 +153,47 @@ class StateEngine:
 
         logger.info(f"Layering LLM-authored delta refinement onto deterministic baseline for chapter {chapter_num}.")
 
+        delta.rejected_proposals = []
+
+        # Entities the consistency-checker stage (Stage D of LLMExtractionEngine) already flagged
+        # this chapter — fed into ValidationEngine as a live signal, not just a display-only note.
+        flagged_entity_ids = set()
+        for mystery in llm_delta.get("structural_mysteries", []):
+            for ent in mystery.get("related_entities", []) or []:
+                if isinstance(ent, str):
+                    flagged_entity_ids.add(ent.strip().lower())
+
+        def log_contradiction_mystery(target_id: str, description: str) -> None:
+            conflict_id = f"conflict_{target_id}_{chapter_num}_{hash(description) & 0xffff}"
+            conflict_entry = current_state.mysteries.setdefault(conflict_id, {})
+
+            def _set(key: str, val: Any) -> None:
+                if key not in conflict_entry:
+                    conflict_entry[key] = StateEntry(key=key, element_type=NarrativeElementType.MYSTERY)
+                conflict_entry[key].update(StateSnapshot(value=val, chapter=chapter_num, confidence=1.0, reasoning="Logged by ValidationEngine."))
+
+            _set("mystery_text", description)
+            _set("status", "unresolved")
+            _set("chapter_introduced", chapter_num)
+            _set("type", "conflict")
+            logger.warning(f"Validation contradiction: {description}")
+
         # 0. Apply Chapter Summary
         summary = llm_delta.get("chapter_summary")
         if summary:
             current_state.chapter_summaries[chapter_num] = summary
 
-        # Normalize item names (Artifact Matching)
+        # Normalize item names. Generic regex normalization only — no manuscript-specific
+        # special-casing (a prior version hardcoded "wedding ring" / "emperor's scarab" from a
+        # different demo story; that's exactly the kind of story-specific logic this project
+        # intentionally excludes now). Mirrors CharacterMemory._normalize_entity_id's approach.
         def normalize_item_name(item: str) -> str:
+            import re
             item_clean = item.strip().lower()
-            if item_clean in ("wedding band", "wedding ring", "marlene's emerald-set platinum wedding ring", "emerald-set platinum wedding ring"):
-                return "wedding_ring"
-            if item_clean in ("emperor's scarab", "scarab"):
-                return "emperor_s_scarab"
-            return item_clean.replace(" ", "_")
+            item_clean = re.sub(r"[^a-z0-9]+", "_", item_clean)
+            return re.sub(r"_+", "_", item_clean).strip("_")
 
-        # Exclusions for immovable structures
+        # Exclusions for immovable structures (generic vocabulary, not story-specific)
         IMMOVABLE_STRUCTURES = {"fireplace", "staircase", "hearth", "floorboard", "desk", "bookshelf", "mantlepiece", "library_shelves", "shelves"}
 
         # 1. Apply Character Updates
@@ -178,35 +210,85 @@ class StateEngine:
             resolution_source = char_update.get("canonical_name") or raw_char_id
             char_id = character_memory.resolve_character_id(resolution_source, current_state.characters)
 
+            # --- Validation gate: is this proposal trustworthy enough to reach state at all? ---
+            is_new_character = char_id not in current_state.characters or not current_state.characters.get(char_id)
+            traits_for_confidence = char_update.get("traits_mutated", {}) or {}
+            proposal_confidence = max(
+                (t.get("confidence", 1.0) for t in traits_for_confidence.values()),
+                default=1.0,
+            )
+            validation = self._validator.evaluate_entity_proposal(
+                entity_id=char_id,
+                mention_hint=resolution_source,
+                is_new=is_new_character,
+                confidence=proposal_confidence,
+                chapter_data=chapter_data,
+                flagged_entity_ids=flagged_entity_ids,
+            )
+            if not validation.accepted:
+                logger.warning(f"ValidationEngine rejected character proposal '{char_id}' ({resolution_source}): {validation.reason}")
+                delta.rejected_proposals.append({
+                    "kind": "character_update", "entity_id": char_id,
+                    "mention": resolution_source, "reason": validation.reason,
+                })
+                continue
+            confidence_ceiling = validation.confidence if validation.confidence is not None else proposal_confidence
+
             char_entry = current_state.characters.setdefault(char_id, {})
 
-            # Helper for updating a StateEntry
+            # Helper for updating a StateEntry. Every write is capped at confidence_ceiling
+            # (may be downgraded by the validation gate above) and, for existing fields, passes
+            # through a field-level contradiction check before being written — replacing what
+            # used to be a post-hoc "revert after the fact" pass with a pre-write gate.
             def update_field(key: str, val: Any, reasoning: str, confidence: float = 1.0):
+                confidence = min(confidence, confidence_ceiling)
                 if key not in char_entry:
                     char_entry[key] = StateEntry(key=key, element_type=NarrativeElementType.CHARACTER)
                     change_type = StateChangeType.INTRODUCTION
                     old_val = None
+                    old_conf = 0.0
                 else:
                     change_type = StateChangeType.EVOLUTION
-                    old_val = char_entry[key].current.value if char_entry[key].current else None
+                    old_snapshot = char_entry[key].current
+                    old_val = old_snapshot.value if old_snapshot else None
+                    old_conf = old_snapshot.confidence if old_snapshot else 0.0
 
-                if old_val != val:
-                    char_entry[key].update(StateSnapshot(
-                        value=val,
-                        chapter=chapter_num,
-                        confidence=confidence,
-                        reasoning=reasoning
-                    ))
-                    delta.changes.append(StateChange(
-                        change_type=change_type,
-                        target_type=NarrativeElementType.CHARACTER,
-                        target_id=char_id,
-                        field_key=key,
-                        old_value=old_val,
-                        new_value=val,
-                        confidence=confidence,
-                        reasoning=reasoning
-                    ))
+                if old_val == val:
+                    return
+
+                if change_type == StateChangeType.EVOLUTION:
+                    contradiction = self._validator.check_field_contradiction(key, old_val, old_conf, val, confidence)
+                    if contradiction.is_contradiction:
+                        log_contradiction_mystery(char_id, contradiction.description)
+                        if not contradiction.should_apply:
+                            delta.changes.append(StateChange(
+                                change_type=StateChangeType.CONTRADICTION,
+                                target_type=NarrativeElementType.CHARACTER,
+                                target_id=char_id,
+                                field_key=key,
+                                old_value=old_val,
+                                new_value=val,
+                                confidence=confidence,
+                                reasoning=f"REJECTED by ValidationEngine: {contradiction.description}",
+                            ))
+                            return
+
+                char_entry[key].update(StateSnapshot(
+                    value=val,
+                    chapter=chapter_num,
+                    confidence=confidence,
+                    reasoning=reasoning
+                ))
+                delta.changes.append(StateChange(
+                    change_type=change_type,
+                    target_type=NarrativeElementType.CHARACTER,
+                    target_id=char_id,
+                    field_key=key,
+                    old_value=old_val,
+                    new_value=val,
+                    confidence=confidence,
+                    reasoning=reasoning
+                ))
 
             # Canonical Name
             cname = char_update.get("canonical_name")
@@ -329,7 +411,7 @@ class StateEngine:
 
         # 2. Apply World Updates
         for world_update in llm_delta.get("world_updates", []):
-            item_id = normalize_item_name(world_update.get("item_id"))
+            item_id = normalize_item_name(world_update.get("item_id", ""))
             wtype = world_update.get("type", "object")
             loc = world_update.get("current_location_id")
             owner = world_update.get("owner_character_id")
@@ -337,16 +419,51 @@ class StateEngine:
             if not item_id or item_id in IMMOVABLE_STRUCTURES:
                 continue
 
-            item_world = current_state.world.setdefault(item_id, {})
-            item_world["type"] = StateEntry(key="type", element_type=NarrativeElementType.OBJECT)
-            item_world["type"].update(StateSnapshot(value=wtype, chapter=chapter_num))
+            is_new_item = item_id not in current_state.world or not current_state.world.get(item_id)
+            validation = self._validator.evaluate_entity_proposal(
+                entity_id=item_id,
+                mention_hint=world_update.get("item_id", ""),
+                is_new=is_new_item,
+                confidence=1.0,
+                chapter_data=chapter_data,
+                flagged_entity_ids=flagged_entity_ids,
+            )
+            if not validation.accepted:
+                logger.warning(f"ValidationEngine rejected world item proposal '{item_id}': {validation.reason}")
+                delta.rejected_proposals.append({
+                    "kind": "world_update", "entity_id": item_id, "reason": validation.reason,
+                })
+                continue
+            item_confidence = validation.confidence if validation.confidence is not None else 1.0
 
+            item_world = current_state.world.setdefault(item_id, {})
+
+            # Preserve history rather than replacing the StateEntry outright — a prior version of
+            # this loop always constructed a fresh StateEntry() here even for existing items,
+            # silently discarding their entire prior history on every touch.
+            def set_world_field(key: str, val: Any) -> None:
+                if key not in item_world:
+                    item_world[key] = StateEntry(key=key, element_type=NarrativeElementType.OBJECT)
+                    old_val, old_conf = None, 0.0
+                else:
+                    old_snapshot = item_world[key].current
+                    old_val = old_snapshot.value if old_snapshot else None
+                    old_conf = old_snapshot.confidence if old_snapshot else 0.0
+                if old_val == val:
+                    return
+                if old_val is not None:
+                    contradiction = self._validator.check_field_contradiction(key, old_val, old_conf, val, item_confidence)
+                    if contradiction.is_contradiction:
+                        log_contradiction_mystery(item_id, contradiction.description)
+                        if not contradiction.should_apply:
+                            return
+                item_world[key].update(StateSnapshot(value=val, chapter=chapter_num, confidence=item_confidence))
+
+            set_world_field("type", wtype)
             if loc:
-                item_world["location"] = StateEntry(key="location", element_type=NarrativeElementType.OBJECT)
-                item_world["location"].update(StateSnapshot(value=loc, chapter=chapter_num))
+                set_world_field("location", loc)
             if owner:
-                item_world["owner"] = StateEntry(key="owner", element_type=NarrativeElementType.OBJECT)
-                item_world["owner"].update(StateSnapshot(value=owner, chapter=chapter_num))
+                set_world_field("owner", owner)
 
         # 3. Apply Relationship Mutations
         for rel_mut in llm_delta.get("relationship_mutations", []):
@@ -357,7 +474,38 @@ class StateEngine:
             
             if not party_a or not party_b or not stance:
                 continue
-            
+
+            # Both parties must be established characters (from this chapter's deterministic
+            # pass, a prior chapter, or this same LLM delta's own character_updates) or
+            # independently evidence-supported — a relationship between two names that appear
+            # nowhere else is exactly the kind of thing worth blocking rather than recording.
+            rejected_party = None
+            for party in (party_a, party_b):
+                party_known = party in current_state.characters and bool(current_state.characters.get(party))
+                if party_known:
+                    continue
+                party_validation = self._validator.evaluate_entity_proposal(
+                    entity_id=party,
+                    mention_hint=party,
+                    is_new=True,
+                    confidence=0.9,
+                    chapter_data=chapter_data,
+                    flagged_entity_ids=flagged_entity_ids,
+                )
+                if not party_validation.accepted:
+                    rejected_party = (party, party_validation.reason)
+                    break
+            if rejected_party:
+                logger.warning(
+                    f"ValidationEngine rejected relationship proposal '{party_a}'::'{party_b}': "
+                    f"party '{rejected_party[0]}' unsupported ({rejected_party[1]})"
+                )
+                delta.rejected_proposals.append({
+                    "kind": "relationship_mutation", "entity_id": f"{party_a}::{party_b}",
+                    "reason": f"party '{rejected_party[0]}' unsupported: {rejected_party[1]}",
+                })
+                continue
+
             rel_id = f"{party_a}::{party_b}"
             rev_id = f"{party_b}::{party_a}"
             if rev_id in current_state.relationships:
@@ -611,7 +759,7 @@ class StateEngine:
                     current_state.timeline.append({
                         "chapter": chapter_num,
                         "subject": char_id,
-                        "predicate": "draws" if "whisperwind" in item.lower() else "acquires",
+                        "predicate": "acquires",
                         "object": item
                     })
                 for item_obj in inv_delta.get("removed", []):
@@ -630,7 +778,8 @@ class StateEngine:
             f"Updated {len(llm_delta.get('character_updates', []))} characters, "
             f"mutated {len(llm_delta.get('relationship_mutations', []))} relationships, "
             f"adjusted {len(llm_delta.get('promises_delta', []))} promises. "
-            f"Flagged {len(delta.structural_mysteries)} structural mysteries."
+            f"Flagged {len(delta.structural_mysteries)} structural mysteries. "
+            f"ValidationEngine rejected {len(delta.rejected_proposals)} proposals."
         )
 
         return delta

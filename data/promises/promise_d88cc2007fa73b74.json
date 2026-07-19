@@ -1,0 +1,112 @@
+{
+  "promise_d88cc2007fa73b74": {
+    "promise_text": {
+      "key": "promise_text",
+      "current": {
+        "value": "I will have Walt and Jakob look at the crime scene and question the family members.'",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Promise extracted from text containing 'i will'.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "speaker_id": {
+      "key": "speaker_id",
+      "current": {
+        "value": "unknown",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Speaker identified from dialogue context.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.7,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "listener_id": {
+      "key": "listener_id",
+      "current": {
+        "value": "jamie",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Listener identified from neighboring entities.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "OPEN",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "New promise marked as OPEN.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "chapter_made": {
+      "key": "chapter_made",
+      "current": {
+        "value": 2,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Chapter where promise was made.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "climax_proximity_threshold": {
+      "key": "climax_proximity_threshold",
+      "current": {
+        "value": 3,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Default climax proximity threshold.",
+        "timestamp": "2026-07-19T10:50:39.670129"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

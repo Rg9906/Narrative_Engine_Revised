@@ -1,0 +1,86 @@
+{
+  "foreshadow_7267c978ba021ff3": {
+    "foreshadow_text": {
+      "key": "foreshadow_text",
+      "current": {
+        "value": "People leaned toward him without knowing.",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Foreshadowing extracted from text containing 'without knowing'.",
+        "timestamp": "2026-07-19T10:35:29.191209"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "FULFILLED",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Resolution detected via 'finally' in chapter.",
+        "timestamp": "2026-07-19T10:43:40.742598"
+      },
+      "history": [
+        {
+          "value": "OPEN",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.8,
+          "reasoning": "New foreshadowing marked as OPEN.",
+          "timestamp": "2026-07-19T10:35:29.191209"
+        }
+      ],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 1
+    },
+    "chapter_introduced": {
+      "key": "chapter_introduced",
+      "current": {
+        "value": 0,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Chapter where foreshadowing was introduced.",
+        "timestamp": "2026-07-19T10:35:29.191209"
+      },
+      "history": [],
+      "importance": 0.7,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "chapter_resolved": {
+      "key": "chapter_resolved",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.8,
+        "reasoning": "Chapter where foreshadowing was resolved.",
+        "timestamp": "2026-07-19T10:43:40.742598"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "pip::sirius": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "UNKNOWN",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Observed relation 'leave' between Pip and Sirius.",
+        "timestamp": "2026-07-19T10:42:35.735152"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 2,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.85,
+        "reasoning": "Incremented mention count for relationship.",
+        "timestamp": "2026-07-19T10:43:29.907852"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.8,
+          "reasoning": "First observed interaction this chapter.",
+          "timestamp": "2026-07-19T10:42:35.735152"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 1
+    },
+    "last_interaction_chapter": {
+      "key": "last_interaction_chapter",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Updated last interaction chapter.",
+        "timestamp": "2026-07-19T10:43:29.907852"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Recorded last interaction chapter.",
+          "timestamp": "2026-07-19T10:42:35.735152"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

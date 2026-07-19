@@ -69,7 +69,14 @@ def save_narrative_state(state: NarrativeState, memory_dir: Path) -> None:
 
 
 def save_modular_state(state: NarrativeState, config) -> None:
-    """Persist characters, relationships, clues, and promises as separate, modular files."""
+    """Persist characters, relationships, clues, and promises as separate, modular files.
+
+    These are DERIVED EXPORTS for human browsing / external tooling — e.g. opening
+    data/profiles/laurie.json directly. narrative_state.json (see save_narrative_state)
+    is the single canonical source of truth; nothing in this codebase reads these
+    per-entity files back in. ContextRetriever (src/pipeline/context_retriever.py) reads
+    only the canonical file or the live in-memory NarrativeState — never these.
+    """
     import os
     
     # 1. Save character profiles to data/profiles/
@@ -214,24 +221,11 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
     editorial = EditorialEngine(config)
     review = editorial.review(state, delta, raw_text=chapter_data.raw_text)
 
-    # Persist updated state and report artifacts
+    # Persist updated state and report artifacts. narrative_state.json (canonical) first,
+    # then the derived per-entity exports — never the other way around, since nothing should
+    # be able to read a modular file that reflects a canonical write that didn't happen.
     save_narrative_state(state, config.memory_dir)
     save_modular_state(state, config)
-
-    # Save character memory as character_memory.json
-    try:
-        char_mem_file = config.memory_dir / "character_memory.json"
-        char_mem_tmp = char_mem_file.with_suffix(".json.tmp")
-        char_dict = {
-            k: {sk: sv.to_dict() for sk, sv in v.items()}
-            for k, v in state.characters.items()
-        }
-        with open(char_mem_tmp, "w", encoding="utf-8") as f:
-            json.dump(char_dict, f, indent=2, ensure_ascii=False)
-        import os
-        os.replace(char_mem_tmp, char_mem_file)
-    except Exception as e:
-        logger.error(f"Failed to write character_memory.json: {e}")
 
     # Export narrative graph from updated state
     graph_builder = NarrativeGraph(config)

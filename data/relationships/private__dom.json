@@ -1,0 +1,58 @@
+{
+  "private::dom": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "UNKNOWN",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Observed relation 'detective_?helooked' between Private and Dom.",
+        "timestamp": "2026-07-19T10:50:07.963334"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 1,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.8,
+        "reasoning": "First observed interaction this chapter.",
+        "timestamp": "2026-07-19T10:50:07.963334"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "last_interaction_chapter": {
+      "key": "last_interaction_chapter",
+      "current": {
+        "value": 2,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Recorded last interaction chapter.",
+        "timestamp": "2026-07-19T10:50:07.963334"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

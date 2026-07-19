@@ -111,6 +111,19 @@ class RelationshipMemory(BaseMemory):
             if sid in dummy_pronouns or oid in dummy_pronouns:
                 continue
 
+            # Both participants must already be recognized characters. resolve_name()'s
+            # fallback (CharacterMemory.resolve_character_id -> _normalize_entity_id) will
+            # manufacture a plausible-looking id for ANY noun phrase — "mind", "hell",
+            # "the streak" — since it has no way to know this call site isn't already
+            # working with pre-filtered character mentions (unlike
+            # CharacterMemory._collect_character_mentions, which POS-filters before ever
+            # calling resolve_character_id). Relationships are between characters; requiring
+            # both ids to already be known characters is what actually enforces that,
+            # rather than trusting every dependency-parsed subject/object pair as if it
+            # were a person.
+            if existing_characters and (sid not in existing_characters or oid not in existing_characters):
+                continue
+
             key1 = f"{sid}::{oid}"
             key2 = f"{oid}::{sid}"
 

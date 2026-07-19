@@ -1,15 +1,15 @@
 {
-  "laurie": {
+  "sound": {
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Laurie",
+        "value": "Sound",
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:04.018022"
+        "timestamp": "2026-07-19T10:35:04.825877"
       },
       "history": [],
       "importance": 0.9,
@@ -22,14 +22,14 @@
       "key": "aliases",
       "current": {
         "value": [
-          "Laurie"
+          "Sound"
         ],
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:35:04.018971"
+        "timestamp": "2026-07-19T10:35:04.825877"
       },
       "history": [],
       "importance": 0.5,
@@ -47,7 +47,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:04.018971"
+        "timestamp": "2026-07-19T10:35:04.825877"
       },
       "history": [],
       "importance": 0.5,
@@ -65,7 +65,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:35:04.018971"
+        "timestamp": "2026-07-19T10:35:04.825877"
       },
       "history": [],
       "importance": 0.5,
@@ -78,34 +78,39 @@
       "key": "personality_traits",
       "current": {
         "value": [
-          "shy",
-          "kind"
+          "cruel"
         ],
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.56,
-        "reasoning": "Personality trait 'kind' inferred from narration.",
-        "timestamp": "2026-07-19T10:35:04.970551"
+        "reasoning": "Personality trait 'cruel' inferred from narration.",
+        "timestamp": "2026-07-19T10:35:05.004560"
       },
-      "history": [
-        {
-          "value": [
-            "shy"
-          ],
-          "chapter": 0,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Personality trait 'shy' inferred from narration.",
-          "timestamp": "2026-07-19T10:35:04.970551"
-        }
-      ],
+      "history": [],
       "importance": 0.7,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
+      "version": 2,
       "last_mentioned_chapter": 0
+    },
+    "physical_eye_color": {
+      "key": "physical_eye_color",
+      "current": {
+        "value": "his",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Extracted from sentence: 'He opened his eyes at the sound of closing footsteps....'",
+        "timestamp": "2026-07-19T10:49:27.594270"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
     }
   }
 }

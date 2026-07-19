@@ -1,111 +1,78 @@
 {
-  "laurie": {
+  "detective_inspector": {
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Laurie",
-        "chapter": 0,
+        "value": "Detective Inspector",
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:04.018022"
+        "timestamp": "2026-07-19T10:49:24.046860"
       },
       "history": [],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 0
+      "last_mentioned_chapter": 2
     },
     "aliases": {
       "key": "aliases",
       "current": {
         "value": [
-          "Laurie"
+          "Detective Inspector"
         ],
-        "chapter": 0,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:35:04.018971"
+        "timestamp": "2026-07-19T10:49:24.046860"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 0
+      "last_mentioned_chapter": 2
     },
     "last_seen_chapter": {
       "key": "last_seen_chapter",
       "current": {
-        "value": 0,
-        "chapter": 0,
+        "value": 2,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:04.018971"
+        "timestamp": "2026-07-19T10:49:24.046860"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 0
+      "last_mentioned_chapter": 2
     },
     "mention_count": {
       "key": "mention_count",
       "current": {
         "value": 1,
-        "chapter": 0,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:35:04.018971"
+        "timestamp": "2026-07-19T10:49:24.046860"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 0
-    },
-    "personality_traits": {
-      "key": "personality_traits",
-      "current": {
-        "value": [
-          "shy",
-          "kind"
-        ],
-        "chapter": 0,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.56,
-        "reasoning": "Personality trait 'kind' inferred from narration.",
-        "timestamp": "2026-07-19T10:35:04.970551"
-      },
-      "history": [
-        {
-          "value": [
-            "shy"
-          ],
-          "chapter": 0,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Personality trait 'shy' inferred from narration.",
-          "timestamp": "2026-07-19T10:35:04.970551"
-        }
-      ],
-      "importance": 0.7,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 3,
-      "last_mentioned_chapter": 0
+      "last_mentioned_chapter": 2
     }
   }
 }

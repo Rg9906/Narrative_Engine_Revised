@@ -242,8 +242,12 @@ class Pipeline:
             from src.pipeline.context_retriever import ContextRetriever
             from src.pipeline.llm_extraction import LLMExtractionEngine
 
+            # Pass the live NarrativeState directly when we have one (main.py always provides
+            # it) so ContextRetriever reads memory, not disk — closing a real gap where this
+            # parameter was accepted but silently never used, meaning every chapter re-read
+            # narrative_state.json from disk even though the freshest state was already here.
             retriever = ContextRetriever(self._config)
-            context_block, active_characters = retriever.retrieve_context(cleaned_text)
+            context_block, active_characters = retriever.retrieve_context(cleaned_text, current_state=current_state)
 
             try:
                 extractor_engine = LLMExtractionEngine(self._config)

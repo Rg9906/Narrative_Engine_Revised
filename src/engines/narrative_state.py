@@ -195,86 +195,54 @@ class NarrativeStateEngine:
 
     def reconcile_state_changes(self, state: NarrativeState, delta: StateDelta) -> List[StateChange]:
         """
-        Reconciliation Layer:
-        - Detect contradictions (e.g. eye color changes, status changes, inventory conflicts).
-        - If a contradiction has high confidence from new evidence, log it to mysteries as a conflict,
-          but do not blindly overwrite if new confidence is lower than existing confidence.
+        Reconciliation Layer — cross-entity invariants only.
+
+        Per-field contradiction detection (hair color changing, status flips, etc.) now
+        happens BEFORE the write, in ValidationEngine (src/engines/validation_engine.py),
+        called from StateEngine.process_chapter for LLM-authored proposals. That replaced
+        what used to live here: this method historically re-read `state.characters` for the
+        "old" value AFTER StateEngine had already applied every change for the chapter — so
+        `existing_entry.current.value` was always already equal to `change.new_value` by the
+        time this ran, making the old/new comparison here structurally unable to fire. Rather
+        than keep dead code, that block is removed.
+
+        What's left is a genuinely different kind of check: an invariant across DIFFERENT
+        characters (the same item can't be in two people's inventories at once), which can
+        only be checked after a chapter's changes have all landed, not per-field pre-write.
         """
         reconciled = []
         chapter_num = delta.chapter_number
-        
+
         for change in delta.changes:
             if change.change_type in (StateChangeType.EVOLUTION, StateChangeType.CONTRADICTION):
-                if change.target_type == NarrativeElementType.CHARACTER:
+                if change.target_type == NarrativeElementType.CHARACTER and change.field_key == "inventory":
                     char_id = change.target_id
-                    field_key = change.field_key
                     new_val = change.new_value
-                    
-                    char_entry = state.get_character(char_id)
-                    if char_entry and field_key in char_entry:
-                        existing_entry = char_entry[field_key]
-                        if existing_entry and existing_entry.current:
-                            old_val = existing_entry.current.value
-                            old_conf = existing_entry.current.confidence
-                            new_conf = change.confidence
-                            
-                            contradiction_fields = [
-                                "physical_hair_color", "physical_eye_color", "physical_age", 
-                                "status", "inventory", "alive_status", "location"
-                            ]
-                            
-                            if field_key in contradiction_fields and old_val != new_val:
-                                # Log conflict mystery
-                                conflict_desc = f"Conflict: Character '{char_id}' {field_key.replace('physical_', '')} changed from '{old_val}' (conf: {old_conf}) to '{new_val}' (conf: {new_conf}) in chapter {chapter_num}."
-                                conflict_id = f"conflict_{char_id}_{field_key}_{chapter_num}"
-                                
-                                logger.warning(f"Reconciliation Conflict Detected: {conflict_desc}")
-                                
-                                # Log to state.mysteries
-                                conflict_mystery = {
-                                    "mystery_text": StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY),
-                                    "status": StateEntry(key="status", element_type=NarrativeElementType.MYSTERY),
-                                    "chapter_introduced": StateEntry(key="chapter_introduced", element_type=NarrativeElementType.MYSTERY),
-                                    "type": StateEntry(key="type", element_type=NarrativeElementType.MYSTERY)
-                                }
-                                conflict_mystery["mystery_text"].update(StateSnapshot(value=conflict_desc, chapter=chapter_num, confidence=1.0, reasoning="Logged by Reconciliation Layer"))
-                                conflict_mystery["status"].update(StateSnapshot(value="unresolved", chapter=chapter_num, confidence=1.0))
-                                conflict_mystery["chapter_introduced"].update(StateSnapshot(value=chapter_num, chapter=chapter_num, confidence=1.0))
-                                conflict_mystery["type"].update(StateSnapshot(value="conflict", chapter=chapter_num, confidence=1.0))
-                                state.mysteries[conflict_id] = conflict_mystery
-                                
-                                # If new evidence is lower confidence than old, DO NOT overwrite!
-                                if new_conf < old_conf:
-                                    logger.info(f"Reconciliation: Suppressed update of {char_id}.{field_key} to '{new_val}' due to lower confidence ({new_conf} < {old_conf})")
-                                    change.change_type = StateChangeType.CONTRADICTION
-                                    # Revert the update inside memory entries
-                                    existing_entry.current.value = old_val
-                                    existing_entry.current.confidence = old_conf
-                            
-                            # Check inventory dual-ownership conflicts
-                            if field_key == "inventory" and isinstance(new_val, list):
-                                for item in new_val:
-                                    for other_id, other_fields in state.characters.items():
-                                        if other_id != char_id:
-                                            other_inv_entry = other_fields.get("inventory")
-                                            if other_inv_entry and other_inv_entry.current:
-                                                other_inv = other_inv_entry.current.value
-                                                if isinstance(other_inv, list) and item in other_inv:
-                                                    conflict_desc = f"Conflict: Item '{item}' is possessed by both '{char_id}' and '{other_id}' in chapter {chapter_num}."
-                                                    conflict_id = f"conflict_inv_{item}_{chapter_num}"
-                                                    logger.warning(f"Inventory Conflict: {conflict_desc}")
-                                                    
-                                                    conflict_mystery = {
-                                                        "mystery_text": StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY),
-                                                        "status": StateEntry(key="status", element_type=NarrativeElementType.MYSTERY),
-                                                        "chapter_introduced": StateEntry(key="chapter_introduced", element_type=NarrativeElementType.MYSTERY),
-                                                        "type": StateEntry(key="type", element_type=NarrativeElementType.MYSTERY)
-                                                    }
-                                                    conflict_mystery["mystery_text"].update(StateSnapshot(value=conflict_desc, chapter=chapter_num, confidence=1.0))
-                                                    conflict_mystery["status"].update(StateSnapshot(value="unresolved", chapter=chapter_num, confidence=1.0))
-                                                    conflict_mystery["chapter_introduced"].update(StateSnapshot(value=chapter_num, chapter=chapter_num, confidence=1.0))
-                                                    conflict_mystery["type"].update(StateSnapshot(value="conflict", chapter=chapter_num, confidence=1.0))
-                                                    state.mysteries[conflict_id] = conflict_mystery
+
+                    if isinstance(new_val, list):
+                        for item in new_val:
+                            for other_id, other_fields in state.characters.items():
+                                if other_id == char_id:
+                                    continue
+                                other_inv_entry = other_fields.get("inventory")
+                                if other_inv_entry and other_inv_entry.current:
+                                    other_inv = other_inv_entry.current.value
+                                    if isinstance(other_inv, list) and item in other_inv:
+                                        conflict_desc = f"Conflict: Item '{item}' is possessed by both '{char_id}' and '{other_id}' in chapter {chapter_num}."
+                                        conflict_id = f"conflict_inv_{item}_{chapter_num}"
+                                        logger.warning(f"Inventory Conflict: {conflict_desc}")
+
+                                        conflict_mystery = {
+                                            "mystery_text": StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY),
+                                            "status": StateEntry(key="status", element_type=NarrativeElementType.MYSTERY),
+                                            "chapter_introduced": StateEntry(key="chapter_introduced", element_type=NarrativeElementType.MYSTERY),
+                                            "type": StateEntry(key="type", element_type=NarrativeElementType.MYSTERY)
+                                        }
+                                        conflict_mystery["mystery_text"].update(StateSnapshot(value=conflict_desc, chapter=chapter_num, confidence=1.0))
+                                        conflict_mystery["status"].update(StateSnapshot(value="unresolved", chapter=chapter_num, confidence=1.0))
+                                        conflict_mystery["chapter_introduced"].update(StateSnapshot(value=chapter_num, chapter=chapter_num, confidence=1.0))
+                                        conflict_mystery["type"].update(StateSnapshot(value="conflict", chapter=chapter_num, confidence=1.0))
+                                        state.mysteries[conflict_id] = conflict_mystery
             reconciled.append(change)
         return reconciled
 

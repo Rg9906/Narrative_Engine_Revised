@@ -19,17 +19,43 @@ def test_context_retriever_cold_start_fallback(tmp_path):
     # Test fallback to empty dicts when no files exist
     config = DummyConfig(tmp_path)
     retriever = ContextRetriever(config)
-    
+
     context, active_chars = retriever.retrieve_context("Alice was in the drawing room.")
-    
+
     assert context is None
     assert active_chars == []
+
+
+def test_context_retriever_uses_live_state_directly_no_disk(tmp_path):
+    """The primary path: a live NarrativeState passed in directly, with NO
+    narrative_state.json on disk at all. This must work on its own — it should not
+    silently depend on (or require) the disk-read fallback to produce real context."""
+    from src.models.state import NarrativeState, StateEntry, StateSnapshot, NarrativeElementType
+
+    config = DummyConfig(tmp_path)
+    retriever = ContextRetriever(config)
+
+    state = NarrativeState()
+    name_entry = StateEntry(key="canonical_name", element_type=NarrativeElementType.CHARACTER)
+    name_entry.update(StateSnapshot(value="Talia", chapter=1))
+    state.characters["talia"] = {"canonical_name": name_entry}
+
+    assert not (tmp_path / "narrative_state.json").exists()
+
+    context, active_chars = retriever.retrieve_context("Talia walked in.", current_state=state)
+
+    assert "talia" in active_chars
+    assert context is not None
+    assert "<Character id=\"talia\">" in context
+    # Still no file was ever written or read for this to work.
+    assert not (tmp_path / "narrative_state.json").exists()
 
 def test_context_retriever_boundary_safe_regex(tmp_path):
     config = DummyConfig(tmp_path)
     retriever = ContextRetriever(config)
 
-    # Setup character_memory.json with "al" and "alice"
+    # Single source of truth: narrative_state.json (the canonical file), not the
+    # scattered legacy files this class used to also try reading.
     char_mem = {
         "al": {
             "canonical_name": {"current": {"value": "Al"}},
@@ -40,8 +66,8 @@ def test_context_retriever_boundary_safe_regex(tmp_path):
             "aliases": {"current": {"value": ["Ally"]}}
         }
     }
-    with open(tmp_path / "character_memory.json", "w", encoding="utf-8") as f:
-        json.dump(char_mem, f)
+    with open(tmp_path / "narrative_state.json", "w", encoding="utf-8") as f:
+        json.dump({"characters": char_mem}, f)
 
     # Scenario 1: "Alice went to Millhaven." - Should match "alice" but NOT "al"
     _, active_chars = retriever.retrieve_context("Alice went to Millhaven.")
@@ -61,7 +87,8 @@ def test_context_retriever_four_tiers(tmp_path):
     config = DummyConfig(tmp_path)
     retriever = ContextRetriever(config)
 
-    # 1. Characters Profile
+    # All four tiers live under one canonical narrative_state.json now, not four
+    # separate legacy files.
     char_mem = {
         "talia": {
             "canonical_name": {"current": {"value": "Talia"}},
@@ -75,20 +102,12 @@ def test_context_retriever_four_tiers(tmp_path):
             "location": {"current": {"value": "drawing_room"}}
         }
     }
-    with open(tmp_path / "character_memory.json", "w", encoding="utf-8") as f:
-        json.dump(char_mem, f)
-
-    # 2. Relationships Matrix
     relationships = {
         "talia::mr_whitmore": {
             "relationship_label": {"current": {"value": "ENMITY"}},
             "reasoning": {"current": {"value": "Talia is blackmailing Mr. Whitmore"}}
         }
     }
-    with open(tmp_path / "relationship_memory.json", "w", encoding="utf-8") as f:
-        json.dump(relationships, f)
-
-    # 3. Unresolved Promises
     promises = {
         "vow_1": {
             "speaker_id": {"current": {"value": "talia"}},
@@ -98,10 +117,6 @@ def test_context_retriever_four_tiers(tmp_path):
             "chapter_made": {"current": {"value": 1}}
         }
     }
-    with open(tmp_path / "vows.json", "w", encoding="utf-8") as f:
-        json.dump(promises, f)
-
-    # 4. World Locations and Objects (Physical Clues)
     world = {
         "drawing_room": {
             "type": {"current": {"value": "location"}},
@@ -114,8 +129,13 @@ def test_context_retriever_four_tiers(tmp_path):
             "description": {"current": {"value": "Found on the mahogany table."}}
         }
     }
-    with open(tmp_path / "world_memory.json", "w", encoding="utf-8") as f:
-        json.dump(world, f)
+    with open(tmp_path / "narrative_state.json", "w", encoding="utf-8") as f:
+        json.dump({
+            "characters": char_mem,
+            "relationships": relationships,
+            "promises": promises,
+            "world": world,
+        }, f)
 
     # Run retriever for scene mentioning Talia, Mr. Whitmore, and Drawing Room
     context, active_chars = retriever.retrieve_context("Talia met Mr. Whitmore inside the Drawing Room.")
@@ -134,7 +154,8 @@ def test_context_retriever_budget_truncation(tmp_path):
     config = DummyConfig(tmp_path)
     retriever = ContextRetriever(config)
 
-    # Setup character profile (Tier A)
+    # Setup character profile (Tier A) plus a giant relationship profile (Tier B) that
+    # exceeds 6000 chars, both under the one canonical narrative_state.json.
     char_mem = {
         "talia": {
             "canonical_name": {"current": {"value": "Talia"}}
@@ -143,10 +164,6 @@ def test_context_retriever_budget_truncation(tmp_path):
             "canonical_name": {"current": {"value": "Mr. Whitmore"}}
         }
     }
-    with open(tmp_path / "character_memory.json", "w", encoding="utf-8") as f:
-        json.dump(char_mem, f)
-
-    # Setup a giant relationship profile (Tier B) and giant promise (Tier C) that exceeds 6000 chars
     giant_text = "A" * 7000
     relationships = {
         "mr_whitmore::talia": {
@@ -154,8 +171,8 @@ def test_context_retriever_budget_truncation(tmp_path):
             "reasoning": {"current": {"value": giant_text}}
         }
     }
-    with open(tmp_path / "relationship_memory.json", "w", encoding="utf-8") as f:
-        json.dump(relationships, f)
+    with open(tmp_path / "narrative_state.json", "w", encoding="utf-8") as f:
+        json.dump({"characters": char_mem, "relationships": relationships}, f)
 
     context, active_chars = retriever.retrieve_context("Talia spoke to Mr. Whitmore.")
     assert "talia" in active_chars

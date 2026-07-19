@@ -1,0 +1,119 @@
+{
+  "jamie": {
+    "canonical_name": {
+      "key": "canonical_name",
+      "current": {
+        "value": "Jamie",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First observed mention of character.",
+        "timestamp": "2026-07-19T10:49:22.768234"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "aliases": {
+      "key": "aliases",
+      "current": {
+        "value": [
+          "Jamie",
+          "Jamie and Dom"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.85,
+        "reasoning": "New alias observed for existing character.",
+        "timestamp": "2026-07-19T10:49:26.249871"
+      },
+      "history": [
+        {
+          "value": [
+            "Jamie"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Initial alias list created from first mention.",
+          "timestamp": "2026-07-19T10:49:22.768234"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "last_seen_chapter": {
+      "key": "last_seen_chapter",
+      "current": {
+        "value": 2,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character seen in current chapter.",
+        "timestamp": "2026-07-19T10:49:22.768234"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 2,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Mention count incremented for observed character.",
+        "timestamp": "2026-07-19T10:49:26.249871"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First mention observed this chapter.",
+          "timestamp": "2026-07-19T10:49:22.768234"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "physical_height": {
+      "key": "physical_height",
+      "current": {
+        "value": "feet",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Extracted from sentence: 'Both Jamie who was nearly six feet tall and Dom who was even taller and twice as wide towered over t...'",
+        "timestamp": "2026-07-19T10:49:27.624303"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "di": {
+    "canonical_name": {
+      "key": "canonical_name",
+      "current": {
+        "value": "DI",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First observed mention of character.",
+        "timestamp": "2026-07-19T10:49:23.669878"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "aliases": {
+      "key": "aliases",
+      "current": {
+        "value": [
+          "DI"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Initial alias list created from first mention.",
+        "timestamp": "2026-07-19T10:49:23.669878"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "last_seen_chapter": {
+      "key": "last_seen_chapter",
+      "current": {
+        "value": 2,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character seen in current chapter.",
+        "timestamp": "2026-07-19T10:49:23.669878"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 1,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First mention observed this chapter.",
+        "timestamp": "2026-07-19T10:49:23.669878"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "physical_age": {
+      "key": "physical_age",
+      "current": {
+        "value": "the",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Extracted from sentence: 'Anyone who knew that the old man was on sleeping medication and where exactly to find him would have...'",
+        "timestamp": "2026-07-19T10:49:27.650281"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "'Must do with the Whitmore's wife being a friends of the DI's wife.'",
+          "'We didn't want to .... disturb you ....' began Dom",
+          "Did not want to disturb me.",
+          "He wondered how he would claim credit for solving this."
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Goal extracted from text containing 'aim'.",
+        "timestamp": "2026-07-19T10:49:27.654283"
+      },
+      "history": [
+        {
+          "value": [
+            "'Must do with the Whitmore's wife being a friends of the DI's wife.'"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Goal extracted from text containing 'must'.",
+          "timestamp": "2026-07-19T10:49:27.654283"
+        },
+        {
+          "value": [
+            "'Must do with the Whitmore's wife being a friends of the DI's wife.'",
+            "'We didn't want to .... disturb you ....' began Dom"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Goal extracted from text containing 'want to'.",
+          "timestamp": "2026-07-19T10:49:27.654283"
+        },
+        {
+          "value": [
+            "'Must do with the Whitmore's wife being a friends of the DI's wife.'",
+            "'We didn't want to .... disturb you ....' began Dom",
+            "Did not want to disturb me."
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Goal extracted from text containing 'want to'.",
+          "timestamp": "2026-07-19T10:49:27.654283"
+        }
+      ],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 2
+    }
+  }
+}
