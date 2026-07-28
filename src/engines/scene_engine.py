@@ -18,6 +18,14 @@ class SceneEngine:
 
     def __init__(self, config=None):
         self._config = config
+        self._sentiment_analyzer = None  # Lazy-loaded VADER analyzer
+
+    def _get_sentiment_analyzer(self):
+        """Lazy-load the VADER sentiment analyzer (offline, bundled lexicon)."""
+        if self._sentiment_analyzer is None:
+            from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+            self._sentiment_analyzer = SentimentIntensityAnalyzer()
+        return self._sentiment_analyzer
 
     def detect_scenes(self, text: str, chapter_num: int) -> list:
         """Detect scene boundaries within a chapter.
@@ -153,9 +161,13 @@ class SceneEngine:
         conflict = self._detect_scene_conflict(scene_text, scene_lower)
         analyzed["conflict"] = conflict
 
-        # Detect emotional tone
+        # Detect emotional tone — categorical keyword-bag label (mysterious, romantic,
+        # etc.) kept as-is, since VADER can't distinguish those categories. Alongside it,
+        # add a real quantitative polarity score (VADER compound, offline/lexicon-based)
+        # so downstream consumers aren't limited to a single hand-picked keyword bucket.
         tone = self._detect_emotional_tone(scene_lower)
         analyzed["emotional_tone"] = tone
+        analyzed["sentiment_compound"] = self._detect_sentiment_score(scene_text)
 
         # Detect outcome
         outcome = self._detect_scene_outcome(scene_text, scene_lower)
@@ -242,6 +254,17 @@ class SceneEngine:
         if tone_scores:
             return max(tone_scores, key=tone_scores.get)
         return "neutral"
+
+    def _detect_sentiment_score(self, scene_text: str) -> float:
+        """Real polarity score for the scene (VADER compound, -1.0 to 1.0)."""
+        if not scene_text or not scene_text.strip():
+            return 0.0
+        try:
+            scores = self._get_sentiment_analyzer().polarity_scores(scene_text)
+            return round(scores["compound"], 4)
+        except Exception as e:
+            logger.warning(f"VADER sentiment scoring unavailable for scene: {e}")
+            return 0.0
 
     def _detect_scene_outcome(self, scene_text: str, scene_lower: str) -> str:
         """Detect the outcome/resolution state of the scene."""
