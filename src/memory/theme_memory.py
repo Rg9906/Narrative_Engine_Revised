@@ -58,6 +58,15 @@ class ThemeMemory(BaseMemory):
         "bird": ["bird", "fly", "wing", "feather", "sky", "flight", "nest"],
     }
 
+    # A single incidental keyword hit (one use of "self" or "exist" out of 15 theme
+    # categories, or "hand"/"key" out of 10 symbol categories) used to be enough to
+    # permanently register a theme/symbol — meaning nearly every category fired within
+    # a few chapters regardless of what the story was actually about (25 "themes"
+    # detected out of 3 real chapters). Requiring a stronger per-chapter signal before
+    # a brand-new theme/symbol is introduced cuts that noise; once established, any
+    # further mention still counts as reinforcement (see the `old_count == 0` gate below).
+    MIN_MENTIONS_TO_INTRODUCE = 2
+
     def __init__(self, memory_file=None, existing_entries: Optional[Dict[str, Dict[str, object]]] = None):
         super().__init__(memory_file)
         if existing_entries is not None:
@@ -99,6 +108,10 @@ class ThemeMemory(BaseMemory):
                 theme_id = f"theme_{theme_name}"
                 existing_theme = self.get_entry(theme_id, "mention_count")
                 old_count = existing_theme.current.value if existing_theme and existing_theme.current else 0
+
+                if old_count == 0 and keyword_count < self.MIN_MENTIONS_TO_INTRODUCE:
+                    continue
+
                 new_count = old_count + keyword_count
 
                 # Update mention count
@@ -183,6 +196,10 @@ class ThemeMemory(BaseMemory):
                 symbol_id = f"symbol_{symbol_name}"
                 existing_symbol = self.get_entry(symbol_id, "mention_count")
                 old_count = existing_symbol.current.value if existing_symbol and existing_symbol.current else 0
+
+                if old_count == 0 and keyword_count < self.MIN_MENTIONS_TO_INTRODUCE:
+                    continue
+
                 new_count = old_count + keyword_count
 
                 # Update mention count

@@ -26,22 +26,31 @@ from src.utils import stable_hash
 class MysteryMemory(BaseMemory):
     """Manages mystery and question tracking with full history."""
 
-    # Mystery/question indicators (Phase 10)
+    # Bare wh-words are only a mystery signal when the sentence is an actual question —
+    # "how" and "why" show up constantly in ordinary narration ("she wondered how to
+    # begin", "that's why he left") and firing on those alone drowned every real
+    # mystery in noise (56 "mysteries" out of 3 chapters in early testing). Gated by
+    # _is_question() below rather than dropped, since real unresolved questions
+    # ("Who killed him?") are exactly what this tracker exists to catch.
+    QUESTION_STARTERS = ("who", "what", "where", "when", "why", "how")
+
+    # Strong, unambiguous mystery language — safe to trigger regardless of punctuation,
+    # since these phrases essentially never appear as incidental narration.
     MYSTERY_INDICATORS = [
-        "who", "what", "where", "when", "why", "how",
         "mystery", "secret", "hidden", "unknown", "strange",
-        "wonder", "puzzle", "riddle", "enigma", "curious",
+        "puzzle", "riddle", "enigma",
         "don't know", "couldn't understand", "baffled", "confused",
-        "what happened", "how did", "why did", "who was",
         "no one knows", "nobody knows", "remains a mystery",
     ]
 
-    # Clue indicators (Phase 10)
+    # Clue indicators — narrowed to phrases that actually signal evidence being
+    # surfaced. The previous list included ordinary perception/cognition verbs (saw,
+    # found, realized, understood, noticed, observed) that fire on nearly every
+    # paragraph of prose, making "clue" detection meaningless noise rather than signal.
     CLUE_INDICATORS = [
-        "clue", "hint", "suggestion", "evidence", "sign",
-        "revealed", "discovered", "found", "uncovered",
-        "realized", "understood", "figured out", "saw",
-        "noticed", "observed", "detected", "recognized",
+        "clue", "piece of evidence", "key evidence", "damning evidence",
+        "telltale sign", "incriminating", "uncovered a", "discovered a",
+        "hint of", "gave it away",
     ]
 
     # Revelation/resolution indicators (Phase 10)
@@ -82,6 +91,14 @@ class MysteryMemory(BaseMemory):
 
         return changes
 
+    def _is_question(self, sentence: str) -> bool:
+        """A sentence counts as a real question only if it's phrased and punctuated as one."""
+        stripped = sentence.strip()
+        if not stripped.endswith("?"):
+            return False
+        first_word = re.split(r"\s+", stripped.lower(), maxsplit=1)[0].strip(".,!?\"'") if stripped else ""
+        return first_word in self.QUESTION_STARTERS
+
     def _extract_mysteries(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
         """Extract mysteries and questions from dialogue and narration."""
         changes: List[StateChange] = []
@@ -89,89 +106,96 @@ class MysteryMemory(BaseMemory):
         for sentence in chapter_data.sentences:
             sentence_lower = sentence.lower()
 
+            matched_indicator = None
             for indicator in self.MYSTERY_INDICATORS:
                 if indicator in sentence_lower:
-                    # Extract the mystery text
-                    mystery_text = sentence.strip()
+                    matched_indicator = indicator
+                    break
+            if matched_indicator is None and self._is_question(sentence):
+                matched_indicator = "unresolved question"
 
-                    # Generate a unique mystery ID
-                    mystery_id = f"mystery_{stable_hash(mystery_text)}"
+            if not matched_indicator:
+                continue
 
-                    # Check if this mystery already exists
-                    existing_mystery = self.get_entry(mystery_id, "mystery_text")
+            indicator = matched_indicator
+            mystery_text = sentence.strip()
 
-                    if not existing_mystery or not existing_mystery.current:
-                        # New mystery
-                        self.update_entry(
-                            mystery_id,
-                            "mystery_text",
-                            mystery_text,
-                            chapter=chapter_num,
-                            evidence_ids=[],
-                            confidence=0.6,
-                            reasoning=f"Mystery extracted from text containing '{indicator}'.",
-                            importance=0.85,
-                        )
-                        self.update_entry(
-                            mystery_id,
-                            "status",
-                            "unresolved",
-                            chapter=chapter_num,
-                            evidence_ids=[],
-                            confidence=0.8,
-                            reasoning="New mystery marked as unresolved.",
-                            importance=0.85,
-                        )
-                        self.update_entry(
-                            mystery_id,
-                            "chapter_introduced",
-                            chapter_num,
-                            chapter=chapter_num,
-                            evidence_ids=[],
-                            confidence=1.0,
-                            reasoning="Chapter where mystery was introduced.",
-                            importance=0.8,
-                        )
-                        self.update_entry(
-                            mystery_id,
-                            "clue_count",
-                            0,
-                            chapter=chapter_num,
-                            evidence_ids=[],
-                            confidence=1.0,
-                            reasoning="Initial clue count set to zero.",
-                            importance=0.6,
-                        )
+            # Generate a unique mystery ID
+            mystery_id = f"mystery_{stable_hash(mystery_text)}"
 
-                        changes.append(
-                            StateChange(
-                                change_type=StateChangeType.INTRODUCTION,
-                                target_type=NarrativeElementType.MYSTERY,
-                                target_id=mystery_id,
-                                field_key="mystery_text",
-                                new_value=mystery_text,
-                                confidence=0.6,
-                                reasoning=f"New mystery detected in chapter.",
-                            )
-                        )
-                    else:
-                        # Existing mystery - confirm it's still unresolved
-                        status_entry = self.get_entry(mystery_id, "status")
-                        if status_entry and status_entry.current and status_entry.current.value == "unresolved":
-                            changes.append(
-                                StateChange(
-                                    change_type=StateChangeType.CONFIRMATION,
-                                    target_type=NarrativeElementType.MYSTERY,
-                                    target_id=mystery_id,
-                                    field_key="status",
-                                    old_value="unresolved",
-                                    new_value="unresolved",
-                                    confidence=0.5,
-                                    reasoning=f"Mystery remains unresolved.",
-                                )
-                            )
+            # Check if this mystery already exists
+            existing_mystery = self.get_entry(mystery_id, "mystery_text")
 
-                    break  # Only count each sentence once
+            if not existing_mystery or not existing_mystery.current:
+                # New mystery
+                self.update_entry(
+                    mystery_id,
+                    "mystery_text",
+                    mystery_text,
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=0.6,
+                    reasoning=f"Mystery extracted from text containing '{indicator}'.",
+                    importance=0.85,
+                )
+                self.update_entry(
+                    mystery_id,
+                    "status",
+                    "unresolved",
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=0.8,
+                    reasoning="New mystery marked as unresolved.",
+                    importance=0.85,
+                )
+                self.update_entry(
+                    mystery_id,
+                    "chapter_introduced",
+                    chapter_num,
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=1.0,
+                    reasoning="Chapter where mystery was introduced.",
+                    importance=0.8,
+                )
+                self.update_entry(
+                    mystery_id,
+                    "clue_count",
+                    0,
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=1.0,
+                    reasoning="Initial clue count set to zero.",
+                    importance=0.6,
+                )
+
+                changes.append(
+                    StateChange(
+                        change_type=StateChangeType.INTRODUCTION,
+                        target_type=NarrativeElementType.MYSTERY,
+                        target_id=mystery_id,
+                        field_key="mystery_text",
+                        new_value=mystery_text,
+                        confidence=0.6,
+                        reasoning=f"New mystery detected in chapter.",
+                    )
+                )
+            else:
+                # Existing mystery - confirm it's still unresolved
+                status_entry = self.get_entry(mystery_id, "status")
+                if status_entry and status_entry.current and status_entry.current.value == "unresolved":
+                    changes.append(
+                        StateChange(
+                            change_type=StateChangeType.CONFIRMATION,
+                            target_type=NarrativeElementType.MYSTERY,
+                            target_id=mystery_id,
+                            field_key="status",
+                            old_value="unresolved",
+                            new_value="unresolved",
+                            confidence=0.5,
+                            reasoning=f"Mystery remains unresolved.",
+                        )
+                    )
 
         return changes
 

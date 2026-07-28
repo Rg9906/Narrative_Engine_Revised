@@ -113,8 +113,12 @@ class TestWorldMemory:
 
 class TestThemeMemory:
     def test_theme_and_symbol_detection(self, empty_chapter_data):
-        # Text containing love (theme) and fire (symbol)
-        empty_chapter_data.raw_text = "Their love burned like fire."
+        # keyword_count counts DISTINCT keywords from the category present in the
+        # chapter (not occurrences of one keyword) — so a brand-new theme/symbol now
+        # requires >=2 distinct keywords from its list (MIN_MENTIONS_TO_INTRODUCE) to
+        # be introduced. "heart"+"love" both belong to THEME_KEYWORDS["love"];
+        # "fire"+"flame" (+"burn" via "burned") both belong to SYMBOL_KEYWORDS["fire"].
+        empty_chapter_data.raw_text = "Their heart burned with love, glowing like fire and flame."
         memory = ThemeMemory()
         changes = memory.update_from_chapter(empty_chapter_data, 1)
 
@@ -123,6 +127,16 @@ class TestThemeMemory:
         assert "symbol_fire" in memory.entries
         assert memory.get_entry("theme_love", "mention_count").current.value > 0
         assert memory.get_entry("symbol_fire", "mention_count").current.value > 0
+
+    def test_single_incidental_mention_does_not_introduce_theme(self, empty_chapter_data):
+        # A single passing mention of a theme/symbol keyword should NOT permanently
+        # register that category — this was the main source of noise (every one of
+        # 15 theme + 10 symbol categories firing within a couple of chapters).
+        empty_chapter_data.raw_text = "She felt a flicker of love, but said nothing more."
+        memory = ThemeMemory()
+        memory.update_from_chapter(empty_chapter_data, 1)
+
+        assert "theme_love" not in memory.entries
 
 
 class TestPromiseMemory:
