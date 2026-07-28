@@ -129,18 +129,38 @@ class ThemeMemory(BaseMemory):
                 # Track chapters where theme appears
                 chapters_entry = self.get_entry(theme_id, "chapters_present")
                 old_chapters = chapters_entry.current.value if chapters_entry and chapters_entry.current else []
+                chapters_present = old_chapters if chapter_num in old_chapters else old_chapters + [chapter_num]
                 if chapter_num not in old_chapters:
-                    new_chapters = old_chapters + [chapter_num]
                     self.update_entry(
                         theme_id,
                         "chapters_present",
-                        new_chapters,
+                        chapters_present,
                         chapter=chapter_num,
                         evidence_ids=[],
                         confidence=0.9,
                         reasoning=f"Theme '{theme_name}' appears in new chapter.",
                         importance=0.7,
                     )
+
+                # ContextRetriever's <CoreThemes> tier reads a "description" field —
+                # without this, every deterministically-detected theme rendered as an
+                # empty `<Theme id="theme_x"></Theme>` tag in every LLM prompt (only
+                # LLM-authored themes ever populated "description"), conveying zero
+                # information despite taking up context budget.
+                description = (
+                    f"Recurring theme of '{theme_name}' — mentioned {new_count} time(s) "
+                    f"across chapter(s) {', '.join(str(c) for c in chapters_present)}."
+                )
+                self.update_entry(
+                    theme_id,
+                    "description",
+                    description,
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=0.7,
+                    reasoning="Auto-generated summary of keyword-detected theme frequency.",
+                    importance=0.6,
+                )
 
                 # Check for theme introduction or evolution
                 if old_count == 0:
@@ -217,18 +237,36 @@ class ThemeMemory(BaseMemory):
                 # Track chapters where symbol appears
                 chapters_entry = self.get_entry(symbol_id, "chapters_present")
                 old_chapters = chapters_entry.current.value if chapters_entry and chapters_entry.current else []
+                chapters_present = old_chapters if chapter_num in old_chapters else old_chapters + [chapter_num]
                 if chapter_num not in old_chapters:
-                    new_chapters = old_chapters + [chapter_num]
                     self.update_entry(
                         symbol_id,
                         "chapters_present",
-                        new_chapters,
+                        chapters_present,
                         chapter=chapter_num,
                         evidence_ids=[],
                         confidence=0.9,
                         reasoning=f"Symbol '{symbol_name}' appears in new chapter.",
                         importance=0.6,
                     )
+
+                # Symbols share state.themes with themes (both keyed there by ThemeMemory),
+                # so ContextRetriever's <CoreThemes> tier renders these too — same
+                # "description" field gap as themes above.
+                description = (
+                    f"Recurring symbol of '{symbol_name}' — mentioned {new_count} time(s) "
+                    f"across chapter(s) {', '.join(str(c) for c in chapters_present)}."
+                )
+                self.update_entry(
+                    symbol_id,
+                    "description",
+                    description,
+                    chapter=chapter_num,
+                    evidence_ids=[],
+                    confidence=0.7,
+                    reasoning="Auto-generated summary of keyword-detected symbol frequency.",
+                    importance=0.5,
+                )
 
                 # Check for symbol introduction or evolution
                 if old_count == 0:
