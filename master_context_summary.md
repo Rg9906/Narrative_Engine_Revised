@@ -40,11 +40,14 @@ flowchart TD
 
 ## 2. Recent Implementations & Hardening
 
-*   **100% Test Suite Coverage**: Fixed a monkeypatching bug in `tests/test_engines.py` targeting read-only properties of `LLMProvider`. All **52 unit and integration tests are passing**.
-*   **NLP Pipeline Caching**: Introduced a SHA-256 caching mechanism in [pipeline.py](file:///c:/Users/RG%20Saran%20Vishakan/Desktop/Narrative_Engine/src/pipeline/pipeline.py) to save evidence packages to `data/cache/`. This reduces subsequent chapter processing times from **60–90 seconds to under 0.1 seconds**.
-*   **Conversational JSON Extraction**: Upgraded LLM parsing in [editorial_engine.py](file:///c:/Users/RG%20Saran%20Vishakan/Desktop/Narrative_Engine/src/engines/editorial_engine.py) using greedy regular expressions. The engine successfully parses JSON critique responses even if small models prefix them with conversational noise.
-*   **Vis.js Interactive Graph Visualizer**: Built `scripts/visualize_graph.py` which transforms exported NetworkX graphs into a self-contained, drag-and-zoom network HTML file.
-*   **Automatic `.env` Loader**: Configured `src/utils/config.py` to automatically load credentials from `.env` on launch, securing sensitive keys from Git commits.
+*   **Hybrid deterministic + LLM state pipeline**: GLiNER/FastCoref/dependency-parsed relations/dialogue now run as the PRIMARY evidence source before any LLM call (fixing an earlier regression where chapters were fed to the LLM directly, bypassing the NLP layer). LLM extraction is split into four grounded stages (character/relationship, world/timeline, thematic, consistency-checker) that read the deterministic evidence plus a token-budgeted `ContextRetriever` context block — never raw text alone.
+*   **ValidationEngine**: Gatekeeper between LLM proposals and canonical state — rejects new entities unsupported by deterministic evidence, applies a confidence floor, and checks field-level contradictions before writing (physical traits, status, ownership) rather than reverting after the fact.
+*   **ContextRetriever**: Single-source-of-truth RAG-style context hydration from the live `NarrativeState` (or canonical `narrative_state.json` on cold start) — four-tier surgical hydration (characters, relationships, promises, world) plus themes/motifs/chapter summaries/recent timeline, token-budgeted to ~6000 chars.
+*   **Noise reduction in deterministic memory (2026-07-28)**: `MysteryMemory` no longer flags bare wh-words ("who/what/why/how" appearing anywhere) or generic perception verbs ("saw", "found", "realized") as mysteries/clues — it now requires real question-punctuated sentences or strong explicit phrases ("mystery", "baffled", "remains a mystery"). `ThemeMemory` requires 2+ distinct keyword signals before introducing a brand-new theme/symbol category. On the 3 real chapters processed so far this cut mystery/clue noise from 56→4 entries and theme/symbol noise from 25→14, without losing genuine signal.
+*   **Test Suite**: All **70 unit and integration tests are passing** (grew from 52 as ValidationEngine/ContextRetriever/9-inspector EditorialEngine were added — this number will keep moving; check `pytest -q` for the live count rather than trusting this doc).
+*   **NLP Pipeline Caching**: SHA-256 caching mechanism in [pipeline.py](file:///c:/Users/RG%20Saran%20Vishakan/Desktop/Narrative_Engine/src/pipeline/pipeline.py) saves evidence packages to `data/cache/`, reducing subsequent chapter processing times from **60–90 seconds to under 0.1 seconds**.
+*   **Vis.js Interactive Graph Visualizer**: `scripts/visualize_graph.py` transforms exported NetworkX graphs into a self-contained, drag-and-zoom network HTML file.
+*   **Automatic `.env` Loader**: `src/utils/config.py` auto-loads credentials from `.env` on launch. LLM backend priority is Gemini → Groq → Ollama with automatic failover — note that a Gemini project with zero/exhausted quota will still spend ~60s retrying with exponential backoff before failing over to Groq.
 
 ---
 
@@ -62,21 +65,24 @@ flowchart TD
 
 ---
 
-## 4. Completion Status
+## 4. Completion Status (honest, updated 2026-07-28)
 
-| Feature Area | Status | Completion % |
-| :--- | :--- | :---: |
-| **Sensory NLP pipeline (GLiNER + FastCoref)** | Complete | 100% |
-| **Evolving Narrative Memory & base handlers** | Complete | 100% |
-| **Automated Inspectors & Editorial critique** | Complete | 100% |
-| **Stable Deterministic Hashes** | Complete | 100% |
-| **NLP Pipeline Caching** | Complete | 100% |
-| **LLM Output Resiliency & Regex Parsing** | Complete | 100% |
-| **Interactive HTML Network visualizer** | Complete | 100% |
-| **Automatic `.env` Loading & Security** | Complete | 100% |
+| Feature Area | Status | Notes |
+| :--- | :--- | :--- |
+| **Sensory NLP pipeline (GLiNER + FastCoref + dependency relations + dialogue)** | Complete | Runs as primary evidence before any LLM call. |
+| **Evolving Narrative Memory & base handlers** | Complete | Full StateEntry/StateSnapshot versioning with history. |
+| **Hybrid LLM extraction + StateEngine + ValidationEngine** | Complete | Two-pass (deterministic baseline, then gated LLM refinement). |
+| **ContextRetriever (RAG-style context hydration)** | Complete | Single source of truth, token-budgeted. |
+| **Automated Inspectors (9) & Editorial critique** | Complete | Rule-based + LLM critique with cross-chapter context. |
+| **NLP Pipeline Caching** | Complete | SHA-256 keyed. |
+| **Interactive HTML Network visualizer** | Complete | Vis.js. |
+| **Theme/Mystery/Symbol detection** | Refined, still heuristic | Keyword-based with noise-reduction gates (2026-07-28); not the topic-modeling/ML approach in the original design. |
+| **Emotion/sentiment analysis, BookNLP, LanguageTool/textstat** | Not implemented | Vision docs scoped these as USE-AS-IS libraries; current code uses custom keyword heuristics instead. |
+| **Scale validation (50-100+ chapters)** | Not done | Only a handful of real chapters processed so far. |
+| **Web GUI Dashboard** | Not started | Future scope. |
 
-### What is Remaining:
-All core requirements and production hardening tasks are now **100% complete**. 
+### Realistic overall completion: ~80-85% of the original vision.
+The hard architectural work (evidence/state separation, hybrid deterministic+LLM grounding, validation gating, editorial reasoning over state) is done and tested. What's left is mostly refinement — replacing remaining keyword heuristics with more principled models, and validating behavior at real novel-length scale — not new subsystems.
 
 #### Potential Extensions (Future Scope):
 *   **Contextual Lookback**: Expanding the State Engine to recall the previous chapter's raw text alongside the global narrative state.

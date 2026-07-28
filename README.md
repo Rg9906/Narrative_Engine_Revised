@@ -71,13 +71,15 @@ Story elements are alive. We don't overwrite character details or plot lines; we
 *   **Promises & Mysteries**: Monitors foreshadowing, setups, and open questions, throwing alerts if they remain unresolved near the climax.
 
 ### 🔍 2. Deep Editorial Inspectors (Static & LLM Hybrid)
-Eight custom-tailored static inspectors scrutinize your story's data structure to flag plot holes:
+Nine custom-tailored static inspectors scrutinize your story's data structure to flag plot holes:
 *   **Arc Inspector**: Evaluates character progression through structural beats (Introduction, Rising Action, Climax, Resolution).
 *   **Pacing Inspector**: Analyzes dialogue density, scene length, and action ratios.
 *   **Voice Inspector**: Tracks syntactical rhythm, average sentence lengths, and stylistic drift.
 *   **Timeline Inspector**: Detects temporal shifts, flashbacks, and chronological gaps.
+*   **Spatiotemporal Inspector**: Flags characters in two places at once or impossible travel times.
 *   *Plus Scene, Conflict, Relationship, and Character Inspectors.*
-*   **LLM Critique**: Uses a fallback-resilient LLM reviewer to add deep thematic evaluations.
+*   **LLM Critique**: Uses a fallback-resilient LLM reviewer (Gemini → Groq → Ollama, auto-failover) to add deep thematic evaluations, grounded in a token-budgeted `ContextRetriever` context block rather than raw text alone.
+*   **ValidationEngine**: Gates every LLM-authored proposal (new character, world item, relationship) against deterministic NLP evidence before it reaches state — rejects unsupported entities and flags field-level contradictions instead of silently trusting the LLM.
 
 ### ⚡ 3. Blazing Fast NLP Caching
 No more waiting on heavy models. The pipeline hashes chapter texts with **SHA-256**. If a chapter hasn't changed, cached evidence is returned instantly—dropping processing times from **60–90 seconds to under 0.1 seconds**!
@@ -176,10 +178,22 @@ Narrative_Engine/
 
 ## 🧪 Bulletproof Testing
 
-The project has a robust testing suite running 61 unit and integration tests. Run them instantly:
+The project has a robust testing suite running 70 unit and integration tests. Run them instantly:
 ```bash
 pytest
 ```
+
+---
+
+## ⚠️ Known Limitations (honest status, updated 2026-07-28)
+
+The core architecture — deterministic NLP evidence → grounded LLM interpretation → validated state → editorial critique — is fully wired and tested end-to-end. What's still rough:
+
+*   **Theme/mystery/symbol detection is keyword-based, not ML-based.** Recently tightened (require 2+ distinct keyword signals before introducing a new theme/symbol; require real question-punctuated sentences or strong explicit phrases before flagging a "mystery") to cut false-positive noise, but it's still a heuristic layer, not the topic-modeling/zero-shot classifier the original design docs describe as the long-term goal.
+*   **No BookNLP, no emotion classifier (Vader/DistilRoBERTa), no LanguageTool/textstat** — dialogue attribution, emotional tone, and style metrics are all custom heuristics/regex, not the mature OSS libraries originally scoped for those roles.
+*   **LLM backend priority is Gemini → Groq → Ollama** with automatic failover on error, but a Gemini project with an exhausted/zero quota will still burn ~60s retrying with exponential backoff before failing over — check quota status if chapter processing feels slow.
+*   **Not yet validated at real scale.** Everything so far has run on a small number of chapters; confidence decay, dormancy tracking, and reconciliation logic are implemented but unverified across a 50-100 chapter novel.
+*   No web GUI/dashboard yet — reports and graphs are JSON/HTML files, browsed manually.
 
 ---
 *Created with 💙 for writers, editors, and computational narrative engineers.*
