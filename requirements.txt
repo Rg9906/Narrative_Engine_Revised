@@ -17,6 +17,10 @@ pyyaml>=6.0
 # Utilities
 dataclasses-json>=0.6
 
+# Style/emotion analysis — offline, no model download (readability + lexicon sentiment)
+textstat>=0.7
+vaderSentiment>=3.3
+
 # === Later phase dependencies (install when needed) ===
 # bookNLP  (install via: pip install booknlp)
 # sentence-transformers>=2.2

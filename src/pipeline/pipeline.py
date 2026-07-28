@@ -65,6 +65,7 @@ class Pipeline:
         # Phase 4 components (lazy-loaded, injectable for tests)
         self._ner = entity_extractor
         self._coref = coreference_resolver
+        self._sentiment_analyzer = None  # Lazy-loaded VADER analyzer
 
     def _get_segmenter(self) -> SentenceSegmenter:
         """Get segmenter, initializing with spaCy if available."""
@@ -418,13 +419,41 @@ class Pipeline:
         quote_count = sum(1 for t in doc if t.text in ('"', "'", "\u201c", "\u201d"))
         dialogue_density = quote_count / max(word_count, 1)
 
-        return {
+        metrics = {
             "word_count": word_count,
             "sentence_count": len(sentences),
             "avg_sentence_length": round(avg_sentence_length, 2),
             "pos_distribution": pos_counts,
             "dialogue_density": round(dialogue_density, 4),
         }
+
+        # Readability (textstat) \u2014 real offline readability signal instead of only raw
+        # counts. The original design docs name textstat specifically as a USE-AS-IS
+        # library for this; previously nothing computed it despite being listed.
+        try:
+            import textstat
+            metrics["flesch_reading_ease"] = round(textstat.flesch_reading_ease(doc.text), 2)
+            metrics["flesch_kincaid_grade"] = round(textstat.flesch_kincaid_grade(doc.text), 2)
+        except Exception as e:
+            logger.warning(f"textstat readability metrics unavailable: {e}")
+
+        # Chapter-level sentiment (VADER) \u2014 real polarity signal alongside the
+        # scene-level keyword-bag emotional tone in SceneEngine. VADER is lexicon-based
+        # (bundled, no model download), matching the vision doc's "USE-AS-IS" framing.
+        try:
+            sentiment = self._get_sentiment_analyzer().polarity_scores(doc.text)
+            metrics["sentiment_compound"] = round(sentiment["compound"], 4)
+        except Exception as e:
+            logger.warning(f"VADER sentiment scoring unavailable: {e}")
+
+        return metrics
+
+    def _get_sentiment_analyzer(self):
+        """Lazy-load the VADER sentiment analyzer (offline, bundled lexicon)."""
+        if self._sentiment_analyzer is None:
+            from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+            self._sentiment_analyzer = SentimentIntensityAnalyzer()
+        return self._sentiment_analyzer
 
     def _extract_relations(self, doc, chapter_data: ChapterData) -> list:
         """Extract (subject, predicate, object) evidence via dependency parsing.
