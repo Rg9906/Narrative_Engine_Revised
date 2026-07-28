@@ -131,23 +131,32 @@ class EditorialEngine:
             "findings": norm,
         }
 
-        out_dir = Path(self._config.reports_dir) if (self._config and getattr(self._config, 'reports_dir', None)) else Path('data') / 'reports'
-        out_dir.mkdir(parents=True, exist_ok=True)
-        out_file = out_dir / f"editorial_report_ch{report['metadata']['chapter']}.json"
-        tmp_file = out_file.with_suffix(".json.tmp")
-        
-        try:
-            with open(tmp_file, 'w', encoding='utf-8') as fh:
-                json.dump(report, fh, indent=2, ensure_ascii=False)
-            import os
-            os.replace(tmp_file, out_file)
-        except OSError as e:
-            logger.warning(f"Atomic save of editorial report failed ({e}). Attempting direct write to {out_file}...")
+        # Only persist to disk when a real project config is supplied. There is no safe
+        # generic fallback path here: callers with no config (unit tests, ad-hoc scripts)
+        # have no project directory to anchor to, and a CWD-relative Path('data')/'reports'
+        # default previously caused every pytest run to silently overwrite real chapter
+        # editorial reports under the repo's own data/reports/ directory. Callers that want
+        # a report on disk must pass a config with a reports_dir.
+        if self._config and getattr(self._config, 'reports_dir', None):
+            out_dir = Path(self._config.reports_dir)
+            out_dir.mkdir(parents=True, exist_ok=True)
+            out_file = out_dir / f"editorial_report_ch{report['metadata']['chapter']}.json"
+            tmp_file = out_file.with_suffix(".json.tmp")
+
             try:
-                with open(out_file, 'w', encoding='utf-8') as fh:
+                with open(tmp_file, 'w', encoding='utf-8') as fh:
                     json.dump(report, fh, indent=2, ensure_ascii=False)
-            except OSError as e2:
-                logger.error(f"Failed to write editorial report directly to {out_file}: {e2}")
+                import os
+                os.replace(tmp_file, out_file)
+            except OSError as e:
+                logger.warning(f"Atomic save of editorial report failed ({e}). Attempting direct write to {out_file}...")
+                try:
+                    with open(out_file, 'w', encoding='utf-8') as fh:
+                        json.dump(report, fh, indent=2, ensure_ascii=False)
+                except OSError as e2:
+                    logger.error(f"Failed to write editorial report directly to {out_file}: {e2}")
+        else:
+            logger.info("No config provided; returning in-memory report without writing to disk.")
 
         return report
 
