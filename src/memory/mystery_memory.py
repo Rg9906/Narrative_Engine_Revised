@@ -47,10 +47,14 @@ class MysteryMemory(BaseMemory):
     # surfaced. The previous list included ordinary perception/cognition verbs (saw,
     # found, realized, understood, noticed, observed) that fire on nearly every
     # paragraph of prose, making "clue" detection meaningless noise rather than signal.
+    # First pass only kept multi-word compounds ("piece of evidence"), which turned out
+    # too narrow to catch how clues are actually phrased in prose ("footprint by the
+    # door", "the evidence was clear") — reintroduces bare genre-specific nouns that are
+    # still rare enough in ordinary narration not to reopen the original noise problem.
     CLUE_INDICATORS = [
-        "clue", "piece of evidence", "key evidence", "damning evidence",
-        "telltale sign", "incriminating", "uncovered a", "discovered a",
-        "hint of", "gave it away",
+        "clue", "evidence", "telltale", "incriminating", "fingerprint",
+        "footprint", "forensic", "alibi", "murder weapon",
+        "uncovered a", "discovered a", "hint of", "gave it away",
     ]
 
     # Revelation/resolution indicators (Phase 10)
