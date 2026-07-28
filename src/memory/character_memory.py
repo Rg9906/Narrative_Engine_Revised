@@ -46,6 +46,20 @@ class CharacterMemory(BaseMemory):
         "distinctive": ["scar", "tattoo", "limp", "freckles", "glasses", "beard", "mustache"],
     }
 
+    # Which PHYSICAL_TRAIT_KEYWORDS entries are themselves the descriptive value
+    # ("blonde", "tall", "scar") vs. bare anchor nouns ("hair", "eyes", "height", "age")
+    # that need an actual descriptor nearby before they mean anything. Used by
+    # _extract_trait_value to stop it from grabbing whatever word happens to sit next
+    # to the matched keyword ("his eyes" used to extract "his" as an eye color).
+    SELF_DESCRIBING_TRAIT_VALUES = {
+        "hair_color": {"blonde", "brunette", "red", "black", "brown", "gray", "white", "blond"},
+        "eye_color": {"blue", "green", "brown", "hazel", "gray", "dark", "light"},
+        "height": {"tall", "short", "towering", "petite", "lanky"},
+        "build": {"thin", "slender", "stocky", "muscular", "athletic", "heavy", "lean"},
+        "age": {"young", "old", "teenage", "middle-aged", "elderly"},
+        "distinctive": {"scar", "tattoo", "limp", "freckles", "glasses", "beard", "mustache"},
+    }
+
     # Personality trait keywords (Phase 9)
     PERSONALITY_KEYWORDS = {
         "brave": ["brave", "courageous", "fearless", "bold", "daring"],
@@ -434,18 +448,32 @@ class CharacterMemory(BaseMemory):
         return changes
 
     def _extract_trait_value(self, sentence: str, keyword: str, trait_type: str) -> Optional[str]:
-        """Extract the specific value of a trait from a sentence."""
-        words = sentence.lower().split()
-        if keyword not in words:
-            return None
+        """Extract the specific value of a trait from a sentence.
 
-        # Simple extraction: return the word before or after the keyword
-        keyword_idx = words.index(keyword)
-        if keyword_idx > 0:
-            return words[keyword_idx - 1]
-        elif keyword_idx < len(words) - 1:
-            return words[keyword_idx + 1]
-        return keyword
+        The matched keyword is either already the descriptive value ("blonde", "tall",
+        "scar" — see SELF_DESCRIBING_TRAIT_VALUES) or a bare anchor noun ("hair", "eyes",
+        "height", "age") that carries no value by itself. For an anchor noun, only
+        accept a value if a self-describing descriptor for the same trait_type is also
+        present in the sentence, and use THAT word — never a positionally-adjacent word,
+        which previously produced nonsense values like physical_eye_color="his" from
+        "his eyes were tired" (grabbing the word before "eyes" with no regard for
+        whether it was actually a descriptor).
+        """
+        self_describing = self.SELF_DESCRIBING_TRAIT_VALUES.get(trait_type, set())
+        if keyword in self_describing:
+            return keyword
+
+        sentence_lower = f" {sentence.lower()} "
+        for candidate in self_describing:
+            if f" {candidate} " in sentence_lower or f" {candidate}," in sentence_lower or f" {candidate}." in sentence_lower:
+                return candidate
+
+        if keyword == "years old":
+            match = re.search(r"(\d{1,3})\s+years old", sentence.lower())
+            if match:
+                return f"{match.group(1)} years old"
+
+        return None
 
     def _extract_personality_traits(
         self,

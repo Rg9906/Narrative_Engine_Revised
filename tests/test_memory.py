@@ -49,6 +49,33 @@ class TestCharacterMemory:
 
         assert memory.get_entry("alice", "mention_count").current.value == 2
 
+    def test_physical_trait_extracts_real_descriptor_not_adjacent_word(self):
+        # Regression test: _extract_trait_value used to grab whatever word sat next to
+        # the matched keyword regardless of part of speech, producing nonsense values
+        # like physical_eye_color="his" from "His eyes were tired." Anchor nouns
+        # ("eyes", "hair") with no accompanying descriptor must not fabricate a value;
+        # when a real descriptor IS present, that word must be the one extracted.
+        cd = ChapterData(
+            chapter_number=1,
+            raw_text="Alice appeared. Alice's blue eyes sparkled. Bob's eyes were tired.",
+            sentences=["Alice appeared.", "Alice's blue eyes sparkled.", "Bob's eyes were tired."],
+            entities=[
+                ExtractedEntity(text="Alice", label="person", confidence=1.0),
+                ExtractedEntity(text="Bob", label="person", confidence=1.0),
+            ],
+        )
+        memory = CharacterMemory()
+        memory.update_from_chapter(cd, 1)
+        memory.extract_advanced_attributes(cd, 1)
+
+        eye_color = memory.get_entry("alice", "physical_eye_color")
+        assert eye_color is not None and eye_color.current.value == "blue"
+
+        # Bob's sentence has the anchor noun ("eyes") but no real descriptor ("tired" is
+        # not a color) -- must NOT fabricate a value from an adjacent word ("were", "s").
+        bob_eye_color = memory.get_entry("bob", "physical_eye_color")
+        assert bob_eye_color is None
+
 
 class TestRelationshipMemory:
     def test_relationship_created_from_svo(self, empty_chapter_data):
