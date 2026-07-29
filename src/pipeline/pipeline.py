@@ -145,6 +145,7 @@ class Pipeline:
             raw_text=cleaned_text,
             paragraphs=paragraphs,
             sentences=sentences,
+            sentence_spans=sentence_spans,
         )
         
         # Initialize default llm_delta attribute

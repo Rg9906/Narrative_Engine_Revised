@@ -25,7 +25,7 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum, auto
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 
 # =============================================================================
@@ -340,6 +340,12 @@ class ExtractedEntity:
 class ExtractedCoreferenceCluster:
     """A group of mentions that refer to the same narrative entity."""
     mentions: List[str]
+    # Character-offset (start, end) span for each entry in `mentions`, same order —
+    # FastCoref's CorefResult.get_clusters(as_strings=False) already computes these
+    # precisely; carrying them through lets consumers (e.g. CharacterMemory) determine
+    # which sentence/paragraph a given mention actually falls in, rather than only
+    # having the resolved text with no positional information.
+    mention_spans: List[Tuple[Optional[int], Optional[int]]] = field(default_factory=list)
     canonical_mention: str = ""
     confidence: float = 1.0
     cluster_id: Optional[int] = None
@@ -349,6 +355,7 @@ class ExtractedCoreferenceCluster:
     def from_dict(cls, data: Dict[str, Any]) -> ExtractedCoreferenceCluster:
         return cls(
             mentions=data["mentions"],
+            mention_spans=[tuple(s) for s in data.get("mention_spans", [])],
             canonical_mention=data.get("canonical_mention", ""),
             confidence=data.get("confidence", 1.0),
             cluster_id=data.get("cluster_id"),
@@ -419,6 +426,11 @@ class ChapterData:
     raw_text: str = ""
     paragraphs: List[str] = field(default_factory=list)
     sentences: List[str] = field(default_factory=list)
+    # Character-offset span for each entry in `sentences`, same sentence_index —
+    # computed once by Pipeline._sentence_spans and persisted here so downstream
+    # consumers (e.g. CharacterMemory) can determine which sentence a coreference
+    # mention span falls into, without re-deriving sentence positions themselves.
+    sentence_spans: List["TextSpan"] = field(default_factory=list)
     entities: List[ExtractedEntity] = field(default_factory=list)
     coreference_clusters: List[List[str]] = field(default_factory=list)
     coreferences: List[ExtractedCoreferenceCluster] = field(default_factory=list)
@@ -444,6 +456,7 @@ class ChapterData:
             "paragraphs": self.paragraphs,
             "sentence_count": len(self.sentences),
             "sentences": self.sentences,
+            "sentence_spans": [s.to_dict() for s in self.sentence_spans],
             "entity_count": len(self.entities),
             "entities": [
                 {
@@ -461,6 +474,7 @@ class ChapterData:
             "coreferences": [
                 {
                     "mentions": c.mentions,
+                    "mention_spans": [list(s) for s in c.mention_spans],
                     "canonical_mention": c.canonical_mention,
                     "confidence": c.confidence,
                     "cluster_id": c.cluster_id,
@@ -545,6 +559,7 @@ class ChapterData:
         coreferences = [ExtractedCoreferenceCluster.from_dict(c) for c in data.get("coreferences", [])]
         relations = [ExtractedRelation.from_dict(r) for r in data.get("relations", [])]
         dialogues = [ExtractedDialogue.from_dict(d) for d in data.get("dialogues", [])]
+        sentence_spans = [TextSpan.from_dict(s) for s in data.get("sentence_spans", [])]
         return cls(
             chapter_number=data["chapter_number"],
             source_name=data.get("source_name", ""),
@@ -552,6 +567,7 @@ class ChapterData:
             raw_text=data.get("raw_text", ""),
             paragraphs=data.get("paragraphs", []),
             sentences=data.get("sentences", []),
+            sentence_spans=sentence_spans,
             entities=entities,
             coreference_clusters=data.get("coreference_clusters", []),
             coreferences=coreferences,

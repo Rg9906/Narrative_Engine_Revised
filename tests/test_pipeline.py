@@ -327,29 +327,44 @@ class TestCoreferenceResolver:
     """Tests for the FastCoref wrapper without loading the real model."""
 
     def test_resolve_maps_fastcoref_clusters_to_structured_evidence(self):
-        """CoreferenceResolver should produce canonical structured clusters."""
+        """CoreferenceResolver should produce canonical structured clusters with real spans."""
+
+        text = "Alice left. She was worried. Thomas waited for her younger brother. He was late."
+
+        def span_of(s: str):
+            start = text.index(s)
+            return (start, start + len(s))
+
+        alice_span = span_of("Alice")
+        she_span = span_of("She")
+        thomas_span = span_of("Thomas")
+        brother_span = span_of("her younger brother")
+        he_span = span_of("He")
 
         class FakePrediction:
-            def get_clusters(self):
-                return [["Alice", "She"], ["Thomas", "her younger brother", "He"]]
+            def get_clusters(self, as_strings=False):
+                assert as_strings is False
+                return [[alice_span, she_span], [thomas_span, brother_span, he_span]]
 
         class FakeFastCorefModel:
             def predict(self, texts):
-                assert texts == ["Alice left. She was worried."]
+                assert texts == [text]
                 return [FakePrediction()]
 
         resolver = CoreferenceResolver()
         resolver._model = FakeFastCorefModel()
 
-        clusters = resolver.resolve("Alice left. She was worried.")
+        clusters = resolver.resolve(text)
 
         assert clusters == [
             ExtractedCoreferenceCluster(
                 mentions=["Alice", "She"],
+                mention_spans=[alice_span, she_span],
                 canonical_mention="Alice",
             ),
             ExtractedCoreferenceCluster(
                 mentions=["Thomas", "her younger brother", "He"],
+                mention_spans=[thomas_span, brother_span, he_span],
                 canonical_mention="Thomas",
             ),
         ]

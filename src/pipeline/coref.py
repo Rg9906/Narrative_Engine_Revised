@@ -75,19 +75,36 @@ class CoreferenceResolver:
 
         Returns:
             List of coreference clusters. Each cluster contains mentions
-            that refer to the same entity.
+            that refer to the same entity, along with the character-offset
+            span of each mention (see ExtractedCoreferenceCluster.mention_spans).
         """
         self._ensure_loaded()
 
         preds = self._model.predict(texts=[text])
-        raw_clusters = preds[0].get_clusters()
-        clusters = [
-            ExtractedCoreferenceCluster(
-                mentions=list(cluster),
-                canonical_mention=self._canonical_mention(cluster),
+        # get_clusters(as_strings=False) gives FastCoref's own precise (start, end)
+        # character span per mention. Deriving mention text from these spans ourselves
+        # (rather than also calling get_clusters(as_strings=True)) keeps mentions and
+        # mention_spans guaranteed aligned — the two call paths in fastcoref's own
+        # source apply a None-filter asymmetrically and can otherwise silently diverge
+        # in length for the same cluster.
+        raw_span_clusters = preds[0].get_clusters(as_strings=False)
+
+        clusters = []
+        for span_cluster in raw_span_clusters:
+            valid_spans = [
+                (start, end) for start, end in span_cluster
+                if start is not None and end is not None
+            ]
+            if not valid_spans:
+                continue
+            mention_texts = [text[start:end] for start, end in valid_spans]
+            clusters.append(
+                ExtractedCoreferenceCluster(
+                    mentions=mention_texts,
+                    mention_spans=valid_spans,
+                    canonical_mention=self._canonical_mention(mention_texts),
+                )
             )
-            for cluster in raw_clusters
-        ]
 
         logger.info(f"Resolved {len(clusters)} coreference clusters")
         return clusters
