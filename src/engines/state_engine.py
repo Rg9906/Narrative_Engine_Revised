@@ -75,8 +75,18 @@ class StateEngine:
         from src.memory.promise_memory import PromiseMemory
         from src.memory.mystery_memory import MysteryMemory
         from src.memory.style_memory import StyleMemory
+        from src.utils.llm_provider import LLMProvider
 
-        character_memory = CharacterMemory(existing_entries=current_state.characters)
+        # Passed through to CharacterMemory as a last-resort coreference disambiguation
+        # fallback (see CharacterMemory._disambiguate_cluster_with_llm) — only used when
+        # a FastCoref cluster's canonical mention doesn't match any known character by
+        # name. Cheap to construct (backend auto-detection only, no model load); degrades
+        # to a no-op automatically when no LLM backend is available, same as every other
+        # LLM integration point in this codebase.
+        character_memory = CharacterMemory(
+            existing_entries=current_state.characters,
+            llm_provider=LLMProvider(self._config),
+        )
         character_changes = character_memory.update_from_chapter(chapter_data, chapter_num)
         delta.changes.extend(character_changes)
 

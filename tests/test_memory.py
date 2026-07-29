@@ -2,7 +2,7 @@
 
 import pytest
 from pathlib import Path
-from src.models.state import ChapterData, ExtractedEntity, ExtractedDialogue, ExtractedRelation, TextSpan
+from src.models.state import ChapterData, ExtractedEntity, ExtractedDialogue, ExtractedRelation, ExtractedCoreferenceCluster, TextSpan
 from src.memory.character_memory import CharacterMemory
 from src.memory.relationship_memory import RelationshipMemory
 from src.memory.world_memory import WorldMemory
@@ -75,6 +75,91 @@ class TestCharacterMemory:
         # not a color) -- must NOT fabricate a value from an adjacent word ("were", "s").
         bob_eye_color = memory.get_entry("bob", "physical_eye_color")
         assert bob_eye_color is None
+
+    def test_pronoun_only_sentence_attributed_via_coreference(self):
+        # Regression test: every _extract_* method used to accept a `coref_map`
+        # parameter but never actually use it, so a pronoun-only sentence ("She felt
+        # afraid") was invisible to fear/emotion/trait extraction unless the
+        # character's literal name also appeared in that exact sentence. Now backed by
+        # real FastCoref-style mention spans (see _build_sentence_character_map).
+        text = "Alice arrived at the manor. She felt afraid of the dark."
+        sentences = ["Alice arrived at the manor.", "She felt afraid of the dark."]
+
+        def span_of(s: str) -> tuple:
+            start = text.index(s)
+            return (start, start + len(s))
+
+        sentence_spans = []
+        cursor = 0
+        for i, s in enumerate(sentences):
+            start = text.find(s, cursor)
+            sentence_spans.append(TextSpan(text=s, start_char=start, end_char=start + len(s), sentence_index=i))
+            cursor = start + len(s)
+
+        alice_span = span_of("Alice")
+        she_span = span_of("She")
+
+        cd = ChapterData(
+            chapter_number=1,
+            raw_text=text,
+            sentences=sentences,
+            sentence_spans=sentence_spans,
+            entities=[ExtractedEntity(text="Alice", label="person", confidence=1.0)],
+            coreferences=[
+                ExtractedCoreferenceCluster(
+                    mentions=["Alice", "She"],
+                    mention_spans=[alice_span, she_span],
+                    canonical_mention="Alice",
+                )
+            ],
+        )
+        memory = CharacterMemory()
+        memory.update_from_chapter(cd, 1)
+        memory.extract_advanced_attributes(cd, 1)
+
+        fears = memory.get_entry("alice", "fears")
+        assert fears is not None and fears.current.value
+        assert any("she felt afraid" in f.lower() for f in fears.current.value)
+
+    def test_ambiguous_cluster_not_attributed_without_llm(self):
+        # A coreference cluster whose canonical mention doesn't match any known
+        # character by name (e.g. an epithet FastCoref itself resolved but that isn't
+        # literally the character's name/alias) must NOT be attributed to anyone when
+        # no LLM disambiguation is configured -- silently guessing wrong would be worse
+        # than the previous under-extraction.
+        text = "Alice arrived at the manor. The stranger felt afraid of the dark."
+        sentences = ["Alice arrived at the manor.", "The stranger felt afraid of the dark."]
+
+        sentence_spans = []
+        cursor = 0
+        for i, s in enumerate(sentences):
+            start = text.find(s, cursor)
+            sentence_spans.append(TextSpan(text=s, start_char=start, end_char=start + len(s), sentence_index=i))
+            cursor = start + len(s)
+
+        stranger_start = text.index("The stranger")
+        stranger_span = (stranger_start, stranger_start + len("The stranger"))
+
+        cd = ChapterData(
+            chapter_number=1,
+            raw_text=text,
+            sentences=sentences,
+            sentence_spans=sentence_spans,
+            entities=[ExtractedEntity(text="Alice", label="person", confidence=1.0)],
+            coreferences=[
+                ExtractedCoreferenceCluster(
+                    mentions=["The stranger"],
+                    mention_spans=[stranger_span],
+                    canonical_mention="The stranger",
+                )
+            ],
+        )
+        memory = CharacterMemory()  # no llm_provider configured
+        memory.update_from_chapter(cd, 1)
+        memory.extract_advanced_attributes(cd, 1)
+
+        fears = memory.get_entry("alice", "fears")
+        assert fears is None or not fears.current.value
 
 
 class TestRelationshipMemory:

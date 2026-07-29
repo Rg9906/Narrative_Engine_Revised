@@ -19,6 +19,7 @@ from src.memory.base_memory import BaseMemory
 from src.models.state import (
     ChapterData,
     Evidence,
+    ExtractedCoreferenceCluster,
     ExtractedDialogue,
     ExtractedEntity,
     ExtractedRelation,
@@ -104,10 +105,36 @@ class CharacterMemory(BaseMemory):
         "resolution": ["succeeded", "failed", "resolved", "concluded", "returned"],
     }
 
-    def __init__(self, memory_file=None, existing_entries: Optional[Dict[str, Dict[str, object]]] = None):
+    @staticmethod
+    def _variant_matches(variant: str, text_lower: str) -> bool:
+        """Word-boundary-safe check for whether a name variant appears in text.
+
+        Raw substring containment (`variant in text`) lets a short character ID like
+        "di" (e.g. abbreviating "Detective Inspector") match inside unrelated words —
+        "disturb", "did", "diamond" — since "di" is a literal substring of all of them.
+        Confirmed on real chapter data: the "di" character accumulated four unrelated
+        "goals" pulled from scenes that never mention them, purely from this substring
+        overlap. Word-boundary regex matching requires `variant` to appear as a whole
+        word (or exact multi-word phrase), not merely as a run of adjacent characters.
+        """
+        if not variant:
+            return False
+        return bool(re.search(rf"\b{re.escape(variant)}\b", text_lower))
+
+    def __init__(
+        self,
+        memory_file=None,
+        existing_entries: Optional[Dict[str, Dict[str, object]]] = None,
+        llm_provider=None,
+    ):
         super().__init__(memory_file)
         if existing_entries is not None:
             self._entries = existing_entries
+        # Optional — used only as a last-resort disambiguation fallback in
+        # _disambiguate_cluster_with_llm when a coreference cluster's canonical mention
+        # doesn't match any known character by name. Never required: every extraction
+        # path degrades to "skip" rather than guess when this is None or unavailable.
+        self._llm_provider = llm_provider
 
     def load_entries(self, entries: Dict[str, Dict[str, object]]) -> None:
         """Load existing character entries into the memory helper."""
@@ -276,7 +303,17 @@ class CharacterMemory(BaseMemory):
             List of StateChange objects for advanced attributes.
         """
         changes: List[StateChange] = []
-        coref_map = self._build_coref_map(chapter_data)
+
+        # Built once per chapter (not per character): maps sentence_index -> the set of
+        # known character_ids that sentence is about, via literal name/alias match OR
+        # FastCoref's own trained coreference resolution (a mention span, often a
+        # pronoun, inside that sentence whose cluster's canonical mention matches a
+        # known character). Replaces the previous per-method `coref_map` parameter,
+        # which every _extract_* method accepted but never actually used — meaning a
+        # pronoun-only sentence ("She felt afraid") was invisible to attribute
+        # extraction unless the character's literal name also appeared in that exact
+        # sentence.
+        sentence_to_characters = self._build_sentence_character_map(chapter_data)
 
         # Process each character mention in the chapter
         for char_id in self._entries.keys():
@@ -292,53 +329,216 @@ class CharacterMemory(BaseMemory):
 
             # Extract physical traits from text
             physical_changes = self._extract_physical_traits(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(physical_changes)
 
             # Extract personality traits
             personality_changes = self._extract_personality_traits(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(personality_changes)
 
             # Extract emotional state
             emotion_changes = self._extract_emotional_state(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(emotion_changes)
 
             # Extract goals
             goal_changes = self._extract_goals(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(goal_changes)
 
             # Extract fears
             fear_changes = self._extract_fears(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(fear_changes)
 
             # Update arc stage
             arc_changes = self._update_arc_stage(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(arc_changes)
 
             # Extract inventory items
             inventory_changes = self._extract_inventory(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(inventory_changes)
 
             # Extract location
             location_changes = self._extract_location(
-                chapter_data, char_id, name_variants, chapter_num, coref_map
+                chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(location_changes)
 
         return changes
+
+    def _build_sentence_character_map(self, chapter_data: ChapterData) -> Dict[int, Set[str]]:
+        """Map each sentence_index to the set of known character IDs it's about.
+
+        Two sources, both additive:
+          1. Literal name/alias match — the character's name/alias string appears
+             directly in the sentence.
+          2. FastCoref coreference resolution — a mention span (frequently a pronoun)
+             inside the sentence belongs to a cluster whose canonical mention matches a
+             known character by name. This is what makes pronoun-only sentences
+             ("She felt afraid") attributable at all.
+
+        When a cluster's canonical mention doesn't match ANY known character by name,
+        that's genuine residual ambiguity (not the common case, since FastCoref's own
+        model already resolved the mention to *some* coherent entity) — bounded once
+        per cluster via _disambiguate_cluster_with_llm, never per mention.
+        """
+        sentence_map: Dict[int, Set[str]] = {}
+
+        # Precompute name variants for every known character once.
+        char_variants: Dict[str, Set[str]] = {}
+        for char_id in self._entries.keys():
+            char_state = self.get_entity_state(char_id)
+            if not char_state:
+                continue
+            canonical_name = char_state.get("canonical_name")
+            if not canonical_name or not canonical_name.current:
+                continue
+            char_variants[char_id] = self._get_name_variants(canonical_name.current.value, char_state)
+
+        # Pass 1: literal name/alias match.
+        for sentence_index, sentence in enumerate(chapter_data.sentences):
+            sentence_lower = sentence.lower()
+            matched = {
+                cid for cid, variants in char_variants.items()
+                if any(self._variant_matches(v, sentence_lower) for v in variants)
+            }
+            if matched:
+                sentence_map[sentence_index] = matched
+
+        # Pass 2: FastCoref cluster resolution.
+        for cluster in getattr(chapter_data, "coreferences", []):
+            canonical = (cluster.canonical_mention or "").strip().lower()
+            if not canonical:
+                continue
+
+            matched_ids = {
+                cid for cid, variants in char_variants.items()
+                if any(self._variant_matches(canonical, v) or self._variant_matches(v, canonical) for v in variants)
+            }
+
+            if not matched_ids:
+                resolved_id = self._disambiguate_cluster_with_llm(cluster, chapter_data, char_variants)
+                if resolved_id:
+                    matched_ids = {resolved_id}
+
+            if not matched_ids:
+                continue
+
+            for start, end in cluster.mention_spans:
+                if start is None or end is None:
+                    continue
+                for span in getattr(chapter_data, "sentence_spans", []):
+                    if span.start_char <= start < span.end_char:
+                        sentence_map.setdefault(span.sentence_index, set()).update(matched_ids)
+
+        return sentence_map
+
+    def _disambiguate_cluster_with_llm(
+        self,
+        cluster: ExtractedCoreferenceCluster,
+        chapter_data: ChapterData,
+        char_variants: Dict[str, Set[str]],
+    ) -> Optional[str]:
+        """Ask an LLM which known character a coreference cluster actually refers to.
+
+        Only called for genuine residual ambiguity: FastCoref already resolved the
+        mention to *some* coherent entity (its canonical_mention), but that text
+        doesn't match any known character by name — e.g. an epithet or description
+        the naive substring check can't connect ("the old detective" vs. "Sirius").
+        Grounds the LLM in the actual paragraph, not just the bare mention text.
+
+        Degrades to None (skip, never guess) if no LLM is configured/available, the
+        call fails, or the response doesn't name one of the known candidates —
+        exactly like every other LLM integration point in this codebase.
+        """
+        if self._llm_provider is None or not getattr(self._llm_provider, "is_available", False):
+            return None
+        if not char_variants:
+            return None
+
+        first_span = next((s for s in cluster.mention_spans if s[0] is not None and s[1] is not None), None)
+        if first_span is None:
+            return None
+
+        context = self._paragraph_context(chapter_data, first_span[0])
+        if not context:
+            return None
+
+        # One representative display name per candidate (longest variant, typically
+        # the full name rather than a bare alias).
+        candidates = {
+            cid: sorted(variants, key=len, reverse=True)[0]
+            for cid, variants in char_variants.items()
+            if variants
+        }
+        if not candidates:
+            return None
+
+        mention_text = cluster.canonical_mention or (cluster.mentions[0] if cluster.mentions else "")
+        candidate_list_str = "\n".join(f"- {cid}: {name}" for cid, name in candidates.items())
+
+        prompt = (
+            f"A coreference resolver identified a reference (\"{mention_text}\") in the "
+            f"passage below that doesn't clearly match any known character by name.\n\n"
+            f"--- Passage ---\n{context}\n\n"
+            f"--- Known characters ---\n{candidate_list_str}\n\n"
+            f"Which known character (if any) does \"{mention_text}\" refer to in this "
+            f"passage? Respond with strictly a JSON object: "
+            f"{{\"character_id\": \"<id from the list above, or null if none/unclear>\"}}."
+        )
+
+        try:
+            response = self._llm_provider.chat(
+                [
+                    {
+                        "role": "system",
+                        "content": "You resolve character references in narrative text. "
+                                   "Respond with strictly a single JSON object and nothing else.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                response_format={"type": "json_object"},
+            )
+            import json
+            cleaned = response.strip()
+            if cleaned.startswith("```"):
+                lines = cleaned.split("\n")
+                if lines[0].startswith("```"):
+                    lines = lines[1:]
+                if lines and lines[-1].startswith("```"):
+                    lines = lines[:-1]
+                cleaned = "\n".join(lines).strip()
+            data = json.loads(cleaned)
+            resolved = data.get("character_id")
+            return resolved if resolved in candidates else None
+        except Exception as e:
+            import logging
+            logging.getLogger("NarrativeEngine.Memory.Character").warning(
+                f"LLM coreference disambiguation failed, skipping: {e}"
+            )
+            return None
+
+    def _paragraph_context(self, chapter_data: ChapterData, char_offset: int) -> str:
+        """Return the paragraph containing the given character offset, for LLM grounding."""
+        text = chapter_data.raw_text
+        if not text or char_offset < 0 or char_offset > len(text):
+            return ""
+        start = text.rfind("\n\n", 0, char_offset)
+        start = 0 if start == -1 else start + 2
+        end = text.find("\n\n", char_offset)
+        end = len(text) if end == -1 else end
+        return text[start:end].strip()
 
     def _extract_location(
         self,
@@ -346,17 +546,21 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         changes = []
         for ent in chapter_data.entities:
             if ent.label.lower() != "location":
                 continue
             loc_name = ent.text.strip()
-            
-            for sentence in chapter_data.sentences:
+
+            for sentence_index, sentence in enumerate(chapter_data.sentences):
                 sentence_lower = sentence.lower()
-                if loc_name.lower() in sentence_lower and any(v in sentence_lower for v in name_variants):
+                mentions_character = (
+                    any(self._variant_matches(v, sentence_lower) for v in name_variants)
+                    or char_id in sentence_to_characters.get(sentence_index, set())
+                )
+                if loc_name.lower() in sentence_lower and mentions_character:
                     loc_verbs = ["stood", "sat", "was", "inside", "at", "within", "walked", "arrived", "in", "entered"]
                     if any(v in sentence_lower for v in loc_verbs):
                         existing = self.get_entry(char_id, "location")
@@ -402,7 +606,7 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         """Extract physical traits from text mentioning the character."""
         changes: List[StateChange] = []
@@ -411,10 +615,13 @@ class CharacterMemory(BaseMemory):
         for trait_type, keywords in self.PHYSICAL_TRAIT_KEYWORDS.items():
             for keyword in keywords:
                 # Look for sentences containing character name and trait keyword
-                sentences = chapter_data.sentences
-                for sentence in sentences:
+                for sentence_index, sentence in enumerate(chapter_data.sentences):
                     sentence_lower = sentence.lower()
-                    if any(variant in sentence_lower for variant in name_variants):
+                    mentions_character = (
+                        any(self._variant_matches(variant, sentence_lower) for variant in name_variants)
+                        or char_id in sentence_to_characters.get(sentence_index, set())
+                    )
+                    if mentions_character:
                         if keyword in sentence_lower:
                             # Extract the specific trait value
                             trait_value = self._extract_trait_value(sentence, keyword, trait_type)
@@ -481,7 +688,7 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         """Extract personality traits from text and dialogue."""
         changes: List[StateChange] = []
@@ -522,9 +729,13 @@ class CharacterMemory(BaseMemory):
                                 )
 
             # Check in narration
-            for sentence in chapter_data.sentences:
+            for sentence_index, sentence in enumerate(chapter_data.sentences):
                 sentence_lower = sentence.lower()
-                if any(variant in sentence_lower for variant in name_variants):
+                mentions_character = (
+                    any(self._variant_matches(variant, sentence_lower) for variant in name_variants)
+                    or char_id in sentence_to_characters.get(sentence_index, set())
+                )
+                if mentions_character:
                     for keyword in keywords:
                         if keyword in sentence_lower:
                             existing_traits = self.get_entry(char_id, "personality_traits")
@@ -563,7 +774,7 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         """Extract current emotional state from text and dialogue."""
         changes: List[StateChange] = []
@@ -580,9 +791,13 @@ class CharacterMemory(BaseMemory):
                             break
 
             # Check narration
-            for sentence in chapter_data.sentences:
+            for sentence_index, sentence in enumerate(chapter_data.sentences):
                 sentence_lower = sentence.lower()
-                if any(variant in sentence_lower for variant in name_variants):
+                mentions_character = (
+                    any(self._variant_matches(variant, sentence_lower) for variant in name_variants)
+                    or char_id in sentence_to_characters.get(sentence_index, set())
+                )
+                if mentions_character:
                     for keyword in keywords:
                         if keyword in sentence_lower:
                             detected_emotions.append(emotion)
@@ -629,14 +844,18 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         """Extract character goals from dialogue and narration."""
         changes: List[StateChange] = []
 
-        for sentence in chapter_data.sentences:
+        for sentence_index, sentence in enumerate(chapter_data.sentences):
             sentence_lower = sentence.lower()
-            if any(variant in sentence_lower for variant in name_variants):
+            mentions_character = (
+                any(self._variant_matches(variant, sentence_lower) for variant in name_variants)
+                or char_id in sentence_to_characters.get(sentence_index, set())
+            )
+            if mentions_character:
                 for indicator in self.GOAL_INDICATORS:
                     if indicator in sentence_lower:
                         # Extract the goal (simplified: take words after indicator)
@@ -678,14 +897,18 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         """Extract character fears from dialogue and narration."""
         changes: List[StateChange] = []
 
-        for sentence in chapter_data.sentences:
+        for sentence_index, sentence in enumerate(chapter_data.sentences):
             sentence_lower = sentence.lower()
-            if any(variant in sentence_lower for variant in name_variants):
+            mentions_character = (
+                any(self._variant_matches(variant, sentence_lower) for variant in name_variants)
+                or char_id in sentence_to_characters.get(sentence_index, set())
+            )
+            if mentions_character:
                 for indicator in self.FEAR_INDICATORS:
                     if indicator in sentence_lower:
                         # Extract the fear (simplified: take the sentence)
@@ -727,7 +950,7 @@ class CharacterMemory(BaseMemory):
         char_id: str,
         name_variants: Set[str],
         chapter_num: int,
-        coref_map: Dict[str, str],
+        sentence_to_characters: Dict[int, Set[str]],
     ) -> List[StateChange]:
         """Update character arc stage based on chapter events."""
         changes: List[StateChange] = []
@@ -983,19 +1206,23 @@ class CharacterMemory(BaseMemory):
 
         return normalized_id
 
-    def _extract_inventory(self, chapter_data: ChapterData, char_id: str, name_variants: Set[str], chapter_num: int, coref_map: Dict[str, str]) -> List[StateChange]:
+    def _extract_inventory(self, chapter_data: ChapterData, char_id: str, name_variants: Set[str], chapter_num: int, sentence_to_characters: Dict[int, Set[str]]) -> List[StateChange]:
         changes = []
         text = chapter_data.raw_text.lower()
-        
+
         # Find all objects mentioned in sentences containing the character name/alias
         for ent in chapter_data.entities:
             if ent.label.lower() != "object":
                 continue
             item_name = ent.text.strip()
-            
-            for sentence in chapter_data.sentences:
+
+            for sentence_index, sentence in enumerate(chapter_data.sentences):
                 sentence_lower = sentence.lower()
-                if item_name.lower() in sentence_lower and any(v in sentence_lower for v in name_variants):
+                mentions_character = (
+                    any(self._variant_matches(v, sentence_lower) for v in name_variants)
+                    or char_id in sentence_to_characters.get(sentence_index, set())
+                )
+                if item_name.lower() in sentence_lower and mentions_character:
                     # Determine if obtaining or dropping
                     obtaining_verbs = ["take", "took", "grab", "grabbed", "pick", "picked", "hold", "held", "find", "found", "has", "had", "wield", "wielded", "carry", "carried", "obtain", "obtained", "use", "used", "drew"]
                     dropping_verbs = ["drop", "dropped", "lose", "lost", "leave", "left", "throw", "threw", "abandon", "abandoned", "put down"]
