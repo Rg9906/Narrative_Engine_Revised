@@ -1,0 +1,868 @@
+{
+  "metadata": {
+    "chapter": 3,
+    "generated_at": "2026-07-31T06:31:08.285386",
+    "inspector_count": 9,
+    "llm_provider": "groq"
+  },
+  "findings": [
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'laurie' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "laurie"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'sebastian' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "sebastian"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'marlene' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "marlene"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'sound' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "sound"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'pip' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "pip"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'frodo' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "frodo"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'bull' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "bull"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'dom' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "dom"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'di' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "di"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'henshaw' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "henshaw"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'dcs' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "dcs"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'private' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "private"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'his_daughter' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "his_daughter"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "note",
+      "category": "character",
+      "title": "Generic character name",
+      "description": "Character 'his_daughter' has a canonical name 'his daughter' that looks like a common noun. Consider a more distinctive proper name if this is a named character.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "his_daughter"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "suggestion",
+      "category": "character",
+      "title": "Underdeveloped character",
+      "description": "Character 'bill_foster' is only mentioned 1 time(s). Consider increasing presence or consolidating references.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "bill_foster"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "severity": "warning",
+      "category": "scene",
+      "title": "Dense timeline events",
+      "description": "This chapter has 36 timeline events; consider breaking into clearer scenes for pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.6
+    },
+    {
+      "severity": "warning",
+      "category": "pacing",
+      "title": "Very short chapter",
+      "description": "Chapter 3 is extremely short (279 words). Consider expanding or combining scenes.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.9
+    },
+    {
+      "severity": "note",
+      "category": "pacing",
+      "title": "Chapter processing gap",
+      "description": "Expected 3 chapters but processed 4. There may be gaps in chapter numbering.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Sound had always been a stranger to her—an ocean she could see but never touch.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Her brother stood at the edge of the garden, light pooling around him in a way it did for no one else—as if the sun bent slightly when he walked, curious to follow.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Even shadows softened when he passed.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'He held plates, spoke to someone—Marlene perhaps—but his eyes never quite rested on one place, like a man forever thinking of somewhere else he could be.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Talia was a different rhythm entirely—vivid violet, urgent, pulsing with the feverish life of someone who loved and lost and kept loving anyway.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Tomorrow, when morning light returned, she would paint white over it.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Nothing that could not be hidden.' was introduced and resolved in the same chapter (0). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Somewhere on the desk his Walkman crackled softly, the cassette warbling through worn headphones.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Every bookshop window in the country seemed to have his face plastered somewhere inside it.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'If someone had asked Sirius yesterday what Arden Whitmore's greatest problem was, he would have guessed deciding which wing of his manor to sleep in.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'When he pressed a finger against one corner, it shifted slightly.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'The most famous detective in South [], and yet he couldn't find the teenagers who kept breaking his window.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'He thought of how different his life would have been if he had been like those kids, carefree and raucous, what if that single night hadn't changed his entire life.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'It was all he could do to last through the case without sleep, have the cogs in his mind running with endless amount of caffeine and adrenaline until last night when they finally caught him.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Sirius hadn't said anything looking at the father who was sobbing in the corner, and a mother who was smiling thoughtlessly, her mind adled.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Then why the hell did he feel so bad.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'But what he had was his mind.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'He may not be able to understand why people did what they did, but he could tell *what* they will do.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'What did she know about him?' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Pip was one of the boys who served tea at the station.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery '\"Sirius you won't believe what's going on 'ere.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Why I was just roaming around with Penny when I saw a few constables drive past me.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Well, sure say we were wondering what got them up in a jiffy like that, so naturally we went out to do a bit of Espy--- espy no -- espy knowledge.\"\n\n\"Espionage?\"' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'He often times wondered whether he was biting more than he can chew with this little rogues.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Sirius well, we were doing well you know what we came upon the Inspector's office.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery '\"\n\n\"A what\" Sirius stiffened, his mind immediately alert.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'But I don't know I haven't right hea-' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery '\"\n\n\"When was it.\"' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'I quite like a batman shirt we saw displayed on the Maris' donwtown and Penny-\"\n\n\"I'll buy you all you want when I'm free Pip.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'That seemed to satisfy Pip who thanked him and suddenly remembering his manners added a couple of sirs at the end before hanging the phone.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Sirius Wolfe had made a life around it, death, sorrow, treachery and greed all entrenched so deep around him he didn't know when one ended and when another began.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Someone who knew about the murder was in his house this morning.' was introduced and resolved in the same chapter (1). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'He wondered if this was how [Whitmore] had felt after taking the pills that had taken his life.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Both Jamie who was nearly six feet tall and Dom who was even taller and twice as wide towered over the Inspector.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'And today was definitely not one of his best days.\n\n'Which one of you bloody amateurs are going to tell me why I am hearing about my _golfing buddy_ from my _wife's friend_ instead of from my own detectives?'' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Dom who was usually blunt to the point of being a headache, looked suspiciously like he was questioning his life choices.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'And where the hell is Sergent Rhodes.?' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery ''Er' Jamie started 'We..... don't know.'' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'And if it was not a murder then why the hell was the window to his room broken.'' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Anyone who knew that the old man was on sleeping medication and where exactly to find him would have had easy enough access into the house as it was.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Private detective_?Helooked at Dom who looked just as thrown back as he was.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'It was the kind of town where the most exciting thing that might happen was the country fair that was held every year.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'The last one had been when he was still in high school and had caused quite a stir back then.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'It had turned out to be a jealous wife who had decided that she had had enough and decided to just snuff her not so poor alcoholic husband out.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Of course it would have to be Jakob who took care of the family and crime scene while they go and butt around with the neighbors.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Jakob Sinclair was everything he hated in a copper- slimy, insincere stickup who was always in the right place when a senior wanted his ego stroked, and always in the wrong place when actual work was involved.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'He wondered how he would claim credit for solving this.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery 'Probably tell how he had found the murderer by following the teachings of the incredible Bull and his remarkable sense of observation.' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery ''Now where the hell is Rhodey?'' was introduced and resolved in the same chapter (2). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "note",
+      "category": "conflict",
+      "title": "Abrupt mystery resolution",
+      "description": "The mystery '\"That's what makes it strange.' was introduced and resolved in the same chapter (3). Consider if building suspense across chapters would improve pacing.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [],
+      "confidence": 0.7
+    },
+    {
+      "severity": "warning",
+      "category": "consistency",
+      "title": "Object relocated with no one present",
+      "description": "World item 'easel' is recorded at location 'porcelain_cup' as of chapter 0, but no character's known location for that chapter matches — no one is recorded as having been there to move or use it.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "easel"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "warning",
+      "category": "consistency",
+      "title": "Object relocated with no one present",
+      "description": "World item 'porcelain_cup' is recorded at location 'easel' as of chapter 0, but no character's known location for that chapter matches — no one is recorded as having been there to move or use it.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "porcelain_cup"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "warning",
+      "category": "consistency",
+      "title": "Object relocated with no one present",
+      "description": "World item 'the_house' is recorded at location 'the town' as of chapter 3, but no character's known location for that chapter matches — no one is recorded as having been there to move or use it.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "the_house"
+      ],
+      "confidence": 0.5
+    },
+    {
+      "severity": "warning",
+      "category": "consistency",
+      "title": "Structural contradiction: LOCATION_CONTRADICTION",
+      "description": "The character 'mr_whitmore' is initially in the doorway of his daughter's room, then goes down to hear Sergeant Rhodes, but there is no clear indication of where in the house this conversation takes place, potentially contradicting the 'current_location_id' updates.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "mr_whitmore",
+        "sergeant_rhodes"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "severity": "note",
+      "category": "consistency",
+      "title": "Structural contradiction: UNSUPPORTED_ENTITY",
+      "description": "The 'promises_delta' section references a promise by Jamie to help Mr. Whitmore manage the estate, but this promise is not explicitly mentioned in the provided text or evidence.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "jamie",
+        "mr_whitmore"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "severity": "note",
+      "category": "consistency",
+      "title": "Structural contradiction: TIMELINE_GAP",
+      "description": "The timeline events imply a sequence of actions, but the exact timing and causal relationships between some events (e.g., the witness coming forward and Detective Inspector Reyes calling Mr. Whitmore) are not clearly defined.",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "detective_inspector_reyes",
+        "mr_whitmore",
+        "a witness"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "severity": "note",
+      "category": "validation",
+      "title": "Proposal rejected: relationship_mutation",
+      "description": "party 'sergeant_rhodes' unsupported: new entity flagged by consistency checker and not independently evidence-supported",
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": [
+        "sergeant_rhodes::mr_whitmore"
+      ],
+      "confidence": 1.0
+    },
+    {
+      "severity": "suggestion",
+      "category": "pacing",
+      "title": "Thematic Pacing Drift",
+      "description": "The chapter's pacing seems to be consistent with the narrative arc established across prior chapters, but the introduction of the new lead in the case and the arrival of Sergeant Rhodes might feel a bit rushed to some readers. Consider adding more context or build-up to these events to create a smoother flow.",
+      "confidence": 0.8,
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": []
+    },
+    {
+      "severity": "note",
+      "category": "consistency",
+      "title": "Character Location Consistency",
+      "description": "The character locations are generally consistent, but there is a minor issue with Mr. Whitmore's location. He is initially in the doorway of his daughter's room, then goes down to hear Sergeant Rhodes, but the exact location of this conversation is not specified. Consider adding more detail to clarify the setting.",
+      "confidence": 0.9,
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": []
+    },
+    {
+      "severity": "warning",
+      "category": "character",
+      "title": "Promise Delta Inconsistency",
+      "description": "The 'promises_delta' section references a promise by Jamie to help Mr. Whitmore manage the estate, but this promise is not explicitly mentioned in the provided text or evidence. This inconsistency might confuse readers or create unrealistic expectations. Consider revising the text to include the promise or removing the reference to it.",
+      "confidence": 0.95,
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": []
+    },
+    {
+      "severity": "suggestion",
+      "category": "arc",
+      "title": "Timeline Event Clarification",
+      "description": "The timeline events imply a sequence of actions, but the exact timing and causal relationships between some events (e.g., the witness coming forward and Detective Inspector Reyes calling Mr. Whitmore) are not clearly defined. Consider adding more context or revising the timeline to create a clearer narrative flow.",
+      "confidence": 0.85,
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": []
+    },
+    {
+      "severity": "note",
+      "category": "voice",
+      "title": "Stylistic Variance",
+      "description": "The chapter's voice and tone seem to be consistent with the standard narrative flow, but there might be a slight variance in the stylistic approach. The text is generally well-written, but some sentences could be revised for better clarity or flow. Consider reviewing the chapter for minor stylistic adjustments.",
+      "confidence": 0.8,
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": []
+    },
+    {
+      "severity": "error",
+      "category": "consistency",
+      "title": "Canonical Name Inconsistency",
+      "description": "The canonical name of 'Detective Inspector' was changed to 'Detective Inspector Reyes', and 'Sergent Rhodes' was changed to 'Sergeant Rhodes'. While these changes were accepted, they should be consistently applied throughout the narrative to avoid confusion. Consider revising the text to reflect the updated canonical names.",
+      "confidence": 1.0,
+      "chapter": 3,
+      "evidence_ids": [],
+      "related_entities": []
+    }
+  ]
+}

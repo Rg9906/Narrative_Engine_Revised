@@ -1,0 +1,58 @@
+{
+  "his_daughter::mr_whitmore": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "UNKNOWN",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Observed relation 'followed' between his daughter and Mr. Whitmore.",
+        "timestamp": "2026-07-31T06:15:02.978012"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 1,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.8,
+        "reasoning": "First observed interaction this chapter.",
+        "timestamp": "2026-07-31T06:15:02.978012"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "last_interaction_chapter": {
+      "key": "last_interaction_chapter",
+      "current": {
+        "value": 3,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Recorded last interaction chapter.",
+        "timestamp": "2026-07-31T06:15:02.978012"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    }
+  }
+}
