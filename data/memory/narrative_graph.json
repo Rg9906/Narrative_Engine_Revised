@@ -101,6 +101,16 @@
       "type": "character"
     },
     {
+      "id": "char::his_daughter",
+      "label": "his_daughter",
+      "type": "character"
+    },
+    {
+      "id": "char::bill_foster",
+      "label": "bill_foster",
+      "type": "character"
+    },
+    {
       "id": "world::easel",
       "label": "easel",
       "type": "world"
@@ -163,6 +173,21 @@
     {
       "id": "world::second_floor",
       "label": "second_floor",
+      "type": "world"
+    },
+    {
+      "id": "world::harbor",
+      "label": "harbor",
+      "type": "world"
+    },
+    {
+      "id": "world::bull",
+      "label": "bull",
+      "type": "world"
+    },
+    {
+      "id": "world::the_house",
+      "label": "the_house",
       "type": "world"
     },
     {
@@ -288,6 +313,11 @@
     {
       "id": "theme::symbol_door",
       "label": "symbol_door",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_grief",
+      "label": "theme_grief",
       "type": "theme"
     },
     {
@@ -1836,6 +1866,186 @@
       "type": "event"
     },
     {
+      "id": "event::evt::310",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::311",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::312",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::313",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::314",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::315",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::316",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::317",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::318",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::319",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::320",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::321",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::322",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::323",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::324",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::325",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::326",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::327",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::328",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::329",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::330",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::331",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::332",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::333",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::334",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::335",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::336",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::337",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::338",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::339",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::340",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::341",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::342",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::343",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::344",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::345",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
       "id": "chapter::1",
       "label": "Chapter 1",
       "type": "chapter"
@@ -1848,6 +2058,11 @@
     {
       "id": "chapter::3",
       "label": "Chapter 3",
+      "type": "chapter"
+    },
+    {
+      "id": "chapter::4",
+      "label": "Chapter 4",
       "type": "chapter"
     }
   ],
@@ -1919,6 +2134,34 @@
       "id": "bull::henshaw",
       "source": "char::bull",
       "target": "char::henshaw",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "sergent_rhodes::detective_inspector",
+      "source": "char::sergent_rhodes",
+      "target": "char::detective_inspector",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "his_daughter::mr_whitmore",
+      "source": "char::his_daughter",
+      "target": "char::mr_whitmore",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "jamie::mr_whitmore",
+      "source": "char::jamie",
+      "target": "char::mr_whitmore",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "detective_inspector::mr_whitmore",
+      "source": "char::detective_inspector",
+      "target": "char::mr_whitmore",
       "label": "UNKNOWN",
       "type": "relationship"
     },
@@ -4082,6 +4325,258 @@
       "id": "evt_edge::evt::309",
       "source": "event::evt::309",
       "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::310",
+      "source": "event::evt::310",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::311",
+      "source": "event::evt::311",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::312",
+      "source": "event::evt::312",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::313",
+      "source": "event::evt::313",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::314",
+      "source": "event::evt::314",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::315",
+      "source": "event::evt::315",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::316",
+      "source": "event::evt::316",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::317",
+      "source": "event::evt::317",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::318",
+      "source": "event::evt::318",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::319",
+      "source": "event::evt::319",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::320",
+      "source": "event::evt::320",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::321",
+      "source": "event::evt::321",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::322",
+      "source": "event::evt::322",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::323",
+      "source": "event::evt::323",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::324",
+      "source": "event::evt::324",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::325",
+      "source": "event::evt::325",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::326",
+      "source": "event::evt::326",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::327",
+      "source": "event::evt::327",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::328",
+      "source": "event::evt::328",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::329",
+      "source": "event::evt::329",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::330",
+      "source": "event::evt::330",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::331",
+      "source": "event::evt::331",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::332",
+      "source": "event::evt::332",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::333",
+      "source": "event::evt::333",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::334",
+      "source": "event::evt::334",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::335",
+      "source": "event::evt::335",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::336",
+      "source": "event::evt::336",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::337",
+      "source": "event::evt::337",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::338",
+      "source": "event::evt::338",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::339",
+      "source": "event::evt::339",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::340",
+      "source": "event::evt::340",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::341",
+      "source": "event::evt::341",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::342",
+      "source": "event::evt::342",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::343",
+      "source": "event::evt::343",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::344",
+      "source": "event::evt::344",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::345",
+      "source": "event::evt::345",
+      "target": "chapter::3",
       "label": "occurs_in",
       "type": "event_chapter"
     }

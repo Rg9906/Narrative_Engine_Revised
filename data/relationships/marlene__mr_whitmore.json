@@ -3,20 +3,30 @@
     "relationship_label": {
       "key": "relationship_label",
       "current": {
-        "value": "UNKNOWN",
-        "chapter": 0,
+        "value": "NEUTRAL",
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.6,
-        "reasoning": "Observed relation 'hear' between Marlene and Mr. Whitmore's.",
-        "timestamp": "2026-07-19T10:35:26.436160"
+        "confidence": 0.9,
+        "reasoning": "Marlene is trying to convince Mr. Whitmore to sell the house, but he is resistant to the idea.",
+        "timestamp": "2026-07-31T06:15:07.497105"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "UNKNOWN",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Observed relation 'hear' between Marlene and Mr. Whitmore's.",
+          "timestamp": "2026-07-19T10:35:26.436160"
+        }
+      ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 0
+      "version": 3,
+      "last_mentioned_chapter": 3
     },
     "mention_count": {
       "key": "mention_count",
