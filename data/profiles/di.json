@@ -81,7 +81,7 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.7,
+        "confidence": 0.68,
         "reasoning": "Extracted from sentence: 'Anyone who knew that the old man was on sleeping medication and where exactly to find him would have...'",
         "timestamp": "2026-07-19T10:49:27.650281"
       },
@@ -104,7 +104,7 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.6,
+        "confidence": 0.58,
         "reasoning": "Goal extracted from text containing 'aim'.",
         "timestamp": "2026-07-19T10:49:27.654283"
       },

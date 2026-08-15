@@ -3,76 +3,206 @@
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Sergent Rhodes",
-        "chapter": 2,
+        "value": "Sergeant Rhodes",
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:49:24.879839"
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-07-31T06:15:07.497105"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "Sergent Rhodes",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First observed mention of character.",
+          "timestamp": "2026-07-19T10:49:24.879839"
+        }
+      ],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 2
+      "version": 3,
+      "last_mentioned_chapter": 3
     },
     "aliases": {
       "key": "aliases",
       "current": {
         "value": [
-          "Sergent Rhodes"
+          "the sergeant",
+          "Sergent Rhodes",
+          "Sergeant Rhodes"
         ],
-        "chapter": 2,
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:49:24.879839"
+        "reasoning": "Aliases updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.497105"
       },
-      "history": [],
+      "history": [
+        {
+          "value": [
+            "Sergent Rhodes"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Initial alias list created from first mention.",
+          "timestamp": "2026-07-19T10:49:24.879839"
+        },
+        {
+          "value": [
+            "Sergent Rhodes",
+            "Sergeant Rhodes"
+          ],
+          "chapter": 3,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.85,
+          "reasoning": "New alias observed for existing character.",
+          "timestamp": "2026-07-31T06:08:08.233261"
+        }
+      ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 2
+      "version": 4,
+      "last_mentioned_chapter": 3
     },
     "last_seen_chapter": {
       "key": "last_seen_chapter",
       "current": {
-        "value": 2,
-        "chapter": 2,
+        "value": 3,
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:49:24.879839"
+        "confidence": 0.9,
+        "reasoning": "Character observed in current chapter.",
+        "timestamp": "2026-07-31T06:08:08.233261"
       },
-      "history": [],
+      "history": [
+        {
+          "value": 2,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character seen in current chapter.",
+          "timestamp": "2026-07-19T10:49:24.879839"
+        }
+      ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 2
+      "version": 3,
+      "last_mentioned_chapter": 3
     },
     "mention_count": {
       "key": "mention_count",
       "current": {
-        "value": 1,
-        "chapter": 2,
+        "value": 2,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Mention count incremented for observed character.",
+        "timestamp": "2026-07-31T06:08:08.233261"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First mention observed this chapter.",
+          "timestamp": "2026-07-19T10:49:24.879839"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "inform Mr. Whitmore about the urgent news"
+        ],
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:49:24.879839"
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.497105"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 2
+      "last_mentioned_chapter": 3
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.497105"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "the house",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.497105"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-07-31T06:15:07.497105"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }

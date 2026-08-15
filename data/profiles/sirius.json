@@ -126,7 +126,7 @@
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.68,
+        "confidence": 0.66,
         "reasoning": "Extracted from sentence: 'Pip seemed to find this the height of hilarity and Sirius waited calmly as the cackling calmed down....'",
         "timestamp": "2026-07-19T10:42:34.339679"
       },
@@ -146,7 +146,7 @@
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.58,
+        "confidence": 0.56,
         "reasoning": "Personality trait 'deceptive' inferred from narration.",
         "timestamp": "2026-07-19T10:42:34.346678"
       },
@@ -164,7 +164,7 @@
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.68,
+        "confidence": 0.66,
         "reasoning": "Emotional state inferred from text and dialogue.",
         "timestamp": "2026-07-19T10:42:34.348678"
       },
@@ -174,6 +174,24 @@
       "element_type": "CHARACTER",
       "version": 2,
       "last_mentioned_chapter": 1
+    },
+    "arc_stage": {
+      "key": "arc_stage",
+      "current": {
+        "value": "inciting_incident",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:3).",
+        "timestamp": "2026-07-31T06:15:01.541836"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }

@@ -81,7 +81,7 @@
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.68,
+        "confidence": 0.66,
         "reasoning": "Extracted from sentence: 'Pip seemed to find this the height of hilarity and Sirius waited calmly as the cackling calmed down....'",
         "timestamp": "2026-07-19T10:42:34.353694"
       },
@@ -99,7 +99,7 @@
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.68,
+        "confidence": 0.66,
         "reasoning": "Emotional state inferred from text and dialogue.",
         "timestamp": "2026-07-19T10:42:34.360692"
       },

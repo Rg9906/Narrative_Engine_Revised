@@ -41,38 +41,96 @@
     "last_seen_chapter": {
       "key": "last_seen_chapter",
       "current": {
-        "value": 0,
-        "chapter": 0,
+        "value": 3,
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:03.874104"
+        "confidence": 0.9,
+        "reasoning": "Character observed in current chapter.",
+        "timestamp": "2026-07-31T06:08:08.078217"
       },
-      "history": [],
+      "history": [
+        {
+          "value": 0,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character seen in current chapter.",
+          "timestamp": "2026-07-19T10:35:03.874104"
+        }
+      ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 0
+      "version": 3,
+      "last_mentioned_chapter": 3
     },
     "mention_count": {
       "key": "mention_count",
       "current": {
-        "value": 1,
-        "chapter": 0,
+        "value": 2,
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:35:03.874104"
+        "confidence": 0.9,
+        "reasoning": "Mention count incremented for observed character.",
+        "timestamp": "2026-07-31T06:08:08.079227"
       },
-      "history": [],
+      "history": [
+        {
+          "value": 1,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First mention observed this chapter.",
+          "timestamp": "2026-07-19T10:35:03.874104"
+        }
+      ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "physical_hair_color": {
+      "key": "physical_hair_color",
+      "current": {
+        "value": "red",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Extracted from sentence: 'Someone who claimed to have seen Bill Foster near the harbor the night Giselle disappeared....'",
+        "timestamp": "2026-07-31T06:15:01.468199"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 0
+      "last_mentioned_chapter": 3
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "Someone who claimed to have seen Bill Foster near the harbor the night Giselle disappeared."
+        ],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Goal extracted from text containing 'aim'.",
+        "timestamp": "2026-07-31T06:15:01.476671"
+      },
+      "history": [],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }

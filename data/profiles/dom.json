@@ -81,7 +81,7 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.7,
+        "confidence": 0.68,
         "reasoning": "Extracted from sentence: 'Both Jamie who was nearly six feet tall and Dom who was even taller and twice as wide towered over t...'",
         "timestamp": "2026-07-19T10:49:27.640357"
       },
@@ -101,7 +101,7 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.6,
+        "confidence": 0.58,
         "reasoning": "Personality trait 'deceptive' inferred from narration.",
         "timestamp": "2026-07-19T10:49:27.644286"
       },
@@ -121,7 +121,7 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.6,
+        "confidence": 0.58,
         "reasoning": "Goal extracted from text containing 'want to'.",
         "timestamp": "2026-07-19T10:49:27.646283"
       },

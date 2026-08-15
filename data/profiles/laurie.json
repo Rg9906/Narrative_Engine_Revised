@@ -84,7 +84,7 @@
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.56,
+        "confidence": 0.54,
         "reasoning": "Personality trait 'kind' inferred from narration.",
         "timestamp": "2026-07-19T10:35:04.970551"
       },

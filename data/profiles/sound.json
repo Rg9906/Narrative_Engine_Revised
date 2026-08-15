@@ -83,7 +83,7 @@
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.56,
+        "confidence": 0.54,
         "reasoning": "Personality trait 'cruel' inferred from narration.",
         "timestamp": "2026-07-19T10:35:05.004560"
       },
@@ -101,7 +101,7 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.7,
+        "confidence": 0.68,
         "reasoning": "Extracted from sentence: 'He opened his eyes at the sound of closing footsteps....'",
         "timestamp": "2026-07-19T10:49:27.594270"
       },

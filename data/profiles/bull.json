@@ -73,6 +73,24 @@
       "element_type": "CHARACTER",
       "version": 2,
       "last_mentioned_chapter": 2
+    },
+    "physical_age": {
+      "key": "physical_age",
+      "current": {
+        "value": "old",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Extracted from sentence: 'Bull, the old family dog, padded in and settled at Jamie's feet, tail thumping against the tile....'",
+        "timestamp": "2026-07-31T06:15:01.564018"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }

@@ -81,7 +81,7 @@
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.66,
+        "confidence": 0.64,
         "reasoning": "Extracted from sentence: 'He held plates, spoke to someone—Marlene perhaps—but his eyes never quite rested on one place, like ...'",
         "timestamp": "2026-07-19T10:35:04.984553"
       },
@@ -91,6 +91,80 @@
       "element_type": "CHARACTER",
       "version": 2,
       "last_mentioned_chapter": 0
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "convince Mr. Whitmore to sell the house"
+        ],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.245210"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.245210"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "the house",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-07-31T06:15:07.245210"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-07-31T06:15:07.245210"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }
