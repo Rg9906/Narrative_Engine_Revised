@@ -29,3 +29,9 @@ python-multipart>=0.0.9
 # === Later phase dependencies (install when needed) ===
 # bookNLP  (install via: pip install booknlp)
 # sentence-transformers>=2.2
+
+# Zero-shot theme/mystery/symbol classification (src/utils/zero_shot_classifier.py) —
+# optional, ~1.6GB model download (facebook/bart-large-mnli). ThemeMemory/MysteryMemory
+# fall back to keyword-based detection automatically when these aren't installed.
+# transformers>=4.40
+# torch>=2.2
