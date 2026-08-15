@@ -178,22 +178,23 @@ Narrative_Engine/
 
 ## 🧪 Bulletproof Testing
 
-The project has a robust testing suite running 70 unit and integration tests. Run them instantly:
+The project has a robust testing suite running 73 unit and integration tests. Run them instantly:
 ```bash
 pytest
 ```
 
 ---
 
-## ⚠️ Known Limitations (honest status, updated 2026-07-28)
+## ⚠️ Known Limitations (honest status, updated 2026-07-30)
 
 The core architecture — deterministic NLP evidence → grounded LLM interpretation → validated state → editorial critique — is fully wired and tested end-to-end. What's still rough:
 
-*   **Theme/mystery/symbol detection is keyword-based, not ML-based.** Recently tightened (require 2+ distinct keyword signals before introducing a new theme/symbol; require real question-punctuated sentences or strong explicit phrases before flagging a "mystery") to cut false-positive noise, but it's still a heuristic layer, not the topic-modeling/zero-shot classifier the original design docs describe as the long-term goal.
-*   **No BookNLP, no emotion classifier (Vader/DistilRoBERTa), no LanguageTool/textstat** — dialogue attribution, emotional tone, and style metrics are all custom heuristics/regex, not the mature OSS libraries originally scoped for those roles.
+*   **Theme/mystery/symbol detection is keyword-based, not ML-based.** Tightened to require 2+ distinct keyword signals before introducing a new theme/symbol, and real question-punctuated sentences or strong explicit phrases before flagging a "mystery." Themes/symbols now get an auto-generated `description` field. Still a heuristic layer, not the topic-modeling/zero-shot classifier the original design docs describe as the long-term goal.
+*   **VADER sentiment and textstat readability are now live** — `sentiment_compound` (VADER) is computed per-scene and per-chapter alongside the existing keyword-based emotional tone label, and `flesch_reading_ease`/`flesch_kincaid_grade` (textstat) are computed in chapter style metrics. Dialogue attribution has real turn-taking inference (alternates between the two known speakers in a scene when a quote's speaker is otherwise unresolved) in addition to the speech-tag regex. **Still missing**: BookNLP, LanguageTool, and any DistilRoBERTa-style emotion classifier — those roles remain custom heuristics/regex, not the mature OSS libraries originally scoped.
+*   **Coreference now feeds character attribution directly.** FastCoref's real mention spans and sentence spans are carried through `ChapterData` (previously computed and discarded), and character trait/goal/fear/etc. extraction is attributed via a per-chapter sentence→character map built from literal name matches plus resolved coreference clusters (with LLM disambiguation fallback) — replacing the old unused `coref_map` parameter.
 *   **LLM backend priority is Gemini → Groq → Ollama** with automatic failover on error, but a Gemini project with an exhausted/zero quota will still burn ~60s retrying with exponential backoff before failing over — check quota status if chapter processing feels slow.
 *   **Not yet validated at real scale.** Everything so far has run on a small number of chapters; confidence decay, dormancy tracking, and reconciliation logic are implemented but unverified across a 50-100 chapter novel.
-*   No web GUI/dashboard yet — reports and graphs are JSON/HTML files, browsed manually.
+*   **Web dashboard exists now, and has been exercised end-to-end with a real chapter upload** (`api/` FastAPI backend + `frontend/` React/TypeScript SPA) — browses every tracked collection (characters, relationships, world, themes/motifs, promises/mysteries/threats, conflicts/arcs, style/readability metrics), the timeline, editorial reports, an interactive force-directed Story Graph (canvas + `d3-force`, built from `narrative_graph.json`), and chapter ingestion with live job-status polling and job history — all backed by the canonical `narrative_state.json`/report/graph files rather than a separate database. Every `StateSnapshot`'s `evidence_ids` resolve to real evidence text via `GET /api/evidence`, expandable inline. Not yet load-tested at real novel scale, and the graph only carries character-character and event-chapter edges — world/theme nodes aren't yet linked into the network. Run with `uvicorn api.main:app --port 8420` (backend — `--reload`'s file-watcher has been unreliable on Windows in testing; restart manually after backend edits) and `npm run dev` in `frontend/` (Vite dev server, proxies `/api` to 8420).
 
 ---
 *Created with 💙 for writers, editors, and computational narrative engineers.*
