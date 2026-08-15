@@ -102,16 +102,28 @@ class WorldMemory(BaseMemory):
             if label == "object":
                 objects.append(ent)
 
+        # Bare "in"/"placed"/"kept" etc. are safe containment signals when the candidate
+        # container is a true LOCATION (rooms/places are containers by definition), but far
+        # too weak between two arbitrary OBJECTS — "in" alone matches unrelated spatial
+        # description ("stood by the easel in her small room, brushes... in a porcelain cup")
+        # and, since both objects independently take the `obj` role in this same double loop,
+        # previously caused each to get recorded as the other's location, symmetrically.
+        # Object-to-object containment (e.g. "hidden within the sarcophagus") is real and
+        # worth keeping, but only for the stronger, much less ambiguous phrases below.
+        LOCATION_CONTAINMENT_VERBS = ["locked", "inside", "in", "placed", "hidden", "within", "kept", "secured", "stored"]
+        OBJECT_CONTAINMENT_VERBS = ["inside", "within", "locked in", "sealed in", "hidden inside"]
+
         for obj in objects:
             oid = _idify(obj.text)
             for loc in getattr(chapter_data, "entities", []):
-                if loc.label.lower() not in ("location", "object") or loc.text.lower() == obj.text.lower():
+                loc_label = loc.label.lower()
+                if loc_label not in ("location", "object") or loc.text.lower() == obj.text.lower():
                     continue
+                containment_verbs = LOCATION_CONTAINMENT_VERBS if loc_label == "location" else OBJECT_CONTAINMENT_VERBS
                 lid = _idify(loc.text)
                 for sentence in chapter_data.sentences:
                     sentence_lower = sentence.lower()
                     if obj.text.lower() in sentence_lower and loc.text.lower() in sentence_lower:
-                        containment_verbs = ["locked", "inside", "in", "placed", "hidden", "within", "kept", "secured", "stored"]
                         if any(v in sentence_lower for v in containment_verbs):
                             existing_loc = self.get_entry(oid, "location")
                             prev_loc = existing_loc.current.value if existing_loc and existing_loc.current else None

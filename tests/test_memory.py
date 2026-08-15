@@ -289,28 +289,60 @@ class TestMysteryMemory:
             chapter_number=1,
             source_name="test.txt",
             chapter_title="Chapter 1",
-            raw_text="Why did he leave?",
-            paragraphs=["Why did he leave?"],
-            sentences=["Why did he leave?"],
+            raw_text="Why did he leave the harbor that night?",
+            paragraphs=["Why did he leave the harbor that night?"],
+            sentences=["Why did he leave the harbor that night?"],
         )
         memory = MysteryMemory()
         memory.update_from_chapter(ch1_data, 1)
         unresolved = memory.get_unresolved_mysteries()
         assert len(unresolved) == 1
-        assert "Why did he leave?" in unresolved[0]["text"]
+        assert "Why did he leave the harbor that night?" in unresolved[0]["text"]
 
-        # Chapter 2: mystery resolved
+        # Chapter 2: a revelation sentence that actually shares content words with the
+        # mystery ("harbor", "night") resolves it — mere presence of a revelation-flavored
+        # phrase elsewhere in the chapter, unconnected to this mystery, should not.
         ch2_data = ChapterData(
             chapter_number=2,
             source_name="test.txt",
             chapter_title="Chapter 2",
-            raw_text="The truth was finally revealed.",
-            paragraphs=["The truth was finally revealed."],
-            sentences=["The truth was finally revealed."],
+            raw_text="The truth about the harbor that night was finally revealed.",
+            paragraphs=["The truth about the harbor that night was finally revealed."],
+            sentences=["The truth about the harbor that night was finally revealed."],
         )
         memory.update_from_chapter(ch2_data, 2)
         unresolved_after = memory.get_unresolved_mysteries()
         assert len(unresolved_after) == 0
+
+    def test_unrelated_revelation_does_not_resolve_mystery(self, empty_chapter_data):
+        """Regression test: a revelation-flavored sentence anywhere in a chapter used to
+        blanket-resolve every currently open mystery, regardless of whether it was actually
+        about that mystery. A chapter can legitimately contain revelation language about
+        something else entirely while an unrelated mystery stays open."""
+        ch1_data = ChapterData(
+            chapter_number=1,
+            source_name="test.txt",
+            chapter_title="Chapter 1",
+            raw_text="Why did he leave the harbor that night?",
+            paragraphs=["Why did he leave the harbor that night?"],
+            sentences=["Why did he leave the harbor that night?"],
+        )
+        memory = MysteryMemory()
+        memory.update_from_chapter(ch1_data, 1)
+        assert len(memory.get_unresolved_mysteries()) == 1
+
+        ch2_data = ChapterData(
+            chapter_number=2,
+            source_name="test.txt",
+            chapter_title="Chapter 2",
+            raw_text="Her secret recipe was finally revealed at the bakery contest.",
+            paragraphs=["Her secret recipe was finally revealed at the bakery contest."],
+            sentences=["Her secret recipe was finally revealed at the bakery contest."],
+        )
+        memory.update_from_chapter(ch2_data, 2)
+        unresolved_after = memory.get_unresolved_mysteries()
+        assert len(unresolved_after) == 1
+        assert "harbor" in unresolved_after[0]["text"]
 
 
 class TestStyleMemory:

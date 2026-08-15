@@ -24,6 +24,7 @@ class CharacterInspector(BaseInspector):
         """
         findings: List[Finding] = []
         chapter = state.last_processed_chapter
+        underdeveloped: List[str] = []
 
         for cid, entries in state.characters.items():
             # entries is a dict of StateEntry objects
@@ -34,19 +35,12 @@ class CharacterInspector(BaseInspector):
             if mention_entry and getattr(mention_entry, 'current', None):
                 mention_count = getattr(mention_entry.current, 'value', None)
 
-            # Suggest developing characters only mentioned once
+            # Track characters only mentioned once — reported as a single grouped finding
+            # below rather than one finding per character, which drowned out every other
+            # finding in the report once a chapter introduced more than a handful of names.
             try:
                 if mention_count is not None and isinstance(mention_count, int) and mention_count <= 1:
-                    findings.append(Finding(
-                        severity='suggestion',
-                        category='character',
-                        title='Underdeveloped character',
-                        description=f"Character '{cid}' is only mentioned {mention_count} time(s). Consider increasing presence or consolidating references.",
-                        chapter=chapter,
-                        evidence_ids=getattr(mention_entry.current, 'evidence_ids', []) if mention_entry and getattr(mention_entry, 'current', None) else [],
-                        related_entities=[cid],
-                        confidence=0.6,
-                    ))
+                    underdeveloped.append(cid)
             except Exception:
                 pass
 
@@ -134,5 +128,21 @@ class CharacterInspector(BaseInspector):
                                     ))
             except Exception:
                 pass
+
+        if underdeveloped:
+            names = ", ".join(f"'{cid}'" for cid in underdeveloped)
+            findings.append(Finding(
+                severity='suggestion',
+                category='character',
+                title='Underdeveloped characters',
+                description=(
+                    f"{len(underdeveloped)} character(s) are only mentioned once so far: {names}. "
+                    f"Consider increasing their presence or consolidating them into fewer, more developed roles."
+                ),
+                chapter=chapter,
+                evidence_ids=[],
+                related_entities=underdeveloped,
+                confidence=0.6,
+            ))
 
         return findings

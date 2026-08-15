@@ -252,10 +252,11 @@ The next day, Arthur woke up early in his quarters. This paragraph starts with a
   }
 ]
 ```"""
-        findings = engine._parse_json_findings(raw_output, chapter_num=5)
+        findings, key_events = engine._parse_json_findings(raw_output, chapter_num=5)
         assert len(findings) == 1
         assert findings[0]["chapter"] == 5
         assert findings[0]["title"] == "Unresolved Mystery"
+        assert key_events == []
 
     def test_editorial_engine_parse_json_findings_robust(self):
         engine = EditorialEngine()
@@ -270,12 +271,13 @@ The next day, Arthur woke up early in his quarters. This paragraph starts with a
   }
 ]
 Hope that helps with your developmental editing process!"""
-        findings = engine._parse_json_findings(raw_output_conversational, chapter_num=5)
+        findings, key_events = engine._parse_json_findings(raw_output_conversational, chapter_num=5)
         assert len(findings) == 1
         assert findings[0]["chapter"] == 5
         assert findings[0]["title"] == "Unresolved Mystery"
+        assert key_events == []
 
-        # Test single object returned instead of list
+        # Test single finding object returned instead of a findings/key_events wrapper
         raw_output_single_object = """{
     "severity": "suggestion",
     "category": "pacing",
@@ -283,10 +285,23 @@ Hope that helps with your developmental editing process!"""
     "description": "Scene 2 drags on.",
     "confidence": 0.8
 }"""
-        findings = engine._parse_json_findings(raw_output_single_object, chapter_num=2)
+        findings, key_events = engine._parse_json_findings(raw_output_single_object, chapter_num=2)
         assert len(findings) == 1
         assert findings[0]["chapter"] == 2
         assert findings[0]["severity"] == "suggestion"
+        assert key_events == []
+
+        # Test the new expected shape: an object with both 'findings' and 'key_events'
+        raw_output_wrapped = """{
+    "findings": [
+        {"severity": "note", "category": "theme", "title": "Motif", "description": "Recurring rain imagery.", "confidence": 0.7}
+    ],
+    "key_events": ["Arthur found the grail.", "The castle gates were sealed."]
+}"""
+        findings, key_events = engine._parse_json_findings(raw_output_wrapped, chapter_num=3)
+        assert len(findings) == 1
+        assert findings[0]["chapter"] == 3
+        assert key_events == ["Arthur found the grail.", "The castle gates were sealed."]
 
     def test_editorial_engine_llm_context_goals(self, monkeypatch):
         # Setup a state with a character having a goal

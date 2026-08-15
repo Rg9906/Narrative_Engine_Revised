@@ -102,8 +102,9 @@ class EditorialEngine:
                 })
 
         # Run LLM-based critique (Gemini / Groq / Ollama — auto-detected)
+        key_events: List[str] = []
         try:
-            llm_findings = self._run_llm_critique(state, delta, raw_text=raw_text)
+            llm_findings, key_events = self._run_llm_critique(state, delta, raw_text=raw_text)
             findings.extend(llm_findings)
         except Exception as e:
             logger.error(f"Failed to run LLM critique: {e}")
@@ -129,6 +130,11 @@ class EditorialEngine:
                 "llm_provider": self._llm.provider_name,
             },
             "findings": norm,
+            # A handful of human-readable story beats for the chapter, curated by the same
+            # LLM critique call rather than the mechanical subject-verb-object triples in
+            # state.timeline (which exist for structural inspectors like SpatiotemporalInspector
+            # to reason over, not for a human to read as a narrative summary).
+            "key_events": key_events,
         }
 
         # Only persist to disk when a real project config is supplied. There is no safe
@@ -160,10 +166,10 @@ class EditorialEngine:
 
         return report
 
-    def _run_llm_critique(self, state: NarrativeState, delta: StateDelta | None, raw_text: str = "") -> List[dict]:
+    def _run_llm_critique(self, state: NarrativeState, delta: StateDelta | None, raw_text: str = "") -> tuple[List[dict], List[str]]:
         if not self._llm.is_available:
             logger.info(f"No LLM provider available (provider: {self._llm.provider_name}). Skipping LLM critique.")
-            return []
+            return [], []
 
         # Reuse the same token-budgeted, single-source-of-truth context hydration every other
         # LLM call in this codebase uses (src/pipeline/llm_extraction.py's stages), instead of a
@@ -204,17 +210,24 @@ class EditorialEngine:
             f"3. **Mystery/Conflict cross-referencing**: Cross-reference newly emerged conflict events from "
             f"mysteries (e.g. contradiction events, inventory dual-ownership, or physical description mismatches) "
             f"to flag contradictions.\n\n"
-            f"Format your response EXACTLY as a JSON array of objects. Do not include markdown code block syntax (like ```json). "
-            f"Each object must have the following fields:\n"
-            f"- 'severity': 'error' | 'warning' | 'suggestion' | 'note'\n"
-            f"- 'category': 'consistency' | 'pacing' | 'character' | 'arc' | 'theme' | 'voice'\n"
-            f"- 'title': A short, clear headline for the issue.\n"
-            f"- 'description': Detailed developmental editor feedback.\n"
-            f"- 'confidence': Float value between 0.0 and 1.0.\n"
+            f"Also summarize the chapter's key events: 3-8 short, plain-English sentences describing what actually "
+            f"happened in this chapter that a reader would care about (plot-significant actions, revelations, "
+            f"decisions, arrivals/departures) — not every sentence-level action. This is meant to replace a "
+            f"mechanical list of every extracted subject-verb-object triple with something an editor or reader "
+            f"would actually want to read.\n\n"
+            f"Format your response EXACTLY as a single JSON object (not an array). Do not include markdown code "
+            f"block syntax (like ```json). The object must have exactly two fields:\n"
+            f"- 'findings': a JSON array of objects, each with:\n"
+            f"  - 'severity': 'error' | 'warning' | 'suggestion' | 'note'\n"
+            f"  - 'category': 'consistency' | 'pacing' | 'character' | 'arc' | 'theme' | 'voice'\n"
+            f"  - 'title': A short, clear headline for the issue.\n"
+            f"  - 'description': Detailed developmental editor feedback.\n"
+            f"  - 'confidence': Float value between 0.0 and 1.0.\n"
+            f"- 'key_events': a JSON array of 3-8 short plain-English strings, as described above.\n"
         )
 
         messages = [
-            {"role": "system", "content": "You are a professional developmental editor. You communicate findings strictly as a JSON array of objects. Never include explanations, markdown code block backticks (like ```json), or intro/outro text. The response must be pure JSON."},
+            {"role": "system", "content": "You are a professional developmental editor. You communicate strictly as a single JSON object with 'findings' and 'key_events' fields. Never include explanations, markdown code block backticks (like ```json), or intro/outro text. The response must be pure JSON."},
             {"role": "user", "content": prompt}
         ]
 
@@ -224,53 +237,64 @@ class EditorialEngine:
             return self._parse_json_findings(raw_output, state.last_processed_chapter)
         except Exception as e:
             logger.error(f"Error during {self._llm.provider_name} LLM critique: {e}")
-            return []
+            return [], []
 
-    def _parse_json_findings(self, raw_output: str, chapter_num: int) -> List[dict]:
-        """Clean and parse JSON output from the LLM, handling conversational wrapping."""
+    def _parse_json_findings(self, raw_output: str, chapter_num: int) -> tuple[List[dict], List[str]]:
+        """Clean and parse JSON output from the LLM, handling conversational wrapping.
+
+        Expected shape is a single object: {"findings": [...], "key_events": [...]}. Older
+        prompts (and occasional LLM non-compliance) produced a bare findings array instead —
+        still accepted for backward compatibility, just with no key_events.
+        """
         cleaned_output = raw_output.strip()
 
-        # Try regex to locate outermost JSON array structure [...]
+        # Try regex to locate outermost JSON object structure {...} first — that's the
+        # expected top-level shape now — falling back to an array for older/non-compliant
+        # responses.
         import re
-        array_match = re.search(r'(\[.*\])', cleaned_output, re.DOTALL)
-        if array_match:
-            candidate = array_match.group(1).strip()
+        obj_match = re.search(r'(\{.*\})', cleaned_output, re.DOTALL)
+        parsed = None
+        if obj_match:
+            candidate = obj_match.group(1).strip()
             try:
-                # Test if it parses correctly
-                llm_findings = json.loads(candidate)
-                if isinstance(llm_findings, list):
-                    cleaned_output = candidate
+                parsed = json.loads(candidate)
+                cleaned_output = candidate
             except Exception:
-                pass
-        else:
-            # If no array found, try to locate outermost JSON object structure {...}
-            obj_match = re.search(r'(\{.*\})', cleaned_output, re.DOTALL)
-            if obj_match:
-                candidate = obj_match.group(1).strip()
+                parsed = None
+
+        if parsed is None:
+            array_match = re.search(r'(\[.*\])', cleaned_output, re.DOTALL)
+            if array_match:
+                candidate = array_match.group(1).strip()
                 try:
-                    llm_findings = json.loads(candidate)
-                    if isinstance(llm_findings, dict):
-                        cleaned_output = candidate
+                    parsed = json.loads(candidate)
+                    cleaned_output = candidate
                 except Exception:
-                    pass
+                    parsed = None
 
-        # If regex search failed or didn't yield a valid structure, fallback to standard markdown stripping
-        if cleaned_output == raw_output.strip() and cleaned_output.startswith("```"):
-            lines = cleaned_output.split("\n")
-            if lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines[-1].startswith("```"):
-                lines = lines[:-1]
-            cleaned_output = "\n".join(lines).strip()
+        if parsed is None:
+            # Fallback to standard markdown code-fence stripping, then a final parse attempt.
+            if cleaned_output.startswith("```"):
+                lines = cleaned_output.split("\n")
+                if lines[0].startswith("```"):
+                    lines = lines[1:]
+                if lines and lines[-1].startswith("```"):
+                    lines = lines[:-1]
+                cleaned_output = "\n".join(lines).strip()
+            parsed = json.loads(cleaned_output)
 
-        # Parse findings
-        llm_findings = json.loads(cleaned_output)
-        
-        # Coerce to a list of dicts
-        if isinstance(llm_findings, dict):
-            llm_findings = [llm_findings]
-        elif not isinstance(llm_findings, list):
-            raise ValueError("LLM response did not parse into a list or dict of findings.")
+        if isinstance(parsed, dict) and "findings" in parsed:
+            llm_findings = parsed.get("findings") or []
+            key_events = parsed.get("key_events") or []
+        elif isinstance(parsed, list):
+            llm_findings = parsed
+            key_events = []
+        elif isinstance(parsed, dict):
+            # A single finding object with no 'findings' wrapper — old fallback shape.
+            llm_findings = [parsed]
+            key_events = []
+        else:
+            raise ValueError("LLM response did not parse into a findings object, array, or dict.")
 
         normalized_findings = []
         for lf in llm_findings:
@@ -280,5 +304,8 @@ class EditorialEngine:
             lf["evidence_ids"] = lf.get("evidence_ids", [])
             lf["related_entities"] = lf.get("related_entities", [])
             normalized_findings.append(lf)
-        return normalized_findings
+
+        normalized_events = [str(e).strip() for e in key_events if str(e).strip()] if isinstance(key_events, list) else []
+
+        return normalized_findings, normalized_events
 

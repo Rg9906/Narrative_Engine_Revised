@@ -121,6 +121,17 @@ class SpatiotemporalInspector(BaseInspector):
             if not item_location:
                 continue
 
+            # A "character must be present" check only makes sense when the item's location
+            # is an actual place — a sarcophagus doesn't need a character standing at it for
+            # a scarab to be inside it, and that's a static containment fact, not a movement
+            # claim. Skip items whose location resolves to another tracked object.
+            location_entity = state.world.get(str(location_entry.current.value).strip())
+            if location_entity is not None:
+                loc_type_entry = location_entity.get("type")
+                loc_type = loc_type_entry.current.value if loc_type_entry and loc_type_entry.current else None
+                if loc_type == "object":
+                    continue
+
             anyone_present = False
             for char_id, per_chapter in char_location_by_chapter.items():
                 # Nearest known location at or before this chapter.

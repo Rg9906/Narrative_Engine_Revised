@@ -164,7 +164,7 @@ def clear_subdirectories(config) -> None:
                     logger.warning(f"Failed to clear {item}: {e}")
 
 
-def process_chapter(chapter_path: str, config_path: str = None) -> None:
+def process_chapter(chapter_path: str, config_path: str = None) -> dict:
     """
     Process a single chapter through the full engine.
 
@@ -236,6 +236,15 @@ def process_chapter(chapter_path: str, config_path: str = None) -> None:
     logger.info(f"Editorial report generated for chapter {chapter_num}")
     logger.info(f"Findings: {len(review.get('findings', []))}")
     logger.info(f"Narrative graph saved to {graph_path}")
+
+    return {
+        "chapter_number": chapter_num,
+        "delta_summary": delta.summary,
+        "change_count": len(delta.changes),
+        "finding_count": len(review.get("findings", [])),
+        "graph_path": str(graph_path),
+        "total_chapters_processed": state.total_chapters_processed,
+    }
 
 
 def main():

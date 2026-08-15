@@ -21,6 +21,11 @@ dataclasses-json>=0.6
 textstat>=0.7
 vaderSentiment>=3.3
 
+# API server (backs the frontend/ dashboard)
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+
 # === Later phase dependencies (install when needed) ===
 # bookNLP  (install via: pip install booknlp)
 # sentence-transformers>=2.2

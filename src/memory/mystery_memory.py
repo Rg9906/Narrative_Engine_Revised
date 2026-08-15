@@ -35,12 +35,14 @@ class MysteryMemory(BaseMemory):
     QUESTION_STARTERS = ("who", "what", "where", "when", "why", "how")
 
     # Strong, unambiguous mystery language — safe to trigger regardless of punctuation,
-    # since these phrases essentially never appear as incidental narration.
+    # since these phrases essentially never appear as incidental narration. Previously also
+    # included "hidden", "unknown", "strange", "confused", "don't know", "couldn't
+    # understand" — all common in ordinary literary description/dialogue ("that's what makes
+    # it strange", "I don't know") with no connection to an actual mystery-genre plot device,
+    # so they fired on normal prose rather than real mysteries.
     MYSTERY_INDICATORS = [
-        "mystery", "secret", "hidden", "unknown", "strange",
-        "puzzle", "riddle", "enigma",
-        "don't know", "couldn't understand", "baffled", "confused",
-        "no one knows", "nobody knows", "remains a mystery",
+        "mystery", "secret", "puzzle", "riddle", "enigma",
+        "baffled", "no one knows", "nobody knows", "remains a mystery",
     ]
 
     # Clue indicators — narrowed to phrases that actually signal evidence being
@@ -57,13 +59,27 @@ class MysteryMemory(BaseMemory):
         "uncovered a", "discovered a", "hint of", "gave it away",
     ]
 
-    # Revelation/resolution indicators (Phase 10)
+    # Revelation/resolution indicators. Previously also included "it was", "realized
+    # that", "understood", "answer", "explanation", "solution" — everyday phrases that
+    # appear in almost any chapter regardless of whether a mystery was actually resolved.
+    # Combined with the old whole-chapter-text scan below, that meant nearly any chapter
+    # would blanket-resolve every currently open mystery. Narrowed to language that's
+    # specifically about a truth being uncovered.
     REVELATION_INDICATORS = [
-        "revealed", "truth", "secret revealed", "discovered the truth",
-        "finally understood", "realized that", "it was", "the truth was",
-        "uncovered", "exposed", "came to light", "became clear",
-        "solved", "answer", "explanation", "solution",
+        "revealed", "secret revealed", "discovered the truth",
+        "finally understood the truth", "the truth was",
+        "uncovered the truth", "exposed", "came to light", "became clear",
+        "solved the", "confessed",
     ]
+
+    # Ordinary English words dropped from relevance-overlap matching below — without this,
+    # nearly every mystery/revelation sentence pair would "overlap" on words like "the" or
+    # "was" and the specificity check would be meaningless.
+    _STOPWORDS = {
+        "a", "an", "the", "and", "or", "but", "of", "to", "in", "on", "at", "by", "for",
+        "with", "was", "were", "is", "are", "be", "been", "he", "she", "it", "they",
+        "his", "her", "its", "their", "that", "this", "had", "have", "has", "not",
+    }
 
     def __init__(self, memory_file=None, existing_entries: Optional[Dict[str, Dict[str, object]]] = None):
         super().__init__(memory_file)
@@ -260,55 +276,77 @@ class MysteryMemory(BaseMemory):
 
         return changes
 
+    def _mentions_mystery(self, sentence_lower: str, mystery_text: str) -> bool:
+        """A revelation sentence only resolves a SPECIFIC mystery if it shares real content
+        words with that mystery's text — otherwise any revelation-flavored sentence anywhere
+        in the chapter would resolve every open mystery regardless of relevance."""
+        mystery_words = {
+            w for w in re.findall(r"[a-z']+", mystery_text.lower()) if w not in self._STOPWORDS and len(w) > 2
+        }
+        if not mystery_words:
+            return False
+        sentence_words = {w for w in re.findall(r"[a-z']+", sentence_lower) if w not in self._STOPWORDS}
+        return len(mystery_words & sentence_words) >= 2
+
     def _check_revelations(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
-        """Check if any existing mysteries are resolved."""
+        """Check if any existing mysteries are resolved by this chapter's text."""
         changes: List[StateChange] = []
-        text = chapter_data.raw_text.lower()
 
         # Check all unresolved mysteries
         for entry_id in self._entries.keys():
             if entry_id.startswith("mystery_"):
                 status_entry = self.get_entry(entry_id, "status")
                 if status_entry and status_entry.current and status_entry.current.value == "unresolved":
-                    # Check for revelation indicators
-                    for indicator in self.REVELATION_INDICATORS:
-                        if indicator in text:
-                            # Mark as resolved
-                            old_status = status_entry.current.value
-                            self.update_entry(
-                                entry_id,
-                                "status",
-                                "resolved",
-                                chapter=chapter_num,
-                                evidence_ids=[],
-                                confidence=0.7,
-                                reasoning=f"Resolution detected via '{indicator}' in chapter.",
-                                importance=0.9,
-                            )
-                            self.update_entry(
-                                entry_id,
-                                "chapter_resolved",
-                                chapter_num,
-                                chapter=chapter_num,
-                                evidence_ids=[],
-                                confidence=0.9,
-                                reasoning="Chapter where mystery was resolved.",
-                                importance=0.9,
-                            )
+                    text_entry = self.get_entry(entry_id, "mystery_text")
+                    mystery_text = text_entry.current.value if text_entry and text_entry.current else ""
 
-                            changes.append(
-                                StateChange(
-                                    change_type=StateChangeType.RESOLUTION,
-                                    target_type=NarrativeElementType.MYSTERY,
-                                    target_id=entry_id,
-                                    field_key="status",
-                                    old_value=old_status,
-                                    new_value="resolved",
-                                    confidence=0.7,
-                                    reasoning=f"Mystery resolved in chapter.",
-                                )
-                            )
+                    # Check for revelation indicators, sentence by sentence, requiring the
+                    # sentence to actually be about this specific mystery.
+                    matched_indicator = None
+                    for sentence in chapter_data.sentences:
+                        sentence_lower = sentence.lower()
+                        for indicator in self.REVELATION_INDICATORS:
+                            if indicator in sentence_lower and self._mentions_mystery(sentence_lower, mystery_text):
+                                matched_indicator = indicator
+                                break
+                        if matched_indicator:
                             break
+
+                    if matched_indicator:
+                        old_status = status_entry.current.value
+                        self.update_entry(
+                            entry_id,
+                            "status",
+                            "resolved",
+                            chapter=chapter_num,
+                            evidence_ids=[],
+                            confidence=0.7,
+                            reasoning=f"Resolution detected via '{matched_indicator}' in a sentence referencing this mystery.",
+                            importance=0.9,
+                        )
+                        self.update_entry(
+                            entry_id,
+                            "chapter_resolved",
+                            chapter_num,
+                            chapter=chapter_num,
+                            evidence_ids=[],
+                            confidence=0.9,
+                            reasoning="Chapter where mystery was resolved.",
+                            importance=0.9,
+                        )
+
+                        changes.append(
+                            StateChange(
+                                change_type=StateChangeType.RESOLUTION,
+                                target_type=NarrativeElementType.MYSTERY,
+                                target_id=entry_id,
+                                field_key="status",
+                                old_value=old_status,
+                                new_value="resolved",
+                                confidence=0.7,
+                                reasoning="Mystery resolved in chapter.",
+                            )
+                        )
 
         return changes
 
