@@ -9,6 +9,51 @@ from pathlib import Path
 from typing import Any
 
 
+def _entry_value(entry):
+    """Read the current value off a single StateEntry (object or raw dict)."""
+    if hasattr(entry, 'current') and entry.current is not None:
+        return getattr(entry.current, 'value', None)
+    if isinstance(entry, dict):
+        return (entry.get('current') or {}).get('value')
+    return None
+
+
+def _field_chapters(entry) -> set:
+    """Every chapter number a single StateEntry field was touched in
+    (current value + full history), across StateEntry objects or the raw
+    dict shape produced by JSON deserialization."""
+    chapters: set = set()
+    if entry is None:
+        return chapters
+    if hasattr(entry, 'get_trajectory'):
+        for snap in entry.get_trajectory():
+            ch = getattr(snap, 'chapter', None)
+            if ch is not None:
+                chapters.add(ch)
+        return chapters
+    if isinstance(entry, dict):
+        current = entry.get('current') or {}
+        if current.get('chapter') is not None:
+            chapters.add(current['chapter'])
+        for snap in entry.get('history') or []:
+            if isinstance(snap, dict) and snap.get('chapter') is not None:
+                chapters.add(snap['chapter'])
+    return chapters
+
+
+def _entity_active_chapters(entity_fields) -> set:
+    """Union of active chapters across every field of one character/world/
+    theme entity — i.e. every chapter this entity was mentioned or updated
+    in, derived purely from already-persisted state (no new evidence
+    plumbing needed)."""
+    chapters: set = set()
+    if not entity_fields:
+        return chapters
+    for field_entry in entity_fields.values():
+        chapters |= _field_chapters(field_entry)
+    return chapters
+
+
 class NarrativeGraph:
     def __init__(self, config: Any):
         self.config = config
@@ -16,13 +61,6 @@ class NarrativeGraph:
     def build(self, state) -> dict:
         nodes = []
         edges = []
-
-        def _entry_value(entry):
-            if hasattr(entry, 'current') and entry.current is not None:
-                return getattr(entry.current, 'value', None)
-            if isinstance(entry, dict):
-                return (entry.get('current') or {}).get('value')
-            return None
 
         # Characters
         for cid, cdata in state.characters.items():
@@ -38,6 +76,53 @@ class NarrativeGraph:
         for theme_id, theme_entry in getattr(state, 'themes', {}).items():
             value = _entry_value(theme_entry) or theme_id
             nodes.append({'id': f'theme::{theme_id}', 'label': value, 'type': 'theme'})
+
+        # Character <-> world edges: connect a character and a world element
+        # whenever they were both active (mentioned/updated) in at least one
+        # shared chapter. Derived purely from persisted StateEntry history —
+        # no sentence-level evidence needed.
+        char_chapters = {cid: _entity_active_chapters(cdata) for cid, cdata in state.characters.items()}
+        world_chapters = {wid: _entity_active_chapters(wdata) for wid, wdata in state.world.items()}
+
+        for cid, c_chs in char_chapters.items():
+            if not c_chs:
+                continue
+            for wid, w_chs in world_chapters.items():
+                shared = c_chs & w_chs
+                if not shared:
+                    continue
+                edges.append({
+                    'id': f'char_world::{cid}::{wid}',
+                    'source': f'char::{cid}',
+                    'target': f'world::{wid}',
+                    'label': f"ch. {', '.join(str(c) for c in sorted(shared))}",
+                    'type': 'character_world',
+                })
+
+        # Character <-> theme edges: connect a character to a theme/symbol
+        # whenever the character was active in one of the chapters the theme
+        # is already known to be present in (`chapters_present`, tracked by
+        # ThemeMemory). Falls back to the theme entity's own active-chapter
+        # union if `chapters_present` isn't populated for some reason.
+        for theme_id, theme_fields in getattr(state, 'themes', {}).items():
+            if not isinstance(theme_fields, dict):
+                continue
+            theme_chapters = set(_entry_value(theme_fields.get('chapters_present')) or [])
+            if not theme_chapters:
+                theme_chapters = _entity_active_chapters(theme_fields)
+            if not theme_chapters:
+                continue
+            for cid, c_chs in char_chapters.items():
+                shared = c_chs & theme_chapters
+                if not shared:
+                    continue
+                edges.append({
+                    'id': f'char_theme::{cid}::{theme_id}',
+                    'source': f'char::{cid}',
+                    'target': f'theme::{theme_id}',
+                    'label': f"ch. {', '.join(str(c) for c in sorted(shared))}",
+                    'type': 'character_theme',
+                })
 
         # Relationships as edges between characters
         for rid, rdata in state.relationships.items():

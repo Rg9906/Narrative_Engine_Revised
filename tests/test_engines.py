@@ -97,6 +97,53 @@ class TestNarrativeGraph:
         assert "edges" in graph
         assert any(n["id"] == "char::arthur" for n in graph["nodes"])
 
+    def test_character_world_and_theme_edges(self):
+        """Characters and world/theme elements sharing an active chapter get
+        connected; those that never co-occur do not."""
+        from src.models.state import StateEntry, StateSnapshot
+
+        state = NarrativeState()
+        state.total_chapters_processed = 3
+
+        # Arthur active in chapters 1 and 2; Merlin only in chapter 5.
+        arthur_name = StateEntry(key="canonical_name")
+        arthur_name.update(StateSnapshot(value="Arthur", chapter=1))
+        arthur_name.update(StateSnapshot(value="Arthur", chapter=2))
+        state.characters["arthur"] = {"canonical_name": arthur_name}
+
+        merlin_name = StateEntry(key="canonical_name")
+        merlin_name.update(StateSnapshot(value="Merlin", chapter=5))
+        state.characters["merlin"] = {"canonical_name": merlin_name}
+
+        # Castle active in chapter 1 (overlaps Arthur) — expect an edge.
+        castle_type = StateEntry(key="type")
+        castle_type.update(StateSnapshot(value="location", chapter=1))
+        state.world["castle"] = {"type": castle_type}
+
+        # Cave active only in chapter 9 — no overlap with anyone.
+        cave_type = StateEntry(key="type")
+        cave_type.update(StateSnapshot(value="location", chapter=9))
+        state.world["cave"] = {"type": cave_type}
+
+        # Theme "power" present in chapters [2, 3] — overlaps Arthur (ch. 2),
+        # not Merlin (ch. 5 only).
+        power_chapters = StateEntry(key="chapters_present")
+        power_chapters.update(StateSnapshot(value=[2, 3], chapter=2))
+        state.themes["theme_power"] = {"chapters_present": power_chapters}
+
+        graph_builder = NarrativeGraph(None)
+        graph = graph_builder.build(state)
+        edges_by_id = {e["id"]: e for e in graph["edges"]}
+
+        assert "char_world::arthur::castle" in edges_by_id
+        assert edges_by_id["char_world::arthur::castle"]["type"] == "character_world"
+        assert "char_world::merlin::castle" not in edges_by_id
+        assert "char_world::arthur::cave" not in edges_by_id
+
+        assert "char_theme::arthur::theme_power" in edges_by_id
+        assert edges_by_id["char_theme::arthur::theme_power"]["type"] == "character_theme"
+        assert "char_theme::merlin::theme_power" not in edges_by_id
+
 
 class TestEditorialEngine:
     def test_editorial_engine_runs_inspectors(self):
