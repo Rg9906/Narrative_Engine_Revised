@@ -21,6 +21,7 @@ from src.models.state import (
     NarrativeElementType,
 )
 from src.utils import stable_hash
+from src.utils.zero_shot_classifier import get_classifier
 
 
 class MysteryMemory(BaseMemory):
@@ -81,10 +82,42 @@ class MysteryMemory(BaseMemory):
         "his", "her", "its", "their", "that", "this", "had", "have", "has", "not",
     }
 
+    # Semantic (zero-shot) labels used as an *additional* signal alongside the
+    # explicit keyword/question checks above — never a replacement. Deliberately
+    # stricter than ThemeMemory's threshold (0.6) given the mystery/clue noise
+    # problem fixed on 2026-07-28 (56 false "mysteries" out of 3 chapters);
+    # only used when src/utils/zero_shot_classifier.py reports itself available.
+    ZERO_SHOT_MYSTERY_LABELS = {
+        "mystery": "poses an unresolved mystery or question",
+        "clue": "reveals a clue or piece of evidence",
+        "revelation": "resolves or reveals a secret",
+    }
+    ZERO_SHOT_MYSTERY_THRESHOLD = 0.75
+
     def __init__(self, memory_file=None, existing_entries: Optional[Dict[str, Dict[str, object]]] = None):
         super().__init__(memory_file)
         if existing_entries is not None:
             self._entries = existing_entries
+
+    def _classify_sentences(self, sentences: List[str]) -> Optional[Dict[str, Dict[str, float]]]:
+        """One batched classifier call per chapter, shared across mystery/clue/
+        revelation detection. Returns {sentence: {label_key: score}}, or None
+        (never raises) if the classifier is unavailable or the call fails."""
+        classifier = get_classifier()
+        if not sentences or not classifier.available:
+            return None
+
+        labels = list(self.ZERO_SHOT_MYSTERY_LABELS.values())
+        results = classifier.classify_batch(sentences, labels)
+        if results is None:
+            return None
+
+        per_sentence: Dict[str, Dict[str, float]] = {}
+        for sentence, scores in zip(sentences, results):
+            per_sentence[sentence] = {
+                key: scores.get(label, 0.0) for key, label in self.ZERO_SHOT_MYSTERY_LABELS.items()
+            }
+        return per_sentence
 
     def update_from_chapter(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
         """
@@ -97,16 +130,18 @@ class MysteryMemory(BaseMemory):
         """
         changes: List[StateChange] = []
 
+        semantic_scores = self._classify_sentences(chapter_data.sentences)
+
         # Extract mysteries
-        mystery_changes = self._extract_mysteries(chapter_data, chapter_num)
+        mystery_changes = self._extract_mysteries(chapter_data, chapter_num, semantic_scores)
         changes.extend(mystery_changes)
 
         # Extract clues
-        clue_changes = self._extract_clues(chapter_data, chapter_num)
+        clue_changes = self._extract_clues(chapter_data, chapter_num, semantic_scores)
         changes.extend(clue_changes)
 
         # Check for revelations
-        revelation_changes = self._check_revelations(chapter_data, chapter_num)
+        revelation_changes = self._check_revelations(chapter_data, chapter_num, semantic_scores)
         changes.extend(revelation_changes)
 
         return changes
@@ -119,7 +154,10 @@ class MysteryMemory(BaseMemory):
         first_word = re.split(r"\s+", stripped.lower(), maxsplit=1)[0].strip(".,!?\"'") if stripped else ""
         return first_word in self.QUESTION_STARTERS
 
-    def _extract_mysteries(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
+    def _extract_mysteries(
+        self, chapter_data: ChapterData, chapter_num: int,
+        semantic_scores: Optional[Dict[str, Dict[str, float]]] = None,
+    ) -> List[StateChange]:
         """Extract mysteries and questions from dialogue and narration."""
         changes: List[StateChange] = []
 
@@ -133,6 +171,10 @@ class MysteryMemory(BaseMemory):
                     break
             if matched_indicator is None and self._is_question(sentence):
                 matched_indicator = "unresolved question"
+            if matched_indicator is None and semantic_scores:
+                score = semantic_scores.get(sentence, {}).get("mystery", 0.0)
+                if score >= self.ZERO_SHOT_MYSTERY_THRESHOLD:
+                    matched_indicator = "semantic: unresolved mystery/question"
 
             if not matched_indicator:
                 continue
@@ -219,15 +261,27 @@ class MysteryMemory(BaseMemory):
 
         return changes
 
-    def _extract_clues(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
+    def _extract_clues(
+        self, chapter_data: ChapterData, chapter_num: int,
+        semantic_scores: Optional[Dict[str, Dict[str, float]]] = None,
+    ) -> List[StateChange]:
         """Extract clues that might relate to existing mysteries."""
         changes: List[StateChange] = []
 
         for sentence in chapter_data.sentences:
             sentence_lower = sentence.lower()
 
-            for indicator in self.CLUE_INDICATORS:
-                if indicator in sentence_lower:
+            matched_indicators = list(self.CLUE_INDICATORS)
+            semantic_hit = (
+                semantic_scores.get(sentence, {}).get("clue", 0.0) >= self.ZERO_SHOT_MYSTERY_THRESHOLD
+                if semantic_scores else False
+            )
+            if semantic_hit:
+                matched_indicators = matched_indicators + ["semantic: reveals a clue"]
+
+            for indicator in matched_indicators:
+                is_semantic = indicator.startswith("semantic:")
+                if is_semantic or indicator in sentence_lower:
                     # Extract the clue text
                     clue_text = sentence.strip()
 
@@ -288,7 +342,10 @@ class MysteryMemory(BaseMemory):
         sentence_words = {w for w in re.findall(r"[a-z']+", sentence_lower) if w not in self._STOPWORDS}
         return len(mystery_words & sentence_words) >= 2
 
-    def _check_revelations(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
+    def _check_revelations(
+        self, chapter_data: ChapterData, chapter_num: int,
+        semantic_scores: Optional[Dict[str, Dict[str, float]]] = None,
+    ) -> List[StateChange]:
         """Check if any existing mysteries are resolved by this chapter's text."""
         changes: List[StateChange] = []
 
@@ -301,7 +358,10 @@ class MysteryMemory(BaseMemory):
                     mystery_text = text_entry.current.value if text_entry and text_entry.current else ""
 
                     # Check for revelation indicators, sentence by sentence, requiring the
-                    # sentence to actually be about this specific mystery.
+                    # sentence to actually be about this specific mystery. The semantic
+                    # check is gated by the same _mentions_mystery specificity requirement
+                    # as the keyword path — it only adds *how* a sentence is recognized as
+                    # revelation-flavored, never loosens which mystery it can resolve.
                     matched_indicator = None
                     for sentence in chapter_data.sentences:
                         sentence_lower = sentence.lower()
@@ -309,6 +369,10 @@ class MysteryMemory(BaseMemory):
                             if indicator in sentence_lower and self._mentions_mystery(sentence_lower, mystery_text):
                                 matched_indicator = indicator
                                 break
+                        if not matched_indicator and semantic_scores:
+                            score = semantic_scores.get(sentence, {}).get("revelation", 0.0)
+                            if score >= self.ZERO_SHOT_MYSTERY_THRESHOLD and self._mentions_mystery(sentence_lower, mystery_text):
+                                matched_indicator = "semantic: resolves a secret"
                         if matched_indicator:
                             break
 

@@ -20,6 +20,7 @@ from src.models.state import (
     StateChangeType,
     NarrativeElementType,
 )
+from src.utils.zero_shot_classifier import get_classifier
 
 
 class ThemeMemory(BaseMemory):
@@ -67,10 +68,48 @@ class ThemeMemory(BaseMemory):
     # further mention still counts as reinforcement (see the `old_count == 0` gate below).
     MIN_MENTIONS_TO_INTRODUCE = 2
 
+    # A sentence "hits" a theme/symbol category when the zero-shot classifier's
+    # confidence for that label meets this bar. Used only when the classifier
+    # (src/utils/zero_shot_classifier.py) is actually available; otherwise
+    # detection falls back unchanged to the keyword scan below.
+    ZERO_SHOT_THEME_THRESHOLD = 0.6
+
     def __init__(self, memory_file=None, existing_entries: Optional[Dict[str, Dict[str, object]]] = None):
         super().__init__(memory_file)
         if existing_entries is not None:
             self._entries = existing_entries
+
+    def _count_hits_via_classifier(
+        self, sentences: List[str], category_keywords: Dict[str, List[str]]
+    ) -> Optional[Dict[str, int]]:
+        """Zero-shot sentence classification against category names (as
+        human-readable labels). Returns None (never raises) if the classifier
+        isn't available or the call fails, so callers can fall back cleanly."""
+        classifier = get_classifier()
+        if not sentences or not classifier.available:
+            return None
+
+        label_by_name = {name: name.replace("_", " ") for name in category_keywords}
+        results = classifier.classify_batch(sentences, list(label_by_name.values()))
+        if results is None:
+            return None
+
+        name_by_label = {v: k for k, v in label_by_name.items()}
+        counts = {name: 0 for name in category_keywords}
+        for sentence_scores in results:
+            for label, score in sentence_scores.items():
+                if score >= self.ZERO_SHOT_THEME_THRESHOLD:
+                    name = name_by_label.get(label)
+                    if name:
+                        counts[name] += 1
+        return counts
+
+    @staticmethod
+    def _count_hits_via_keywords(text_lower: str, category_keywords: Dict[str, List[str]]) -> Dict[str, int]:
+        return {
+            name: sum(1 for keyword in keywords if keyword in text_lower)
+            for name, keywords in category_keywords.items()
+        }
 
     def update_from_chapter(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
         """
@@ -99,10 +138,11 @@ class ThemeMemory(BaseMemory):
         changes: List[StateChange] = []
         text = chapter_data.raw_text.lower()
 
-        for theme_name, keywords in self.THEME_KEYWORDS.items():
-            # Count keyword occurrences
-            keyword_count = sum(1 for keyword in keywords if keyword in text)
+        hit_counts = self._count_hits_via_classifier(chapter_data.sentences, self.THEME_KEYWORDS)
+        if hit_counts is None:
+            hit_counts = self._count_hits_via_keywords(text, self.THEME_KEYWORDS)
 
+        for theme_name, keyword_count in hit_counts.items():
             if keyword_count > 0:
                 # Get existing theme entry
                 theme_id = f"theme_{theme_name}"
@@ -207,10 +247,11 @@ class ThemeMemory(BaseMemory):
         changes: List[StateChange] = []
         text = chapter_data.raw_text.lower()
 
-        for symbol_name, keywords in self.SYMBOL_KEYWORDS.items():
-            # Count keyword occurrences
-            keyword_count = sum(1 for keyword in keywords if keyword in text)
+        hit_counts = self._count_hits_via_classifier(chapter_data.sentences, self.SYMBOL_KEYWORDS)
+        if hit_counts is None:
+            hit_counts = self._count_hits_via_keywords(text, self.SYMBOL_KEYWORDS)
 
+        for symbol_name, keyword_count in hit_counts.items():
             if keyword_count > 0:
                 # Get existing symbol entry
                 symbol_id = f"symbol_{symbol_name}"
