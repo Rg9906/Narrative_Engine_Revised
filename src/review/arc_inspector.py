@@ -40,6 +40,12 @@ class ArcInspector(BaseInspector):
             self._check_arc_progression(char_id, char_state, findings, chapter)
             self._check_arc_consistency(char_id, char_state, findings, chapter)
 
+        # Bug fix: this check was fully implemented (and named in this method's
+        # own docstring as one of the "Rules implemented") but never actually
+        # called -- "unresolved arc" findings silently never fired. Caught by
+        # a self-review pass; no existing test relied on the missing behavior.
+        self._check_unresolved_arcs(state, findings, chapter)
+
         return findings
 
     def _check_arc_progression(self, char_id: str, char_state, findings: List[Finding], chapter: int) -> None:

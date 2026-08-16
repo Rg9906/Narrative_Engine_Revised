@@ -114,8 +114,12 @@ class NarrativeStateEngine:
                         reasoning="Scene detected by SceneEngine.",
                     )
                 )
-        except Exception:
-            pass
+        except Exception as e:
+            # Was a bare `except Exception: pass` -- any failure here (malformed scene dict,
+            # a coreference-cluster attribute error, etc.) silently left chapter_data.scenes
+            # unset with zero diagnostic output, and downstream inspectors relying on scenes
+            # got nothing with no error surfaced anywhere. Caught by a self-review pass.
+            logger.warning(f"Scene analysis failed for chapter {chapter_data.chapter_number}: {e}")
 
         # === Reconciliation Layer & Trait Decay ===
         delta.changes = self.reconcile_state_changes(current_state, delta)
@@ -214,7 +218,12 @@ class NarrativeStateEngine:
         chapter_num = delta.chapter_number
 
         for change in delta.changes:
-            if change.change_type in (StateChangeType.EVOLUTION, StateChangeType.CONTRADICTION):
+            # INTRODUCTION included alongside EVOLUTION/CONTRADICTION: two characters can
+            # each be given the same item for the FIRST time in the same chapter (both
+            # changes are type INTRODUCTION, since neither character had an inventory entry
+            # before), and that dual-ownership conflict was previously never checked. Caught
+            # by a self-review pass.
+            if change.change_type in (StateChangeType.EVOLUTION, StateChangeType.CONTRADICTION, StateChangeType.INTRODUCTION):
                 if change.target_type == NarrativeElementType.CHARACTER and change.field_key == "inventory":
                     char_id = change.target_id
                     new_val = change.new_value

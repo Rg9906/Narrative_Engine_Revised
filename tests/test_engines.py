@@ -521,6 +521,40 @@ def test_narrative_state_engine_reconciliation_and_decay():
     assert any("conflict_inv_sword" in k for k in state.mysteries.keys())
 
 
+def test_narrative_state_engine_reconciliation_catches_first_time_dual_ownership():
+    """Regression test: reconcile_state_changes previously only cross-checked
+    inventory dual-ownership for EVOLUTION/CONTRADICTION changes, so two
+    characters each given the same item for the FIRST time in one chapter
+    (both changes are type INTRODUCTION) were never caught. Caught by a
+    self-review pass."""
+    from src.engines.narrative_state import NarrativeStateEngine
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType, StateChange, StateChangeType, StateDelta
+
+    engine = NarrativeStateEngine(None)
+    state = NarrativeState()
+
+    state.characters["arthur"] = {"inventory": StateEntry(key="inventory", element_type=NarrativeElementType.CHARACTER)}
+    state.characters["arthur"]["inventory"].update(StateSnapshot(value=["lantern"], chapter=1, confidence=0.9))
+    state.characters["merlin"] = {"inventory": StateEntry(key="inventory", element_type=NarrativeElementType.CHARACTER)}
+    state.characters["merlin"]["inventory"].update(StateSnapshot(value=["lantern"], chapter=1, confidence=0.9))
+
+    # Both characters' FIRST-ever inventory entry -> both changes are INTRODUCTION.
+    intro_change = StateChange(
+        change_type=StateChangeType.INTRODUCTION,
+        target_type=NarrativeElementType.CHARACTER,
+        target_id="arthur",
+        field_key="inventory",
+        old_value=None,
+        new_value=["lantern"],
+        confidence=0.9,
+    )
+    delta = StateDelta(chapter_number=1, changes=[intro_change])
+
+    engine.reconcile_state_changes(state, delta)
+
+    assert any("conflict_inv_lantern" in k for k in state.mysteries.keys())
+
+
 def test_validation_engine_field_contradiction():
     """Field-level contradiction detection now lives in ValidationEngine, applied BEFORE
     a value is written (see src/engines/validation_engine.py and StateEngine's character/
@@ -584,6 +618,28 @@ def test_char_inspector_inventory_teleportation():
     
     assert len(findings) > 0
     assert any("teleportation" in f.title.lower() for f in findings)
+
+
+def test_arc_inspector_unresolved_arc_near_story_end():
+    """Regression test: ArcInspector._check_unresolved_arcs was fully
+    implemented but never called from inspect(), so this finding silently
+    never fired. Caught by a self-review pass."""
+    from src.review.arc_inspector import ArcInspector
+    from src.models.state import StateEntry, StateSnapshot, NarrativeElementType
+
+    state = NarrativeState()
+    state.last_processed_chapter = 16  # past the chapter < 15 gate
+
+    arc_entry = StateEntry(key="arc_stage", element_type=NarrativeElementType.CHARACTER)
+    arc_entry.update(StateSnapshot(value="rising_action", chapter=16))
+    mention_entry = StateEntry(key="mention_count", element_type=NarrativeElementType.CHARACTER)
+    mention_entry.update(StateSnapshot(value=12, chapter=16))
+    state.characters["arthur"] = {"arc_stage": arc_entry, "mention_count": mention_entry}
+
+    inspector = ArcInspector()
+    findings = inspector.inspect(state, None)
+
+    assert any("unresolved character arc" in f.title.lower() for f in findings)
 
 
 def test_relationship_inspector_emotional_inversion():

@@ -27,6 +27,7 @@ from src.models.state import (
     StateEntry,
 )
 from src.engines.validation_engine import ValidationEngine
+from src.utils import stable_hash
 
 logger = logging.getLogger("NarrativeEngine.Engines.StateEngine")
 
@@ -174,7 +175,11 @@ class StateEngine:
                     flagged_entity_ids.add(ent.strip().lower())
 
         def log_contradiction_mystery(target_id: str, description: str) -> None:
-            conflict_id = f"conflict_{target_id}_{chapter_num}_{hash(description) & 0xffff}"
+            # stable_hash (not builtin hash()) -- Python's hash() is randomized per-process
+            # (PYTHONHASHSEED) unless explicitly pinned, so re-running the pipeline over the
+            # same chapter would generate a different id each time and duplicate this mystery
+            # instead of updating it. Caught by a self-review pass.
+            conflict_id = f"conflict_{target_id}_{chapter_num}_{stable_hash(description)[:4]}"
             conflict_entry = current_state.mysteries.setdefault(conflict_id, {})
 
             def _set(key: str, val: Any) -> None:
@@ -375,7 +380,7 @@ class StateEngine:
                     item_world["location"].update(StateSnapshot(value=None, chapter=chapter_num))
                     
                     if causal_actor == "UNKNOWN_ACTOR":
-                        myst_id = f"mystery_ghost_inventory_{chapter_num}_{hash(norm_item) & 0xffff}"
+                        myst_id = f"mystery_ghost_inventory_{chapter_num}_{stable_hash(norm_item)[:4]}"
                         myst_entry = current_state.mysteries.setdefault(myst_id, {})
                         if "mystery_text" not in myst_entry: myst_entry["mystery_text"] = StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY)
                         myst_entry["mystery_text"].update(StateSnapshot(value=f"Item {norm_item} was acquired but the causal actor is unknown.", chapter=chapter_num))
@@ -408,7 +413,7 @@ class StateEngine:
                             item_world["location"].update(StateSnapshot(value=loc_id, chapter=chapter_num))
                             
                     if causal_actor == "UNKNOWN_ACTOR":
-                        myst_id = f"mystery_ghost_inventory_{chapter_num}_{hash(norm_item) & 0xffff}"
+                        myst_id = f"mystery_ghost_inventory_{chapter_num}_{stable_hash(norm_item)[:4]}"
                         myst_entry = current_state.mysteries.setdefault(myst_id, {})
                         if "mystery_text" not in myst_entry: myst_entry["mystery_text"] = StateEntry(key="mystery_text", element_type=NarrativeElementType.MYSTERY)
                         myst_entry["mystery_text"].update(StateSnapshot(value=f"Item {norm_item} was tampered with or removed but the causal actor is unknown.", chapter=chapter_num))
@@ -481,9 +486,19 @@ class StateEngine:
             party_b = rel_mut.get("party_b")
             stance = rel_mut.get("stance")
             reasoning = rel_mut.get("reasoning", "Relationship updated by LLM.")
-            
+
             if not party_a or not party_b or not stance:
                 continue
+
+            # Resolve through the same alias/proper-noun resolution as character_updates
+            # above -- without this, the LLM's raw casing/mention text for an already-
+            # established character (e.g. "Laurie") never matches its canonical id
+            # ("laurie"), so `party in current_state.characters` below is always False for
+            # a known character, and a second relationship record gets created under
+            # "Laurie::Marlene" alongside the real "laurie::marlene". Caught by a
+            # self-review pass.
+            party_a = character_memory.resolve_character_id(party_a, current_state.characters)
+            party_b = character_memory.resolve_character_id(party_b, current_state.characters)
 
             # Both parties must be established characters (from this chapter's deterministic
             # pass, a prior chapter, or this same LLM delta's own character_updates) or
@@ -705,7 +720,7 @@ class StateEngine:
             delta.structural_mysteries.append(mystery)
 
             # Persist in state mysteries
-            myst_id = f"mystery_{issue_type.lower()}_{chapter_num}_{hash(desc) & 0xffff}"
+            myst_id = f"mystery_{issue_type.lower()}_{chapter_num}_{stable_hash(desc)[:4]}"
             myst_entry = current_state.mysteries.setdefault(myst_id, {})
 
             def update_myst_field(key: str, val: Any):
