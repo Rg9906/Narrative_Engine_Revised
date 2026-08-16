@@ -41,6 +41,24 @@ def _field_chapters(entry) -> set:
     return chapters
 
 
+def _entity_label(entity_fields, candidate_field_keys, fallback_id: str) -> str:
+    """Pick a human-readable label for a node.
+
+    Bug fix: node labels used to be built by calling `_entry_value(entity_fields)`
+    on the entity's whole *fields dict* (e.g. `{'canonical_name': StateEntry(...)}`)
+    instead of on the specific field holding the display name. `_entry_value` only
+    recognizes a single StateEntry (something with a `.current`/`current` key), so
+    that call always fell through to `None` and every node silently displayed its
+    raw snake_case ID instead of a readable name.
+    """
+    if isinstance(entity_fields, dict):
+        for key in candidate_field_keys:
+            value = _entry_value(entity_fields.get(key))
+            if value:
+                return str(value)
+    return fallback_id
+
+
 def _entity_active_chapters(entity_fields) -> set:
     """Union of active chapters across every field of one character/world/
     theme entity — i.e. every chapter this entity was mentioned or updated
@@ -64,17 +82,20 @@ class NarrativeGraph:
 
         # Characters
         for cid, cdata in state.characters.items():
-            name = _entry_value(cdata) or cid
+            name = _entity_label(cdata, ['canonical_name'], cid.replace('_', ' ').title())
             nodes.append({'id': f'char::{cid}', 'label': name, 'type': 'character'})
 
-        # World elements
+        # World elements — no dedicated name field in the current schema (see
+        # WorldMemory), so a humanized ID is the fallback rather than the raw
+        # snake_case ID; 'canonical_name'/'name' are checked in case an entry
+        # was LLM-authored with one (ContextRetriever does the same lookup).
         for wid, wdata in state.world.items():
-            label = _entry_value(wdata) or wid
+            label = _entity_label(wdata, ['canonical_name', 'name'], wid.replace('_', ' ').title())
             nodes.append({'id': f'world::{wid}', 'label': label, 'type': 'world'})
 
-        # Themes and other elements
+        # Themes and symbols (both live in state.themes, keyed by id prefix).
         for theme_id, theme_entry in getattr(state, 'themes', {}).items():
-            value = _entry_value(theme_entry) or theme_id
+            value = _entity_label(theme_entry, ['theme_name', 'symbol_name'], theme_id.replace('_', ' ').title())
             nodes.append({'id': f'theme::{theme_id}', 'label': value, 'type': 'theme'})
 
         # Character <-> world edges: connect a character and a world element

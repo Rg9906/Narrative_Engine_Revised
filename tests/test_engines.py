@@ -97,6 +97,13 @@ class TestNarrativeGraph:
         assert "edges" in graph
         assert any(n["id"] == "char::arthur" for n in graph["nodes"])
 
+        # Regression: node label must be the actual display name ("Arthur"),
+        # not the raw entity id ("arthur") -- a prior bug called _entry_value()
+        # on the whole fields-dict instead of the canonical_name field, which
+        # always fell through to the id.
+        arthur_node = next(n for n in graph["nodes"] if n["id"] == "char::arthur")
+        assert arthur_node["label"] == "Arthur"
+
     def test_character_world_and_theme_edges(self):
         """Characters and world/theme elements sharing an active chapter get
         connected; those that never co-occur do not."""
@@ -143,6 +150,13 @@ class TestNarrativeGraph:
         assert "char_theme::arthur::theme_power" in edges_by_id
         assert edges_by_id["char_theme::arthur::theme_power"]["type"] == "character_theme"
         assert "char_theme::merlin::theme_power" not in edges_by_id
+
+        # Label fallback: no canonical_name/theme_name field present on "castle"
+        # or "theme_power" here, so labels fall back to a humanized id rather
+        # than the empty/None _entry_value() used to silently produce.
+        nodes_by_id = {n["id"]: n for n in graph["nodes"]}
+        assert nodes_by_id["world::castle"]["label"] == "Castle"
+        assert nodes_by_id["theme::theme_power"]["label"] == "Theme Power"
 
 
 class TestEditorialEngine:

@@ -2,322 +2,322 @@
   "nodes": [
     {
       "id": "char::giselle",
-      "label": "giselle",
+      "label": "Giselle",
       "type": "character"
     },
     {
       "id": "char::vin",
-      "label": "vin",
+      "label": "Vin",
       "type": "character"
     },
     {
       "id": "char::laurie",
-      "label": "laurie",
+      "label": "Laurie",
       "type": "character"
     },
     {
       "id": "char::sebastian",
-      "label": "sebastian",
+      "label": "Sebastian",
       "type": "character"
     },
     {
       "id": "char::marlene",
-      "label": "marlene",
+      "label": "Marlene",
       "type": "character"
     },
     {
       "id": "char::mr_whitmore",
-      "label": "mr_whitmore",
+      "label": "Mr. Whitmore",
       "type": "character"
     },
     {
       "id": "char::sound",
-      "label": "sound",
+      "label": "Sound",
       "type": "character"
     },
     {
       "id": "char::sirius",
-      "label": "sirius",
+      "label": "Sirius",
       "type": "character"
     },
     {
       "id": "char::pip",
-      "label": "pip",
+      "label": "Pip",
       "type": "character"
     },
     {
       "id": "char::frodo",
-      "label": "frodo",
+      "label": "Frodo",
       "type": "character"
     },
     {
       "id": "char::jamie",
-      "label": "jamie",
+      "label": "Jamie",
       "type": "character"
     },
     {
       "id": "char::bull",
-      "label": "bull",
+      "label": "Bull",
       "type": "character"
     },
     {
       "id": "char::dom",
-      "label": "dom",
+      "label": "Dom",
       "type": "character"
     },
     {
       "id": "char::di",
-      "label": "di",
+      "label": "DI",
       "type": "character"
     },
     {
       "id": "char::detective_inspector",
-      "label": "detective_inspector",
+      "label": "Detective Inspector Reyes",
       "type": "character"
     },
     {
       "id": "char::henshaw",
-      "label": "henshaw",
+      "label": "Henshaw",
       "type": "character"
     },
     {
       "id": "char::sergent_rhodes",
-      "label": "sergent_rhodes",
+      "label": "Sergeant Rhodes",
       "type": "character"
     },
     {
       "id": "char::walt_and_jakob",
-      "label": "walt_and_jakob",
+      "label": "Walt and Jakob",
       "type": "character"
     },
     {
       "id": "char::dcs",
-      "label": "dcs",
+      "label": "DCs",
       "type": "character"
     },
     {
       "id": "char::private",
-      "label": "private",
+      "label": "Private",
       "type": "character"
     },
     {
       "id": "char::his_daughter",
-      "label": "his_daughter",
+      "label": "his daughter",
       "type": "character"
     },
     {
       "id": "char::bill_foster",
-      "label": "bill_foster",
+      "label": "Bill Foster",
       "type": "character"
     },
     {
       "id": "world::easel",
-      "label": "easel",
+      "label": "Easel",
       "type": "world"
     },
     {
       "id": "world::porcelain_cup",
-      "label": "porcelain_cup",
+      "label": "Porcelain Cup",
       "type": "world"
     },
     {
       "id": "world::canvas",
-      "label": "canvas",
+      "label": "Canvas",
       "type": "world"
     },
     {
       "id": "world::sun",
-      "label": "sun",
+      "label": "Sun",
       "type": "world"
     },
     {
       "id": "world::hearth",
-      "label": "hearth",
+      "label": "Hearth",
       "type": "world"
     },
     {
       "id": "world::study_window",
-      "label": "study_window",
+      "label": "Study Window",
       "type": "world"
     },
     {
       "id": "world::walkman",
-      "label": "walkman",
+      "label": "Walkman",
       "type": "world"
     },
     {
       "id": "world::south",
-      "label": "south",
+      "label": "South",
       "type": "world"
     },
     {
       "id": "world::47_marple_street",
-      "label": "47_marple_street",
+      "label": "47 Marple Street",
       "type": "world"
     },
     {
       "id": "world::pearl_necklace",
-      "label": "pearl_necklace",
+      "label": "Pearl Necklace",
       "type": "world"
     },
     {
       "id": "world::peanut_butter",
-      "label": "peanut_butter",
+      "label": "Peanut Butter",
       "type": "world"
     },
     {
       "id": "world::door",
-      "label": "door",
+      "label": "Door",
       "type": "world"
     },
     {
       "id": "world::second_floor",
-      "label": "second_floor",
+      "label": "Second Floor",
       "type": "world"
     },
     {
       "id": "world::harbor",
-      "label": "harbor",
+      "label": "Harbor",
       "type": "world"
     },
     {
       "id": "world::bull",
-      "label": "bull",
+      "label": "Bull",
       "type": "world"
     },
     {
       "id": "world::the_house",
-      "label": "the_house",
+      "label": "The House",
       "type": "world"
     },
     {
       "id": "theme::theme_love",
-      "label": "theme_love",
+      "label": "love",
       "type": "theme"
     },
     {
       "id": "theme::theme_death",
-      "label": "theme_death",
+      "label": "death",
       "type": "theme"
     },
     {
       "id": "theme::theme_freedom",
-      "label": "theme_freedom",
+      "label": "freedom",
       "type": "theme"
     },
     {
       "id": "theme::theme_betrayal",
-      "label": "theme_betrayal",
+      "label": "betrayal",
       "type": "theme"
     },
     {
       "id": "theme::theme_good_vs_evil",
-      "label": "theme_good_vs_evil",
+      "label": "good_vs_evil",
       "type": "theme"
     },
     {
       "id": "theme::theme_identity",
-      "label": "theme_identity",
+      "label": "identity",
       "type": "theme"
     },
     {
       "id": "theme::theme_sacrifice",
-      "label": "theme_sacrifice",
+      "label": "sacrifice",
       "type": "theme"
     },
     {
       "id": "theme::symbol_light",
-      "label": "symbol_light",
+      "label": "light",
       "type": "theme"
     },
     {
       "id": "theme::symbol_darkness",
-      "label": "symbol_darkness",
+      "label": "darkness",
       "type": "theme"
     },
     {
       "id": "theme::symbol_water",
-      "label": "symbol_water",
+      "label": "water",
       "type": "theme"
     },
     {
       "id": "theme::symbol_fire",
-      "label": "symbol_fire",
+      "label": "fire",
       "type": "theme"
     },
     {
       "id": "theme::symbol_blood",
-      "label": "symbol_blood",
+      "label": "blood",
       "type": "theme"
     },
     {
       "id": "theme::symbol_mirror",
-      "label": "symbol_mirror",
+      "label": "mirror",
       "type": "theme"
     },
     {
       "id": "theme::symbol_key",
-      "label": "symbol_key",
+      "label": "key",
       "type": "theme"
     },
     {
       "id": "theme::symbol_bird",
-      "label": "symbol_bird",
+      "label": "bird",
       "type": "theme"
     },
     {
       "id": "theme::t1",
-      "label": "t1",
+      "label": "T1",
       "type": "theme"
     },
     {
       "id": "theme::t2",
-      "label": "t2",
+      "label": "T2",
       "type": "theme"
     },
     {
       "id": "theme::theme_coming_of_age",
-      "label": "theme_coming_of_age",
+      "label": "coming_of_age",
       "type": "theme"
     },
     {
       "id": "theme::theme_nature_vs_civilization",
-      "label": "theme_nature_vs_civilization",
+      "label": "nature_vs_civilization",
       "type": "theme"
     },
     {
       "id": "theme::theme_hope",
-      "label": "theme_hope",
+      "label": "hope",
       "type": "theme"
     },
     {
       "id": "theme::theme_justice",
-      "label": "theme_justice",
+      "label": "justice",
       "type": "theme"
     },
     {
       "id": "theme::symbol_tree",
-      "label": "symbol_tree",
+      "label": "tree",
       "type": "theme"
     },
     {
       "id": "theme::theme_power",
-      "label": "theme_power",
+      "label": "power",
       "type": "theme"
     },
     {
       "id": "theme::theme_fate_vs_free_will",
-      "label": "theme_fate_vs_free_will",
+      "label": "fate_vs_free_will",
       "type": "theme"
     },
     {
       "id": "theme::symbol_door",
-      "label": "symbol_door",
+      "label": "door",
       "type": "theme"
     },
     {
       "id": "theme::theme_grief",
-      "label": "theme_grief",
+      "label": "Theme Grief",
       "type": "theme"
     },
     {
