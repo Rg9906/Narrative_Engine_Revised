@@ -27,6 +27,18 @@ const NODE_TYPE_COLOR_VAR: Record<string, string> = {
   chapter: '--color-muted-foreground',
 }
 
+// Edges are tinted to match the color of the node type they connect a
+// character to (world -> success green, theme -> accent purple), so the
+// graph reads as "edges glow with the color of what they connect" instead
+// of every non-relationship edge type looking identical. Falls back to the
+// neutral border color for any type not listed here.
+const EDGE_TYPE_COLOR_VAR: Record<string, string> = {
+  relationship: '--color-primary',
+  character_world: '--color-success',
+  character_theme: '--color-accent',
+  event_chapter: '--color-warning',
+}
+
 type SimNode = SimulationNodeDatum & GraphNode & { degree: number; fx?: number | null; fy?: number | null }
 type SimLink = { id: string; type: string; source: SimNode | string; target: SimNode | string }
 
@@ -159,7 +171,12 @@ export function GraphCanvas({ data, hiddenTypes, searchQuery, onNodeClick, class
       const hidden = hiddenTypesRef.current
       const query = searchRef.current
       const edgeColor = readColor('--color-border-strong')
-      const relColor = readColor('--color-primary')
+      // Precomputed once per frame (not per edge) -- getComputedStyle is a real
+      // DOM read and this loop runs for hundreds of edges at up to 60fps.
+      const edgeColorByType: Record<string, string> = {}
+      for (const [type, cssVar] of Object.entries(EDGE_TYPE_COLOR_VAR)) {
+        edgeColorByType[type] = readColor(cssVar)
+      }
 
       // Edges
       for (const link of linksRef.current) {
@@ -170,7 +187,7 @@ export function GraphCanvas({ data, hiddenTypes, searchQuery, onNodeClick, class
         ctx.beginPath()
         ctx.moveTo(s.x ?? 0, s.y ?? 0)
         ctx.lineTo(tg.x ?? 0, tg.y ?? 0)
-        ctx.strokeStyle = link.type === 'relationship' ? relColor : edgeColor
+        ctx.strokeStyle = edgeColorByType[link.type] ?? edgeColor
         ctx.globalAlpha = link.type === 'relationship' ? 0.28 : 0.14
         ctx.lineWidth = 1 / t.k
         ctx.stroke()
