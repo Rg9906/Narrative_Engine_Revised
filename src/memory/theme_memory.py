@@ -79,24 +79,39 @@ class ThemeMemory(BaseMemory):
         if existing_entries is not None:
             self._entries = existing_entries
 
-    def _count_hits_via_classifier(
-        self, sentences: List[str], category_keywords: Dict[str, List[str]]
-    ) -> Optional[Dict[str, int]]:
-        """Zero-shot sentence classification against category names (as
-        human-readable labels). Returns None (never raises) if the classifier
-        isn't available or the call fails, so callers can fall back cleanly."""
+    @staticmethod
+    def _label_by_name(category_keywords: Dict[str, List[str]]) -> Dict[str, str]:
+        return {name: name.replace("_", " ") for name in category_keywords}
+
+    def _classify_sentences(self, sentences: List[str]) -> Optional[List[Dict[str, float]]]:
+        """One batched classifier call per chapter, covering BOTH theme and
+        symbol labels together, shared by _detect_themes/_detect_symbols via
+        update_from_chapter. (Previously each made its own separate
+        classify_batch call over the identical sentence list -- doubling
+        ~1.6GB BART-MNLI inference cost per chapter for no benefit.) Returns
+        None (never raises) if the classifier is unavailable or the call
+        fails, so callers can fall back to keyword counting cleanly."""
         classifier = get_classifier()
         if not sentences or not classifier.available:
             return None
 
-        label_by_name = {name: name.replace("_", " ") for name in category_keywords}
-        results = classifier.classify_batch(sentences, list(label_by_name.values()))
-        if results is None:
+        all_labels = list(self._label_by_name(self.THEME_KEYWORDS).values()) + \
+            list(self._label_by_name(self.SYMBOL_KEYWORDS).values())
+        return classifier.classify_batch(sentences, all_labels)
+
+    def _aggregate_hit_counts(
+        self, semantic_scores: Optional[List[Dict[str, float]]], category_keywords: Dict[str, List[str]]
+    ) -> Optional[Dict[str, int]]:
+        """Count, per category, how many sentences scored above threshold in
+        the shared classify_batch results computed by _classify_sentences.
+        Returns None when no classifier scores are available (caller falls
+        back to keyword counting)."""
+        if semantic_scores is None:
             return None
 
-        name_by_label = {v: k for k, v in label_by_name.items()}
+        name_by_label = {v: k for k, v in self._label_by_name(category_keywords).items()}
         counts = {name: 0 for name in category_keywords}
-        for sentence_scores in results:
+        for sentence_scores in semantic_scores:
             for label, score in sentence_scores.items():
                 if score >= self.ZERO_SHOT_THEME_THRESHOLD:
                     name = name_by_label.get(label)
@@ -123,22 +138,27 @@ class ThemeMemory(BaseMemory):
         """
         changes: List[StateChange] = []
 
+        semantic_scores = self._classify_sentences(chapter_data.sentences)
+
         # Detect themes
-        theme_changes = self._detect_themes(chapter_data, chapter_num)
+        theme_changes = self._detect_themes(chapter_data, chapter_num, semantic_scores)
         changes.extend(theme_changes)
 
         # Detect symbols
-        symbol_changes = self._detect_symbols(chapter_data, chapter_num)
+        symbol_changes = self._detect_symbols(chapter_data, chapter_num, semantic_scores)
         changes.extend(symbol_changes)
 
         return changes
 
-    def _detect_themes(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
+    def _detect_themes(
+        self, chapter_data: ChapterData, chapter_num: int,
+        semantic_scores: Optional[List[Dict[str, float]]] = None,
+    ) -> List[StateChange]:
         """Detect and track themes in the chapter."""
         changes: List[StateChange] = []
         text = chapter_data.raw_text.lower()
 
-        hit_counts = self._count_hits_via_classifier(chapter_data.sentences, self.THEME_KEYWORDS)
+        hit_counts = self._aggregate_hit_counts(semantic_scores, self.THEME_KEYWORDS)
         if hit_counts is None:
             hit_counts = self._count_hits_via_keywords(text, self.THEME_KEYWORDS)
 
@@ -242,12 +262,15 @@ class ThemeMemory(BaseMemory):
 
         return changes
 
-    def _detect_symbols(self, chapter_data: ChapterData, chapter_num: int) -> List[StateChange]:
+    def _detect_symbols(
+        self, chapter_data: ChapterData, chapter_num: int,
+        semantic_scores: Optional[List[Dict[str, float]]] = None,
+    ) -> List[StateChange]:
         """Detect and track symbols in the chapter."""
         changes: List[StateChange] = []
         text = chapter_data.raw_text.lower()
 
-        hit_counts = self._count_hits_via_classifier(chapter_data.sentences, self.SYMBOL_KEYWORDS)
+        hit_counts = self._aggregate_hit_counts(semantic_scores, self.SYMBOL_KEYWORDS)
         if hit_counts is None:
             hit_counts = self._count_hits_via_keywords(text, self.SYMBOL_KEYWORDS)
 
