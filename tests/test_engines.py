@@ -264,6 +264,39 @@ class TestEditorialEngine:
 
         assert any(f["category"] == "pacing" and "very short chapter" in f["title"].lower() for f in findings)
 
+    def test_pacing_inspector_zero_indexed_chapters_no_false_gap(self):
+        """Regression test: PacingInspector._check_chapter_distribution assumed
+        1-indexed chapters, so a genuine gap-free 0-indexed run (chapters
+        0, 1, 2, 3 -- last_processed_chapter=3, total_chapters_processed=4)
+        was incorrectly flagged as a gap ("expected 3 but processed 4").
+        Confirmed present in this project's own real
+        data/reports/editorial_report_ch3.json before this fix."""
+        from src.review.pacing_inspector import PacingInspector
+
+        state = NarrativeState()
+        state.last_processed_chapter = 3
+        state.total_chapters_processed = 4
+
+        inspector = PacingInspector()
+        findings = inspector.inspect(state, None)
+
+        assert not any("chapter processing gap" in f.title.lower() for f in findings)
+
+    def test_pacing_inspector_real_gap_still_detected(self):
+        """A genuine gap (chapters 0-2 processed, but last_processed_chapter
+        jumped to 5) should still be flagged under either indexing
+        convention."""
+        from src.review.pacing_inspector import PacingInspector
+
+        state = NarrativeState()
+        state.last_processed_chapter = 5
+        state.total_chapters_processed = 3
+
+        inspector = PacingInspector()
+        findings = inspector.inspect(state, None)
+
+        assert any("chapter processing gap" in f.title.lower() for f in findings)
+
     def test_voice_inspector_sudden_style_shift(self):
         engine = EditorialEngine()
         state = NarrativeState()

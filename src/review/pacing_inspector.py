@@ -101,14 +101,25 @@ class PacingInspector(BaseInspector):
         if state.total_chapters_processed < 3:
             return
 
-        # Check for gaps in chapter processing
-        expected_chapters = list(range(1, state.last_processed_chapter + 1))
-        if state.total_chapters_processed != len(expected_chapters):
+        # Check for gaps in chapter processing. Chapters may be 0-indexed (this
+        # project's own sample manuscript starts at chapter_00_prologue.txt) or
+        # 1-indexed -- accept either as gap-free rather than assuming 1-indexed,
+        # which produced a false positive on this project's own real data
+        # (last_processed_chapter=3, total_chapters_processed=4 -- a genuine
+        # gap-free 0..3 run -- incorrectly flagged as "expected 3 but processed
+        # 4"; confirmed in data/reports/editorial_report_ch3.json before this
+        # fix). Caught by a self-review pass.
+        no_gap_0_indexed = state.total_chapters_processed == state.last_processed_chapter + 1
+        no_gap_1_indexed = state.total_chapters_processed == state.last_processed_chapter
+        if not (no_gap_0_indexed or no_gap_1_indexed):
             findings.append(Finding(
                 severity='note',
                 category='pacing',
                 title='Chapter processing gap',
-                description=f"Expected {len(expected_chapters)} chapters but processed {state.total_chapters_processed}. There may be gaps in chapter numbering.",
+                description=(
+                    f"Processed {state.total_chapters_processed} chapter(s), but the last processed "
+                    f"chapter number is {state.last_processed_chapter}. There may be gaps in chapter numbering."
+                ),
                 chapter=chapter,
                 evidence_ids=[],
                 related_entities=[],
