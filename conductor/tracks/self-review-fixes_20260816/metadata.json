@@ -1,0 +1,16 @@
+{
+  "id": "self-review-fixes_20260816",
+  "title": "Self-Review Bug Fixes",
+  "type": "bug",
+  "status": "complete",
+  "created": "2026-08-16T00:00:00Z",
+  "updated": "2026-08-16T00:00:00Z",
+  "phases": {
+    "total": 2,
+    "completed": 2
+  },
+  "tasks": {
+    "total": 7,
+    "completed": 7
+  }
+}
