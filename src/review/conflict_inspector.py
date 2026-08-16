@@ -52,7 +52,14 @@ class ConflictInspector(BaseInspector):
                         confidence=0.8,
                     ))
             elif status == "resolved":
-                resolved_entry = mystery_fields.get("resolved_chapter")
+                # Field is written as "chapter_resolved" by MysteryMemory/PromiseMemory
+                # (see _check_revelations / resolution handling) -- this used to read
+                # "resolved_chapter" (reversed word order), which never matched, so
+                # resolved_entry was always None and every resolved mystery/promise fell
+                # back to res_chap == intro_chap, firing a false "Abrupt resolution"
+                # finding regardless of when it was actually resolved. Caught by a
+                # self-review pass.
+                resolved_entry = mystery_fields.get("chapter_resolved")
                 res_chap = resolved_entry.current.value if resolved_entry and resolved_entry.current else intro_chap
                 # Check for abrupt resolution (resolved in same chapter)
                 if res_chap == intro_chap:
@@ -99,7 +106,9 @@ class ConflictInspector(BaseInspector):
                         confidence=0.8,
                     ))
             elif status in ("resolved", "broken"):
-                resolved_entry = promise_fields.get("resolved_chapter")
+                # Same key-name mismatch as the mystery check above -- PromiseMemory
+                # writes "chapter_resolved", not "resolved_chapter".
+                resolved_entry = promise_fields.get("chapter_resolved")
                 res_chap = resolved_entry.current.value if resolved_entry and resolved_entry.current else intro_chap
                 if res_chap == intro_chap:
                     findings.append(Finding(

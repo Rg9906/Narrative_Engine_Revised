@@ -248,6 +248,51 @@ class TestEditorialEngine:
 
         assert any(f["category"] == "conflict" and "neglected mystery" in f["title"].lower() for f in findings)
 
+    def test_conflict_inspector_no_false_abrupt_resolution(self):
+        """Regression test: ConflictInspector read mystery/promise resolution
+        chapter under the key "resolved_chapter", but MysteryMemory/
+        PromiseMemory write it as "chapter_resolved" -- the mismatch meant
+        resolved_entry was always None, so res_chap always fell back to
+        intro_chap, making EVERY resolved mystery/promise look "abruptly"
+        resolved in the same chapter it was introduced, regardless of the
+        real gap. Caught by a self-review pass."""
+        from src.models.state import StateEntry, StateSnapshot
+        from src.review.conflict_inspector import ConflictInspector
+
+        state = NarrativeState()
+        state.last_processed_chapter = 10
+
+        mystery_status = StateEntry(key="status")
+        mystery_status.update(StateSnapshot(value="resolved", chapter=8))
+        mystery_intro = StateEntry(key="chapter_introduced")
+        mystery_intro.update(StateSnapshot(value=1, chapter=1))
+        mystery_resolved = StateEntry(key="chapter_resolved")
+        mystery_resolved.update(StateSnapshot(value=8, chapter=8))
+        state.mysteries["mystery_1"] = {
+            "status": mystery_status,
+            "chapter_introduced": mystery_intro,
+            "chapter_resolved": mystery_resolved,
+            "mystery_text": StateEntry(key="mystery_text"),
+        }
+
+        promise_status = StateEntry(key="status")
+        promise_status.update(StateSnapshot(value="resolved", chapter=9))
+        promise_made = StateEntry(key="chapter_made")
+        promise_made.update(StateSnapshot(value=2, chapter=2))
+        promise_resolved = StateEntry(key="chapter_resolved")
+        promise_resolved.update(StateSnapshot(value=9, chapter=9))
+        state.promises["promise_1"] = {
+            "status": promise_status,
+            "chapter_made": promise_made,
+            "chapter_resolved": promise_resolved,
+            "promise_text": StateEntry(key="promise_text"),
+        }
+
+        inspector = ConflictInspector()
+        findings = inspector.inspect(state, None)
+
+        assert not any("abrupt" in f.title.lower() for f in findings)
+
     def test_pacing_inspector_extreme_word_count(self):
         engine = EditorialEngine()
         state = NarrativeState()
