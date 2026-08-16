@@ -1,0 +1,7853 @@
+{
+  "nodes": [
+    {
+      "id": "char::giselle",
+      "label": "Giselle",
+      "type": "character"
+    },
+    {
+      "id": "char::vin",
+      "label": "Vin",
+      "type": "character"
+    },
+    {
+      "id": "char::laurie",
+      "label": "Laurie",
+      "type": "character"
+    },
+    {
+      "id": "char::sebastian",
+      "label": "Sebastian",
+      "type": "character"
+    },
+    {
+      "id": "char::marlene",
+      "label": "Marlene",
+      "type": "character"
+    },
+    {
+      "id": "char::mr_whitmore",
+      "label": "Mr. Whitmore",
+      "type": "character"
+    },
+    {
+      "id": "char::sound",
+      "label": "Sound",
+      "type": "character"
+    },
+    {
+      "id": "char::sirius",
+      "label": "Sirius",
+      "type": "character"
+    },
+    {
+      "id": "char::pip",
+      "label": "Pip",
+      "type": "character"
+    },
+    {
+      "id": "char::frodo",
+      "label": "Frodo",
+      "type": "character"
+    },
+    {
+      "id": "char::jamie",
+      "label": "Jamie",
+      "type": "character"
+    },
+    {
+      "id": "char::bull",
+      "label": "Bull",
+      "type": "character"
+    },
+    {
+      "id": "char::dom",
+      "label": "Dom",
+      "type": "character"
+    },
+    {
+      "id": "char::di",
+      "label": "DI",
+      "type": "character"
+    },
+    {
+      "id": "char::detective_inspector",
+      "label": "Detective Inspector Reyes",
+      "type": "character"
+    },
+    {
+      "id": "char::henshaw",
+      "label": "Henshaw",
+      "type": "character"
+    },
+    {
+      "id": "char::sergent_rhodes",
+      "label": "Sergeant Rhodes",
+      "type": "character"
+    },
+    {
+      "id": "char::walt_and_jakob",
+      "label": "Walt and Jakob",
+      "type": "character"
+    },
+    {
+      "id": "char::dcs",
+      "label": "DCs",
+      "type": "character"
+    },
+    {
+      "id": "char::private",
+      "label": "Private",
+      "type": "character"
+    },
+    {
+      "id": "char::his_daughter",
+      "label": "his daughter",
+      "type": "character"
+    },
+    {
+      "id": "char::bill_foster",
+      "label": "Bill Foster",
+      "type": "character"
+    },
+    {
+      "id": "world::easel",
+      "label": "Easel",
+      "type": "world"
+    },
+    {
+      "id": "world::porcelain_cup",
+      "label": "Porcelain Cup",
+      "type": "world"
+    },
+    {
+      "id": "world::canvas",
+      "label": "Canvas",
+      "type": "world"
+    },
+    {
+      "id": "world::sun",
+      "label": "Sun",
+      "type": "world"
+    },
+    {
+      "id": "world::hearth",
+      "label": "Hearth",
+      "type": "world"
+    },
+    {
+      "id": "world::study_window",
+      "label": "Study Window",
+      "type": "world"
+    },
+    {
+      "id": "world::walkman",
+      "label": "Walkman",
+      "type": "world"
+    },
+    {
+      "id": "world::south",
+      "label": "South",
+      "type": "world"
+    },
+    {
+      "id": "world::47_marple_street",
+      "label": "47 Marple Street",
+      "type": "world"
+    },
+    {
+      "id": "world::pearl_necklace",
+      "label": "Pearl Necklace",
+      "type": "world"
+    },
+    {
+      "id": "world::peanut_butter",
+      "label": "Peanut Butter",
+      "type": "world"
+    },
+    {
+      "id": "world::door",
+      "label": "Door",
+      "type": "world"
+    },
+    {
+      "id": "world::second_floor",
+      "label": "Second Floor",
+      "type": "world"
+    },
+    {
+      "id": "world::harbor",
+      "label": "Harbor",
+      "type": "world"
+    },
+    {
+      "id": "world::bull",
+      "label": "Bull",
+      "type": "world"
+    },
+    {
+      "id": "world::the_house",
+      "label": "The House",
+      "type": "world"
+    },
+    {
+      "id": "theme::theme_love",
+      "label": "love",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_death",
+      "label": "death",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_freedom",
+      "label": "freedom",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_betrayal",
+      "label": "betrayal",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_good_vs_evil",
+      "label": "good_vs_evil",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_identity",
+      "label": "identity",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_sacrifice",
+      "label": "sacrifice",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_light",
+      "label": "light",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_darkness",
+      "label": "darkness",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_water",
+      "label": "water",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_fire",
+      "label": "fire",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_blood",
+      "label": "blood",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_mirror",
+      "label": "mirror",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_key",
+      "label": "key",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_bird",
+      "label": "bird",
+      "type": "theme"
+    },
+    {
+      "id": "theme::t1",
+      "label": "T1",
+      "type": "theme"
+    },
+    {
+      "id": "theme::t2",
+      "label": "T2",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_coming_of_age",
+      "label": "coming_of_age",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_nature_vs_civilization",
+      "label": "nature_vs_civilization",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_hope",
+      "label": "hope",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_justice",
+      "label": "justice",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_tree",
+      "label": "tree",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_power",
+      "label": "power",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_fate_vs_free_will",
+      "label": "fate_vs_free_will",
+      "type": "theme"
+    },
+    {
+      "id": "theme::symbol_door",
+      "label": "door",
+      "type": "theme"
+    },
+    {
+      "id": "theme::theme_grief",
+      "label": "Theme Grief",
+      "type": "theme"
+    },
+    {
+      "id": "event::evt::1",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::2",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::3",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::4",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::5",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::6",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::7",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::8",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::9",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::10",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::11",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::12",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::13",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::14",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::15",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::16",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::17",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::18",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::19",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::20",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::21",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::22",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::23",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::24",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::25",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::26",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::27",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::28",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::29",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::30",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::31",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::32",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::33",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::34",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::35",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::36",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::37",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::38",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::39",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::40",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::41",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::42",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::43",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::44",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::45",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::46",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::47",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::48",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::49",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::50",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::51",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::52",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::53",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::54",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::55",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::56",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::57",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::58",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::59",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::60",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::61",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::62",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::63",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::64",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::65",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::66",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::67",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::68",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::69",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::70",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::71",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::72",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::73",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::74",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::75",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::76",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::77",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::78",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::79",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::80",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::81",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::82",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::83",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::84",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::85",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::86",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::87",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::88",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::89",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::90",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::91",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::92",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::93",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::94",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::95",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::96",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::97",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::98",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::99",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::100",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::101",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::102",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::103",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::104",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::105",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::106",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::107",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::108",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::109",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::110",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::111",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::112",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::113",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::114",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::115",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::116",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::117",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::118",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::119",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::120",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::121",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::122",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::123",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::124",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::125",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::126",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::127",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::128",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::129",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::130",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::131",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::132",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::133",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::134",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::135",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::136",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::137",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::138",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::139",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::140",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::141",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::142",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::143",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::144",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::145",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::146",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::147",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::148",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::149",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::150",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::151",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::152",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::153",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::154",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::155",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::156",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::157",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::158",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::159",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::160",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::161",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::162",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::163",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::164",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::165",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::166",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::167",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::168",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::169",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::170",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::171",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::172",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::173",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::174",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::175",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::176",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::177",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::178",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::179",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::180",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::181",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::182",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::183",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::184",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::185",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::186",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::187",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::188",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::189",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::190",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::191",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::192",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::193",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::194",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::195",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::196",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::197",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::198",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::199",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::200",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::201",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::202",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::203",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::204",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::205",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::206",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::207",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::208",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::209",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::210",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::211",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::212",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::213",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::214",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::215",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::216",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::217",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::218",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::219",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::220",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::221",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::222",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::223",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::224",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::225",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::226",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::227",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::228",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::229",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::230",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::231",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::232",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::233",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::234",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::235",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::236",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::237",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::238",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::239",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::240",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::241",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::242",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::243",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::244",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::245",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::246",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::247",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::248",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::249",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::250",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::251",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::252",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::253",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::254",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::255",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::256",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::257",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::258",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::259",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::260",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::261",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::262",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::263",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::264",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::265",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::266",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::267",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::268",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::269",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::270",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::271",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::272",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::273",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::274",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::275",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::276",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::277",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::278",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::279",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::280",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::281",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::282",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::283",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::284",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::285",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::286",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::287",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::288",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::289",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::290",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::291",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::292",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::293",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::294",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::295",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::296",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::297",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::298",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::299",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::300",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::301",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::302",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::303",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::304",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::305",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::306",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::307",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::308",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::309",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::310",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::311",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::312",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::313",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::314",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::315",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::316",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::317",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::318",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::319",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::320",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::321",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::322",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::323",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::324",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::325",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::326",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::327",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::328",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::329",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::330",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::331",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::332",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::333",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::334",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::335",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::336",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::337",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::338",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::339",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::340",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::341",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::342",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::343",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::344",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "event::evt::345",
+      "label": "timeline_event",
+      "type": "event"
+    },
+    {
+      "id": "chapter::1",
+      "label": "Chapter 1",
+      "type": "chapter"
+    },
+    {
+      "id": "chapter::2",
+      "label": "Chapter 2",
+      "type": "chapter"
+    },
+    {
+      "id": "chapter::3",
+      "label": "Chapter 3",
+      "type": "chapter"
+    },
+    {
+      "id": "chapter::4",
+      "label": "Chapter 4",
+      "type": "chapter"
+    }
+  ],
+  "edges": [
+    {
+      "id": "char_world::giselle::easel",
+      "source": "char::giselle",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::porcelain_cup",
+      "source": "char::giselle",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::canvas",
+      "source": "char::giselle",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::sun",
+      "source": "char::giselle",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::hearth",
+      "source": "char::giselle",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::study_window",
+      "source": "char::giselle",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::harbor",
+      "source": "char::giselle",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::bull",
+      "source": "char::giselle",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::giselle::the_house",
+      "source": "char::giselle",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::easel",
+      "source": "char::vin",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::porcelain_cup",
+      "source": "char::vin",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::canvas",
+      "source": "char::vin",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::sun",
+      "source": "char::vin",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::hearth",
+      "source": "char::vin",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::study_window",
+      "source": "char::vin",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::peanut_butter",
+      "source": "char::vin",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::door",
+      "source": "char::vin",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::vin::second_floor",
+      "source": "char::vin",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::laurie::easel",
+      "source": "char::laurie",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::laurie::porcelain_cup",
+      "source": "char::laurie",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::laurie::canvas",
+      "source": "char::laurie",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::laurie::sun",
+      "source": "char::laurie",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::laurie::hearth",
+      "source": "char::laurie",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::laurie::study_window",
+      "source": "char::laurie",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sebastian::easel",
+      "source": "char::sebastian",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sebastian::porcelain_cup",
+      "source": "char::sebastian",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sebastian::canvas",
+      "source": "char::sebastian",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sebastian::sun",
+      "source": "char::sebastian",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sebastian::hearth",
+      "source": "char::sebastian",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sebastian::study_window",
+      "source": "char::sebastian",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::easel",
+      "source": "char::marlene",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::porcelain_cup",
+      "source": "char::marlene",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::canvas",
+      "source": "char::marlene",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::sun",
+      "source": "char::marlene",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::hearth",
+      "source": "char::marlene",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::study_window",
+      "source": "char::marlene",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::harbor",
+      "source": "char::marlene",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::bull",
+      "source": "char::marlene",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::marlene::the_house",
+      "source": "char::marlene",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::easel",
+      "source": "char::mr_whitmore",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::porcelain_cup",
+      "source": "char::mr_whitmore",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::canvas",
+      "source": "char::mr_whitmore",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::sun",
+      "source": "char::mr_whitmore",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::hearth",
+      "source": "char::mr_whitmore",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::study_window",
+      "source": "char::mr_whitmore",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::walkman",
+      "source": "char::mr_whitmore",
+      "target": "world::walkman",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::south",
+      "source": "char::mr_whitmore",
+      "target": "world::south",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::47_marple_street",
+      "source": "char::mr_whitmore",
+      "target": "world::47_marple_street",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::pearl_necklace",
+      "source": "char::mr_whitmore",
+      "target": "world::pearl_necklace",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::peanut_butter",
+      "source": "char::mr_whitmore",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::door",
+      "source": "char::mr_whitmore",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::second_floor",
+      "source": "char::mr_whitmore",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::harbor",
+      "source": "char::mr_whitmore",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::bull",
+      "source": "char::mr_whitmore",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::mr_whitmore::the_house",
+      "source": "char::mr_whitmore",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::easel",
+      "source": "char::sound",
+      "target": "world::easel",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::porcelain_cup",
+      "source": "char::sound",
+      "target": "world::porcelain_cup",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::canvas",
+      "source": "char::sound",
+      "target": "world::canvas",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::sun",
+      "source": "char::sound",
+      "target": "world::sun",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::hearth",
+      "source": "char::sound",
+      "target": "world::hearth",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::study_window",
+      "source": "char::sound",
+      "target": "world::study_window",
+      "label": "ch. 0",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::peanut_butter",
+      "source": "char::sound",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::door",
+      "source": "char::sound",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sound::second_floor",
+      "source": "char::sound",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::walkman",
+      "source": "char::sirius",
+      "target": "world::walkman",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::south",
+      "source": "char::sirius",
+      "target": "world::south",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::47_marple_street",
+      "source": "char::sirius",
+      "target": "world::47_marple_street",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::pearl_necklace",
+      "source": "char::sirius",
+      "target": "world::pearl_necklace",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::harbor",
+      "source": "char::sirius",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::bull",
+      "source": "char::sirius",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sirius::the_house",
+      "source": "char::sirius",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::pip::walkman",
+      "source": "char::pip",
+      "target": "world::walkman",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::pip::south",
+      "source": "char::pip",
+      "target": "world::south",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::pip::47_marple_street",
+      "source": "char::pip",
+      "target": "world::47_marple_street",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::pip::pearl_necklace",
+      "source": "char::pip",
+      "target": "world::pearl_necklace",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::frodo::walkman",
+      "source": "char::frodo",
+      "target": "world::walkman",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::frodo::south",
+      "source": "char::frodo",
+      "target": "world::south",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::frodo::47_marple_street",
+      "source": "char::frodo",
+      "target": "world::47_marple_street",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::frodo::pearl_necklace",
+      "source": "char::frodo",
+      "target": "world::pearl_necklace",
+      "label": "ch. 1",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::jamie::peanut_butter",
+      "source": "char::jamie",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::jamie::door",
+      "source": "char::jamie",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::jamie::second_floor",
+      "source": "char::jamie",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::jamie::harbor",
+      "source": "char::jamie",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::jamie::bull",
+      "source": "char::jamie",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::jamie::the_house",
+      "source": "char::jamie",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bull::peanut_butter",
+      "source": "char::bull",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bull::door",
+      "source": "char::bull",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bull::second_floor",
+      "source": "char::bull",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bull::harbor",
+      "source": "char::bull",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bull::bull",
+      "source": "char::bull",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bull::the_house",
+      "source": "char::bull",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::dom::peanut_butter",
+      "source": "char::dom",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::dom::door",
+      "source": "char::dom",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::dom::second_floor",
+      "source": "char::dom",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::di::peanut_butter",
+      "source": "char::di",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::di::door",
+      "source": "char::di",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::di::second_floor",
+      "source": "char::di",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::detective_inspector::peanut_butter",
+      "source": "char::detective_inspector",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::detective_inspector::door",
+      "source": "char::detective_inspector",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::detective_inspector::second_floor",
+      "source": "char::detective_inspector",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::detective_inspector::harbor",
+      "source": "char::detective_inspector",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::detective_inspector::bull",
+      "source": "char::detective_inspector",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::detective_inspector::the_house",
+      "source": "char::detective_inspector",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::henshaw::peanut_butter",
+      "source": "char::henshaw",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::henshaw::door",
+      "source": "char::henshaw",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::henshaw::second_floor",
+      "source": "char::henshaw",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sergent_rhodes::peanut_butter",
+      "source": "char::sergent_rhodes",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sergent_rhodes::door",
+      "source": "char::sergent_rhodes",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sergent_rhodes::second_floor",
+      "source": "char::sergent_rhodes",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sergent_rhodes::harbor",
+      "source": "char::sergent_rhodes",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sergent_rhodes::bull",
+      "source": "char::sergent_rhodes",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::sergent_rhodes::the_house",
+      "source": "char::sergent_rhodes",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::walt_and_jakob::peanut_butter",
+      "source": "char::walt_and_jakob",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::walt_and_jakob::door",
+      "source": "char::walt_and_jakob",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::walt_and_jakob::second_floor",
+      "source": "char::walt_and_jakob",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::dcs::peanut_butter",
+      "source": "char::dcs",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::dcs::door",
+      "source": "char::dcs",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::dcs::second_floor",
+      "source": "char::dcs",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::private::peanut_butter",
+      "source": "char::private",
+      "target": "world::peanut_butter",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::private::door",
+      "source": "char::private",
+      "target": "world::door",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::private::second_floor",
+      "source": "char::private",
+      "target": "world::second_floor",
+      "label": "ch. 2",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::his_daughter::harbor",
+      "source": "char::his_daughter",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::his_daughter::bull",
+      "source": "char::his_daughter",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::his_daughter::the_house",
+      "source": "char::his_daughter",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bill_foster::harbor",
+      "source": "char::bill_foster",
+      "target": "world::harbor",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bill_foster::bull",
+      "source": "char::bill_foster",
+      "target": "world::bull",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_world::bill_foster::the_house",
+      "source": "char::bill_foster",
+      "target": "world::the_house",
+      "label": "ch. 3",
+      "type": "character_world"
+    },
+    {
+      "id": "char_theme::giselle::theme_love",
+      "source": "char::giselle",
+      "target": "theme::theme_love",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_love",
+      "source": "char::vin",
+      "target": "theme::theme_love",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_love",
+      "source": "char::laurie",
+      "target": "theme::theme_love",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_love",
+      "source": "char::sebastian",
+      "target": "theme::theme_love",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_love",
+      "source": "char::marlene",
+      "target": "theme::theme_love",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_love",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_love",
+      "label": "ch. 0, 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_love",
+      "source": "char::sound",
+      "target": "theme::theme_love",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_love",
+      "source": "char::sirius",
+      "target": "theme::theme_love",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_love",
+      "source": "char::pip",
+      "target": "theme::theme_love",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_love",
+      "source": "char::frodo",
+      "target": "theme::theme_love",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_death",
+      "source": "char::giselle",
+      "target": "theme::theme_death",
+      "label": "ch. 0, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_death",
+      "source": "char::vin",
+      "target": "theme::theme_death",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_death",
+      "source": "char::laurie",
+      "target": "theme::theme_death",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_death",
+      "source": "char::sebastian",
+      "target": "theme::theme_death",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_death",
+      "source": "char::marlene",
+      "target": "theme::theme_death",
+      "label": "ch. 0, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_death",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_death",
+      "label": "ch. 0, 1, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_death",
+      "source": "char::sound",
+      "target": "theme::theme_death",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_death",
+      "source": "char::sirius",
+      "target": "theme::theme_death",
+      "label": "ch. 1, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_death",
+      "source": "char::pip",
+      "target": "theme::theme_death",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_death",
+      "source": "char::frodo",
+      "target": "theme::theme_death",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::theme_death",
+      "source": "char::jamie",
+      "target": "theme::theme_death",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::theme_death",
+      "source": "char::bull",
+      "target": "theme::theme_death",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::theme_death",
+      "source": "char::detective_inspector",
+      "target": "theme::theme_death",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::theme_death",
+      "source": "char::sergent_rhodes",
+      "target": "theme::theme_death",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::his_daughter::theme_death",
+      "source": "char::his_daughter",
+      "target": "theme::theme_death",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bill_foster::theme_death",
+      "source": "char::bill_foster",
+      "target": "theme::theme_death",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_freedom",
+      "source": "char::giselle",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_freedom",
+      "source": "char::vin",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_freedom",
+      "source": "char::laurie",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_freedom",
+      "source": "char::sebastian",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_freedom",
+      "source": "char::marlene",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_freedom",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0, 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_freedom",
+      "source": "char::sound",
+      "target": "theme::theme_freedom",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_freedom",
+      "source": "char::sirius",
+      "target": "theme::theme_freedom",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_freedom",
+      "source": "char::pip",
+      "target": "theme::theme_freedom",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_freedom",
+      "source": "char::frodo",
+      "target": "theme::theme_freedom",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_betrayal",
+      "source": "char::giselle",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_betrayal",
+      "source": "char::vin",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_betrayal",
+      "source": "char::laurie",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_betrayal",
+      "source": "char::sebastian",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_betrayal",
+      "source": "char::marlene",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_betrayal",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0, 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_betrayal",
+      "source": "char::sound",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_betrayal",
+      "source": "char::sirius",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_betrayal",
+      "source": "char::pip",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_betrayal",
+      "source": "char::frodo",
+      "target": "theme::theme_betrayal",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_good_vs_evil",
+      "source": "char::giselle",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_good_vs_evil",
+      "source": "char::vin",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_good_vs_evil",
+      "source": "char::laurie",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_good_vs_evil",
+      "source": "char::sebastian",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_good_vs_evil",
+      "source": "char::marlene",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_good_vs_evil",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0, 1, 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_good_vs_evil",
+      "source": "char::sound",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_good_vs_evil",
+      "source": "char::sirius",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 1, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_good_vs_evil",
+      "source": "char::pip",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_good_vs_evil",
+      "source": "char::frodo",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::theme_good_vs_evil",
+      "source": "char::jamie",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::theme_good_vs_evil",
+      "source": "char::bull",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::theme_good_vs_evil",
+      "source": "char::dom",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::theme_good_vs_evil",
+      "source": "char::di",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::theme_good_vs_evil",
+      "source": "char::detective_inspector",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::theme_good_vs_evil",
+      "source": "char::henshaw",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::theme_good_vs_evil",
+      "source": "char::sergent_rhodes",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::theme_good_vs_evil",
+      "source": "char::walt_and_jakob",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::theme_good_vs_evil",
+      "source": "char::dcs",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::theme_good_vs_evil",
+      "source": "char::private",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::his_daughter::theme_good_vs_evil",
+      "source": "char::his_daughter",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bill_foster::theme_good_vs_evil",
+      "source": "char::bill_foster",
+      "target": "theme::theme_good_vs_evil",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_identity",
+      "source": "char::giselle",
+      "target": "theme::theme_identity",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_identity",
+      "source": "char::vin",
+      "target": "theme::theme_identity",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_identity",
+      "source": "char::laurie",
+      "target": "theme::theme_identity",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_identity",
+      "source": "char::sebastian",
+      "target": "theme::theme_identity",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_identity",
+      "source": "char::marlene",
+      "target": "theme::theme_identity",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_identity",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_identity",
+      "label": "ch. 0, 1, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_identity",
+      "source": "char::sound",
+      "target": "theme::theme_identity",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_identity",
+      "source": "char::sirius",
+      "target": "theme::theme_identity",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_identity",
+      "source": "char::pip",
+      "target": "theme::theme_identity",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_identity",
+      "source": "char::frodo",
+      "target": "theme::theme_identity",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::theme_identity",
+      "source": "char::jamie",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::theme_identity",
+      "source": "char::bull",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::theme_identity",
+      "source": "char::dom",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::theme_identity",
+      "source": "char::di",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::theme_identity",
+      "source": "char::detective_inspector",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::theme_identity",
+      "source": "char::henshaw",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::theme_identity",
+      "source": "char::sergent_rhodes",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::theme_identity",
+      "source": "char::walt_and_jakob",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::theme_identity",
+      "source": "char::dcs",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::theme_identity",
+      "source": "char::private",
+      "target": "theme::theme_identity",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_sacrifice",
+      "source": "char::giselle",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_sacrifice",
+      "source": "char::vin",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::theme_sacrifice",
+      "source": "char::laurie",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::theme_sacrifice",
+      "source": "char::sebastian",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_sacrifice",
+      "source": "char::marlene",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_sacrifice",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0, 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_sacrifice",
+      "source": "char::sound",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_sacrifice",
+      "source": "char::sirius",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_sacrifice",
+      "source": "char::pip",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_sacrifice",
+      "source": "char::frodo",
+      "target": "theme::theme_sacrifice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_light",
+      "source": "char::giselle",
+      "target": "theme::symbol_light",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_light",
+      "source": "char::vin",
+      "target": "theme::symbol_light",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_light",
+      "source": "char::laurie",
+      "target": "theme::symbol_light",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_light",
+      "source": "char::sebastian",
+      "target": "theme::symbol_light",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_light",
+      "source": "char::marlene",
+      "target": "theme::symbol_light",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_light",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_light",
+      "label": "ch. 0, 1, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_light",
+      "source": "char::sound",
+      "target": "theme::symbol_light",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_light",
+      "source": "char::sirius",
+      "target": "theme::symbol_light",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_light",
+      "source": "char::pip",
+      "target": "theme::symbol_light",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_light",
+      "source": "char::frodo",
+      "target": "theme::symbol_light",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_light",
+      "source": "char::jamie",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_light",
+      "source": "char::bull",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_light",
+      "source": "char::dom",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_light",
+      "source": "char::di",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_light",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_light",
+      "source": "char::henshaw",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_light",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_light",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_light",
+      "source": "char::dcs",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_light",
+      "source": "char::private",
+      "target": "theme::symbol_light",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_darkness",
+      "source": "char::giselle",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_darkness",
+      "source": "char::vin",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_darkness",
+      "source": "char::laurie",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_darkness",
+      "source": "char::sebastian",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_darkness",
+      "source": "char::marlene",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_darkness",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0, 1, 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_darkness",
+      "source": "char::sound",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_darkness",
+      "source": "char::sirius",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 1, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_darkness",
+      "source": "char::pip",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_darkness",
+      "source": "char::frodo",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_darkness",
+      "source": "char::jamie",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_darkness",
+      "source": "char::bull",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_darkness",
+      "source": "char::dom",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_darkness",
+      "source": "char::di",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_darkness",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_darkness",
+      "source": "char::henshaw",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_darkness",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_darkness",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_darkness",
+      "source": "char::dcs",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_darkness",
+      "source": "char::private",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::his_daughter::symbol_darkness",
+      "source": "char::his_daughter",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bill_foster::symbol_darkness",
+      "source": "char::bill_foster",
+      "target": "theme::symbol_darkness",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_water",
+      "source": "char::giselle",
+      "target": "theme::symbol_water",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_water",
+      "source": "char::vin",
+      "target": "theme::symbol_water",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_water",
+      "source": "char::laurie",
+      "target": "theme::symbol_water",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_water",
+      "source": "char::sebastian",
+      "target": "theme::symbol_water",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_water",
+      "source": "char::marlene",
+      "target": "theme::symbol_water",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_water",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_water",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_water",
+      "source": "char::sound",
+      "target": "theme::symbol_water",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_water",
+      "source": "char::jamie",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_water",
+      "source": "char::bull",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_water",
+      "source": "char::dom",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_water",
+      "source": "char::di",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_water",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_water",
+      "source": "char::henshaw",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_water",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_water",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_water",
+      "source": "char::dcs",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_water",
+      "source": "char::private",
+      "target": "theme::symbol_water",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_fire",
+      "source": "char::giselle",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_fire",
+      "source": "char::vin",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_fire",
+      "source": "char::laurie",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_fire",
+      "source": "char::sebastian",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_fire",
+      "source": "char::marlene",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_fire",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0, 1, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_fire",
+      "source": "char::sound",
+      "target": "theme::symbol_fire",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_fire",
+      "source": "char::sirius",
+      "target": "theme::symbol_fire",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_fire",
+      "source": "char::pip",
+      "target": "theme::symbol_fire",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_fire",
+      "source": "char::frodo",
+      "target": "theme::symbol_fire",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_fire",
+      "source": "char::jamie",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_fire",
+      "source": "char::bull",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_fire",
+      "source": "char::dom",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_fire",
+      "source": "char::di",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_fire",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_fire",
+      "source": "char::henshaw",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_fire",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_fire",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_fire",
+      "source": "char::dcs",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_fire",
+      "source": "char::private",
+      "target": "theme::symbol_fire",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_blood",
+      "source": "char::giselle",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_blood",
+      "source": "char::vin",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_blood",
+      "source": "char::laurie",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_blood",
+      "source": "char::sebastian",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_blood",
+      "source": "char::marlene",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_blood",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0, 1, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_blood",
+      "source": "char::sound",
+      "target": "theme::symbol_blood",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_blood",
+      "source": "char::sirius",
+      "target": "theme::symbol_blood",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_blood",
+      "source": "char::pip",
+      "target": "theme::symbol_blood",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_blood",
+      "source": "char::frodo",
+      "target": "theme::symbol_blood",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_blood",
+      "source": "char::jamie",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_blood",
+      "source": "char::bull",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_blood",
+      "source": "char::dom",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_blood",
+      "source": "char::di",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_blood",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_blood",
+      "source": "char::henshaw",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_blood",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_blood",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_blood",
+      "source": "char::dcs",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_blood",
+      "source": "char::private",
+      "target": "theme::symbol_blood",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_mirror",
+      "source": "char::giselle",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_mirror",
+      "source": "char::vin",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_mirror",
+      "source": "char::laurie",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_mirror",
+      "source": "char::sebastian",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_mirror",
+      "source": "char::marlene",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_mirror",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0, 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_mirror",
+      "source": "char::sound",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_mirror",
+      "source": "char::sirius",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_mirror",
+      "source": "char::pip",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_mirror",
+      "source": "char::frodo",
+      "target": "theme::symbol_mirror",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_key",
+      "source": "char::giselle",
+      "target": "theme::symbol_key",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_key",
+      "source": "char::vin",
+      "target": "theme::symbol_key",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_key",
+      "source": "char::laurie",
+      "target": "theme::symbol_key",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_key",
+      "source": "char::sebastian",
+      "target": "theme::symbol_key",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_key",
+      "source": "char::marlene",
+      "target": "theme::symbol_key",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_key",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_key",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_key",
+      "source": "char::sound",
+      "target": "theme::symbol_key",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_key",
+      "source": "char::jamie",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_key",
+      "source": "char::bull",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_key",
+      "source": "char::dom",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_key",
+      "source": "char::di",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_key",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_key",
+      "source": "char::henshaw",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_key",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_key",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_key",
+      "source": "char::dcs",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_key",
+      "source": "char::private",
+      "target": "theme::symbol_key",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_bird",
+      "source": "char::giselle",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_bird",
+      "source": "char::vin",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::symbol_bird",
+      "source": "char::laurie",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::symbol_bird",
+      "source": "char::sebastian",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_bird",
+      "source": "char::marlene",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_bird",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0, 1, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_bird",
+      "source": "char::sound",
+      "target": "theme::symbol_bird",
+      "label": "ch. 0, 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_bird",
+      "source": "char::sirius",
+      "target": "theme::symbol_bird",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_bird",
+      "source": "char::pip",
+      "target": "theme::symbol_bird",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_bird",
+      "source": "char::frodo",
+      "target": "theme::symbol_bird",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_bird",
+      "source": "char::jamie",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_bird",
+      "source": "char::bull",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_bird",
+      "source": "char::dom",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_bird",
+      "source": "char::di",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_bird",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_bird",
+      "source": "char::henshaw",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_bird",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_bird",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_bird",
+      "source": "char::dcs",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_bird",
+      "source": "char::private",
+      "target": "theme::symbol_bird",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::t1",
+      "source": "char::giselle",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::t1",
+      "source": "char::vin",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::t1",
+      "source": "char::laurie",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::t1",
+      "source": "char::sebastian",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::t1",
+      "source": "char::marlene",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::t1",
+      "source": "char::mr_whitmore",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::t1",
+      "source": "char::sound",
+      "target": "theme::t1",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::t2",
+      "source": "char::giselle",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::t2",
+      "source": "char::vin",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::laurie::t2",
+      "source": "char::laurie",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sebastian::t2",
+      "source": "char::sebastian",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::t2",
+      "source": "char::marlene",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::t2",
+      "source": "char::mr_whitmore",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::t2",
+      "source": "char::sound",
+      "target": "theme::t2",
+      "label": "ch. 0",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_coming_of_age",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_coming_of_age",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_coming_of_age",
+      "source": "char::sirius",
+      "target": "theme::theme_coming_of_age",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_coming_of_age",
+      "source": "char::pip",
+      "target": "theme::theme_coming_of_age",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_coming_of_age",
+      "source": "char::frodo",
+      "target": "theme::theme_coming_of_age",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_nature_vs_civilization",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_nature_vs_civilization",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_nature_vs_civilization",
+      "source": "char::sirius",
+      "target": "theme::theme_nature_vs_civilization",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_nature_vs_civilization",
+      "source": "char::pip",
+      "target": "theme::theme_nature_vs_civilization",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_nature_vs_civilization",
+      "source": "char::frodo",
+      "target": "theme::theme_nature_vs_civilization",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_hope",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_hope",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_hope",
+      "source": "char::sirius",
+      "target": "theme::theme_hope",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_hope",
+      "source": "char::pip",
+      "target": "theme::theme_hope",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_hope",
+      "source": "char::frodo",
+      "target": "theme::theme_hope",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_justice",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_justice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_justice",
+      "source": "char::sirius",
+      "target": "theme::theme_justice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::theme_justice",
+      "source": "char::pip",
+      "target": "theme::theme_justice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::theme_justice",
+      "source": "char::frodo",
+      "target": "theme::theme_justice",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_tree",
+      "source": "char::giselle",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_tree",
+      "source": "char::marlene",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_tree",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_tree",
+      "label": "ch. 1, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_tree",
+      "source": "char::sirius",
+      "target": "theme::symbol_tree",
+      "label": "ch. 1, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::pip::symbol_tree",
+      "source": "char::pip",
+      "target": "theme::symbol_tree",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::frodo::symbol_tree",
+      "source": "char::frodo",
+      "target": "theme::symbol_tree",
+      "label": "ch. 1",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_tree",
+      "source": "char::jamie",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_tree",
+      "source": "char::bull",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_tree",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_tree",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::his_daughter::symbol_tree",
+      "source": "char::his_daughter",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bill_foster::symbol_tree",
+      "source": "char::bill_foster",
+      "target": "theme::symbol_tree",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_power",
+      "source": "char::vin",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_power",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_power",
+      "source": "char::sound",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::theme_power",
+      "source": "char::jamie",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::theme_power",
+      "source": "char::bull",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::theme_power",
+      "source": "char::dom",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::theme_power",
+      "source": "char::di",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::theme_power",
+      "source": "char::detective_inspector",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::theme_power",
+      "source": "char::henshaw",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::theme_power",
+      "source": "char::sergent_rhodes",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::theme_power",
+      "source": "char::walt_and_jakob",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::theme_power",
+      "source": "char::dcs",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::theme_power",
+      "source": "char::private",
+      "target": "theme::theme_power",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::theme_fate_vs_free_will",
+      "source": "char::vin",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_fate_vs_free_will",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::theme_fate_vs_free_will",
+      "source": "char::sound",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::theme_fate_vs_free_will",
+      "source": "char::jamie",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::theme_fate_vs_free_will",
+      "source": "char::bull",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::theme_fate_vs_free_will",
+      "source": "char::dom",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::theme_fate_vs_free_will",
+      "source": "char::di",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::theme_fate_vs_free_will",
+      "source": "char::detective_inspector",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::theme_fate_vs_free_will",
+      "source": "char::henshaw",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::theme_fate_vs_free_will",
+      "source": "char::sergent_rhodes",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::theme_fate_vs_free_will",
+      "source": "char::walt_and_jakob",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::theme_fate_vs_free_will",
+      "source": "char::dcs",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::theme_fate_vs_free_will",
+      "source": "char::private",
+      "target": "theme::theme_fate_vs_free_will",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::symbol_door",
+      "source": "char::giselle",
+      "target": "theme::symbol_door",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::vin::symbol_door",
+      "source": "char::vin",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::symbol_door",
+      "source": "char::marlene",
+      "target": "theme::symbol_door",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::symbol_door",
+      "source": "char::mr_whitmore",
+      "target": "theme::symbol_door",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sound::symbol_door",
+      "source": "char::sound",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::symbol_door",
+      "source": "char::sirius",
+      "target": "theme::symbol_door",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::symbol_door",
+      "source": "char::jamie",
+      "target": "theme::symbol_door",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::symbol_door",
+      "source": "char::bull",
+      "target": "theme::symbol_door",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dom::symbol_door",
+      "source": "char::dom",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::di::symbol_door",
+      "source": "char::di",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::symbol_door",
+      "source": "char::detective_inspector",
+      "target": "theme::symbol_door",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::henshaw::symbol_door",
+      "source": "char::henshaw",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::symbol_door",
+      "source": "char::sergent_rhodes",
+      "target": "theme::symbol_door",
+      "label": "ch. 2, 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::walt_and_jakob::symbol_door",
+      "source": "char::walt_and_jakob",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::dcs::symbol_door",
+      "source": "char::dcs",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::private::symbol_door",
+      "source": "char::private",
+      "target": "theme::symbol_door",
+      "label": "ch. 2",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::his_daughter::symbol_door",
+      "source": "char::his_daughter",
+      "target": "theme::symbol_door",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bill_foster::symbol_door",
+      "source": "char::bill_foster",
+      "target": "theme::symbol_door",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::giselle::theme_grief",
+      "source": "char::giselle",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::marlene::theme_grief",
+      "source": "char::marlene",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::mr_whitmore::theme_grief",
+      "source": "char::mr_whitmore",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sirius::theme_grief",
+      "source": "char::sirius",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::jamie::theme_grief",
+      "source": "char::jamie",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bull::theme_grief",
+      "source": "char::bull",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::detective_inspector::theme_grief",
+      "source": "char::detective_inspector",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::sergent_rhodes::theme_grief",
+      "source": "char::sergent_rhodes",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::his_daughter::theme_grief",
+      "source": "char::his_daughter",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "char_theme::bill_foster::theme_grief",
+      "source": "char::bill_foster",
+      "target": "theme::theme_grief",
+      "label": "ch. 3",
+      "type": "character_theme"
+    },
+    {
+      "id": "marlene::sebastian",
+      "source": "char::marlene",
+      "target": "char::sebastian",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "marlene::mr_whitmore",
+      "source": "char::marlene",
+      "target": "char::mr_whitmore",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "marlene::sound",
+      "source": "char::marlene",
+      "target": "char::sound",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "pip::sirius",
+      "source": "char::pip",
+      "target": "char::sirius",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "sirius::frodo",
+      "source": "char::sirius",
+      "target": "char::frodo",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "mr_whitmore::sirius",
+      "source": "char::mr_whitmore",
+      "target": "char::sirius",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "walt_and_jakob::dcs",
+      "source": "char::walt_and_jakob",
+      "target": "char::dcs",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "bull::detective_inspector",
+      "source": "char::bull",
+      "target": "char::detective_inspector",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "private::dom",
+      "source": "char::private",
+      "target": "char::dom",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "bull::henshaw",
+      "source": "char::bull",
+      "target": "char::henshaw",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "sergent_rhodes::detective_inspector",
+      "source": "char::sergent_rhodes",
+      "target": "char::detective_inspector",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "his_daughter::mr_whitmore",
+      "source": "char::his_daughter",
+      "target": "char::mr_whitmore",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "jamie::mr_whitmore",
+      "source": "char::jamie",
+      "target": "char::mr_whitmore",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "detective_inspector::mr_whitmore",
+      "source": "char::detective_inspector",
+      "target": "char::mr_whitmore",
+      "label": "UNKNOWN",
+      "type": "relationship"
+    },
+    {
+      "id": "evt_edge::evt::1",
+      "source": "event::evt::1",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::2",
+      "source": "event::evt::2",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::3",
+      "source": "event::evt::3",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::4",
+      "source": "event::evt::4",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::5",
+      "source": "event::evt::5",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::6",
+      "source": "event::evt::6",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::7",
+      "source": "event::evt::7",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::8",
+      "source": "event::evt::8",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::9",
+      "source": "event::evt::9",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::10",
+      "source": "event::evt::10",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::11",
+      "source": "event::evt::11",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::12",
+      "source": "event::evt::12",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::13",
+      "source": "event::evt::13",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::14",
+      "source": "event::evt::14",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::15",
+      "source": "event::evt::15",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::16",
+      "source": "event::evt::16",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::17",
+      "source": "event::evt::17",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::18",
+      "source": "event::evt::18",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::19",
+      "source": "event::evt::19",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::20",
+      "source": "event::evt::20",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::21",
+      "source": "event::evt::21",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::22",
+      "source": "event::evt::22",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::23",
+      "source": "event::evt::23",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::24",
+      "source": "event::evt::24",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::25",
+      "source": "event::evt::25",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::26",
+      "source": "event::evt::26",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::27",
+      "source": "event::evt::27",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::28",
+      "source": "event::evt::28",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::29",
+      "source": "event::evt::29",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::30",
+      "source": "event::evt::30",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::31",
+      "source": "event::evt::31",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::32",
+      "source": "event::evt::32",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::33",
+      "source": "event::evt::33",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::34",
+      "source": "event::evt::34",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::35",
+      "source": "event::evt::35",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::36",
+      "source": "event::evt::36",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::37",
+      "source": "event::evt::37",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::38",
+      "source": "event::evt::38",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::39",
+      "source": "event::evt::39",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::40",
+      "source": "event::evt::40",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::41",
+      "source": "event::evt::41",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::42",
+      "source": "event::evt::42",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::43",
+      "source": "event::evt::43",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::44",
+      "source": "event::evt::44",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::45",
+      "source": "event::evt::45",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::46",
+      "source": "event::evt::46",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::47",
+      "source": "event::evt::47",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::48",
+      "source": "event::evt::48",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::49",
+      "source": "event::evt::49",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::50",
+      "source": "event::evt::50",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::51",
+      "source": "event::evt::51",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::52",
+      "source": "event::evt::52",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::53",
+      "source": "event::evt::53",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::54",
+      "source": "event::evt::54",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::55",
+      "source": "event::evt::55",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::56",
+      "source": "event::evt::56",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::57",
+      "source": "event::evt::57",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::58",
+      "source": "event::evt::58",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::59",
+      "source": "event::evt::59",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::60",
+      "source": "event::evt::60",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::61",
+      "source": "event::evt::61",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::62",
+      "source": "event::evt::62",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::63",
+      "source": "event::evt::63",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::64",
+      "source": "event::evt::64",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::65",
+      "source": "event::evt::65",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::66",
+      "source": "event::evt::66",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::67",
+      "source": "event::evt::67",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::68",
+      "source": "event::evt::68",
+      "target": "chapter::0",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::69",
+      "source": "event::evt::69",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::70",
+      "source": "event::evt::70",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::71",
+      "source": "event::evt::71",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::72",
+      "source": "event::evt::72",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::73",
+      "source": "event::evt::73",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::74",
+      "source": "event::evt::74",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::75",
+      "source": "event::evt::75",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::76",
+      "source": "event::evt::76",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::77",
+      "source": "event::evt::77",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::78",
+      "source": "event::evt::78",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::79",
+      "source": "event::evt::79",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::80",
+      "source": "event::evt::80",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::81",
+      "source": "event::evt::81",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::82",
+      "source": "event::evt::82",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::83",
+      "source": "event::evt::83",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::84",
+      "source": "event::evt::84",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::85",
+      "source": "event::evt::85",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::86",
+      "source": "event::evt::86",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::87",
+      "source": "event::evt::87",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::88",
+      "source": "event::evt::88",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::89",
+      "source": "event::evt::89",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::90",
+      "source": "event::evt::90",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::91",
+      "source": "event::evt::91",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::92",
+      "source": "event::evt::92",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::93",
+      "source": "event::evt::93",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::94",
+      "source": "event::evt::94",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::95",
+      "source": "event::evt::95",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::96",
+      "source": "event::evt::96",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::97",
+      "source": "event::evt::97",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::98",
+      "source": "event::evt::98",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::99",
+      "source": "event::evt::99",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::100",
+      "source": "event::evt::100",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::101",
+      "source": "event::evt::101",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::102",
+      "source": "event::evt::102",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::103",
+      "source": "event::evt::103",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::104",
+      "source": "event::evt::104",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::105",
+      "source": "event::evt::105",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::106",
+      "source": "event::evt::106",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::107",
+      "source": "event::evt::107",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::108",
+      "source": "event::evt::108",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::109",
+      "source": "event::evt::109",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::110",
+      "source": "event::evt::110",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::111",
+      "source": "event::evt::111",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::112",
+      "source": "event::evt::112",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::113",
+      "source": "event::evt::113",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::114",
+      "source": "event::evt::114",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::115",
+      "source": "event::evt::115",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::116",
+      "source": "event::evt::116",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::117",
+      "source": "event::evt::117",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::118",
+      "source": "event::evt::118",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::119",
+      "source": "event::evt::119",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::120",
+      "source": "event::evt::120",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::121",
+      "source": "event::evt::121",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::122",
+      "source": "event::evt::122",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::123",
+      "source": "event::evt::123",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::124",
+      "source": "event::evt::124",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::125",
+      "source": "event::evt::125",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::126",
+      "source": "event::evt::126",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::127",
+      "source": "event::evt::127",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::128",
+      "source": "event::evt::128",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::129",
+      "source": "event::evt::129",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::130",
+      "source": "event::evt::130",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::131",
+      "source": "event::evt::131",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::132",
+      "source": "event::evt::132",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::133",
+      "source": "event::evt::133",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::134",
+      "source": "event::evt::134",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::135",
+      "source": "event::evt::135",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::136",
+      "source": "event::evt::136",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::137",
+      "source": "event::evt::137",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::138",
+      "source": "event::evt::138",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::139",
+      "source": "event::evt::139",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::140",
+      "source": "event::evt::140",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::141",
+      "source": "event::evt::141",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::142",
+      "source": "event::evt::142",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::143",
+      "source": "event::evt::143",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::144",
+      "source": "event::evt::144",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::145",
+      "source": "event::evt::145",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::146",
+      "source": "event::evt::146",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::147",
+      "source": "event::evt::147",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::148",
+      "source": "event::evt::148",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::149",
+      "source": "event::evt::149",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::150",
+      "source": "event::evt::150",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::151",
+      "source": "event::evt::151",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::152",
+      "source": "event::evt::152",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::153",
+      "source": "event::evt::153",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::154",
+      "source": "event::evt::154",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::155",
+      "source": "event::evt::155",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::156",
+      "source": "event::evt::156",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::157",
+      "source": "event::evt::157",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::158",
+      "source": "event::evt::158",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::159",
+      "source": "event::evt::159",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::160",
+      "source": "event::evt::160",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::161",
+      "source": "event::evt::161",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::162",
+      "source": "event::evt::162",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::163",
+      "source": "event::evt::163",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::164",
+      "source": "event::evt::164",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::165",
+      "source": "event::evt::165",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::166",
+      "source": "event::evt::166",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::167",
+      "source": "event::evt::167",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::168",
+      "source": "event::evt::168",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::169",
+      "source": "event::evt::169",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::170",
+      "source": "event::evt::170",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::171",
+      "source": "event::evt::171",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::172",
+      "source": "event::evt::172",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::173",
+      "source": "event::evt::173",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::174",
+      "source": "event::evt::174",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::175",
+      "source": "event::evt::175",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::176",
+      "source": "event::evt::176",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::177",
+      "source": "event::evt::177",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::178",
+      "source": "event::evt::178",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::179",
+      "source": "event::evt::179",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::180",
+      "source": "event::evt::180",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::181",
+      "source": "event::evt::181",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::182",
+      "source": "event::evt::182",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::183",
+      "source": "event::evt::183",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::184",
+      "source": "event::evt::184",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::185",
+      "source": "event::evt::185",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::186",
+      "source": "event::evt::186",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::187",
+      "source": "event::evt::187",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::188",
+      "source": "event::evt::188",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::189",
+      "source": "event::evt::189",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::190",
+      "source": "event::evt::190",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::191",
+      "source": "event::evt::191",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::192",
+      "source": "event::evt::192",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::193",
+      "source": "event::evt::193",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::194",
+      "source": "event::evt::194",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::195",
+      "source": "event::evt::195",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::196",
+      "source": "event::evt::196",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::197",
+      "source": "event::evt::197",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::198",
+      "source": "event::evt::198",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::199",
+      "source": "event::evt::199",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::200",
+      "source": "event::evt::200",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::201",
+      "source": "event::evt::201",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::202",
+      "source": "event::evt::202",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::203",
+      "source": "event::evt::203",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::204",
+      "source": "event::evt::204",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::205",
+      "source": "event::evt::205",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::206",
+      "source": "event::evt::206",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::207",
+      "source": "event::evt::207",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::208",
+      "source": "event::evt::208",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::209",
+      "source": "event::evt::209",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::210",
+      "source": "event::evt::210",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::211",
+      "source": "event::evt::211",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::212",
+      "source": "event::evt::212",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::213",
+      "source": "event::evt::213",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::214",
+      "source": "event::evt::214",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::215",
+      "source": "event::evt::215",
+      "target": "chapter::1",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::216",
+      "source": "event::evt::216",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::217",
+      "source": "event::evt::217",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::218",
+      "source": "event::evt::218",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::219",
+      "source": "event::evt::219",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::220",
+      "source": "event::evt::220",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::221",
+      "source": "event::evt::221",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::222",
+      "source": "event::evt::222",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::223",
+      "source": "event::evt::223",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::224",
+      "source": "event::evt::224",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::225",
+      "source": "event::evt::225",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::226",
+      "source": "event::evt::226",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::227",
+      "source": "event::evt::227",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::228",
+      "source": "event::evt::228",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::229",
+      "source": "event::evt::229",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::230",
+      "source": "event::evt::230",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::231",
+      "source": "event::evt::231",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::232",
+      "source": "event::evt::232",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::233",
+      "source": "event::evt::233",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::234",
+      "source": "event::evt::234",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::235",
+      "source": "event::evt::235",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::236",
+      "source": "event::evt::236",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::237",
+      "source": "event::evt::237",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::238",
+      "source": "event::evt::238",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::239",
+      "source": "event::evt::239",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::240",
+      "source": "event::evt::240",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::241",
+      "source": "event::evt::241",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::242",
+      "source": "event::evt::242",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::243",
+      "source": "event::evt::243",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::244",
+      "source": "event::evt::244",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::245",
+      "source": "event::evt::245",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::246",
+      "source": "event::evt::246",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::247",
+      "source": "event::evt::247",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::248",
+      "source": "event::evt::248",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::249",
+      "source": "event::evt::249",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::250",
+      "source": "event::evt::250",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::251",
+      "source": "event::evt::251",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::252",
+      "source": "event::evt::252",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::253",
+      "source": "event::evt::253",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::254",
+      "source": "event::evt::254",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::255",
+      "source": "event::evt::255",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::256",
+      "source": "event::evt::256",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::257",
+      "source": "event::evt::257",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::258",
+      "source": "event::evt::258",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::259",
+      "source": "event::evt::259",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::260",
+      "source": "event::evt::260",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::261",
+      "source": "event::evt::261",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::262",
+      "source": "event::evt::262",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::263",
+      "source": "event::evt::263",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::264",
+      "source": "event::evt::264",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::265",
+      "source": "event::evt::265",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::266",
+      "source": "event::evt::266",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::267",
+      "source": "event::evt::267",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::268",
+      "source": "event::evt::268",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::269",
+      "source": "event::evt::269",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::270",
+      "source": "event::evt::270",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::271",
+      "source": "event::evt::271",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::272",
+      "source": "event::evt::272",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::273",
+      "source": "event::evt::273",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::274",
+      "source": "event::evt::274",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::275",
+      "source": "event::evt::275",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::276",
+      "source": "event::evt::276",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::277",
+      "source": "event::evt::277",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::278",
+      "source": "event::evt::278",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::279",
+      "source": "event::evt::279",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::280",
+      "source": "event::evt::280",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::281",
+      "source": "event::evt::281",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::282",
+      "source": "event::evt::282",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::283",
+      "source": "event::evt::283",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::284",
+      "source": "event::evt::284",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::285",
+      "source": "event::evt::285",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::286",
+      "source": "event::evt::286",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::287",
+      "source": "event::evt::287",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::288",
+      "source": "event::evt::288",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::289",
+      "source": "event::evt::289",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::290",
+      "source": "event::evt::290",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::291",
+      "source": "event::evt::291",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::292",
+      "source": "event::evt::292",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::293",
+      "source": "event::evt::293",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::294",
+      "source": "event::evt::294",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::295",
+      "source": "event::evt::295",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::296",
+      "source": "event::evt::296",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::297",
+      "source": "event::evt::297",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::298",
+      "source": "event::evt::298",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::299",
+      "source": "event::evt::299",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::300",
+      "source": "event::evt::300",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::301",
+      "source": "event::evt::301",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::302",
+      "source": "event::evt::302",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::303",
+      "source": "event::evt::303",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::304",
+      "source": "event::evt::304",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::305",
+      "source": "event::evt::305",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::306",
+      "source": "event::evt::306",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::307",
+      "source": "event::evt::307",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::308",
+      "source": "event::evt::308",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::309",
+      "source": "event::evt::309",
+      "target": "chapter::2",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::310",
+      "source": "event::evt::310",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::311",
+      "source": "event::evt::311",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::312",
+      "source": "event::evt::312",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::313",
+      "source": "event::evt::313",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::314",
+      "source": "event::evt::314",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::315",
+      "source": "event::evt::315",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::316",
+      "source": "event::evt::316",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::317",
+      "source": "event::evt::317",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::318",
+      "source": "event::evt::318",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::319",
+      "source": "event::evt::319",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::320",
+      "source": "event::evt::320",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::321",
+      "source": "event::evt::321",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::322",
+      "source": "event::evt::322",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::323",
+      "source": "event::evt::323",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::324",
+      "source": "event::evt::324",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::325",
+      "source": "event::evt::325",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::326",
+      "source": "event::evt::326",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::327",
+      "source": "event::evt::327",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::328",
+      "source": "event::evt::328",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::329",
+      "source": "event::evt::329",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::330",
+      "source": "event::evt::330",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::331",
+      "source": "event::evt::331",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::332",
+      "source": "event::evt::332",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::333",
+      "source": "event::evt::333",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::334",
+      "source": "event::evt::334",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::335",
+      "source": "event::evt::335",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::336",
+      "source": "event::evt::336",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::337",
+      "source": "event::evt::337",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::338",
+      "source": "event::evt::338",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::339",
+      "source": "event::evt::339",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::340",
+      "source": "event::evt::340",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::341",
+      "source": "event::evt::341",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::342",
+      "source": "event::evt::342",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::343",
+      "source": "event::evt::343",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::344",
+      "source": "event::evt::344",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    },
+    {
+      "id": "evt_edge::evt::345",
+      "source": "event::evt::345",
+      "target": "chapter::3",
+      "label": "occurs_in",
+      "type": "event_chapter"
+    }
+  ]
+}
