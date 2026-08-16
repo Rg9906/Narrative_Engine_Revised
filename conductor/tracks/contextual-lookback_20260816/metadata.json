@@ -1,0 +1,16 @@
+{
+  "id": "contextual-lookback_20260816",
+  "title": "Contextual Lookback",
+  "type": "feature",
+  "status": "complete",
+  "created": "2026-08-16T00:00:00Z",
+  "updated": "2026-08-16T00:00:00Z",
+  "phases": {
+    "total": 1,
+    "completed": 1
+  },
+  "tasks": {
+    "total": 3,
+    "completed": 3
+  }
+}
