@@ -91,7 +91,9 @@ earlier the same night — all fixed here.
 - [x] All 7 bugs above fixed at their root cause, not worked around.
 - [x] Regression tests added for the two silently-broken *behavioral*
       bugs (node labels, unresolved-arc finding) where none existed.
-- [x] No regression: full test suite green after all fixes.
+- [x] No regression: full test suite green after all fixes — 93/93
+      passed, confirmed after transient host resource exhaustion
+      (unrelated to this session) initially blocked several attempts.
 - [x] Fixes verified against real data where practical (graph node labels
       checked against the actual committed `narrative_state.json`).
 

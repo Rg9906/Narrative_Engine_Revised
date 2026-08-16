@@ -72,10 +72,13 @@ single giant change.
 ### Final Verification
 
 - [x] All acceptance criteria in spec.md met.
-- [x] Full suite green for every file that could be run under the host's
-      resource constraints tonight (see spec.md's verification note);
-      `test_pipeline.py`/`test_end_to_end.py` full-suite runs blocked by
-      environment, not by these changes.
+- [x] Full suite green: **93/93 passed in 96.35s**, confirmed after several
+      earlier attempts were killed by transient, unrelated host resource
+      exhaustion (100% CPU, ~3% free RAM at points, ~20+ pre-existing
+      node/python processes not started by this session). Every fix in
+      this track, including the ones only reachable via
+      `test_pipeline.py`/`test_end_to_end.py`'s heavy real NLP-pipeline
+      tests, is now confirmed rather than just reasoned-about.
 - [x] Ready for review / commit.
 
 ---
