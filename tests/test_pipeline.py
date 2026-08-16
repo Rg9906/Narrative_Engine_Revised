@@ -471,13 +471,27 @@ class TestChapterDataEvidencePackage:
     """Tests for ChapterData organization and validation."""
 
     def test_validate_flags_missing_evidence_structure(self):
+        # chapter_number=0 is deliberately used here (not -1): this project's own
+        # convention allows chapter 0 as a real chapter (chapter_00_prologue.txt).
+        # A prior version of this test asserted chapter 0 SHOULD warn
+        # ("chapter_number should be >= 1"), which is exactly the bug fixed
+        # below -- the real data/cache/chapter_0_*.json for this project's own
+        # prologue carried that false warning before the fix.
         chapter_data = ChapterData(chapter_number=0, raw_text="Alice walked.")
 
         warnings = chapter_data.validate()
 
-        assert "chapter_number should be >= 1" in warnings
+        assert "chapter_number should be >= 0" not in warnings
+        assert not any("chapter_number" in w for w in warnings)
         assert "raw_text is present but no sentences were extracted" in warnings
         assert "raw_text is present but no paragraphs were extracted" in warnings
+
+    def test_validate_flags_negative_chapter_number(self):
+        chapter_data = ChapterData(chapter_number=-1, raw_text="Alice walked.")
+
+        warnings = chapter_data.validate()
+
+        assert "chapter_number should be >= 0" in warnings
 
     def test_to_dict_includes_complete_evidence_package(self):
         chapter_data = ChapterData(

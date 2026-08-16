@@ -514,8 +514,13 @@ class ChapterData:
     def validate(self) -> List[str]:
         """Return warnings about incomplete or inconsistent chapter evidence."""
         warnings = []
-        if self.chapter_number < 1:
-            warnings.append("chapter_number should be >= 1")
+        # Chapters may be 0-indexed (this project's own convention --
+        # chapter_00_prologue.txt is a real, valid chapter 0). Confirmed
+        # this false positive was already present in the real, committed
+        # data/cache/chapter_0_*.json before this fix. Caught by a
+        # self-review pass.
+        if self.chapter_number < 0:
+            warnings.append("chapter_number should be >= 0")
         if not self.raw_text.strip():
             warnings.append("raw_text is empty")
         if self.raw_text and not self.sentences:
