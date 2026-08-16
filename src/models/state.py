@@ -684,6 +684,16 @@ class NarrativeState:
     created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     last_updated: str = field(default_factory=lambda: datetime.now().isoformat())
 
+    # Contextual lookback: the tail of the most recently processed chapter's raw
+    # text, carried alongside the structured state so the next chapter's LLM
+    # extraction stages have direct continuity (e.g. a scene spanning a chapter
+    # break) that structured fields alone wouldn't capture. Set once per chapter
+    # in src/main.py, after that chapter's delta has been applied — so when
+    # ContextRetriever reads it during THIS chapter's processing, it still holds
+    # the PREVIOUS chapter's tail, not the current one.
+    previous_chapter_excerpt: str = ""
+    previous_chapter_number: Optional[int] = None
+
     # Character states (keyed by character ID)
     characters: Dict[str, Dict[str, StateEntry]] = field(default_factory=dict)
 
@@ -763,6 +773,8 @@ class NarrativeState:
                 "total_chapters_processed": self.total_chapters_processed,
                 "created_at": self.created_at,
                 "last_updated": self.last_updated,
+                "previous_chapter_excerpt": self.previous_chapter_excerpt,
+                "previous_chapter_number": self.previous_chapter_number,
             },
             "characters": _serialize_state_dict(self.characters),
             "relationships": _serialize_state_dict(self.relationships),
@@ -801,6 +813,8 @@ class NarrativeState:
             total_chapters_processed=metadata.get("total_chapters_processed", 0),
             created_at=metadata.get("created_at", datetime.now().isoformat()),
             last_updated=metadata.get("last_updated", datetime.now().isoformat()),
+            previous_chapter_excerpt=metadata.get("previous_chapter_excerpt", ""),
+            previous_chapter_number=metadata.get("previous_chapter_number"),
         )
 
         state.characters = _deserialize_state_dict(data.get("characters", {}))

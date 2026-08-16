@@ -81,11 +81,13 @@ class ContextRetriever:
             motifs_data=data_sources.get("motifs", {}),
             chapter_summaries_data=data_sources.get("chapter_summaries", {}),
             timeline_data=data_sources.get("timeline", []),
+            previous_chapter_excerpt=data_sources.get("previous_chapter_excerpt", ""),
+            previous_chapter_number=data_sources.get("previous_chapter_number"),
         )
 
         return context_str, sorted(list(active_characters))
 
-    def _load_data_sources(self, current_state: Optional[Any] = None) -> Dict[str, Dict[str, Any]]:
+    def _load_data_sources(self, current_state: Optional[Any] = None) -> Dict[str, Any]:
         """
         Single source of truth, with exactly one explicit fallback.
 
@@ -114,7 +116,8 @@ class ContextRetriever:
 
         return self._extract_sources(sdata)
 
-    def _extract_sources(self, sdata: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    def _extract_sources(self, sdata: Dict[str, Any]) -> Dict[str, Any]:
+        metadata = sdata.get("metadata", {}) or {}
         return {
             "characters": sdata.get("characters", {}),
             "relationships": sdata.get("relationships", {}),
@@ -125,13 +128,15 @@ class ContextRetriever:
             "motifs": sdata.get("motifs", {}),
             "chapter_summaries": sdata.get("chapter_summaries", {}),
             "timeline": sdata.get("timeline", []),
+            "previous_chapter_excerpt": metadata.get("previous_chapter_excerpt", ""),
+            "previous_chapter_number": metadata.get("previous_chapter_number"),
         }
 
-    def _empty_data_sources(self) -> Dict[str, Dict[str, Any]]:
+    def _empty_data_sources(self) -> Dict[str, Any]:
         return {
             "characters": {}, "relationships": {}, "promises": {}, "world": {},
             "threats": {}, "themes": {}, "motifs": {}, "chapter_summaries": {},
-            "timeline": [],
+            "timeline": [], "previous_chapter_excerpt": "", "previous_chapter_number": None,
         }
 
     def _detect_active_characters(self, raw_text: str, char_data: Dict[str, Any]) -> Set[str]:
@@ -220,6 +225,8 @@ class ContextRetriever:
         motifs_data: Dict[str, Any],
         chapter_summaries_data: Dict[str, Any],
         timeline_data: Optional[List[Dict[str, Any]]] = None,
+        previous_chapter_excerpt: str = "",
+        previous_chapter_number: Optional[int] = None,
     ) -> str:
         """
         Hydrates Tiers and compiles them into a token-budgeted XML structure.
@@ -399,10 +406,23 @@ class ContextRetriever:
             chapter = event.get("chapter")
             timeline_xmls.append(f"    <Event chapter=\"{chapter}\">{subject} {predicate} {obj}</Event>".rstrip())
 
+        # Tier J: Previous Chapter Excerpt — contextual lookback (see
+        # NarrativeState.previous_chapter_excerpt). Gives extraction stages direct
+        # continuity across a chapter break (e.g. a scene that carries straight
+        # through) that structured state fields alone don't capture. Fixed-size
+        # (~1500 chars, set in src/main.py), so it's included unconditionally
+        # alongside summaries/timeline rather than competing for the tier
+        # B/C/E byte budget below.
+        prev_chapter_xml = ""
+        if previous_chapter_excerpt:
+            chapter_attr = f" chapter=\"{previous_chapter_number}\"" if previous_chapter_number is not None else ""
+            prev_chapter_xml = f"    <Excerpt{chapter_attr}>{previous_chapter_excerpt.strip()}</Excerpt>"
+
         # Stage 3: Token budget XML assembly
         # XML tags layout size overhead
         wrapper_start = "<StoryContext>\n"
         char_start, char_end = "  <ActiveCharacters>\n", "  </ActiveCharacters>\n"
+        prev_chapter_start, prev_chapter_end = "  <PreviousChapterExcerpt>\n", "  </PreviousChapterExcerpt>\n"
         clue_start, clue_end = "  <SceneClues>\n", "  </SceneClues>\n"
         rel_start, rel_end = "  <ActiveRelationships>\n", "  </ActiveRelationships>\n"
         prom_start, prom_end = "  <OpenPromises>\n", "  </OpenPromises>\n"
@@ -418,6 +438,7 @@ class ContextRetriever:
         clues_xml_str = "\n".join(clue_xmls)
 
         current_xml = wrapper_start
+        if prev_chapter_xml: current_xml += prev_chapter_start + prev_chapter_xml + "\n" + prev_chapter_end
         if char_xmls: current_xml += char_start + chars_xml_str + "\n" + char_end
         if clue_xmls: current_xml += clue_start + clues_xml_str + "\n" + clue_end
         if theme_xmls: current_xml += theme_start + "\n".join(theme_xmls) + "\n" + theme_end

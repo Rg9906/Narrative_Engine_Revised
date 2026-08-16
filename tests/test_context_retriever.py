@@ -150,6 +150,69 @@ def test_context_retriever_four_tiers(tmp_path):
     assert "<Clue id=\"poisoned_milk\">" in context
     assert "<Location>drawing_room</Location>" in context
 
+def test_context_retriever_previous_chapter_excerpt_live_state(tmp_path):
+    """Contextual lookback: a live NarrativeState carrying a previous-chapter
+    excerpt should surface it as a fixed, always-included tier."""
+    from src.models.state import NarrativeState, StateEntry, StateSnapshot, NarrativeElementType
+
+    config = DummyConfig(tmp_path)
+    retriever = ContextRetriever(config)
+
+    state = NarrativeState()
+    name_entry = StateEntry(key="canonical_name", element_type=NarrativeElementType.CHARACTER)
+    name_entry.update(StateSnapshot(value="Talia", chapter=2))
+    state.characters["talia"] = {"canonical_name": name_entry}
+    state.previous_chapter_excerpt = "The candle guttered out just as Talia reached the door."
+    state.previous_chapter_number = 1
+
+    context, active_chars = retriever.retrieve_context("Talia walked in.", current_state=state)
+
+    assert context is not None
+    assert '<PreviousChapterExcerpt>' in context
+    assert '<Excerpt chapter="1">' in context
+    assert "The candle guttered out just as Talia reached the door." in context
+
+
+def test_context_retriever_no_previous_chapter_excerpt_tier_when_absent(tmp_path):
+    """No previous_chapter_excerpt set (e.g. very first real chapter) -> tier is
+    omitted entirely, not rendered empty."""
+    from src.models.state import NarrativeState, StateEntry, StateSnapshot, NarrativeElementType
+
+    config = DummyConfig(tmp_path)
+    retriever = ContextRetriever(config)
+
+    state = NarrativeState()
+    name_entry = StateEntry(key="canonical_name", element_type=NarrativeElementType.CHARACTER)
+    name_entry.update(StateSnapshot(value="Talia", chapter=1))
+    state.characters["talia"] = {"canonical_name": name_entry}
+
+    context, _ = retriever.retrieve_context("Talia walked in.", current_state=state)
+
+    assert context is not None
+    assert "<PreviousChapterExcerpt>" not in context
+
+
+def test_context_retriever_previous_chapter_excerpt_from_disk(tmp_path):
+    """Cold-start (disk fallback) path also picks up the excerpt from metadata."""
+    config = DummyConfig(tmp_path)
+    retriever = ContextRetriever(config)
+
+    with open(tmp_path / "narrative_state.json", "w", encoding="utf-8") as f:
+        json.dump({
+            "metadata": {
+                "previous_chapter_excerpt": "She had not meant to scream.",
+                "previous_chapter_number": 3,
+            },
+            "characters": {
+                "talia": {"canonical_name": {"current": {"value": "Talia"}}},
+            },
+        }, f)
+
+    context, active_chars = retriever.retrieve_context("Talia walked in.")
+    assert "talia" in active_chars
+    assert '<Excerpt chapter="3">She had not meant to scream.</Excerpt>' in context
+
+
 def test_context_retriever_budget_truncation(tmp_path):
     config = DummyConfig(tmp_path)
     retriever = ContextRetriever(config)

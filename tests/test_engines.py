@@ -672,8 +672,74 @@ def test_main_cli_chapter_parsing(tmp_path, monkeypatch):
             
     monkeypatch.setattr(src.main, "EditorialEngine", MockEditorial)
     monkeypatch.setattr(src.main, "NarrativeGraph", MockGraph)
-    
+
     src.main.process_chapter(str(chapter_file))
+
+
+def test_process_chapter_records_previous_chapter_excerpt(tmp_path, monkeypatch):
+    """Contextual lookback: after processing a chapter, the state should carry
+    that chapter's raw-text tail forward for the NEXT chapter's context (not
+    the current one) -- see NarrativeState.previous_chapter_excerpt."""
+    import src.main
+    from src.models.state import NarrativeState, StateDelta
+
+    captured_state = {}
+
+    def fake_load(path):
+        return NarrativeState()
+
+    def fake_save(state, path):
+        # Capture the state as it stood right before persistence, so we can
+        # assert on previous_chapter_excerpt without needing a real state file.
+        captured_state["state"] = state
+
+    monkeypatch.setattr(src.main, "load_narrative_state", fake_load)
+    monkeypatch.setattr(src.main, "save_narrative_state", fake_save)
+    monkeypatch.setattr(src.main, "save_modular_state", lambda state, config: None)
+
+    long_text = "Arthur was a king. " * 200  # well over PREVIOUS_CHAPTER_EXCERPT_CHARS
+
+    class MockPipeline:
+        def __init__(self, config):
+            pass
+        def process_chapter(self, path, chapter_num, is_file, current_state=None):
+            class MockChapterData:
+                raw_text = long_text
+                chapter_number = chapter_num
+            return MockChapterData()
+
+    class MockStateEngine:
+        def __init__(self, config):
+            pass
+        def process_chapter(self, data, state):
+            return StateDelta(chapter_number=data.chapter_number)
+
+    class MockEditorial:
+        def __init__(self, config):
+            pass
+        def review(self, state, delta, raw_text):
+            return {"findings": []}
+
+    class MockGraph:
+        def __init__(self, config):
+            pass
+        def save(self, state, path):
+            return "graph_path"
+
+    monkeypatch.setattr(src.main, "Pipeline", MockPipeline)
+    monkeypatch.setattr(src.main, "NarrativeStateEngine", MockStateEngine)
+    monkeypatch.setattr(src.main, "EditorialEngine", MockEditorial)
+    monkeypatch.setattr(src.main, "NarrativeGraph", MockGraph)
+
+    chapter_file = tmp_path / "chapter_07.txt"
+    chapter_file.write_text(long_text, encoding="utf-8")
+
+    src.main.process_chapter(str(chapter_file))
+
+    state = captured_state["state"]
+    assert state.previous_chapter_number == 7
+    assert state.previous_chapter_excerpt == long_text[-src.main.PREVIOUS_CHAPTER_EXCERPT_CHARS:].strip()
+    assert len(state.previous_chapter_excerpt) <= src.main.PREVIOUS_CHAPTER_EXCERPT_CHARS
 
 
 def test_optimized_llm_prompt_generator(monkeypatch):

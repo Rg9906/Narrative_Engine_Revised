@@ -42,6 +42,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger("NarrativeEngine")
 
+# Contextual lookback (see NarrativeState.previous_chapter_excerpt): how much of
+# the previous chapter's tail to carry forward for the next chapter's context.
+PREVIOUS_CHAPTER_EXCERPT_CHARS = 1500
+
 
 def load_narrative_state(memory_dir: Path) -> NarrativeState:
     """Load the existing narrative state from disk, or create a fresh one."""
@@ -216,6 +220,14 @@ def process_chapter(chapter_path: str, config_path: str = None) -> dict:
     engine = NarrativeStateEngine(config)
     delta = engine.process_chapter(chapter_data, state)
     state.apply_delta(delta)
+
+    # Contextual lookback: record this chapter's tail for the NEXT chapter's
+    # ContextRetriever call. Deliberately done after apply_delta (not before),
+    # so ContextRetriever's call inside pipeline.process_chapter() above — which
+    # already happened, using `state` as it was BEFORE this line — saw the
+    # PREVIOUS chapter's excerpt, not this one's.
+    state.previous_chapter_excerpt = chapter_data.raw_text[-PREVIOUS_CHAPTER_EXCERPT_CHARS:].strip()
+    state.previous_chapter_number = chapter_num
 
     # === Phase 10+: Editorial Engine ===
     editorial = EditorialEngine(config)
