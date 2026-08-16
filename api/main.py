@@ -16,6 +16,20 @@ from api.deps import get_project_config
 
 ALLOWED_CHAPTER_EXTENSIONS = {".txt", ".pdf", ".docx"}
 
+
+def _safe_upload_filename(filename: str | None) -> str:
+    """Reduce an untrusted upload filename to a bare, safe basename.
+
+    `filename` is fully attacker-controlled (an HTTP client sets it to whatever
+    it wants). Joining it into a filesystem path unsanitized allows both
+    directory traversal ("../../evil.txt") and, more seriously, an absolute
+    path in the filename ("C:\\Windows\\System32\\evil.txt") silently
+    discarding the intended base directory entirely -- pathlib's `/` operator
+    returns the right operand outright when it's absolute. `Path(...).name`
+    strips all directory components, neutralizing both.
+    """
+    return Path(filename or "").name or "chapter.txt"
+
 app = FastAPI(title="Narrative Intelligence Engine API", version="1.0.0")
 
 app.add_middleware(
@@ -120,7 +134,8 @@ def reports_detail(chapter: int) -> dict:
 
 @app.post("/api/ingest")
 async def ingest_chapter(file: UploadFile, background_tasks: BackgroundTasks) -> dict:
-    suffix = Path(file.filename or "").suffix.lower()
+    safe_filename = _safe_upload_filename(file.filename)
+    suffix = Path(safe_filename).suffix.lower()
     if suffix not in ALLOWED_CHAPTER_EXTENSIONS:
         raise HTTPException(
             status_code=400,
@@ -129,7 +144,7 @@ async def ingest_chapter(file: UploadFile, background_tasks: BackgroundTasks) ->
 
     config = get_project_config()
     config.chapters_dir.mkdir(parents=True, exist_ok=True)
-    dest_path = config.chapters_dir / (file.filename or "chapter.txt")
+    dest_path = config.chapters_dir / safe_filename
 
     contents = await file.read()
     dest_path.write_bytes(contents)
