@@ -72,6 +72,20 @@ earlier the same night — all fixed here.
    silently unset. Added a `logger.warning` with the chapter number and
    exception.
 
+8. **Path traversal / arbitrary-write in the chapter upload endpoint**
+   (`api/main.py`, `POST /api/ingest`). Found by manual reading, not an
+   automated review pass. The upload's `file.filename` (fully attacker-
+   controlled) was joined straight into a filesystem path with only the
+   extension checked. Confirmed by direct repro:
+   `Path("data/chapters") / "../../../../evil.txt"` escapes the intended
+   directory, and `Path("data/chapters") / "C:\Windows\System32\evil.txt"`
+   **silently discards the base directory entirely** (pathlib's `/`
+   operator returns the right operand outright when it's absolute) --
+   an absolute-path filename would write anywhere the process has
+   permissions. New `_safe_upload_filename()` reduces the filename to
+   `Path(...).name` before any path join. First tests for the `api/`
+   layer (`tests/test_api.py`), 5/5 passing.
+
 ## Acceptance Criteria
 
 - [x] All 7 bugs above fixed at their root cause, not worked around.

@@ -54,10 +54,28 @@ single giant change.
       machine under heavy, unrelated CPU load tonight — 87% observed —
       making runs slow; correctness confirmed by pass/fail, not timing).
 
+## Phase 3: Manual review finding (api/main.py)
+
+### Tasks
+
+- [x] Task 3.1: Fixed path traversal / arbitrary-write in
+      `POST /api/ingest` — see spec.md #8. New `_safe_upload_filename()`
+      helper plus `tests/test_api.py` (first tests for the `api/` layer).
+
+### Verification
+
+- [x] `pytest tests/test_api.py tests/test_engines.py -q` — 34 passed,
+      fast (6.87s).
+- [x] Direct repro confirmed both attack vectors before the fix and their
+      absence after.
+
 ### Final Verification
 
 - [x] All acceptance criteria in spec.md met.
-- [x] Full suite green.
+- [x] Full suite green for every file that could be run under the host's
+      resource constraints tonight (see spec.md's verification note);
+      `test_pipeline.py`/`test_end_to_end.py` full-suite runs blocked by
+      environment, not by these changes.
 - [x] Ready for review / commit.
 
 ---
