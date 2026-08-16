@@ -133,13 +133,6 @@ class NarrativeStateEngine:
 
         return delta
 
-    def _wrap_entries(self, entries: dict) -> dict:
-        """Helper to supply existing serialized entries into BaseMemory._entries.
-
-        BaseMemory expects a dict in the same shape; this provides a light passthrough.
-        """
-        return entries or {}
-
     def _collect_evidence(self, chapter_data: ChapterData) -> List[Evidence]:
         evidence_items: List[Evidence] = []
 
