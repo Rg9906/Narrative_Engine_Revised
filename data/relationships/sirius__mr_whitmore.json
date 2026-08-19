@@ -1,0 +1,32 @@
+{
+  "sirius::mr_whitmore": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "ALLIANCE",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Sirius intends to visit and possibly financially aid the Whitmore family, showing supportive intent.",
+        "timestamp": "2026-08-17T17:22:40.186971"
+      },
+      "history": [
+        {
+          "value": "ENMITY",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Sirius is now investigating Arden Whitmore's death, positioning him as an adversary in the murder case.",
+          "timestamp": "2026-08-17T17:22:38.802429"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

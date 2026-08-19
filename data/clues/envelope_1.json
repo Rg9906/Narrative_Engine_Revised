@@ -1,0 +1,40 @@
+{
+  "envelope_1": {
+    "type": {
+      "key": "type",
+      "current": {
+        "value": "object",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:22:37.461696"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "sirius_apartment",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:22:37.461696"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

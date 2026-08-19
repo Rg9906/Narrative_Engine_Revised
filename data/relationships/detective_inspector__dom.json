@@ -1,0 +1,22 @@
+{
+  "detective_inspector::dom": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "ENMITY",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "DI berates Dom similarly, showing antagonistic authority",
+        "timestamp": "2026-08-17T17:44:37.350660"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

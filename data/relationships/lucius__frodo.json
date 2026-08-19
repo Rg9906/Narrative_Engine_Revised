@@ -1,31 +1,21 @@
 {
-  "pip::sirius": {
+  "lucius::frodo": {
     "relationship_label": {
       "key": "relationship_label",
       "current": {
-        "value": "ALLIANCE",
+        "value": "UNKNOWN",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.9,
-        "reasoning": "Pip supplies Sirius with crucial information; Sirius promises to buy them clothes, indicating cooperative relationship.",
-        "timestamp": "2026-08-17T17:22:38.231350"
+        "confidence": 0.6,
+        "reasoning": "Observed relation 'knicked' between us and Frodo.",
+        "timestamp": "2026-08-17T17:22:01.312156"
       },
-      "history": [
-        {
-          "value": "UNKNOWN",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'leave' between Pip and Sirius.",
-          "timestamp": "2026-08-17T17:20:58.059192"
-        }
-      ],
+      "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
+      "version": 2,
       "last_mentioned_chapter": 1
     },
     "mention_count": {
@@ -37,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.85,
         "reasoning": "Incremented mention count for relationship.",
-        "timestamp": "2026-08-17T17:22:16.657711"
+        "timestamp": "2026-08-17T17:22:01.567424"
       },
       "history": [
         {
@@ -47,7 +37,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "First observed interaction this chapter.",
-          "timestamp": "2026-08-17T17:20:58.059192"
+          "timestamp": "2026-08-17T17:22:01.312156"
         }
       ],
       "importance": 0.5,
@@ -65,7 +55,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Updated last interaction chapter.",
-        "timestamp": "2026-08-17T17:22:16.657711"
+        "timestamp": "2026-08-17T17:22:01.567424"
       },
       "history": [
         {
@@ -75,7 +65,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Recorded last interaction chapter.",
-          "timestamp": "2026-08-17T17:20:58.059192"
+          "timestamp": "2026-08-17T17:22:01.312156"
         }
       ],
       "importance": 0.5,

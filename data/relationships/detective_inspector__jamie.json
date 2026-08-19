@@ -1,0 +1,22 @@
+{
+  "detective_inspector::jamie": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "ENMITY",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "DI threatens to flay Jamie and orders him under duress, indicating hostile relationship",
+        "timestamp": "2026-08-17T17:44:37.340693"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

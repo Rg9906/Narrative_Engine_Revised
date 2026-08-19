@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:04.123967"
+        "timestamp": "2026-08-17T17:14:49.570932"
       },
       "history": [],
       "importance": 0.9,
@@ -22,32 +22,282 @@
       "key": "aliases",
       "current": {
         "value": [
-          "Sebastian"
+          "Sebastian",
+          "his",
+          "He",
+          "his daughter"
         ],
-        "chapter": 0,
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:35:04.123967"
+        "confidence": 0.85,
+        "reasoning": "New alias observed for existing character.",
+        "timestamp": "2026-08-17T19:34:31.257401"
       },
-      "history": [],
+      "history": [
+        {
+          "value": [
+            "Sebastian"
+          ],
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Initial alias list created from first mention.",
+          "timestamp": "2026-08-17T17:14:49.570932"
+        },
+        {
+          "value": [
+            "Sebastian",
+            "his",
+            "He"
+          ],
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Aliases updated by LLM.",
+          "timestamp": "2026-08-17T17:15:01.676006"
+        }
+      ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 0
+      "version": 4,
+      "last_mentioned_chapter": 3
     },
     "last_seen_chapter": {
       "key": "last_seen_chapter",
       "current": {
-        "value": 0,
+        "value": 3,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character observed in current chapter.",
+        "timestamp": "2026-08-17T19:34:31.258403"
+      },
+      "history": [
+        {
+          "value": 0,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character seen in current chapter.",
+          "timestamp": "2026-08-17T17:14:49.570932"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 2,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character observed in an additional chapter.",
+        "timestamp": "2026-08-17T19:34:31.258403"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First chapter this character appears in.",
+          "timestamp": "2026-08-17T17:14:49.570932"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 8,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 8 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 4,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 4 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        },
+        {
+          "value": 78,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 78 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:20:54.138533"
+        },
+        {
+          "value": 37,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 37 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 3
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 127,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+8 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 4,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+4 from chapter 0).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        },
+        {
+          "value": 82,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+78 from chapter 1).",
+          "timestamp": "2026-08-17T17:20:54.138533"
+        },
+        {
+          "value": 119,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+37 from chapter 2).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 3
+    },
+    "physical_eye_color": {
+      "key": "physical_eye_color",
+      "current": {
+        "value": "light",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.66,
+        "reasoning": "Extracted from sentence: 'When he pressed a finger against one corner, it shifted slightly....'",
+        "timestamp": "2026-08-17T17:20:54.712985"
+      },
+      "history": [
+        {
+          "value": "light",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He was a softer yellow—sunlight diluted with milk, the colour of sacrifice and silent resignation....'",
+          "timestamp": "2026-08-17T17:14:49.815787"
+        },
+        {
+          "value": "dark",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'His footsteps darkening the foir just as Sirius had slept obliviously inside....'",
+          "timestamp": "2026-08-17T17:20:54.711986"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 1
+    },
+    "physical_build": {
+      "key": "physical_build",
+      "current": {
+        "value": "thin",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'Jamie shot a quick glance at Dom and opened his mouth before thinking better of it and shutting up....'",
+        "timestamp": "2026-08-17T17:43:43.296360"
+      },
+      "history": [
+        {
+          "value": "thin",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He held plates, spoke to someone—Marlene perhaps—but his eyes never quite rested on one place, like ...'",
+          "timestamp": "2026-08-17T17:14:49.817787"
+        },
+        {
+          "value": "lean",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He set the letter down and leaned back....'",
+          "timestamp": "2026-08-17T17:20:54.740797"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 2
+    },
+    "color_association": {
+      "key": "color_association",
+      "current": {
+        "value": "soft_yellow",
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:04.123967"
+        "reasoning": "Described as a softer yellow, colour of sacrifice and silent resignation.",
+        "timestamp": "2026-08-17T17:15:01.676006"
       },
       "history": [],
       "importance": 0.5,
@@ -56,16 +306,16 @@
       "version": 2,
       "last_mentioned_chapter": 0
     },
-    "mention_count": {
-      "key": "mention_count",
+    "disposition": {
+      "key": "disposition",
       "current": {
-        "value": 1,
+        "value": "reserved",
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:35:04.123967"
+        "confidence": 0.9,
+        "reasoning": "Expression carefully composed, eyes never rest, thinking of elsewhere.",
+        "timestamp": "2026-08-17T17:15:01.676006"
       },
       "history": [],
       "importance": 0.5,
@@ -73,6 +323,298 @@
       "element_type": "CHARACTER",
       "version": 2,
       "last_mentioned_chapter": 0
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "He wondered how he would claim credit for solving this."
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.58,
+        "reasoning": "Goal extracted from text containing 'aim'.",
+        "timestamp": "2026-08-17T17:43:43.337027"
+      },
+      "history": [
+        {
+          "value": [],
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.98,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-08-17T17:15:01.676006"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.94,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.676006"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "second floor",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [
+          "second floor"
+        ],
+        "confidence": 0.7,
+        "reasoning": "Located at 'second floor' (implied by sentence: 'The fact that the window was on the second floor and could not be accessed from outside unless one had a ladder with him troubled him to.')",
+        "timestamp": "2026-08-17T17:43:43.339546"
+      },
+      "history": [
+        {
+          "value": "veranda_columns",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Character location updated by LLM.",
+          "timestamp": "2026-08-17T17:15:01.676006"
+        },
+        {
+          "value": "South",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [
+            "South"
+          ],
+          "confidence": 0.7,
+          "reasoning": "Located at 'South' (implied by sentence: 'The most famous detective in South [], and yet he couldn't find the teenagers who kept breaking his window.')",
+          "timestamp": "2026-08-17T17:20:54.815027"
+        },
+        {
+          "value": "47 Marple street",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [
+            "47 Marple street"
+          ],
+          "confidence": 0.7,
+          "reasoning": "Located at '47 Marple street' (implied by sentence: 'Catching the burglar of 47 Marple street had taken everything he had and quite some more.')",
+          "timestamp": "2026-08-17T17:20:54.815027"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 2
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:15:01.676006"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "physical_hair_color": {
+      "key": "physical_hair_color",
+      "current": {
+        "value": "red",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'He wondered if this was how [Whitmore] had felt after taking the pills that had taken his life....'",
+        "timestamp": "2026-08-17T17:43:43.277338"
+      },
+      "history": [
+        {
+          "value": "red",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'Every bookshop window in the country seemed to have his face plastered somewhere inside it....'",
+          "timestamp": "2026-08-17T17:20:54.687530"
+        },
+        {
+          "value": "black",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He took the black coffee from the table, the heat mixing with the fog through the broken window....'",
+          "timestamp": "2026-08-17T17:20:54.689529"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 2
+    },
+    "physical_age": {
+      "key": "physical_age",
+      "current": {
+        "value": "old",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'It wasn't the his size that made them instinctively straighten—it was the sheer force of his presenc...'",
+        "timestamp": "2026-08-17T17:43:43.304323"
+      },
+      "history": [
+        {
+          "value": "young",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He was barely a kid, a few years younger than Sirius, he'd stolen the necklace to pawn it off in a s...'",
+          "timestamp": "2026-08-17T17:20:54.742815"
+        },
+        {
+          "value": "teenage",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'The most famous detective in South [], and yet he couldn't find the teenagers who kept breaking his ...'",
+          "timestamp": "2026-08-17T17:20:54.749799"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 2
+    },
+    "personality_traits": {
+      "key": "personality_traits",
+      "current": {
+        "value": [
+          "kind",
+          "deceptive",
+          "shy"
+        ],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Personality trait 'shy' inferred from narration.",
+        "timestamp": "2026-08-17T19:34:58.654945"
+      },
+      "history": [
+        {
+          "value": [
+            "kind"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Personality trait 'kind' inferred from narration.",
+          "timestamp": "2026-08-17T17:20:54.771220"
+        },
+        {
+          "value": [
+            "kind",
+            "deceptive"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.58,
+          "reasoning": "Personality trait 'deceptive' inferred from narration.",
+          "timestamp": "2026-08-17T17:20:54.784360"
+        }
+      ],
+      "importance": 0.7,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 3
+    },
+    "emotional_state": {
+      "key": "emotional_state",
+      "current": {
+        "value": "angry",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.66,
+        "reasoning": "Emotional state inferred from text and dialogue.",
+        "timestamp": "2026-08-17T17:20:54.807028"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "physical_distinctive": {
+      "key": "physical_distinctive",
+      "current": {
+        "value": "scar",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'He was scary to be with even in the best of his days....'",
+        "timestamp": "2026-08-17T17:43:43.310325"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "arc_stage": {
+      "key": "arc_stage",
+      "current": {
+        "value": "inciting_incident",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:127).",
+        "timestamp": "2026-08-17T19:34:58.680862"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
     }
   }
 }

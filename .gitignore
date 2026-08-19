@@ -24,3 +24,7 @@ data/output/
 # IDE configurations
 .vscode/
 .idea/
+
+# Local backups of the derived data directory (state, reports, profiles).
+# Regenerable from data/chapters by reprocessing; never meant to be committed.
+data_backup_*/

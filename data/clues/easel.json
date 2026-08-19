@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "First mention of world element.",
-        "timestamp": "2026-07-19T10:35:29.180209"
+        "timestamp": "2026-08-17T17:15:00.109244"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.95,
         "reasoning": "Recorded first mention chapter.",
-        "timestamp": "2026-07-19T10:35:29.180209"
+        "timestamp": "2026-08-17T17:15:00.109244"
       },
       "history": [],
       "importance": 0.5,
@@ -45,27 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "First mention count.",
-        "timestamp": "2026-07-19T10:35:29.181208"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 0
-    },
-    "location": {
-      "key": "location",
-      "current": {
-        "value": "porcelain_cup",
-        "chapter": 0,
-        "scene": null,
-        "evidence_ids": [
-          "easel"
-        ],
-        "confidence": 0.8,
-        "reasoning": "Located at 'porcelain_cup' (implied by sentence: 'Giselle sat beside the easel in her small room, brushes lay strewn like feathers in a porcelain cup.').",
-        "timestamp": "2026-07-19T10:35:29.181208"
+        "timestamp": "2026-08-17T17:15:00.109244"
       },
       "history": [],
       "importance": 0.5,

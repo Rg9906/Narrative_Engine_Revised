@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:49:23.046259"
+        "timestamp": "2026-08-17T17:43:39.539604"
       },
       "history": [],
       "importance": 0.9,
@@ -29,7 +29,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:49:23.046259"
+        "timestamp": "2026-08-17T17:43:39.539604"
       },
       "history": [],
       "importance": 0.5,
@@ -47,7 +47,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:49:23.046259"
+        "timestamp": "2026-08-17T17:43:39.539604"
       },
       "history": [],
       "importance": 0.5,
@@ -56,19 +56,139 @@
       "version": 2,
       "last_mentioned_chapter": 2
     },
-    "mention_count": {
-      "key": "mention_count",
+    "chapters_present": {
+      "key": "chapters_present",
       "current": {
         "value": 1,
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:49:23.046259"
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:43:39.539604"
       },
       "history": [],
       "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 1,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 1 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 36,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 36 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 37,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+1 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 36,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+36 from chapter 2).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "physical_hair_color": {
+      "key": "physical_hair_color",
+      "current": {
+        "value": "red",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'A bustling red faced man emerged from it....'",
+        "timestamp": "2026-08-17T17:43:44.057996"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "physical_height": {
+      "key": "physical_height",
+      "current": {
+        "value": "short",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'Nicknamed the Bull the inspector was a solidly built man—short, broad and coiled tight like a whip....'",
+        "timestamp": "2026-08-17T17:43:44.066593"
+      },
+      "history": [
+        {
+          "value": "tall",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'Both Jamie who was nearly six feet tall and Dom who was even taller and twice as wide towered over t...'",
+          "timestamp": "2026-08-17T17:43:44.066593"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "physical_build": {
+      "key": "physical_build",
+      "current": {
+        "value": "thin",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: ''And technically I will flay you alive if you don't find Rhodes within the next half an hour....'",
+        "timestamp": "2026-08-17T17:43:44.069216"
+      },
+      "history": [],
+      "importance": 0.6,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
@@ -78,15 +198,122 @@
       "key": "physical_age",
       "current": {
         "value": "old",
-        "chapter": 3,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.7,
-        "reasoning": "Extracted from sentence: 'Bull, the old family dog, padded in and settled at Jamie's feet, tail thumping against the tile....'",
-        "timestamp": "2026-07-31T06:15:01.564018"
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'It wasn't the his size that made them instinctively straighten—it was the sheer force of his presenc...'",
+        "timestamp": "2026-08-17T17:43:44.074264"
       },
       "history": [],
       "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "physical_distinctive": {
+      "key": "physical_distinctive",
+      "current": {
+        "value": "scar",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'He was scary to be with even in the best of his days....'",
+        "timestamp": "2026-08-17T17:43:44.077272"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "personality_traits": {
+      "key": "personality_traits",
+      "current": {
+        "value": [
+          "humorous"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.58,
+        "reasoning": "Personality trait 'humorous' inferred from narration.",
+        "timestamp": "2026-08-17T17:43:44.083313"
+      },
+      "history": [],
+      "importance": 0.7,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "emotional_state": {
+      "key": "emotional_state",
+      "current": {
+        "value": "angry",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Emotional state inferred from text and dialogue.",
+        "timestamp": "2026-08-17T17:43:44.088032"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "Did not want to disturb me.",
+          "If ha so much as breathes funny I want to know about it.'"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.58,
+        "reasoning": "Goal extracted from text containing 'want to'.",
+        "timestamp": "2026-08-17T17:43:44.089070"
+      },
+      "history": [
+        {
+          "value": [
+            "Did not want to disturb me."
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Goal extracted from text containing 'want to'.",
+          "timestamp": "2026-08-17T17:43:44.089070"
+        }
+      ],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "arc_stage": {
+      "key": "arc_stage",
+      "current": {
+        "value": "inciting_incident",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:37).",
+        "timestamp": "2026-08-17T19:34:59.011098"
+      },
+      "history": [],
+      "importance": 0.8,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,

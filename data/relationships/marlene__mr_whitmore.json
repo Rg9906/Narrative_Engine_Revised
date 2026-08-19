@@ -3,30 +3,20 @@
     "relationship_label": {
       "key": "relationship_label",
       "current": {
-        "value": "NEUTRAL",
-        "chapter": 3,
+        "value": "UNKNOWN",
+        "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.9,
-        "reasoning": "Marlene is trying to convince Mr. Whitmore to sell the house, but he is resistant to the idea.",
-        "timestamp": "2026-07-31T06:15:07.497105"
+        "confidence": 0.6,
+        "reasoning": "Observed relation 'hear' between Marlene and Mr. Whitmore's.",
+        "timestamp": "2026-08-17T17:14:58.623923"
       },
-      "history": [
-        {
-          "value": "UNKNOWN",
-          "chapter": 0,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.6,
-          "reasoning": "Observed relation 'hear' between Marlene and Mr. Whitmore's.",
-          "timestamp": "2026-07-19T10:35:26.436160"
-        }
-      ],
+      "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
-      "last_mentioned_chapter": 3
+      "version": 2,
+      "last_mentioned_chapter": 0
     },
     "mention_count": {
       "key": "mention_count",
@@ -37,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.8,
         "reasoning": "First observed interaction this chapter.",
-        "timestamp": "2026-07-19T10:35:26.436160"
+        "timestamp": "2026-08-17T17:14:58.623923"
       },
       "history": [],
       "importance": 0.5,
@@ -55,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Recorded last interaction chapter.",
-        "timestamp": "2026-07-19T10:35:26.436160"
+        "timestamp": "2026-08-17T17:14:58.623923"
       },
       "history": [],
       "importance": 0.5,

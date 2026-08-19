@@ -1,0 +1,22 @@
+{
+  "jamie::dom": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "NEUTRAL",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Both are junior detectives working together under DI's command without explicit friendship or rivalry",
+        "timestamp": "2026-08-17T17:44:37.361746"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    }
+  }
+}

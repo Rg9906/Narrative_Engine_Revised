@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:49:22.768234"
+        "timestamp": "2026-08-17T17:43:39.233332"
       },
       "history": [],
       "importance": 0.9,
@@ -30,7 +30,7 @@
         "evidence_ids": [],
         "confidence": 0.85,
         "reasoning": "New alias observed for existing character.",
-        "timestamp": "2026-07-19T10:49:26.249871"
+        "timestamp": "2026-08-17T17:43:42.086365"
       },
       "history": [
         {
@@ -42,7 +42,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-19T10:49:22.768234"
+          "timestamp": "2026-08-17T17:43:39.233332"
         }
       ],
       "importance": 0.5,
@@ -60,7 +60,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Character observed in current chapter.",
-        "timestamp": "2026-07-31T06:08:08.085222"
+        "timestamp": "2026-08-17T19:34:32.748750"
       },
       "history": [
         {
@@ -70,7 +70,63 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-19T10:49:22.768234"
+          "timestamp": "2026-08-17T17:43:39.233332"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 2,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character observed in an additional chapter.",
+        "timestamp": "2026-08-17T19:34:32.749772"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First chapter this character appears in.",
+          "timestamp": "2026-08-17T17:43:39.233332"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 4,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 4 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 41,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 41 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:43:42.957633"
         }
       ],
       "importance": 0.5,
@@ -82,50 +138,77 @@
     "mention_count": {
       "key": "mention_count",
       "current": {
-        "value": 3,
+        "value": 45,
         "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "Mention count incremented for observed character.",
-        "timestamp": "2026-07-31T06:08:08.085222"
+        "reasoning": "Cumulative mentions across all chapters processed so far (+4 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
       },
       "history": [
         {
-          "value": 1,
-          "chapter": 2,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-19T10:49:22.768234"
-        },
-        {
-          "value": 2,
+          "value": 41,
           "chapter": 2,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "Mention count incremented for observed character.",
-          "timestamp": "2026-07-19T10:49:26.249871"
+          "reasoning": "Cumulative mentions across all chapters processed so far (+41 from chapter 2).",
+          "timestamp": "2026-08-17T17:43:42.957633"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 4,
+      "version": 3,
       "last_mentioned_chapter": 3
+    },
+    "physical_hair_color": {
+      "key": "physical_hair_color",
+      "current": {
+        "value": "red",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'He wondered if this was how [Whitmore] had felt after taking the pills that had taken his life....'",
+        "timestamp": "2026-08-17T17:43:43.986924"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "physical_eye_color": {
+      "key": "physical_eye_color",
+      "current": {
+        "value": "light",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'Jamie exhaled, shoulders dropping slightly....'",
+        "timestamp": "2026-08-17T17:43:43.997957"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
     },
     "physical_height": {
       "key": "physical_height",
       "current": {
-        "value": "feet",
+        "value": "tall",
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.68,
         "reasoning": "Extracted from sentence: 'Both Jamie who was nearly six feet tall and Dom who was even taller and twice as wide towered over t...'",
-        "timestamp": "2026-07-19T10:49:27.624303"
+        "timestamp": "2026-08-17T17:43:43.997957"
       },
       "history": [],
       "importance": 0.6,
@@ -143,37 +226,57 @@
         "evidence_ids": [],
         "confidence": 0.7,
         "reasoning": "Extracted from sentence: '\"Something's wrong,\" Jamie called up the stairs....'",
-        "timestamp": "2026-07-31T06:15:01.555057"
+        "timestamp": "2026-08-17T19:34:58.983989"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "thin",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'Jamie shot a quick glance at Dom and opened his mouth before thinking better of it and shutting up....'",
+          "timestamp": "2026-08-17T17:43:44.003933"
+        },
+        {
+          "value": "tall",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "described as nearly six feet tall",
+          "timestamp": "2026-08-17T17:44:35.739296"
+        }
+      ],
       "importance": 0.6,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 4,
       "last_mentioned_chapter": 3
     },
     "physical_age": {
       "key": "physical_age",
       "current": {
         "value": "old",
-        "chapter": 3,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.7,
-        "reasoning": "Extracted from sentence: 'Bull, the old family dog, padded in and settled at Jamie's feet, tail thumping against the tile....'",
-        "timestamp": "2026-07-31T06:15:01.556020"
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'It wasn't the his size that made them instinctively straighten—it was the sheer force of his presenc...'",
+        "timestamp": "2026-08-17T17:43:44.015029"
       },
       "history": [],
       "importance": 0.6,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 2
     },
     "personality_traits": {
       "key": "personality_traits",
       "current": {
         "value": [
+          "deceptive",
           "kind"
         ],
         "chapter": 3,
@@ -181,14 +284,142 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Personality trait 'kind' inferred from narration.",
-        "timestamp": "2026-07-31T06:15:01.559017"
+        "timestamp": "2026-08-17T19:34:58.992087"
       },
-      "history": [],
+      "history": [
+        {
+          "value": [
+            "deceptive"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Personality trait 'deceptive' inferred from narration.",
+          "timestamp": "2026-08-17T17:43:44.036817"
+        }
+      ],
       "importance": 0.7,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 3,
       "last_mentioned_chapter": 3
+    },
+    "emotional_state": {
+      "key": "emotional_state",
+      "current": {
+        "value": "angry",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.68,
+        "reasoning": "Emotional state inferred from text and dialogue.",
+        "timestamp": "2026-08-17T17:43:44.049021"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "tail private detective"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:44:35.739296"
+      },
+      "history": [
+        {
+          "value": [
+            "'We didn't want to .... disturb you ....' began Dom"
+          ],
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Goal extracted from text containing 'want to'.",
+          "timestamp": "2026-08-17T17:43:44.049021"
+        }
+      ],
+      "importance": 0.9,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "loc_47_marple_street",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-08-17T17:44:35.739296"
+      },
+      "history": [
+        {
+          "value": "second floor",
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [
+            "second floor"
+          ],
+          "confidence": 0.7,
+          "reasoning": "Located at 'second floor' (implied by sentence: 'The fact that the window was on the second floor and could not be accessed from outside unless one had a ladder with him troubled him to.')",
+          "timestamp": "2026-08-17T17:43:44.056013"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:44:35.739296"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:44:35.739296"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
     },
     "arc_stage": {
       "key": "arc_stage",
@@ -198,105 +429,11 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.5,
-        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:3).",
-        "timestamp": "2026-07-31T06:15:01.561068"
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:45).",
+        "timestamp": "2026-08-17T19:34:59.001813"
       },
       "history": [],
       "importance": 0.8,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "physical_location": {
-      "key": "physical_location",
-      "current": {
-        "value": "the kitchen",
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Jamie is making coffee in the kitchen.",
-        "timestamp": "2026-07-31T06:15:07.242137"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "goals": {
-      "key": "goals",
-      "current": {
-        "value": [
-          "help Mr. Whitmore manage the estate"
-        ],
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Goals updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.242137"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "fears": {
-      "key": "fears",
-      "current": {
-        "value": [
-          "something's wrong"
-        ],
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Fears updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.242137"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "location": {
-      "key": "location",
-      "current": {
-        "value": "the kitchen",
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Character location updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.242137"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "inventory": {
-      "key": "inventory",
-      "current": {
-        "value": [],
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Inventory delta applied by LLM.",
-        "timestamp": "2026-07-31T06:15:07.242137"
-      },
-      "history": [],
-      "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,

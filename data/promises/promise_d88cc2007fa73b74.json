@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.7,
         "reasoning": "Promise extracted from text containing 'i will'.",
-        "timestamp": "2026-07-19T10:50:39.670129"
+        "timestamp": "2026-08-17T17:44:35.700988"
       },
       "history": [],
       "importance": 0.9,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Speaker identified from dialogue context.",
-        "timestamp": "2026-07-19T10:50:39.670129"
+        "timestamp": "2026-08-17T17:44:35.700988"
       },
       "history": [],
       "importance": 0.7,
@@ -45,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.5,
         "reasoning": "Listener identified from neighboring entities.",
-        "timestamp": "2026-07-19T10:50:39.670129"
+        "timestamp": "2026-08-17T17:44:35.700988"
       },
       "history": [],
       "importance": 0.6,
@@ -63,7 +63,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "New promise marked as OPEN.",
-        "timestamp": "2026-07-19T10:50:39.670129"
+        "timestamp": "2026-08-17T17:44:35.700988"
       },
       "history": [],
       "importance": 0.9,
@@ -81,7 +81,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Chapter where promise was made.",
-        "timestamp": "2026-07-19T10:50:39.670129"
+        "timestamp": "2026-08-17T17:44:35.700988"
       },
       "history": [],
       "importance": 0.8,
@@ -99,7 +99,7 @@
         "evidence_ids": [],
         "confidence": 0.5,
         "reasoning": "Default climax proximity threshold.",
-        "timestamp": "2026-07-19T10:50:39.670129"
+        "timestamp": "2026-08-17T17:44:35.700988"
       },
       "history": [],
       "importance": 0.5,

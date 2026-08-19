@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Observed relation 'detective_?helooked' between Private and Dom.",
-        "timestamp": "2026-07-19T10:50:07.963334"
+        "timestamp": "2026-08-17T17:44:13.594590"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.8,
         "reasoning": "First observed interaction this chapter.",
-        "timestamp": "2026-07-19T10:50:07.963334"
+        "timestamp": "2026-08-17T17:44:13.594590"
       },
       "history": [],
       "importance": 0.5,
@@ -45,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Recorded last interaction chapter.",
-        "timestamp": "2026-07-19T10:50:07.963334"
+        "timestamp": "2026-08-17T17:44:13.594590"
       },
       "history": [],
       "importance": 0.5,

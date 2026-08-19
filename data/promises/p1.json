@@ -3,41 +3,41 @@
     "promise_text": {
       "key": "promise_text",
       "current": {
-        "value": "I will help Mr. Whitmore manage the estate",
-        "chapter": 3,
+        "value": "I'll buy you all you want when I'm free Pip.",
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.95,
-        "reasoning": "Jamie has been staying with Mr. Whitmore since the funeral, helping him manage the estate.",
-        "timestamp": "2026-07-31T06:15:07.497105"
+        "reasoning": "Sirius tells Pip he will buy them whatever they want once he is free; the narrative provides no indication the promise has been fulfilled yet.",
+        "timestamp": "2026-08-17T17:22:40.186971"
       },
       "history": [
         {
-          "value": "she would paint white over it",
+          "value": "She would paint white over the streak of red tomorrow when morning light returned",
           "chapter": 0,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
-          "timestamp": "2026-07-19T10:35:29.194207"
+          "reasoning": "The narrative states Giselle intends to cover the mistake with white paint at the next morning, which has not yet occurred in the chapter.",
+          "timestamp": "2026-08-17T17:15:01.968667"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "PROMISE",
       "version": 3,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 1
     },
     "speaker_id": {
       "key": "speaker_id",
       "current": {
-        "value": "jamie",
-        "chapter": 3,
+        "value": "sirius",
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.95,
-        "reasoning": "Jamie has been staying with Mr. Whitmore since the funeral, helping him manage the estate.",
-        "timestamp": "2026-07-31T06:15:07.497105"
+        "reasoning": "Sirius tells Pip he will buy them whatever they want once he is free; the narrative provides no indication the promise has been fulfilled yet.",
+        "timestamp": "2026-08-17T17:22:40.186971"
       },
       "history": [
         {
@@ -46,43 +46,43 @@
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
-          "timestamp": "2026-07-19T10:35:29.194207"
+          "reasoning": "The narrative states Giselle intends to cover the mistake with white paint at the next morning, which has not yet occurred in the chapter.",
+          "timestamp": "2026-08-17T17:15:01.968667"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "PROMISE",
       "version": 3,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 1
     },
     "listener_id": {
       "key": "listener_id",
       "current": {
-        "value": "mr_whitmore",
-        "chapter": 3,
+        "value": "pip",
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.95,
-        "reasoning": "Jamie has been staying with Mr. Whitmore since the funeral, helping him manage the estate.",
-        "timestamp": "2026-07-31T06:15:07.497105"
+        "reasoning": "Sirius tells Pip he will buy them whatever they want once he is free; the narrative provides no indication the promise has been fulfilled yet.",
+        "timestamp": "2026-08-17T17:22:40.186971"
       },
       "history": [
         {
-          "value": "herself",
+          "value": "Giselle",
           "chapter": 0,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
-          "timestamp": "2026-07-19T10:35:29.194207"
+          "reasoning": "The narrative states Giselle intends to cover the mistake with white paint at the next morning, which has not yet occurred in the chapter.",
+          "timestamp": "2026-08-17T17:15:01.968667"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "PROMISE",
       "version": 3,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 1
     },
     "status": {
       "key": "status",
@@ -92,8 +92,8 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.95,
-        "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
-        "timestamp": "2026-07-19T10:35:29.194207"
+        "reasoning": "The narrative states Giselle intends to cover the mistake with white paint at the next morning, which has not yet occurred in the chapter.",
+        "timestamp": "2026-08-17T17:15:01.968667"
       },
       "history": [],
       "importance": 0.5,
@@ -105,13 +105,13 @@
     "chapter_made": {
       "key": "chapter_made",
       "current": {
-        "value": 3,
-        "chapter": 3,
+        "value": 1,
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.95,
-        "reasoning": "Jamie has been staying with Mr. Whitmore since the funeral, helping him manage the estate.",
-        "timestamp": "2026-07-31T06:15:07.497105"
+        "reasoning": "Sirius tells Pip he will buy them whatever they want once he is free; the narrative provides no indication the promise has been fulfilled yet.",
+        "timestamp": "2026-08-17T17:22:40.186971"
       },
       "history": [
         {
@@ -120,15 +120,15 @@
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.95,
-          "reasoning": "Giselle decides to cover up the red streak on her painting with white paint the next morning, implying a promise to herself to correct her mistake.",
-          "timestamp": "2026-07-19T10:35:29.194207"
+          "reasoning": "The narrative states Giselle intends to cover the mistake with white paint at the next morning, which has not yet occurred in the chapter.",
+          "timestamp": "2026-08-17T17:15:01.968667"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "PROMISE",
       "version": 3,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 1
     }
   }
 }

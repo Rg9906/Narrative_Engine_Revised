@@ -1,5 +1,5 @@
 {
-  "mr_whitmore::sirius": {
+  "mr_whitmore::giselle": {
     "relationship_label": {
       "key": "relationship_label",
       "current": {
@@ -8,8 +8,8 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.6,
-        "reasoning": "Observed relation 'thanking' between some fellow named Whitmore and us.",
-        "timestamp": "2026-07-19T10:43:20.425170"
+        "reasoning": "Observed relation 'had' between some fellow named Whitmore and father.",
+        "timestamp": "2026-08-17T17:21:24.667714"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.8,
         "reasoning": "First observed interaction this chapter.",
-        "timestamp": "2026-07-19T10:43:20.425170"
+        "timestamp": "2026-08-17T17:21:24.667714"
       },
       "history": [],
       "importance": 0.5,
@@ -45,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Recorded last interaction chapter.",
-        "timestamp": "2026-07-19T10:43:20.425170"
+        "timestamp": "2026-08-17T17:21:24.667714"
       },
       "history": [],
       "importance": 0.5,

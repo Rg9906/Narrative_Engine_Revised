@@ -3,35 +3,46 @@
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Sirius",
+        "value": "Sirius Wolfe",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:42:32.975514"
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-08-17T17:22:36.320718"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "Sirius",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First observed mention of character.",
+          "timestamp": "2026-08-17T17:18:06.874964"
+        }
+      ],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 3,
       "last_mentioned_chapter": 1
     },
     "aliases": {
       "key": "aliases",
       "current": {
         "value": [
-          "Sirius",
+          "Wolfe",
           "Sirius Wolfe",
-          "Wolfe"
+          "Sirus",
+          "Sirius"
         ],
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.85,
-        "reasoning": "New alias observed for existing character.",
-        "timestamp": "2026-07-19T10:42:34.249936"
+        "confidence": 1.0,
+        "reasoning": "Aliases updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.320718"
       },
       "history": [
         {
@@ -43,7 +54,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-19T10:42:32.975514"
+          "timestamp": "2026-08-17T17:18:06.874964"
         },
         {
           "value": [
@@ -55,13 +66,26 @@
           "evidence_ids": [],
           "confidence": 0.85,
           "reasoning": "New alias observed for existing character.",
-          "timestamp": "2026-07-19T10:42:33.148327"
+          "timestamp": "2026-08-17T17:18:07.016982"
+        },
+        {
+          "value": [
+            "Sirius",
+            "Sirius Wolfe",
+            "Wolfe"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.85,
+          "reasoning": "New alias observed for existing character.",
+          "timestamp": "2026-08-17T17:18:07.642353"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 4,
+      "version": 5,
       "last_mentioned_chapter": 1
     },
     "last_seen_chapter": {
@@ -73,7 +97,43 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:42:32.975514"
+        "timestamp": "2026-08-17T17:18:06.874964"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:18:06.874964"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 94,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 94 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T17:20:54.137533"
       },
       "history": [],
       "importance": 0.5,
@@ -85,62 +145,148 @@
     "mention_count": {
       "key": "mention_count",
       "current": {
-        "value": 3,
+        "value": 94,
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "Mention count incremented for observed character.",
-        "timestamp": "2026-07-19T10:42:34.249936"
+        "reasoning": "Cumulative mentions across all chapters processed so far (+94 from chapter 1).",
+        "timestamp": "2026-08-17T17:20:54.137533"
       },
-      "history": [
-        {
-          "value": 1,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-19T10:42:32.975514"
-        },
-        {
-          "value": 2,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Mention count incremented for observed character.",
-          "timestamp": "2026-07-19T10:42:33.148327"
-        }
-      ],
+      "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 4,
+      "version": 2,
       "last_mentioned_chapter": 1
     },
-    "physical_height": {
-      "key": "physical_height",
+    "physical_hair_color": {
+      "key": "physical_hair_color",
       "current": {
-        "value": "the",
+        "value": "black",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.66,
-        "reasoning": "Extracted from sentence: 'Pip seemed to find this the height of hilarity and Sirius waited calmly as the cackling calmed down....'",
-        "timestamp": "2026-07-19T10:42:34.339679"
+        "reasoning": "Extracted from sentence: 'He took the black coffee from the table, the heat mixing with the fog through the broken window....'",
+        "timestamp": "2026-08-17T17:20:55.637036"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "red",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He stirred his coffee, the dull haze of his apartment blurring as he drank the it, the painkillers h...'",
+          "timestamp": "2026-08-17T17:20:55.635040"
+        }
+      ],
       "importance": 0.6,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 3,
+      "last_mentioned_chapter": 1
+    },
+    "physical_eye_color": {
+      "key": "physical_eye_color",
+      "current": {
+        "value": "light",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.66,
+        "reasoning": "Extracted from sentence: 'When he pressed a finger against one corner, it shifted slightly....'",
+        "timestamp": "2026-08-17T17:20:55.669738"
+      },
+      "history": [
+        {
+          "value": "dark",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'His footsteps darkening the foir just as Sirius had slept obliviously inside....'",
+          "timestamp": "2026-08-17T17:20:55.668737"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 1
+    },
+    "physical_build": {
+      "key": "physical_build",
+      "current": {
+        "value": "lean",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.66,
+        "reasoning": "Extracted from sentence: 'He set the letter down and leaned back....'",
+        "timestamp": "2026-08-17T17:20:55.700560"
+      },
+      "history": [
+        {
+          "value": "thin",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'Catching the burglar of 47 Marple street had taken everything he had and quite some more....'",
+          "timestamp": "2026-08-17T17:20:55.685151"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 1
+    },
+    "physical_age": {
+      "key": "physical_age",
+      "current": {
+        "value": "teenage",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.66,
+        "reasoning": "Extracted from sentence: 'The most famous detective in South [], and yet he couldn't find the teenagers who kept breaking his ...'",
+        "timestamp": "2026-08-17T17:20:55.717061"
+      },
+      "history": [
+        {
+          "value": "young",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'He was barely a kid, a few years younger than Sirius, he'd stolen the necklace to pawn it off in a s...'",
+          "timestamp": "2026-08-17T17:20:55.704567"
+        },
+        {
+          "value": "old",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.7,
+          "reasoning": "Extracted from sentence: 'You told you'd buy us a new pair of clothes the next time we inform you....'",
+          "timestamp": "2026-08-17T17:20:55.708974"
+        }
+      ],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
       "last_mentioned_chapter": 1
     },
     "personality_traits": {
       "key": "personality_traits",
       "current": {
         "value": [
+          "kind",
+          "cruel",
           "deceptive"
         ],
         "chapter": 1,
@@ -148,13 +294,37 @@
         "evidence_ids": [],
         "confidence": 0.56,
         "reasoning": "Personality trait 'deceptive' inferred from narration.",
-        "timestamp": "2026-07-19T10:42:34.346678"
+        "timestamp": "2026-08-17T17:20:55.776431"
       },
-      "history": [],
+      "history": [
+        {
+          "value": [
+            "kind"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Personality trait 'kind' inferred from narration.",
+          "timestamp": "2026-08-17T17:20:55.763438"
+        },
+        {
+          "value": [
+            "kind",
+            "cruel"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.6,
+          "reasoning": "Personality trait 'cruel' inferred from narration.",
+          "timestamp": "2026-08-17T17:20:55.763970"
+        }
+      ],
       "importance": 0.7,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 4,
       "last_mentioned_chapter": 1
     },
     "emotional_state": {
@@ -166,10 +336,168 @@
         "evidence_ids": [],
         "confidence": 0.66,
         "reasoning": "Emotional state inferred from text and dialogue.",
-        "timestamp": "2026-07-19T10:42:34.348678"
+        "timestamp": "2026-08-17T17:20:55.810501"
       },
       "history": [],
       "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "loc_sirius_apartment_south",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [
+        {
+          "value": "South",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [
+            "South"
+          ],
+          "confidence": 0.7,
+          "reasoning": "Located at 'South' (implied by sentence: 'The most famous detective in South [], and yet he couldn't find the teenagers who kept breaking his window.')",
+          "timestamp": "2026-08-17T17:20:55.822048"
+        },
+        {
+          "value": "47 Marple street",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [
+            "47 Marple street"
+          ],
+          "confidence": 0.7,
+          "reasoning": "Located at '47 Marple street' (implied by sentence: 'Catching the burglar of 47 Marple street had taken everything he had and quite some more.')",
+          "timestamp": "2026-08-17T17:20:55.823048"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 1
+    },
+    "physical_strength": {
+      "key": "physical_strength",
+      "current": {
+        "value": "weak",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Narrative explicitly states he is not strong and cannot run stairs without heaving.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "social_skill": {
+      "key": "social_skill",
+      "current": {
+        "value": "poor",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "He cannot understand people, pushes them away, and struggles with dates.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "intellectual_capacity": {
+      "key": "intellectual_capacity",
+      "current": {
+        "value": "high",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Described as having a mind that can predict actions and solve complex puzzles.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "solve Arden Whitmore's murder",
+          "help the Whitmore family financially"
+        ],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [
+          "being unable to protect others",
+          "failure to solve the case"
+        ],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [
+          "item_black_coffee",
+          "item_long_coat"
+        ],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:22:36.320718"
+      },
+      "history": [],
+      "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
@@ -183,8 +511,8 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.5,
-        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:3).",
-        "timestamp": "2026-07-31T06:15:01.541836"
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:94).",
+        "timestamp": "2026-08-17T19:34:58.911713"
       },
       "history": [],
       "importance": 0.8,

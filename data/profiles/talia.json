@@ -1,0 +1,313 @@
+{
+  "talia": {
+    "canonical_name": {
+      "key": "canonical_name",
+      "current": {
+        "value": "Talia",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "aliases": {
+      "key": "aliases",
+      "current": {
+        "value": [
+          "Talia",
+          "She",
+          "her"
+        ],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Aliases updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "color_association": {
+      "key": "color_association",
+      "current": {
+        "value": "vivid_violet",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Described as vivid violet, urgent, pulsing with feverish life.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "personality": {
+      "key": "personality",
+      "current": {
+        "value": "passionate_resilient",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Loves and lost, keeps loving, moves swiftly between kitchens.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.94,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.94,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "kitchen",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:15:01.963149"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 3,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 3 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 3,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 3 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:20:54.138533"
+        },
+        {
+          "value": 1,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 1 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 3
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 7,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+3 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 3,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+3 from chapter 1).",
+          "timestamp": "2026-08-17T17:20:54.138533"
+        },
+        {
+          "value": 4,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+1 from chapter 2).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 4,
+      "last_mentioned_chapter": 3
+    },
+    "physical_build": {
+      "key": "physical_build",
+      "current": {
+        "value": "thin",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.66,
+        "reasoning": "Extracted from sentence: 'Sirius hadn't said anything looking at the father who was sobbing in the corner, and a mother who wa...'",
+        "timestamp": "2026-08-17T17:20:55.498349"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "personality_traits": {
+      "key": "personality_traits",
+      "current": {
+        "value": [
+          "deceptive",
+          "shy"
+        ],
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.6,
+        "reasoning": "Personality trait 'shy' inferred from narration.",
+        "timestamp": "2026-08-17T19:34:58.868990"
+      },
+      "history": [
+        {
+          "value": [
+            "deceptive"
+          ],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.58,
+          "reasoning": "Personality trait 'deceptive' inferred from narration.",
+          "timestamp": "2026-08-17T17:20:55.580865"
+        }
+      ],
+      "importance": 0.7,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "physical_age": {
+      "key": "physical_age",
+      "current": {
+        "value": "old",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.7,
+        "reasoning": "Extracted from sentence: 'She had followed him up the stairs, her footsteps quiet on the old wood....'",
+        "timestamp": "2026-08-17T19:34:58.865993"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    },
+    "arc_stage": {
+      "key": "arc_stage",
+      "current": {
+        "value": "inciting_incident",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:7).",
+        "timestamp": "2026-08-17T19:34:58.877483"
+      },
+      "history": [],
+      "importance": 0.8,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 3
+    }
+  }
+}

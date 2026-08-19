@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Foreshadowing extracted from text containing 'without knowing'.",
-        "timestamp": "2026-07-19T10:35:29.191209"
+        "timestamp": "2026-08-17T17:15:01.576215"
       },
       "history": [],
       "importance": 0.8,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Resolution detected via 'finally' in chapter.",
-        "timestamp": "2026-07-19T10:43:40.742598"
+        "timestamp": "2026-08-17T17:22:35.902123"
       },
       "history": [
         {
@@ -37,7 +37,7 @@
           "evidence_ids": [],
           "confidence": 0.8,
           "reasoning": "New foreshadowing marked as OPEN.",
-          "timestamp": "2026-07-19T10:35:29.191209"
+          "timestamp": "2026-08-17T17:15:01.576215"
         }
       ],
       "importance": 0.8,
@@ -55,7 +55,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Chapter where foreshadowing was introduced.",
-        "timestamp": "2026-07-19T10:35:29.191209"
+        "timestamp": "2026-08-17T17:15:01.576215"
       },
       "history": [],
       "importance": 0.7,
@@ -73,7 +73,7 @@
         "evidence_ids": [],
         "confidence": 0.8,
         "reasoning": "Chapter where foreshadowing was resolved.",
-        "timestamp": "2026-07-19T10:43:40.742598"
+        "timestamp": "2026-08-17T17:22:35.902123"
       },
       "history": [],
       "importance": 0.8,

@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:04.825877"
+        "timestamp": "2026-08-17T17:14:49.709208"
       },
       "history": [],
       "importance": 0.9,
@@ -29,7 +29,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:35:04.825877"
+        "timestamp": "2026-08-17T17:14:49.709208"
       },
       "history": [],
       "importance": 0.5,
@@ -47,7 +47,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:04.825877"
+        "timestamp": "2026-08-17T17:14:49.709208"
       },
       "history": [],
       "importance": 0.5,
@@ -56,19 +56,93 @@
       "version": 2,
       "last_mentioned_chapter": 0
     },
-    "mention_count": {
-      "key": "mention_count",
+    "chapters_present": {
+      "key": "chapters_present",
       "current": {
         "value": 1,
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:35:04.825877"
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:14:49.709208"
       },
       "history": [],
       "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 1,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 1 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T17:43:42.957633"
+      },
+      "history": [
+        {
+          "value": 3,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 3 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 4,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+1 from chapter 2).",
+        "timestamp": "2026-08-17T17:43:42.957633"
+      },
+      "history": [
+        {
+          "value": 3,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+3 from chapter 0).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 2
+    },
+    "physical_build": {
+      "key": "physical_build",
+      "current": {
+        "value": "heavy",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.64,
+        "reasoning": "Extracted from sentence: 'She imagined the sound anyway—harsh, heavy, echoing against walls....'",
+        "timestamp": "2026-08-17T17:14:49.883829"
+      },
+      "history": [],
+      "importance": 0.6,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
@@ -85,7 +159,7 @@
         "evidence_ids": [],
         "confidence": 0.54,
         "reasoning": "Personality trait 'cruel' inferred from narration.",
-        "timestamp": "2026-07-19T10:35:05.004560"
+        "timestamp": "2026-08-17T17:14:49.891340"
       },
       "history": [],
       "importance": 0.7,
@@ -94,23 +168,23 @@
       "version": 2,
       "last_mentioned_chapter": 0
     },
-    "physical_eye_color": {
-      "key": "physical_eye_color",
+    "arc_stage": {
+      "key": "arc_stage",
       "current": {
-        "value": "his",
-        "chapter": 2,
+        "value": "inciting_incident",
+        "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.68,
-        "reasoning": "Extracted from sentence: 'He opened his eyes at the sound of closing footsteps....'",
-        "timestamp": "2026-07-19T10:49:27.594270"
+        "confidence": 0.5,
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:4).",
+        "timestamp": "2026-08-17T19:34:58.801850"
       },
       "history": [],
-      "importance": 0.6,
+      "importance": 0.8,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 2
+      "last_mentioned_chapter": 3
     }
   }
 }

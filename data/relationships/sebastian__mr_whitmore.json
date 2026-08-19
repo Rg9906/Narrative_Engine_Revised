@@ -1,5 +1,5 @@
 {
-  "sergent_rhodes::detective_inspector": {
+  "sebastian::mr_whitmore": {
     "relationship_label": {
       "key": "relationship_label",
       "current": {
@@ -8,8 +8,8 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.6,
-        "reasoning": "Observed relation 'closed' between Sergeant Rhodes and eyes.",
-        "timestamp": "2026-08-17T19:35:05.808856"
+        "reasoning": "Observed relation 'followed' between his daughter and Mr. Whitmore.",
+        "timestamp": "2026-08-17T19:35:07.030614"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.8,
         "reasoning": "First observed interaction this chapter.",
-        "timestamp": "2026-08-17T19:35:05.808856"
+        "timestamp": "2026-08-17T19:35:07.030614"
       },
       "history": [],
       "importance": 0.5,
@@ -45,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Recorded last interaction chapter.",
-        "timestamp": "2026-08-17T19:35:05.808856"
+        "timestamp": "2026-08-17T19:35:07.030614"
       },
       "history": [],
       "importance": 0.5,

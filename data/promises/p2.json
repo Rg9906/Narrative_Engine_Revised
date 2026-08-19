@@ -1,0 +1,94 @@
+{
+  "p2": {
+    "promise_text": {
+      "key": "promise_text",
+      "current": {
+        "value": "You told you'd buy us a new pair of clothes the next time we inform you.",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Pip reminds Sirius of a prior promise to purchase clothes after providing information; the promise remains unfulfilled in the current chapter.",
+        "timestamp": "2026-08-17T17:22:40.186971"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "speaker_id": {
+      "key": "speaker_id",
+      "current": {
+        "value": "sirius",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Pip reminds Sirius of a prior promise to purchase clothes after providing information; the promise remains unfulfilled in the current chapter.",
+        "timestamp": "2026-08-17T17:22:40.186971"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "listener_id": {
+      "key": "listener_id",
+      "current": {
+        "value": "pip",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Pip reminds Sirius of a prior promise to purchase clothes after providing information; the promise remains unfulfilled in the current chapter.",
+        "timestamp": "2026-08-17T17:22:40.186971"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "OPEN",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Pip reminds Sirius of a prior promise to purchase clothes after providing information; the promise remains unfulfilled in the current chapter.",
+        "timestamp": "2026-08-17T17:22:40.186971"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "chapter_made": {
+      "key": "chapter_made",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.95,
+        "reasoning": "Pip reminds Sirius of a prior promise to purchase clothes after providing information; the promise remains unfulfilled in the current chapter.",
+        "timestamp": "2026-08-17T17:22:40.186971"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "PROMISE",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

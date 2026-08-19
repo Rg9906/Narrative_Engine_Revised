@@ -3,19 +3,29 @@
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Vin",
+        "value": "Bran",
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:03.936979"
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-08-17T17:15:01.643949"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "Vin",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First observed mention of character.",
+          "timestamp": "2026-08-17T17:14:49.511791"
+        }
+      ],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 3,
       "last_mentioned_chapter": 0
     },
     "aliases": {
@@ -30,7 +40,7 @@
         "evidence_ids": [],
         "confidence": 0.85,
         "reasoning": "New alias observed for existing character.",
-        "timestamp": "2026-07-19T10:35:04.901878"
+        "timestamp": "2026-08-17T17:14:49.729291"
       },
       "history": [
         {
@@ -42,7 +52,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-19T10:35:03.936979"
+          "timestamp": "2026-08-17T17:14:49.511791"
         }
       ],
       "importance": 0.5,
@@ -60,7 +70,43 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:03.936979"
+        "timestamp": "2026-08-17T17:14:49.511791"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 1,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:14:49.511791"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 2,
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 2 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T17:14:49.742289"
       },
       "history": [],
       "importance": 0.5,
@@ -77,45 +123,159 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "Mention count incremented for observed character.",
-        "timestamp": "2026-07-19T10:35:04.901878"
+        "reasoning": "Cumulative mentions across all chapters processed so far (+2 from chapter 0).",
+        "timestamp": "2026-08-17T17:14:49.742289"
       },
-      "history": [
-        {
-          "value": 1,
-          "chapter": 0,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-19T10:35:03.936979"
-        }
-      ],
+      "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "physical_hair_color": {
+      "key": "physical_hair_color",
+      "current": {
+        "value": "red",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.64,
+        "reasoning": "Extracted from sentence: 'Their movements were too light to be captured with lines; they were laughter in motion, small storms...'",
+        "timestamp": "2026-08-17T17:14:49.763370"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "physical_eye_color": {
+      "key": "physical_eye_color",
+      "current": {
+        "value": "light",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.64,
+        "reasoning": "Extracted from sentence: 'Their movements were too light to be captured with lines; they were laughter in motion, small storms...'",
+        "timestamp": "2026-08-17T17:14:49.770370"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "physical_age": {
+      "key": "physical_age",
+      "current": {
+        "value": "child",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.94,
+        "reasoning": "Referred as one of the children.",
+        "timestamp": "2026-08-17T17:15:01.594998"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "personality": {
+      "key": "personality",
+      "current": {
+        "value": "joyful",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Described as quick silver sparkles, laughter in motion.",
+        "timestamp": "2026-08-17T17:15:01.594998"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
       "last_mentioned_chapter": 0
     },
     "goals": {
       "key": "goals",
       "current": {
-        "value": [
-          "He wondered how he would claim credit for solving this."
-        ],
-        "chapter": 2,
+        "value": [],
+        "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.58,
-        "reasoning": "Goal extracted from text containing 'aim'.",
-        "timestamp": "2026-07-19T10:49:27.562344"
+        "confidence": 0.94,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.594998"
       },
       "history": [],
-      "importance": 0.9,
+      "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 2
+      "last_mentioned_chapter": 0
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.94,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.594998"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "household_common_area",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.594998"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:15:01.594998"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
     }
   }
 }

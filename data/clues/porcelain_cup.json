@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "First mention of world element.",
-        "timestamp": "2026-07-19T10:35:29.181208"
+        "timestamp": "2026-08-17T17:15:00.109244"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.95,
         "reasoning": "Recorded first mention chapter.",
-        "timestamp": "2026-07-19T10:35:29.181208"
+        "timestamp": "2026-08-17T17:15:00.109244"
       },
       "history": [],
       "importance": 0.5,
@@ -45,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "First mention count.",
-        "timestamp": "2026-07-19T10:35:29.181208"
+        "timestamp": "2026-08-17T17:15:00.109244"
       },
       "history": [],
       "importance": 0.5,
@@ -57,20 +57,36 @@
     "location": {
       "key": "location",
       "current": {
-        "value": "easel",
+        "value": "Giselle_room",
         "chapter": 0,
         "scene": null,
-        "evidence_ids": [
-          "porcelain cup"
-        ],
-        "confidence": 0.8,
-        "reasoning": "Located at 'easel' (implied by sentence: 'Giselle sat beside the easel in her small room, brushes lay strewn like feathers in a porcelain cup.').",
-        "timestamp": "2026-07-19T10:35:29.182208"
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:15:01.968667"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
-      "element_type": "CHARACTER",
+      "element_type": "OBJECT",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "owner": {
+      "key": "owner",
+      "current": {
+        "value": "Giselle",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:15:01.968667"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "OBJECT",
       "version": 2,
       "last_mentioned_chapter": 0
     }

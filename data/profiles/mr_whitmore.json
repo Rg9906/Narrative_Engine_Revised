@@ -3,20 +3,30 @@
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Mr. Whitmore",
-        "chapter": 0,
+        "value": "Arden Whitmore",
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:04.561876"
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-08-17T17:22:36.534526"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "Mr. Whitmore",
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First observed mention of character.",
+          "timestamp": "2026-08-17T17:14:49.650865"
+        }
+      ],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 0
+      "version": 3,
+      "last_mentioned_chapter": 1
     },
     "aliases": {
       "key": "aliases",
@@ -26,12 +36,12 @@
           "Whitmore",
           "Arden Whitmore"
         ],
-        "chapter": 3,
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.8,
+        "confidence": 1.0,
         "reasoning": "Aliases updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.238179"
+        "timestamp": "2026-08-17T17:22:36.534526"
       },
       "history": [
         {
@@ -43,7 +53,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-19T10:35:04.561876"
+          "timestamp": "2026-08-17T17:14:49.650865"
         },
         {
           "value": [
@@ -55,7 +65,7 @@
           "evidence_ids": [],
           "confidence": 0.85,
           "reasoning": "New alias observed for existing character.",
-          "timestamp": "2026-07-19T10:42:32.750244"
+          "timestamp": "2026-08-17T17:18:06.742699"
         },
         {
           "value": [
@@ -68,14 +78,14 @@
           "evidence_ids": [],
           "confidence": 0.85,
           "reasoning": "New alias observed for existing character.",
-          "timestamp": "2026-07-19T10:42:33.594920"
+          "timestamp": "2026-08-17T17:18:07.232918"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 5,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 1
     },
     "last_seen_chapter": {
       "key": "last_seen_chapter",
@@ -86,7 +96,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Character observed in current chapter.",
-        "timestamp": "2026-07-31T06:08:08.239246"
+        "timestamp": "2026-08-17T19:34:33.240811"
       },
       "history": [
         {
@@ -96,7 +106,7 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-19T10:35:04.561876"
+          "timestamp": "2026-08-17T17:14:49.650865"
         },
         {
           "value": 1,
@@ -105,7 +115,7 @@
           "evidence_ids": [],
           "confidence": 0.9,
           "reasoning": "Character observed in current chapter.",
-          "timestamp": "2026-07-19T10:42:32.750244"
+          "timestamp": "2026-08-17T17:18:06.742699"
         }
       ],
       "importance": 0.5,
@@ -114,16 +124,16 @@
       "version": 4,
       "last_mentioned_chapter": 3
     },
-    "mention_count": {
-      "key": "mention_count",
+    "chapters_present": {
+      "key": "chapters_present",
       "current": {
-        "value": 6,
+        "value": 3,
         "chapter": 3,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "Mention count incremented for observed character.",
-        "timestamp": "2026-07-31T06:08:08.239246"
+        "reasoning": "Character observed in an additional chapter.",
+        "timestamp": "2026-08-17T19:34:33.240811"
       },
       "history": [
         {
@@ -132,95 +142,192 @@
           "scene": null,
           "evidence_ids": [],
           "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-19T10:35:04.561876"
+          "reasoning": "First chapter this character appears in.",
+          "timestamp": "2026-08-17T17:14:49.650865"
         },
         {
           "value": 2,
-          "chapter": 0,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Mention count incremented for observed character.",
-          "timestamp": "2026-07-19T10:35:04.937551"
-        },
-        {
-          "value": 3,
           "chapter": 1,
           "scene": null,
           "evidence_ids": [],
           "confidence": 0.9,
-          "reasoning": "Mention count incremented for observed character.",
-          "timestamp": "2026-07-19T10:42:32.750244"
-        },
-        {
-          "value": 4,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Mention count incremented for observed character.",
-          "timestamp": "2026-07-19T10:42:32.769232"
-        },
-        {
-          "value": 5,
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.9,
-          "reasoning": "Mention count incremented for observed character.",
-          "timestamp": "2026-07-19T10:42:33.594920"
+          "reasoning": "Character observed in an additional chapter.",
+          "timestamp": "2026-08-17T17:18:06.742699"
         }
       ],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 7,
+      "version": 4,
       "last_mentioned_chapter": 3
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 9,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 9 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 5,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 5 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        },
+        {
+          "value": 12,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 12 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:20:54.137533"
+        },
+        {
+          "value": 4,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 4 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 3
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 30,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+9 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 5,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+5 from chapter 0).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        },
+        {
+          "value": 17,
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+12 from chapter 1).",
+          "timestamp": "2026-08-17T17:20:54.137533"
+        },
+        {
+          "value": 21,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+4 from chapter 2).",
+          "timestamp": "2026-08-17T17:43:42.957633"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 5,
+      "last_mentioned_chapter": 3
+    },
+    "physical_hair_color": {
+      "key": "physical_hair_color",
+      "current": {
+        "value": "red",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.64,
+        "reasoning": "Extracted from sentence: 'His coat flared in anger....'",
+        "timestamp": "2026-08-17T17:14:49.855121"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
     },
     "emotional_state": {
       "key": "emotional_state",
       "current": {
-        "value": "grief",
-        "chapter": 3,
+        "value": "hopeful",
+        "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "He is struggling to cope with the loss of his daughter and is still hearing her laughter in the empty room.",
-        "timestamp": "2026-07-31T06:15:07.238179"
+        "confidence": 0.66,
+        "reasoning": "Emotional state inferred from text and dialogue.",
+        "timestamp": "2026-08-17T17:20:55.111874"
       },
-      "history": [
-        {
-          "value": "hopeful",
-          "chapter": 1,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 0.68,
-          "reasoning": "Emotional state inferred from text and dialogue.",
-          "timestamp": "2026-07-19T10:42:34.323694"
-        }
-      ],
+      "history": [],
       "importance": 0.8,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
-      "last_mentioned_chapter": 3
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "status": {
+      "key": "status",
+      "current": {
+        "value": "deceased",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Letter declares his death; narrative confirms he is already dead.",
+        "timestamp": "2026-08-17T17:22:36.534526"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
     },
     "goals": {
       "key": "goals",
       "current": {
-        "value": [
-          "cope with the loss of his daughter",
-          "manage the estate"
-        ],
-        "chapter": 3,
+        "value": [],
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.8,
+        "confidence": 0.98,
         "reasoning": "Goals updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.238179"
+        "timestamp": "2026-08-17T17:44:37.329692"
       },
       "history": [
+        {
+          "value": [],
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "Goals updated by LLM.",
+          "timestamp": "2026-08-17T17:22:36.534526"
+        },
         {
           "value": [
             "'Must do with the Whitmore's wife being a friends of the DI's wife.'"
@@ -230,14 +337,68 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Goal extracted from text containing 'must'.",
-          "timestamp": "2026-07-19T10:49:27.593269"
+          "timestamp": "2026-08-17T17:43:43.463380"
         }
       ],
-      "importance": 0.9,
+      "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
-      "last_mentioned_chapter": 3
+      "version": 4,
+      "last_mentioned_chapter": 2
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.534526"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "UNKNOWN_LOCATION",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.534526"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:22:36.534526"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
     },
     "physical_build": {
       "key": "physical_build",
@@ -248,7 +409,7 @@
         "evidence_ids": [],
         "confidence": 0.7,
         "reasoning": "Extracted from sentence: '\"There's nothing left for you here....'",
-        "timestamp": "2026-07-31T06:15:01.513818"
+        "timestamp": "2026-08-17T19:34:58.731410"
       },
       "history": [],
       "importance": 0.6,
@@ -266,7 +427,7 @@
         "evidence_ids": [],
         "confidence": 0.7,
         "reasoning": "Extracted from sentence: 'She had followed him up the stairs, her footsteps quiet on the old wood....'",
-        "timestamp": "2026-07-31T06:15:01.515868"
+        "timestamp": "2026-08-17T19:34:58.742403"
       },
       "history": [],
       "importance": 0.6,
@@ -287,7 +448,7 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Personality trait 'kind' inferred from narration.",
-        "timestamp": "2026-07-31T06:15:01.518840"
+        "timestamp": "2026-08-17T19:34:58.754627"
       },
       "history": [
         {
@@ -299,7 +460,7 @@
           "evidence_ids": [],
           "confidence": 0.6,
           "reasoning": "Personality trait 'shy' inferred from narration.",
-          "timestamp": "2026-07-31T06:15:01.517876"
+          "timestamp": "2026-08-17T19:34:58.752625"
         }
       ],
       "importance": 0.7,
@@ -316,67 +477,11 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.5,
-        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:6).",
-        "timestamp": "2026-07-31T06:15:01.521808"
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:30).",
+        "timestamp": "2026-08-17T19:34:58.767789"
       },
       "history": [],
       "importance": 0.8,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "fears": {
-      "key": "fears",
-      "current": {
-        "value": [
-          "the threat, whatever it is"
-        ],
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Fears updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.238179"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "location": {
-      "key": "location",
-      "current": {
-        "value": "the house",
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Character location updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.238179"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "inventory": {
-      "key": "inventory",
-      "current": {
-        "value": [],
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 0.8,
-        "reasoning": "Inventory delta applied by LLM.",
-        "timestamp": "2026-07-31T06:15:07.238179"
-      },
-      "history": [],
-      "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,

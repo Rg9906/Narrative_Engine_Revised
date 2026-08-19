@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:49:25.941922"
+        "timestamp": "2026-08-17T17:43:41.771700"
       },
       "history": [],
       "importance": 0.9,
@@ -29,7 +29,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:49:25.941922"
+        "timestamp": "2026-08-17T17:43:41.771700"
       },
       "history": [],
       "importance": 0.5,
@@ -47,7 +47,43 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:49:25.941922"
+        "timestamp": "2026-08-17T17:43:41.771700"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 1,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:43:41.771700"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 1,
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 1 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T17:43:42.957633"
       },
       "history": [],
       "importance": 0.5,
@@ -63,9 +99,9 @@
         "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:49:25.941922"
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+1 from chapter 2).",
+        "timestamp": "2026-08-17T17:43:42.957633"
       },
       "history": [],
       "importance": 0.5,

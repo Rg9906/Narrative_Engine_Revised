@@ -3,45 +3,37 @@
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Detective Inspector Reyes",
-        "chapter": 3,
+        "value": "Detective Inspector",
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "Canonical name set by LLM.",
-        "timestamp": "2026-07-31T06:15:07.374187"
+        "reasoning": "First observed mention of character.",
+        "timestamp": "2026-08-17T17:43:40.507941"
       },
-      "history": [
-        {
-          "value": "Detective Inspector",
-          "chapter": 2,
-          "scene": null,
-          "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First observed mention of character.",
-          "timestamp": "2026-07-19T10:49:24.046860"
-        }
-      ],
+      "history": [],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 3,
-      "last_mentioned_chapter": 3
+      "version": 2,
+      "last_mentioned_chapter": 2
     },
     "aliases": {
       "key": "aliases",
       "current": {
         "value": [
-          "Detective Inspector Reyes",
+          "DI",
+          "Detective Inspector []",
           "Detective Inspector",
-          "Reyes"
+          "The Bull",
+          "Detective Inspector Reyes"
         ],
         "chapter": 3,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "Aliases updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.374187"
+        "confidence": 0.85,
+        "reasoning": "New alias observed for existing character.",
+        "timestamp": "2026-08-17T19:34:31.970783"
       },
       "history": [
         {
@@ -53,19 +45,21 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Initial alias list created from first mention.",
-          "timestamp": "2026-07-19T10:49:24.046860"
+          "timestamp": "2026-08-17T17:43:40.507941"
         },
         {
           "value": [
+            "DI",
+            "Detective Inspector []",
             "Detective Inspector",
-            "Detective Inspector Reyes"
+            "The Bull"
           ],
-          "chapter": 3,
+          "chapter": 2,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 0.85,
-          "reasoning": "New alias observed for existing character.",
-          "timestamp": "2026-07-31T06:08:07.865278"
+          "confidence": 1.0,
+          "reasoning": "Aliases updated by LLM.",
+          "timestamp": "2026-08-17T17:44:35.752335"
         }
       ],
       "importance": 0.5,
@@ -83,7 +77,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Character observed in current chapter.",
-        "timestamp": "2026-07-31T06:08:07.865278"
+        "timestamp": "2026-08-17T19:34:31.970783"
       },
       "history": [
         {
@@ -93,7 +87,63 @@
           "evidence_ids": [],
           "confidence": 1.0,
           "reasoning": "Character seen in current chapter.",
-          "timestamp": "2026-07-19T10:49:24.046860"
+          "timestamp": "2026-08-17T17:43:40.507941"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 2,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character observed in an additional chapter.",
+        "timestamp": "2026-08-17T19:34:31.970783"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First chapter this character appears in.",
+          "timestamp": "2026-08-17T17:43:40.507941"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 1,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 1 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 1,
+          "chapter": 2,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 1 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:43:42.957633"
         }
       ],
       "importance": 0.5,
@@ -110,8 +160,8 @@
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.9,
-        "reasoning": "Mention count incremented for observed character.",
-        "timestamp": "2026-07-31T06:08:07.865278"
+        "reasoning": "Cumulative mentions across all chapters processed so far (+1 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
       },
       "history": [
         {
@@ -119,9 +169,9 @@
           "chapter": 2,
           "scene": null,
           "evidence_ids": [],
-          "confidence": 1.0,
-          "reasoning": "First mention observed this chapter.",
-          "timestamp": "2026-07-19T10:49:24.046860"
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+1 from chapter 2).",
+          "timestamp": "2026-08-17T17:43:42.957633"
         }
       ],
       "importance": 0.5,
@@ -130,79 +180,152 @@
       "version": 3,
       "last_mentioned_chapter": 3
     },
-    "goals": {
-      "key": "goals",
+    "physical_hair_color": {
+      "key": "physical_hair_color",
       "current": {
-        "value": [
-          "investigate the new lead in the case"
-        ],
-        "chapter": 3,
+        "value": "red",
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "Goals updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.374187"
+        "confidence": 0.68,
+        "reasoning": "Extracted from sentence: 'Detective Inspector [ ] thundered in with barely restrained fury....'",
+        "timestamp": "2026-08-17T17:43:44.148674"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "emotional_state": {
+      "key": "emotional_state",
+      "current": {
+        "value": "angry",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "described as thundered in with barely restrained fury",
+        "timestamp": "2026-08-17T17:44:35.752335"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 2
+    },
+    "physical_build": {
+      "key": "physical_build",
+      "current": {
+        "value": "broad and short",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "solidly built, short, broad",
+        "timestamp": "2026-08-17T17:44:35.752335"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "authority_level": {
+      "key": "authority_level",
+      "current": {
+        "value": "high",
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "holds rank of DI and commands Jamie and Dom",
+        "timestamp": "2026-08-17T17:44:35.752335"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [
+          "solve Whitmore murder",
+          "locate Sergeant Rhodes"
+        ],
+        "chapter": 2,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.98,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:44:35.752335"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 2
     },
     "fears": {
       "key": "fears",
       "current": {
         "value": [],
-        "chapter": 3,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
+        "confidence": 0.98,
         "reasoning": "Fears updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.374187"
+        "timestamp": "2026-08-17T17:44:35.752335"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 2
     },
     "location": {
       "key": "location",
       "current": {
-        "value": "unknown",
-        "chapter": 3,
+        "value": "loc_47_marple_street",
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character location updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.374187"
+        "timestamp": "2026-08-17T17:44:35.752335"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 2
     },
     "inventory": {
       "key": "inventory",
       "current": {
         "value": [],
-        "chapter": 3,
+        "chapter": 2,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Inventory delta applied by LLM.",
-        "timestamp": "2026-07-31T06:15:07.374187"
+        "timestamp": "2026-08-17T17:44:35.752335"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 2
     }
   }
 }

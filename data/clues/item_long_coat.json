@@ -1,5 +1,5 @@
 {
-  "pearl_necklace": {
+  "item_long_coat": {
     "type": {
       "key": "type",
       "current": {
@@ -7,50 +7,50 @@
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.9,
-        "reasoning": "First mention of world element.",
-        "timestamp": "2026-08-17T17:22:33.991704"
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:22:36.320718"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
-      "element_type": "CHARACTER",
+      "element_type": "OBJECT",
       "version": 2,
       "last_mentioned_chapter": 1
     },
-    "first_mentioned_chapter": {
-      "key": "first_mentioned_chapter",
+    "owner": {
+      "key": "owner",
       "current": {
-        "value": 1,
+        "value": "sirius",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.95,
-        "reasoning": "Recorded first mention chapter.",
-        "timestamp": "2026-08-17T17:22:33.991704"
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:22:36.320718"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
-      "element_type": "CHARACTER",
+      "element_type": "OBJECT",
       "version": 2,
       "last_mentioned_chapter": 1
     },
-    "mention_count": {
-      "key": "mention_count",
+    "location": {
+      "key": "location",
       "current": {
-        "value": 1,
+        "value": null,
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 0.9,
-        "reasoning": "First mention count.",
-        "timestamp": "2026-08-17T17:22:33.991704"
+        "confidence": 1.0,
+        "reasoning": "",
+        "timestamp": "2026-08-17T17:22:36.320718"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
-      "element_type": "CHARACTER",
+      "element_type": "OBJECT",
       "version": 2,
       "last_mentioned_chapter": 1
     }

@@ -1,0 +1,22 @@
+{
+  "sirius::char_thief_boy": {
+    "relationship_label": {
+      "key": "relationship_label",
+      "current": {
+        "value": "ENMITY",
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Sirius captured the teenage burglar, establishing direct conflict.",
+        "timestamp": "2026-08-17T17:22:39.615918"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    }
+  }
+}

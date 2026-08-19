@@ -3,19 +3,29 @@
     "canonical_name": {
       "key": "canonical_name",
       "current": {
-        "value": "Frodo",
+        "value": "fat Frodo",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:42:33.929756"
+        "reasoning": "Canonical name set by LLM.",
+        "timestamp": "2026-08-17T17:22:36.989852"
       },
-      "history": [],
+      "history": [
+        {
+          "value": "Frodo",
+          "chapter": 1,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 1.0,
+          "reasoning": "First observed mention of character.",
+          "timestamp": "2026-08-17T17:18:07.486926"
+        }
+      ],
       "importance": 0.9,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
+      "version": 3,
       "last_mentioned_chapter": 1
     },
     "aliases": {
@@ -29,7 +39,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:42:33.929756"
+        "timestamp": "2026-08-17T17:18:07.486926"
       },
       "history": [],
       "importance": 0.5,
@@ -47,7 +57,43 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:42:33.929756"
+        "timestamp": "2026-08-17T17:18:07.486926"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "chapters_present": {
+      "key": "chapters_present",
+      "current": {
+        "value": 1,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:18:07.486926"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 2,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 2 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T17:20:54.138533"
       },
       "history": [],
       "importance": 0.5,
@@ -59,13 +105,85 @@
     "mention_count": {
       "key": "mention_count",
       "current": {
-        "value": 1,
+        "value": 2,
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+2 from chapter 1).",
+        "timestamp": "2026-08-17T17:20:54.138533"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.989852"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "fears": {
+      "key": "fears",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.96,
+        "reasoning": "Fears updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.989852"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "location": {
+      "key": "location",
+      "current": {
+        "value": "UNKNOWN_LOCATION",
         "chapter": 1,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:42:33.929756"
+        "reasoning": "Character location updated by LLM.",
+        "timestamp": "2026-08-17T17:22:36.989852"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 1
+    },
+    "inventory": {
+      "key": "inventory",
+      "current": {
+        "value": [],
+        "chapter": 1,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 1.0,
+        "reasoning": "Inventory delta applied by LLM.",
+        "timestamp": "2026-08-17T17:22:36.989852"
       },
       "history": [],
       "importance": 0.5,

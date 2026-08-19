@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "First mention of world element.",
-        "timestamp": "2026-07-31T06:15:07.230126"
+        "timestamp": "2026-08-17T19:38:36.823673"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.95,
         "reasoning": "Recorded first mention chapter.",
-        "timestamp": "2026-07-31T06:15:07.230126"
+        "timestamp": "2026-08-17T19:38:36.823673"
       },
       "history": [],
       "importance": 0.5,
@@ -45,48 +45,12 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "First mention count.",
-        "timestamp": "2026-07-31T06:15:07.230126"
+        "timestamp": "2026-08-17T19:38:36.823673"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "location": {
-      "key": "location",
-      "current": {
-        "value": "the kitchen",
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "",
-        "timestamp": "2026-07-31T06:15:07.497105"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "OBJECT",
-      "version": 2,
-      "last_mentioned_chapter": 3
-    },
-    "owner": {
-      "key": "owner",
-      "current": {
-        "value": "mr_whitmore",
-        "chapter": 3,
-        "scene": null,
-        "evidence_ids": [],
-        "confidence": 1.0,
-        "reasoning": "",
-        "timestamp": "2026-07-31T06:15:07.497105"
-      },
-      "history": [],
-      "importance": 0.5,
-      "dependencies": [],
-      "element_type": "OBJECT",
       "version": 2,
       "last_mentioned_chapter": 3
     }

@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 0.6,
         "reasoning": "Observed relation 'were' between Walt and Jakob and DCs.",
-        "timestamp": "2026-07-19T10:49:34.676581"
+        "timestamp": "2026-08-17T17:43:49.569649"
       },
       "history": [],
       "importance": 0.5,
@@ -27,7 +27,7 @@
         "evidence_ids": [],
         "confidence": 0.8,
         "reasoning": "First observed interaction this chapter.",
-        "timestamp": "2026-07-19T10:49:34.676581"
+        "timestamp": "2026-08-17T17:43:49.569649"
       },
       "history": [],
       "importance": 0.5,
@@ -45,7 +45,7 @@
         "evidence_ids": [],
         "confidence": 0.9,
         "reasoning": "Recorded last interaction chapter.",
-        "timestamp": "2026-07-19T10:49:34.676581"
+        "timestamp": "2026-08-17T17:43:49.569649"
       },
       "history": [],
       "importance": 0.5,

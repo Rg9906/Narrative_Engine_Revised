@@ -9,7 +9,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "First observed mention of character.",
-        "timestamp": "2026-07-19T10:35:04.257966"
+        "timestamp": "2026-08-17T17:14:49.605165"
       },
       "history": [],
       "importance": 0.9,
@@ -29,7 +29,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Initial alias list created from first mention.",
-        "timestamp": "2026-07-19T10:35:04.257966"
+        "timestamp": "2026-08-17T17:14:49.605165"
       },
       "history": [],
       "importance": 0.5,
@@ -47,7 +47,7 @@
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character seen in current chapter.",
-        "timestamp": "2026-07-19T10:35:04.257966"
+        "timestamp": "2026-08-17T17:14:49.605165"
       },
       "history": [],
       "importance": 0.5,
@@ -56,16 +56,16 @@
       "version": 2,
       "last_mentioned_chapter": 0
     },
-    "mention_count": {
-      "key": "mention_count",
+    "chapters_present": {
+      "key": "chapters_present",
       "current": {
         "value": 1,
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "First mention observed this chapter.",
-        "timestamp": "2026-07-19T10:35:04.257966"
+        "reasoning": "First chapter this character appears in.",
+        "timestamp": "2026-08-17T17:14:49.605165"
       },
       "history": [],
       "importance": 0.5,
@@ -74,16 +74,72 @@
       "version": 2,
       "last_mentioned_chapter": 0
     },
+    "mentions_this_chapter": {
+      "key": "mentions_this_chapter",
+      "current": {
+        "value": 2,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Character is the subject of 2 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 5,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Character is the subject of 5 sentence(s) in this chapter (literal name matches plus coreference-resolved mentions).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
+    "mention_count": {
+      "key": "mention_count",
+      "current": {
+        "value": 7,
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.9,
+        "reasoning": "Cumulative mentions across all chapters processed so far (+2 from chapter 3).",
+        "timestamp": "2026-08-17T19:34:58.422484"
+      },
+      "history": [
+        {
+          "value": 5,
+          "chapter": 0,
+          "scene": null,
+          "evidence_ids": [],
+          "confidence": 0.9,
+          "reasoning": "Cumulative mentions across all chapters processed so far (+5 from chapter 0).",
+          "timestamp": "2026-08-17T17:14:49.742289"
+        }
+      ],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 3,
+      "last_mentioned_chapter": 3
+    },
     "physical_eye_color": {
       "key": "physical_eye_color",
       "current": {
-        "value": "his",
+        "value": "blue",
         "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 0.64,
-        "reasoning": "Extracted from sentence: 'He held plates, spoke to someone—Marlene perhaps—but his eyes never quite rested on one place, like ...'",
-        "timestamp": "2026-07-19T10:35:04.984553"
+        "reasoning": "Extracted from sentence: 'Then Marlene—calm, deliberate—blue....'",
+        "timestamp": "2026-08-17T17:14:49.838939"
       },
       "history": [],
       "importance": 0.6,
@@ -92,75 +148,145 @@
       "version": 2,
       "last_mentioned_chapter": 0
     },
-    "goals": {
-      "key": "goals",
+    "physical_build": {
+      "key": "physical_build",
       "current": {
-        "value": [
-          "convince Mr. Whitmore to sell the house"
-        ],
-        "chapter": 3,
+        "value": "thin",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.64,
+        "reasoning": "Extracted from sentence: 'He held plates, spoke to someone—Marlene perhaps—but his eyes never quite rested on one place, like ...'",
+        "timestamp": "2026-08-17T17:14:49.842938"
+      },
+      "history": [],
+      "importance": 0.6,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "color_association": {
+      "key": "color_association",
+      "current": {
+        "value": "calm_blue",
+        "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
-        "reasoning": "Goals updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.245210"
+        "reasoning": "Described as calm, deliberate—blue, the quiet blue of evening sky after rain.",
+        "timestamp": "2026-08-17T17:15:01.968667"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 0
+    },
+    "disposition": {
+      "key": "disposition",
+      "current": {
+        "value": "observant",
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.85,
+        "reasoning": "She briefly touches Sebastian's arm; Giselle notices the small gesture.",
+        "timestamp": "2026-08-17T17:15:01.968667"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "goals": {
+      "key": "goals",
+      "current": {
+        "value": [],
+        "chapter": 0,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.94,
+        "reasoning": "Goals updated by LLM.",
+        "timestamp": "2026-08-17T17:15:01.968667"
+      },
+      "history": [],
+      "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
     },
     "fears": {
       "key": "fears",
       "current": {
         "value": [],
-        "chapter": 3,
+        "chapter": 0,
         "scene": null,
         "evidence_ids": [],
-        "confidence": 1.0,
+        "confidence": 0.94,
         "reasoning": "Fears updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.245210"
+        "timestamp": "2026-08-17T17:15:01.968667"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 0
     },
     "location": {
       "key": "location",
       "current": {
-        "value": "the house",
-        "chapter": 3,
+        "value": "veranda_columns",
+        "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Character location updated by LLM.",
-        "timestamp": "2026-07-31T06:15:07.245210"
+        "timestamp": "2026-08-17T17:15:01.968667"
       },
       "history": [],
       "importance": 0.5,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
-      "last_mentioned_chapter": 3
+      "last_mentioned_chapter": 0
     },
     "inventory": {
       "key": "inventory",
       "current": {
         "value": [],
-        "chapter": 3,
+        "chapter": 0,
         "scene": null,
         "evidence_ids": [],
         "confidence": 1.0,
         "reasoning": "Inventory delta applied by LLM.",
-        "timestamp": "2026-07-31T06:15:07.245210"
+        "timestamp": "2026-08-17T17:15:01.968667"
       },
       "history": [],
       "importance": 0.5,
+      "dependencies": [],
+      "element_type": "CHARACTER",
+      "version": 2,
+      "last_mentioned_chapter": 0
+    },
+    "arc_stage": {
+      "key": "arc_stage",
+      "current": {
+        "value": "inciting_incident",
+        "chapter": 3,
+        "scene": null,
+        "evidence_ids": [],
+        "confidence": 0.5,
+        "reasoning": "Arc stage updated based on chapter progression (ch3, mentions:7).",
+        "timestamp": "2026-08-17T19:34:58.706089"
+      },
+      "history": [],
+      "importance": 0.8,
       "dependencies": [],
       "element_type": "CHARACTER",
       "version": 2,
