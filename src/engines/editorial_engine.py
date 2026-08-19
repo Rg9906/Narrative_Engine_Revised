@@ -30,6 +30,7 @@ from src.review.timeline_inspector import TimelineInspector
 from src.review.conflict_inspector import ConflictInspector
 from src.review.spatiotemporal_inspector import SpatiotemporalInspector
 from src.models.state import NarrativeState, StateDelta
+from src.review.signal_triage import group_signals, render_signals_for_prompt
 from src.utils.llm_provider import LLMProvider
 
 logger = logging.getLogger("NarrativeEngine.Engines.Editorial")
@@ -101,15 +102,7 @@ class EditorialEngine:
                     "confidence": 1.0,
                 })
 
-        # Run LLM-based critique (Gemini / Groq / Ollama — auto-detected)
-        key_events: List[str] = []
-        try:
-            llm_findings, key_events = self._run_llm_critique(state, delta, raw_text=raw_text)
-            findings.extend(llm_findings)
-        except Exception as e:
-            logger.error(f"Failed to run LLM critique: {e}")
-
-        # Normalize findings to dicts
+        # Normalize findings to dicts before triage, so grouping sees one uniform shape.
         from dataclasses import asdict, is_dataclass
 
         norm = []
@@ -121,6 +114,43 @@ class EditorialEngine:
             else:
                 norm.append(f)
 
+        # Collapse the rule-based output into distinct signals before any LLM sees it.
+        # Nine inspectors emitting one finding per offending entity produced reports where
+        # 50 of 81 findings were the same note repeated — see src/review/signal_triage.py.
+        signals = group_signals(norm)
+        # Captured before the LLM critique's findings are appended below, so it pairs
+        # with signal_group_count: both describe the rule-based feed only.
+        rule_based_count = len(norm)
+        logger.info(f"Triaged {rule_based_count} rule-based findings into {len(signals)} distinct signal groups.")
+
+        # Run LLM-based critique (Gemini / Groq / Ollama — auto-detected)
+        key_events: List[str] = []
+        llm_findings: List[dict] = []
+        try:
+            llm_findings, key_events = self._run_llm_critique(state, delta, raw_text=raw_text)
+            norm.extend(llm_findings)
+        except Exception as e:
+            logger.error(f"Failed to run LLM critique: {e}")
+
+        # A chapter's story beats should never silently vanish. When the critique call
+        # fails or omits key_events (which is exactly what happened to chapter 3's report
+        # — the field was written as an empty list with no indication anything had gone
+        # wrong), fall back to the curated timeline the World+Timeline stage already built.
+        if not key_events:
+            key_events = self._key_events_from_timeline(state, delta)
+            if key_events:
+                logger.info("LLM critique returned no key_events; derived them from the curated timeline.")
+
+        # Second LLM pass: decide what actually matters. The critique above notices things;
+        # this ranks the rule-based signals and the critique's own findings together,
+        # writes a developmental editor's letter, and is the layer that turns a flat list
+        # of detector output into a review a human would recognize as one.
+        synthesis = {}
+        try:
+            synthesis = self._run_synthesis(state, delta, signals, llm_findings, key_events, raw_text=raw_text)
+        except Exception as e:
+            logger.error(f"Failed to run LLM synthesis pass: {e}")
+
         from datetime import datetime
         report = {
             "metadata": {
@@ -128,13 +158,25 @@ class EditorialEngine:
                 "generated_at": datetime.now().isoformat(),
                 "inspector_count": len(self.inspectors),
                 "llm_provider": self._llm.provider_name,
+                "raw_finding_count": rule_based_count,
+                "total_finding_count": len(norm),
+                "signal_group_count": len(signals),
+                "synthesized": bool(synthesis.get("top_findings") or synthesis.get("editorial_letter")),
             },
+            # The headline output: a prose developmental note, and the handful of issues
+            # worth a writer's attention, ranked. Empty when no LLM was reachable — in
+            # which case `signals` below is the whole review.
+            "editorial_letter": synthesis.get("editorial_letter", ""),
+            "strengths": synthesis.get("strengths", []),
+            "top_findings": synthesis.get("top_findings", []),
+            # Human-readable story beats for the chapter — from the LLM critique, or the
+            # curated timeline as a fallback. Never the raw subject-verb-object triples.
+            "key_events": synthesis.get("key_events") or key_events,
+            # Deduplicated rule-based signals, each with a count and exemplars. This is
+            # what the synthesis pass reasoned over, exposed so a human can audit it.
+            "signals": signals,
+            # Every raw finding, kept for back-compatibility and drill-down.
             "findings": norm,
-            # A handful of human-readable story beats for the chapter, curated by the same
-            # LLM critique call rather than the mechanical subject-verb-object triples in
-            # state.timeline (which exist for structural inspectors like SpatiotemporalInspector
-            # to reason over, not for a human to read as a narrative summary).
-            "key_events": key_events,
         }
 
         # Only persist to disk when a real project config is supplied. There is no safe
@@ -165,6 +207,233 @@ class EditorialEngine:
             logger.info("No config provided; returning in-memory report without writing to disk.")
 
         return report
+
+    # Chapter text is by far the largest and most compressible part of both editorial
+    # prompts, so it is what gets cut when a backend rejects the request size.
+    _TRUNCATED_RAW_TEXT_CHARS = 3500
+
+    def _chat_with_size_retry(self, messages: List[dict], raw_text: str, purpose: str) -> str:
+        """Send an editorial prompt, retrying with less chapter text if it is too large.
+
+        Providers with a per-minute token budget (Groq's free tier permits 8,000) reject
+        oversized requests outright with HTTP 413, and no amount of retrying the same
+        prompt helps. Without this, a long chapter simply produced no editorial letter --
+        the most valuable output in the report -- and the only trace was a logged error.
+        """
+        from src.utils.llm_provider import RequestTooLargeError
+
+        try:
+            return self._llm.chat(messages, response_format={"type": "json_object"})
+        except RequestTooLargeError as e:
+            if not raw_text or len(raw_text) <= self._TRUNCATED_RAW_TEXT_CHARS:
+                raise
+            logger.warning(
+                f"{purpose} prompt exceeded the backend's token allowance ({e}). "
+                f"Retrying with the chapter text truncated to "
+                f"{self._TRUNCATED_RAW_TEXT_CHARS} chars."
+            )
+
+        truncated = (
+            raw_text[: self._TRUNCATED_RAW_TEXT_CHARS]
+            + "\n[... chapter text truncated to fit the model's token budget ...]"
+        )
+        shrunk = []
+        for message in messages:
+            content = message.get("content", "")
+            shrunk.append({**message, "content": content.replace(raw_text, truncated)})
+        return self._llm.chat(shrunk, response_format={"type": "json_object"})
+
+    def _key_events_from_timeline(self, state: NarrativeState, delta: StateDelta | None) -> List[str]:
+        """Derive reader-facing key events for this chapter from the curated timeline.
+
+        Fallback for when the LLM critique call fails or returns no key_events. Reads only
+        `kind == "narrative"` beats (plus deaths, which are structural but genuinely
+        story-level), ordered by significance, so it never degenerates into the raw
+        subject-verb-object triples that now live in state.raw_relations.
+        """
+        chapter = delta.chapter_number if delta else state.last_processed_chapter
+
+        candidates = []
+        for event in getattr(state, "timeline", []) or []:
+            if not isinstance(event, dict) or event.get("chapter") != chapter:
+                continue
+            kind = event.get("kind", "narrative")
+            if kind == "structural" and not event.get("reader_facing"):
+                continue
+            summary = (event.get("summary") or "").strip()
+            if not summary:
+                subject = event.get("subject") or ""
+                predicate = event.get("predicate") or ""
+                obj = event.get("object") or ""
+                summary = f"{subject} {predicate} {obj}".strip()
+            if not summary:
+                continue
+            try:
+                significance = float(event.get("significance") or 0.5)
+            except (TypeError, ValueError):
+                significance = 0.5
+            candidates.append((significance, summary))
+
+        candidates.sort(key=lambda pair: -pair[0])
+        return [summary for _, summary in candidates[:8]]
+
+    def _run_synthesis(
+        self,
+        state: NarrativeState,
+        delta: StateDelta | None,
+        signals: List[dict],
+        llm_findings: List[dict],
+        key_events: List[str],
+        raw_text: str = "",
+    ) -> dict:
+        """Rank everything the review found and write a developmental editor's letter.
+
+        This is the layer the previous design was missing entirely. Before it, the report
+        was a flat concatenation: nine inspectors' per-entity findings, plus whatever the
+        single critique call produced, in no particular order and with no relationship to
+        each other. Nothing decided which of 81 findings a writer should act on, nothing
+        noticed when 50 of them were the same detector firing repeatedly, and nothing
+        connected a rule-based signal ("object relocated with no one present") to the
+        LLM's own reading of the chapter.
+
+        The rule-based signals arrive pre-grouped (src/review/signal_triage.py), so this
+        prompt sees ~17 distinct observations rather than 81 rows, most of them duplicates.
+        """
+        if not self._llm.is_available:
+            logger.info("No LLM provider available. Skipping synthesis pass; report will be signals-only.")
+            return {}
+
+        chapter = delta.chapter_number if delta else state.last_processed_chapter
+
+        signal_block = render_signals_for_prompt(signals)
+
+        critique_block = "(the critique pass produced no findings)"
+        if llm_findings:
+            critique_lines = []
+            for finding in llm_findings[:15]:
+                critique_lines.append(
+                    f"- [{finding.get('severity', 'note')}] {finding.get('category', 'general')} - "
+                    f"{finding.get('title', 'untitled')}: {finding.get('description', '')}"
+                )
+            critique_block = "\n".join(critique_lines)
+
+        events_block = "\n".join(f"- {event}" for event in key_events) if key_events else "(none identified)"
+
+        prompt = (
+            f"You are the senior developmental editor on this manuscript, writing up "
+            f"Chapter {chapter}.\n\n"
+            f"--- Chapter {chapter} text ---\n{raw_text if raw_text else '(not supplied)'}\n\n"
+            f"--- What this chapter appears to do (extracted story beats) ---\n{events_block}\n\n"
+            f"--- Automated rule-based signals ---\n"
+            f"These come from mechanical detectors run over the story's structured state. They "
+            f"are grouped: 'fired 50x' means one rule matched fifty entities, which is usually "
+            f"ONE issue (often a miscalibrated detector), never fifty. Treat them as leads to "
+            f"verify against the chapter text, not as conclusions. Discard any that the text "
+            f"does not actually support.\n{signal_block}\n\n"
+            f"--- A first-pass reading of the chapter ---\n{critique_block}\n\n"
+            f"--- Your task ---\n"
+            f"Write the editorial assessment. Be specific to THIS chapter and quote or "
+            f"reference actual moments in it. A note that would apply to any chapter of any "
+            f"book is worthless - do not write 'some sentences could be revised for better "
+            f"clarity' or 'consider adding more context'. Say which sentence, and what is "
+            f"wrong with it.\n\n"
+            f"Return between 3 and 7 top_findings. Fewer is better than padding. Rank them by "
+            f"what you would actually raise with the author first. Merge duplicates: if a "
+            f"rule-based signal and the first-pass reading describe the same problem, that is "
+            f"ONE finding. Drop signals you judge to be detector noise, and say so in the "
+            f"letter if a detector is clearly misfiring.\n\n"
+            f"Format your response EXACTLY as a single JSON object, no markdown fences:\n"
+            f"{{\n"
+            f'  "editorial_letter": "2-5 paragraphs, addressed to the author. What this '
+            f"chapter is doing, whether it works, and what you would change. Written as prose, "
+            f'not a bulleted list.",\n'
+            f'  "strengths": ["1-3 specific things this chapter does well, each referencing '
+            f'an actual moment in it"],\n'
+            f'  "top_findings": [\n'
+            f"    {{\n"
+            f'      "severity": "error|warning|suggestion|note",\n'
+            f'      "category": "consistency|pacing|character|arc|theme|voice|structure",\n'
+            f'      "title": "Short, concrete headline naming the actual problem",\n'
+            f'      "description": "What is wrong, anchored to specific text or state",\n'
+            f'      "why_it_matters": "The consequence for the reader if left as-is",\n'
+            f'      "recommendation": "A concrete change the author could make",\n'
+            f'      "related_entities": ["character or object ids"],\n'
+            f'      "subsumes": ["titles of the rule-based signals this finding covers"],\n'
+            f'      "confidence": 0.0\n'
+            f"    }}\n"
+            f"  ],\n"
+            f'  "key_events": ["3-8 plain-English story beats for this chapter, corrected '
+            f'if the extracted list above got them wrong"]\n'
+            f"}}\n"
+        )
+
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a senior developmental editor. You are blunt, specific, and you "
+                    "never pad. You respond strictly as a single JSON object with the requested "
+                    "fields and nothing else - no markdown fences, no preamble."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ]
+
+        logger.info(f"Running LLM editorial synthesis via {self._llm.provider_name} (model: {self._llm.model})...")
+        raw_output = self._chat_with_size_retry(messages, raw_text, "Synthesis")
+        return self._parse_synthesis(raw_output, chapter)
+
+    def _parse_synthesis(self, raw_output: str, chapter_num: int) -> dict:
+        """Parse the synthesis pass's JSON object, tolerating conversational wrapping."""
+        import re
+
+        cleaned = (raw_output or "").strip()
+        if cleaned.startswith("```"):
+            lines = cleaned.split("\n")
+            if lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines and lines[-1].startswith("```"):
+                lines = lines[:-1]
+            cleaned = "\n".join(lines).strip()
+
+        parsed = None
+        try:
+            parsed = json.loads(cleaned)
+        except Exception:
+            match = re.search(r"(\{.*\})", cleaned, re.DOTALL)
+            if match:
+                try:
+                    parsed = json.loads(match.group(1))
+                except Exception:
+                    parsed = None
+
+        if not isinstance(parsed, dict):
+            logger.warning("Synthesis pass response did not parse as a JSON object; ignoring it.")
+            return {}
+
+        top_findings = []
+        for rank, finding in enumerate(parsed.get("top_findings") or [], start=1):
+            if not isinstance(finding, dict):
+                continue
+            finding["rank"] = rank
+            finding["chapter"] = chapter_num
+            finding.setdefault("related_entities", [])
+            finding.setdefault("subsumes", [])
+            finding.setdefault("evidence_ids", [])
+            top_findings.append(finding)
+
+        def _string_list(key: str) -> List[str]:
+            value = parsed.get(key)
+            if not isinstance(value, list):
+                return []
+            return [str(item).strip() for item in value if str(item).strip()]
+
+        return {
+            "editorial_letter": str(parsed.get("editorial_letter") or "").strip(),
+            "strengths": _string_list("strengths"),
+            "top_findings": top_findings,
+            "key_events": _string_list("key_events"),
+        }
 
     def _run_llm_critique(self, state: NarrativeState, delta: StateDelta | None, raw_text: str = "") -> tuple[List[dict], List[str]]:
         if not self._llm.is_available:
@@ -200,21 +469,35 @@ class EditorialEngine:
             f"{context_block if context_block else 'No prior story memory yet — this is likely the first chapter.'}\n\n"
             f"Unresolved mysteries & conflict events:\n" + ("\n".join(mysteries) if mysteries else "None") + "\n\n"
             f"--- Editorial Instructions ---\n"
-            f"Please critique the current chapter based on the provided story memory, reasoning across the "
-            f"accumulated chapter summaries and recent timeline above — not just this chapter in isolation. "
-            f"Specifically, critique:\n"
-            f"1. **Thematic Pacing Drift**: Analyze whether the chapter's pacing is consistent with the narrative "
-            f"arc established across prior chapters, or if it introduces sudden shifts, drag, or rushed scenes.\n"
-            f"2. **Stylistic Variance**: Detect if there is a noticeable stylistic, voice, or tone variance in this "
-            f"chapter compared to the standard narrative flow.\n"
-            f"3. **Mystery/Conflict cross-referencing**: Cross-reference newly emerged conflict events from "
-            f"mysteries (e.g. contradiction events, inventory dual-ownership, or physical description mismatches) "
-            f"to flag contradictions.\n\n"
-            f"Also summarize the chapter's key events: 3-8 short, plain-English sentences describing what actually "
-            f"happened in this chapter that a reader would care about (plot-significant actions, revelations, "
-            f"decisions, arrivals/departures) — not every sentence-level action. This is meant to replace a "
-            f"mechanical list of every extracted subject-verb-object triple with something an editor or reader "
-            f"would actually want to read.\n\n"
+            f"Critique the current chapter against the story memory above, reasoning across the "
+            f"accumulated chapter summaries and recent timeline — not just this chapter in "
+            f"isolation. Specifically:\n"
+            f"1. **Thematic Pacing Drift**: Is the chapter's pacing consistent with the arc "
+            f"established across prior chapters, or does it introduce sudden shifts, drag, or "
+            f"rushed scenes?\n"
+            f"2. **Stylistic Variance**: Is there a noticeable stylistic, voice, or tone shift in "
+            f"this chapter compared to the established narrative voice?\n"
+            f"3. **Mystery/Conflict cross-referencing**: Cross-reference newly emerged conflict "
+            f"events against open mysteries (contradiction events, inventory dual-ownership, "
+            f"physical description mismatches) to flag genuine contradictions.\n\n"
+            f"RULES FOR EVERY FINDING — these exist because earlier passes returned unusable "
+            f"filler:\n"
+            f"- Anchor each finding to a specific moment. Name the sentence, character, or object. "
+            f"A finding that could be pasted into a review of any chapter of any novel is worse "
+            f"than no finding.\n"
+            f"- BANNED phrasings: 'generally well-written', 'some sentences could be revised', "
+            f"'consider adding more context', 'might feel a bit rushed to some readers', "
+            f"'consider reviewing for minor adjustments'. If your finding reduces to one of "
+            f"these, delete it.\n"
+            f"- Do not hedge a finding into meaninglessness. If the chapter is fine on one of the "
+            f"three axes above, return NO finding for that axis rather than a neutral one. An "
+            f"empty findings list is a valid and useful answer.\n"
+            f"- Return at most 6 findings.\n\n"
+            f"Also summarize the chapter's key events: 3-8 short, plain-English sentences "
+            f"describing what actually happened that a reader would care about (plot-significant "
+            f"actions, revelations, decisions, arrivals/departures) — not every sentence-level "
+            f"action, and not scene-setting. This field is required; never return it empty when "
+            f"the chapter contains any events at all.\n\n"
             f"Format your response EXACTLY as a single JSON object (not an array). Do not include markdown code "
             f"block syntax (like ```json). The object must have exactly two fields:\n"
             f"- 'findings': a JSON array of objects, each with:\n"
@@ -233,7 +516,7 @@ class EditorialEngine:
 
         try:
             logger.info(f"Running LLM developmental editor critique via {self._llm.provider_name} (model: {self._llm.model})...")
-            raw_output = self._llm.chat(messages)
+            raw_output = self._chat_with_size_retry(messages, raw_text, "Critique")
             return self._parse_json_findings(raw_output, state.last_processed_chapter)
         except Exception as e:
             logger.error(f"Error during {self._llm.provider_name} LLM critique: {e}")

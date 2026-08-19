@@ -494,7 +494,7 @@ Hope that helps with your developmental editing process!"""
         monkeypatch.setattr(engine._llm, "_model", "mock-model")
         
         captured_messages = []
-        def mock_chat(messages):
+        def mock_chat(messages, **kwargs):
             captured_messages.extend(messages)
             return "[]" # Return empty findings
             
@@ -537,7 +537,8 @@ class TestLLMProvider:
         provider = LLMProvider()
         assert provider.provider_name == "groq"
         assert provider.is_available is True
-        assert provider.model == "llama-3.3-70b-versatile"
+        # llama-3.3-70b-versatile was decommissioned by Groq and returns HTTP 404.
+        assert provider.model == "openai/gpt-oss-120b"
 
     def test_provider_priority_gemini_over_groq(self, monkeypatch):
         monkeypatch.setenv("GEMINI_API_KEY", "test-gemini-key-123")
@@ -974,8 +975,9 @@ def test_optimized_llm_prompt_generator(monkeypatch):
     # them active (see the comment above about the relationship tier).
     engine.review(state, None, raw_text="Chapter 1 content. Arthur spoke with Merlin.")
 
-    assert len(captured_messages) > 0
-    prompt_content = captured_messages[1]["content"]
+    assert len(calls) == 2, "expected a critique call followed by a synthesis call"
+    critique_messages = calls[0]
+    prompt_content = critique_messages[1]["content"]
 
     # Assert that all required context is in the prompt payload
     assert "Chapter 1 content." in prompt_content
@@ -1009,15 +1011,14 @@ def test_editorial_critique_carries_cross_chapter_history(monkeypatch):
         {"chapter": 2, "subject": "arthur", "predicate": "crowned_at", "object": "camelot"},
     ]
 
-    captured_messages = []
+    calls = []
 
     class MockLLM:
         is_available = True
         provider_name = "mock"
         model = "mock-model"
-        def chat(self, messages):
-            nonlocal captured_messages
-            captured_messages = messages
+        def chat(self, messages, **kwargs):
+            calls.append(messages)
             return "[]"
 
     engine = EditorialEngine()
@@ -1025,7 +1026,9 @@ def test_editorial_critique_carries_cross_chapter_history(monkeypatch):
 
     engine.review(state, None, raw_text="Arthur faced the first rebellion of his reign.")
 
-    prompt_content = captured_messages[1]["content"]
+    # calls[0] is the critique pass, calls[1] the synthesis pass that ranks its output.
+    assert len(calls) == 2, "expected a critique call followed by a synthesis call"
+    prompt_content = calls[0][1]["content"]
     assert "Arthur pulled the sword from the stone." in prompt_content
     assert "Arthur was crowned king amid growing unrest." in prompt_content
     assert "draws excalibur" in prompt_content

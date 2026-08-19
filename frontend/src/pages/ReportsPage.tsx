@@ -70,7 +70,15 @@ export function ReportsPage() {
                 </div>
 
                 <div className="mt-auto flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{report.finding_count} findings</span>
+                  {/* finding_count is the RANKED count once a synthesis pass has run.
+                      The raw total is shown alongside it so the triage is visible rather
+                      than looking like findings went missing. */}
+                  <span>
+                    {report.finding_count} finding{report.finding_count === 1 ? '' : 's'}
+                    {report.raw_finding_count !== undefined &&
+                      report.raw_finding_count > report.finding_count &&
+                      ` of ${report.raw_finding_count} raw`}
+                  </span>
                   <span className="inline-flex items-center gap-1">
                     <Sparkles className="h-3 w-3" />
                     {report.llm_provider ?? 'none'}

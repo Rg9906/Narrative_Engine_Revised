@@ -133,8 +133,40 @@ export interface ReportSummary {
   generated_at: string | null
   inspector_count: number | null
   llm_provider: string | null
+  /** Ranked findings when a synthesis pass ran, else the raw finding count. */
   finding_count: number
+  /** Every raw inspector finding before triage. Absent on pre-triage reports. */
+  raw_finding_count?: number
+  signal_group_count?: number
+  has_letter?: boolean
   severity_counts: Record<string, number>
+}
+
+/** A finding promoted by the synthesis pass: verified against the chapter, ranked, and
+ * carrying the consequence and the fix rather than only the observation. */
+export interface TopFinding extends Finding {
+  rank?: number
+  why_it_matters?: string
+  recommendation?: string
+  /** Titles of the raw rule-based signals this single finding covers. */
+  subsumes?: string[]
+}
+
+/** A deduplicated rule-based signal: one observation, however many entities tripped it. */
+export interface SignalGroup {
+  category: string
+  title: string
+  severity: string
+  count: number
+  examples: string[]
+  related_entities: string[]
+  evidence_ids: string[]
+  confidence: number
+  priority: number
+  /** True when the rule fired so often it is more likely miscalibrated than
+   * indicative of that many separate story problems. */
+  likely_detector_noise: boolean
+  suppressed_count: number
 }
 
 export interface ReportDetail {
@@ -143,13 +175,25 @@ export interface ReportDetail {
     generated_at: string
     inspector_count: number
     llm_provider: string
+    /** Rule-based findings only, before triage — pairs with signal_group_count. */
+    raw_finding_count?: number
+    /** Rule-based findings plus the LLM critique's own findings. */
+    total_finding_count?: number
+    signal_group_count?: number
+    synthesized?: boolean
   }
-  findings: Finding[]
-  /** Short, human-readable story beats curated by the LLM critique call — distinct from
-   * the mechanical subject-verb-object triples in the Timeline, which exist for structural
-   * inspectors to reason over rather than for a human to read as a narrative summary. Absent
-   * or empty on reports generated before this field existed, or when no LLM was available. */
+  /** Prose developmental note addressed to the author. Empty when no LLM was reachable. */
+  editorial_letter?: string
+  strengths?: string[]
+  /** The handful of issues worth acting on, ranked. This is the report's actual verdict. */
+  top_findings?: TopFinding[]
+  /** Short, human-readable story beats — from the LLM, or derived from the curated
+   * timeline as a fallback so they can never silently come back empty. */
   key_events?: string[]
+  /** Deduplicated inspector output, exposed so the synthesis pass can be audited. */
+  signals?: SignalGroup[]
+  /** Every raw finding, kept for drill-down and for pre-triage reports. */
+  findings: Finding[]
 }
 
 export type GraphNodeType = 'character' | 'world' | 'theme' | 'event' | 'chapter'

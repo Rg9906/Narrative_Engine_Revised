@@ -28,8 +28,15 @@ def list_reports(config: Config) -> list[dict[str, Any]]:
             continue
 
         findings = report.get("findings", []) or []
+        top_findings = report.get("top_findings", []) or []
+
+        # Severity counts describe the RANKED findings when a synthesis pass produced
+        # them, falling back to raw findings for reports generated before that existed.
+        # Counting raw findings on a synthesized report would report a chapter as having
+        # e.g. 57 "note"s when the review's actual conclusion is five ranked issues.
+        counted = top_findings if top_findings else findings
         severity_counts: dict[str, int] = {}
-        for finding in findings:
+        for finding in counted:
             severity = str(finding.get("severity", "note")).lower()
             severity_counts[severity] = severity_counts.get(severity, 0) + 1
 
@@ -39,7 +46,10 @@ def list_reports(config: Config) -> list[dict[str, Any]]:
                 "generated_at": report.get("metadata", {}).get("generated_at"),
                 "inspector_count": report.get("metadata", {}).get("inspector_count"),
                 "llm_provider": report.get("metadata", {}).get("llm_provider"),
-                "finding_count": len(findings),
+                "finding_count": len(counted),
+                "raw_finding_count": len(findings),
+                "signal_group_count": len(report.get("signals", []) or []),
+                "has_letter": bool(str(report.get("editorial_letter") or "").strip()),
                 "severity_counts": severity_counts,
             }
         )
