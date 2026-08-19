@@ -166,19 +166,47 @@ class TestEditorialEngine:
         state.last_processed_chapter = 1
         state.total_chapters_processed = 1
         
-        # Mock character Arthur with 1 mention (should trigger underdeveloped character check)
+        # Arthur has real but very low presence (1 sentence) AND was introduced back in
+        # chapter 1, so by chapter 2 he reads as a thinly-drawn recurring character.
+        # The check deliberately does NOT fire on a character introduced in the chapter
+        # under review -- a character who just appeared is supposed to be thin.
+        state.last_processed_chapter = 2
+        state.total_chapters_processed = 2
+
         from src.models.state import StateEntry, StateSnapshot
         mention_entry = StateEntry(key="mention_count")
         mention_entry.update(StateSnapshot(value=1, chapter=1))
         state.characters["arthur"] = {"mention_count": mention_entry}
 
-        delta = StateDelta(chapter_number=1)
+        delta = StateDelta(chapter_number=2)
         report = engine.review(state, delta)
 
         assert "findings" in report
-        # Underdeveloped character Arthur should be flagged
         assert len(report["findings"]) > 0
-        assert any(f["category"] == "character" and "underdeveloped" in f["title"].lower() for f in report["findings"])
+        assert any(
+            f["category"] == "character" and "thinly-drawn" in f["title"].lower()
+            for f in report["findings"]
+        )
+
+    def test_newly_introduced_character_is_not_flagged_as_thin(self):
+        """A character introduced in the chapter being reviewed has had no chance to be
+        developed yet. Flagging them was how the point-of-view character of a prologue
+        ended up in the report as 'underdeveloped'."""
+        engine = EditorialEngine()
+        state = NarrativeState()
+        state.last_processed_chapter = 1
+        state.total_chapters_processed = 1
+
+        from src.models.state import StateEntry, StateSnapshot
+        mention_entry = StateEntry(key="mention_count")
+        mention_entry.update(StateSnapshot(value=1, chapter=1))
+        state.characters["arthur"] = {"mention_count": mention_entry}
+
+        report = engine.review(state, StateDelta(chapter_number=1))
+
+        assert not any(
+            "thinly-drawn" in f["title"].lower() for f in report["findings"]
+        )
 
     def test_relationship_inspector_abrupt_shift(self):
         engine = EditorialEngine()

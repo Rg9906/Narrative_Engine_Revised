@@ -195,14 +195,22 @@ class CharacterMemory(BaseMemory):
                     confidence=1.0,
                     reasoning="Character seen in current chapter.",
                 )
+                # NOTE: `mention_count` is deliberately NOT written here. The mentions
+                # this loop iterates are deduplicated (see `seen` in
+                # _collect_character_mentions), so incrementing here counts DISTINCT
+                # SURFACE FORMS, not mentions — which is how the POV character of a
+                # chapter ended up with mention_count == 1 and got flagged
+                # "underdeveloped" by CharacterInspector. Real mention counts are
+                # computed from the coreference-resolved sentence map in
+                # extract_advanced_attributes (see _update_presence_counts).
                 self.update_entry(
                     char_id,
-                    "mention_count",
+                    "chapters_present",
                     1,
                     chapter=chapter_num,
                     evidence_ids=[],
                     confidence=1.0,
-                    reasoning="First mention observed this chapter.",
+                    reasoning="First chapter this character appears in.",
                 )
                 changes.append(
                     StateChange(
@@ -243,9 +251,18 @@ class CharacterMemory(BaseMemory):
                     )
                 )
 
-            # Always refresh last seen and mention count for existing characters.
+            # Always refresh last seen and chapter presence for existing characters.
+            # The previous value has to be read BEFORE update_entry runs: update_entry
+            # mutates the very StateEntry object get_entry returned, so re-reading it
+            # afterwards would always report the current chapter and the presence
+            # counter below would never advance.
             last_seen_entry = self.get_entry(char_id, "last_seen_chapter")
-            if last_seen_entry is None or last_seen_entry.current.value != chapter_num:
+            previously_seen_chapter = (
+                last_seen_entry.current.value
+                if last_seen_entry is not None and last_seen_entry.current is not None
+                else None
+            )
+            if previously_seen_chapter != chapter_num:
                 self.update_entry(
                     char_id,
                     "last_seen_chapter",
@@ -256,30 +273,35 @@ class CharacterMemory(BaseMemory):
                     reasoning="Character observed in current chapter.",
                 )
 
-            mention_count_entry = self.get_entry(char_id, "mention_count")
-            previous_count = mention_count_entry.current.value if mention_count_entry and mention_count_entry.current else 0
-            new_count = previous_count + 1
-            self.update_entry(
-                char_id,
-                "mention_count",
-                new_count,
-                chapter=chapter_num,
-                evidence_ids=[],
-                confidence=0.9,
-                reasoning="Mention count incremented for observed character.",
-            )
-            changes.append(
-                StateChange(
-                    change_type=StateChangeType.CONFIRMATION,
-                    target_type=NarrativeElementType.CHARACTER,
-                    target_id=char_id,
-                    field_key="mention_count",
-                    old_value=previous_count,
-                    new_value=new_count,
+            # Count CHAPTERS the character appears in, not surface forms. Because this
+            # loop's mentions are deduplicated, a per-mention increment here would fire
+            # once per distinct spelling within a chapter rather than once per chapter,
+            # so it is guarded on the chapter having actually changed.
+            if previously_seen_chapter != chapter_num:
+                present_entry = self.get_entry(char_id, "chapters_present")
+                previous_count = present_entry.current.value if present_entry and present_entry.current else 0
+                new_count = previous_count + 1
+                self.update_entry(
+                    char_id,
+                    "chapters_present",
+                    new_count,
+                    chapter=chapter_num,
+                    evidence_ids=[],
                     confidence=0.9,
-                    reasoning="Existing character mention confirmed and tracked.",
+                    reasoning="Character observed in an additional chapter.",
                 )
-            )
+                changes.append(
+                    StateChange(
+                        change_type=StateChangeType.CONFIRMATION,
+                        target_type=NarrativeElementType.CHARACTER,
+                        target_id=char_id,
+                        field_key="chapters_present",
+                        old_value=previous_count,
+                        new_value=new_count,
+                        confidence=0.9,
+                        reasoning="Existing character observed in a new chapter.",
+                    )
+                )
 
         return changes
 
@@ -314,6 +336,10 @@ class CharacterMemory(BaseMemory):
         # extraction unless the character's literal name also appeared in that exact
         # sentence.
         sentence_to_characters = self._build_sentence_character_map(chapter_data)
+
+        # Real presence counts, derived from the map above rather than from deduplicated
+        # surface forms. See _update_presence_counts.
+        changes.extend(self._update_presence_counts(sentence_to_characters, chapter_num))
 
         # Process each character mention in the chapter
         for char_id in self._entries.keys():
@@ -374,6 +400,101 @@ class CharacterMemory(BaseMemory):
                 chapter_data, char_id, name_variants, chapter_num, sentence_to_characters
             )
             changes.extend(location_changes)
+
+        return changes
+
+    def _update_presence_counts(
+        self,
+        sentence_to_characters: Dict[int, Set[str]],
+        chapter_num: int,
+    ) -> List[StateChange]:
+        """Record how much textual presence each character actually has this chapter.
+
+        `mention_count` used to be incremented once per distinct surface form per
+        chapter, because the mention list it was derived from is deduplicated. That made
+        it a count of spellings, not mentions: Marlene, the point-of-view character of an
+        entire chapter, scored 1 — and CharacterInspector then reported her as
+        "only mentioned 1 time(s)... consider increasing presence", which is the
+        clearest example of the engine doing arithmetic on a field that didn't measure
+        what its name claimed.
+
+        The count is now the number of sentences the character is the subject of, taken
+        from the coreference-resolved sentence map. That includes pronoun-only sentences
+        ("She felt afraid"), so a POV character scores in the dozens as expected, and a
+        genuinely walk-on character scores 1-2. Two fields are written:
+
+          `mentions_this_chapter` — sentences in THIS chapter mentioning them, which is
+              what a per-chapter density judgement needs.
+          `mention_count` — cumulative across all chapters, keeping the field name that
+              inspectors already read, now with semantics matching the name.
+        """
+        changes: List[StateChange] = []
+
+        per_character: Dict[str, int] = {}
+        for char_ids in sentence_to_characters.values():
+            for char_id in char_ids:
+                per_character[char_id] = per_character.get(char_id, 0) + 1
+
+        for char_id, sentence_count in per_character.items():
+            if char_id not in self._entries:
+                continue
+
+            previous_this_chapter_entry = self.get_entry(char_id, "mentions_this_chapter")
+            previous_this_chapter = (
+                previous_this_chapter_entry.current.value
+                if previous_this_chapter_entry and previous_this_chapter_entry.current
+                and previous_this_chapter_entry.current.chapter == chapter_num
+                else 0
+            )
+
+            self.update_entry(
+                char_id,
+                "mentions_this_chapter",
+                sentence_count,
+                chapter=chapter_num,
+                evidence_ids=[],
+                confidence=0.9,
+                reasoning=(
+                    f"Character is the subject of {sentence_count} sentence(s) in this "
+                    f"chapter (literal name matches plus coreference-resolved mentions)."
+                ),
+            )
+
+            total_entry = self.get_entry(char_id, "mention_count")
+            previous_total = (
+                total_entry.current.value
+                if total_entry and total_entry.current and isinstance(total_entry.current.value, int)
+                else 0
+            )
+            # Reprocessing the same chapter must not double-count, so the already-recorded
+            # contribution for this chapter is backed out before adding the new figure.
+            new_total = previous_total - previous_this_chapter + sentence_count
+
+            self.update_entry(
+                char_id,
+                "mention_count",
+                new_total,
+                chapter=chapter_num,
+                evidence_ids=[],
+                confidence=0.9,
+                reasoning=(
+                    f"Cumulative mentions across all chapters processed so far "
+                    f"(+{sentence_count} from chapter {chapter_num})."
+                ),
+            )
+
+            changes.append(
+                StateChange(
+                    change_type=StateChangeType.CONFIRMATION,
+                    target_type=NarrativeElementType.CHARACTER,
+                    target_id=char_id,
+                    field_key="mention_count",
+                    old_value=previous_total,
+                    new_value=new_total,
+                    confidence=0.9,
+                    reasoning="Mention count recomputed from coreference-resolved sentence map.",
+                )
+            )
 
         return changes
 

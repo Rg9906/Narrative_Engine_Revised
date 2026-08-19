@@ -11,6 +11,10 @@ from typing import List
 class CharacterInspector(BaseInspector):
     """Inspects character state for consistency, arc violations, regressions."""
 
+    # Sentences-of-presence at or below which a recurring character reads as thinly
+    # drawn. Applies to cumulative `mention_count` across all chapters processed so far.
+    THIN_CHARACTER_MENTION_THRESHOLD = 3
+
     @property
     def name(self) -> str:
         return "Character Inspector"
@@ -24,7 +28,7 @@ class CharacterInspector(BaseInspector):
         """
         findings: List[Finding] = []
         chapter = state.last_processed_chapter
-        underdeveloped: List[str] = []
+        underdeveloped: List[tuple] = []
 
         for cid, entries in state.characters.items():
             # entries is a dict of StateEntry objects
@@ -35,12 +39,28 @@ class CharacterInspector(BaseInspector):
             if mention_entry and getattr(mention_entry, 'current', None):
                 mention_count = getattr(mention_entry.current, 'value', None)
 
-            # Track characters only mentioned once — reported as a single grouped finding
-            # below rather than one finding per character, which drowned out every other
-            # finding in the report once a chapter introduced more than a handful of names.
+            # Track thinly-drawn characters — reported as a single grouped finding below
+            # rather than one finding per character, which drowned out every other finding
+            # in the report once a chapter introduced more than a handful of names.
+            #
+            # `mention_count` is now a real count of sentences the character appears in
+            # (see CharacterMemory._update_presence_counts), so the threshold can be a
+            # meaningful one instead of the old `<= 1`, which fired on the point-of-view
+            # character because the field then counted distinct spellings.
+            #
+            # A low count is only worth raising if the character has had a chance to
+            # develop: someone introduced in the chapter being reviewed is *supposed* to
+            # be thin. So this requires the character to have been around for at least
+            # one earlier chapter.
             try:
-                if mention_count is not None and isinstance(mention_count, int) and mention_count <= 1:
-                    underdeveloped.append(cid)
+                first_seen = self._first_chapter(entries)
+                if (
+                    isinstance(mention_count, int)
+                    and mention_count <= self.THIN_CHARACTER_MENTION_THRESHOLD
+                    and first_seen is not None
+                    and chapter > first_seen
+                ):
+                    underdeveloped.append((cid, mention_count))
             except Exception:
                 pass
 
@@ -130,19 +150,38 @@ class CharacterInspector(BaseInspector):
                 pass
 
         if underdeveloped:
-            names = ", ".join(f"'{cid}'" for cid in underdeveloped)
+            underdeveloped.sort(key=lambda pair: pair[1])
+            names = ", ".join(f"'{cid}' ({count})" for cid, count in underdeveloped)
             findings.append(Finding(
                 severity='suggestion',
                 category='character',
-                title='Underdeveloped characters',
+                title='Thinly-drawn recurring characters',
                 description=(
-                    f"{len(underdeveloped)} character(s) are only mentioned once so far: {names}. "
-                    f"Consider increasing their presence or consolidating them into fewer, more developed roles."
+                    f"{len(underdeveloped)} character(s) have persisted past the chapter they were "
+                    f"introduced in but still carry very little presence on the page "
+                    f"(sentence counts in parentheses): {names}. Either give them enough room to "
+                    f"earn their place, or fold them into a smaller cast of better-developed roles."
                 ),
                 chapter=chapter,
                 evidence_ids=[],
-                related_entities=underdeveloped,
+                related_entities=[cid for cid, _ in underdeveloped],
                 confidence=0.6,
             ))
 
         return findings
+
+    @staticmethod
+    def _first_chapter(entries) -> int | None:
+        """Earliest chapter any field of this character was recorded in."""
+        chapters = []
+        for entry in entries.values():
+            history = getattr(entry, 'history', None) or []
+            for snapshot in history:
+                chapter = getattr(snapshot, 'chapter', None)
+                if isinstance(chapter, int):
+                    chapters.append(chapter)
+            current = getattr(entry, 'current', None)
+            current_chapter = getattr(current, 'chapter', None) if current else None
+            if isinstance(current_chapter, int):
+                chapters.append(current_chapter)
+        return min(chapters) if chapters else None

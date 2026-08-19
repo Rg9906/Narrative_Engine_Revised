@@ -36,18 +36,76 @@ class TestCharacterMemory:
         assert len(changes) > 0
         assert "alice" in memory.entries
         assert memory.get_entry("alice", "canonical_name").current.value == "Alice"
-        assert memory.get_entry("alice", "mention_count").current.value == 1
+        # update_from_chapter tracks CHAPTER PRESENCE, not mentions. The mention list it
+        # iterates is deduplicated, so a counter incremented here would count distinct
+        # spellings; real mention counts come from the coreference-resolved sentence map
+        # in extract_advanced_attributes instead.
+        assert memory.get_entry("alice", "chapters_present").current.value == 1
+        assert memory.get_entry("alice", "mention_count") is None
 
-    def test_update_from_chapter_increments_mention_count(self, empty_chapter_data):
+    def test_chapters_present_counts_chapters_not_repeated_calls(self, empty_chapter_data):
+        """Re-running the same chapter must not inflate the presence counter, and a new
+        chapter must advance it. This guards the ordering trap in the implementation:
+        update_entry mutates the same StateEntry object get_entry returned, so the
+        previous chapter number has to be read before the write."""
         empty_chapter_data.entities = [
             ExtractedEntity(text="Alice", label="person", confidence=1.0)
         ]
         memory = CharacterMemory()
         memory.update_from_chapter(empty_chapter_data, 1)
-        # Second mention
         memory.update_from_chapter(empty_chapter_data, 1)
 
-        assert memory.get_entry("alice", "mention_count").current.value == 2
+        assert memory.get_entry("alice", "chapters_present").current.value == 1
+
+        memory.update_from_chapter(empty_chapter_data, 2)
+        assert memory.get_entry("alice", "chapters_present").current.value == 2
+
+    def test_mention_count_reflects_sentences_not_distinct_spellings(self):
+        """Regression test for the bug behind 'Character laurie is only mentioned 1
+        time(s)': mention_count used to count deduplicated surface forms, so a character
+        who dominated a chapter scored 1 and was reported as underdeveloped."""
+        from src.models.state import ChapterData, TextSpan
+
+        text = (
+            "Alice opened the door. Alice crossed the hall. "
+            "Alice found the letter. Bob waited outside."
+        )
+        sentences = [
+            "Alice opened the door.",
+            "Alice crossed the hall.",
+            "Alice found the letter.",
+            "Bob waited outside.",
+        ]
+        offset = 0
+        sentence_spans = []
+        for index, sentence in enumerate(sentences):
+            start = text.index(sentence, offset)
+            sentence_spans.append(
+                TextSpan(text=sentence, start_char=start, end_char=start + len(sentence), sentence_index=index)
+            )
+            offset = start + len(sentence)
+
+        chapter_data = ChapterData(
+            chapter_number=1,
+            source_name="test.txt",
+            chapter_title="Test",
+            raw_text=text,
+            paragraphs=[text],
+            sentences=sentences,
+            sentence_spans=sentence_spans,
+        )
+        chapter_data.entities = [
+            ExtractedEntity(text="Alice", label="person", confidence=1.0),
+            ExtractedEntity(text="Bob", label="person", confidence=1.0),
+        ]
+
+        memory = CharacterMemory()
+        memory.update_from_chapter(chapter_data, 1)
+        memory.extract_advanced_attributes(chapter_data, 1)
+
+        assert memory.get_entry("alice", "mention_count").current.value == 3
+        assert memory.get_entry("alice", "mentions_this_chapter").current.value == 3
+        assert memory.get_entry("bob", "mention_count").current.value == 1
 
     def test_physical_trait_extracts_real_descriptor_not_adjacent_word(self):
         # Regression test: _extract_trait_value used to grab whatever word sat next to
