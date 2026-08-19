@@ -8,29 +8,36 @@ from src.memory.base_memory import BaseMemory
 
 
 class TimelineMemory(BaseMemory):
-    """Manages the chronological timeline of story events."""
+    """Records deterministic relation evidence for the chapter.
+
+    This memory used to manufacture one "timeline event" per dependency-parsed
+    subject-verb-object triple and emit an INTRODUCTION StateChange for each. That
+    was the same mistake `StateEngine` made when it appended those triples straight
+    into `NarrativeState.timeline`: a triple is evidence, not a story beat. spaCy
+    emits a row per verb/object pair, so a single descriptive sentence produced
+    several "events", and a short chapter produced well over a hundred — swamping
+    both the timeline and the chapter's change log with rows like
+    "world moved sound".
+
+    The curated chronology is now built by the World+Timeline LLM stage and applied
+    in `StateEngine` (see `NarrativeState.timeline`); the raw triples are kept in
+    `NarrativeState.raw_relations`. This class still records the triples as memory
+    entries so the deterministic layer keeps a per-relation record, but it no longer
+    reports them as narrative state changes — nothing downstream consumed those
+    changes except the delta's own change count, which they inflated by roughly an
+    order of magnitude.
+    """
 
     def __init__(self, memory_file=None):
         super().__init__(memory_file)
 
     def update_from_chapter(self, chapter_data, chapter_num: int) -> list:
-        """Append events to the timeline from chapter evidence.
+        """Record each extracted relation as a memory entry.
 
-        Phase 8 baseline:
-          - For each relation extracted in the chapter, create a simple event
-            entry and record it as a StateChange introduction.
-          - Does not persist into `NarrativeState.timeline` (caller may append).
+        Returns an empty change list by design — see the class docstring. Relations
+        reach `NarrativeState.raw_relations` via `StateEngine`, and real events reach
+        `NarrativeState.timeline` via the LLM timeline stage.
         """
-        from typing import List
-        import re
-
-        from src.models.state import StateChange, StateChangeType, NarrativeElementType
-
-        changes: List[StateChange] = []
-
-        def _make_eid(idx: int) -> str:
-            return f"ch{chapter_num}_evt{idx}"
-
         for idx, rel in enumerate(getattr(chapter_data, "relations", []), start=1):
             try:
                 subj = rel.subject or ""
@@ -39,24 +46,14 @@ class TimelineMemory(BaseMemory):
             except Exception:
                 continue
 
-            eid = _make_eid(idx)
             desc = f"{subj} {pred} {obj}".strip()
+            if not desc:
+                continue
 
-            # Record a lightweight event entry in memory entries as well
-            self.update_entry(eid, "description", desc, chapter=chapter_num,
-                              evidence_ids=[], confidence=0.8,
-                              reasoning="Event extracted from relation evidence.")
-
-            changes.append(
-                StateChange(
-                    change_type=StateChangeType.INTRODUCTION,
-                    target_type=NarrativeElementType.EVENT,
-                    target_id=eid,
-                    field_key="description",
-                    new_value=desc,
-                    confidence=0.8,
-                    reasoning="Timeline event created from relation.",
-                )
+            self.update_entry(
+                f"ch{chapter_num}_rel{idx}", "description", desc, chapter=chapter_num,
+                evidence_ids=[], confidence=0.8,
+                reasoning="Dependency-parsed relation observed in chapter text.",
             )
 
-        return changes
+        return []

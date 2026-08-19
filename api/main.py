@@ -62,10 +62,21 @@ def state_summary() -> dict:
 
 @app.get("/api/state/timeline")
 def state_timeline() -> dict:
+    """The curated narrative chronology, plus the raw relation evidence behind it.
+
+    `events` are story beats (LLM-authored `narrative` beats and derived `structural`
+    markers). `raw_relations` are the dependency-parsed subject-verb-object triples the
+    NLP layer extracted — evidence, not events. These used to be merged into one list,
+    which meant the Timeline showed hundreds of rows like "world moved sound" alongside
+    the handful that were actually plot.
+    """
     config = get_project_config()
     data = state_data.load_raw_state(config)
-    timeline = data.get("timeline", []) or []
-    return {"events": sorted(timeline, key=lambda e: e.get("chapter", 0) if isinstance(e, dict) else 0)}
+    events, raw_relations = state_data.split_timeline(data)
+    return {
+        "events": sorted(events, key=lambda e: e.get("chapter", 0) if isinstance(e, dict) else 0),
+        "raw_relations": sorted(raw_relations, key=lambda e: e.get("chapter", 0) if isinstance(e, dict) else 0),
+    }
 
 
 @app.get("/api/state/collections/{collection}")

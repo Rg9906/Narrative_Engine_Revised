@@ -49,18 +49,60 @@ export interface StateMetadata {
 
 export interface StateSummary {
   metadata: StateMetadata
-  counts: Record<CollectionName, number> & { timeline_events: number; evidence: number }
+  counts: Record<CollectionName, number> & {
+    timeline_events: number
+    raw_relations?: number
+    evidence: number
+  }
   open_promises: number
   unresolved_mysteries: number
   recent_timeline: TimelineEvent[]
 }
 
+/** An entry in the curated narrative chronology.
+ *
+ * `kind` separates the two things that live in this feed:
+ *   'narrative'  - a story beat authored by the LLM timeline stage, carrying a
+ *                  human-readable summary, a significance score and a reason it matters.
+ *   'structural' - a marker the engine derived from character/inventory updates
+ *                  (moves_to, dies, acquires, discards). Load-bearing for the
+ *                  inspectors, but not something a reader wants in a chapter summary,
+ *                  so the UI keeps these behind a toggle unless `reader_facing`.
+ *
+ * Raw dependency-parsed subject-verb-object triples are NOT timeline events; they
+ * come back from the API separately as `raw_relations`.
+ */
 export interface TimelineEvent {
+  chapter: number
+  kind?: 'narrative' | 'structural'
+  summary?: string
+  subject?: string
+  predicate?: string
+  object?: string
+  participants?: string[]
+  location?: string | null
+  time?: string | null
+  event_type?: string | null
+  significance?: number | null
+  why_it_matters?: string | null
+  causes?: string | null
+  reader_facing?: boolean
+  source?: string
+  [key: string]: unknown
+}
+
+/** A dependency-parsed SVO triple: evidence the inspectors reason over, not a story
+ * beat. Shown in the UI only behind an explicit "raw evidence" toggle. */
+export interface RawRelation {
   chapter: number
   subject?: string
   predicate?: string
   object?: string
-  [key: string]: unknown
+}
+
+export interface TimelineResponse {
+  events: TimelineEvent[]
+  raw_relations: RawRelation[]
 }
 
 export interface Evidence {

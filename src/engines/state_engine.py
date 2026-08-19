@@ -31,6 +31,42 @@ from src.utils import stable_hash
 
 logger = logging.getLogger("NarrativeEngine.Engines.StateEngine")
 
+# Minimum self-reported significance for an LLM-proposed timeline event to be kept.
+# The World+Timeline stage is instructed to score every beat and to propose only
+# plot-load-bearing ones; this is the backstop for when it drifts back toward
+# narrating ordinary actions. Set deliberately low — the prompt does the real
+# filtering, this only catches events the model itself already judged marginal.
+MIN_EVENT_SIGNIFICANCE = 0.35
+
+
+def _add_structural_event(
+    state: NarrativeState,
+    chapter_num: int,
+    subject: str,
+    predicate: str,
+    obj: Optional[str],
+    summary: str,
+    reader_facing: bool = False,
+) -> None:
+    """Append a derived marker event to the curated timeline.
+
+    These are inferred by the engine from character/inventory updates rather than
+    proposed as story beats, and inspectors depend on their exact predicates
+    (TimelineInspector's post-mortem check looks for "dies"). They live in `timeline`
+    rather than `raw_relations` for that reason, but are tagged `kind: "structural"`
+    so the UI can keep them out of the reader-facing chronology.
+    """
+    state.timeline.append({
+        "chapter": chapter_num,
+        "kind": "structural",
+        "summary": summary,
+        "subject": subject,
+        "predicate": predicate,
+        "object": obj,
+        "reader_facing": reader_facing,
+        "source": "state_engine_inference",
+    })
+
 
 class StateEngine:
     """
@@ -139,22 +175,19 @@ class StateEngine:
         current_state.mysteries = mystery_memory.entries
         current_state.style = style_memory.entries
 
-        # Append timeline events from deterministic relation evidence
+        # Record deterministic relation evidence. These are dependency-parsed SVO
+        # triples, NOT story events: one sentence yields a row per verb/object pair,
+        # and scene-setting description ("world moved sound") is indistinguishable
+        # from plot at this layer. They go to `raw_relations` so inspectors can still
+        # reason over them, while `timeline` stays a curated chronology (see
+        # NarrativeState.timeline). Previously these were appended straight to
+        # `timeline`, which is why 337 of 345 "events" were unreadable noise.
         for rel in getattr(chapter_data, "relations", []):
-            event = {
+            current_state.raw_relations.append({
                 "chapter": chapter_num,
                 "subject": getattr(rel, "subject", None),
                 "predicate": getattr(rel, "predicate", None),
                 "object": getattr(rel, "object", None),
-            }
-            current_state.timeline.append(event)
-
-        if not current_state.timeline:
-            current_state.timeline.append({
-                "chapter": chapter_num,
-                "subject": "System",
-                "predicate": "initiated",
-                "object": "Chapter"
             })
 
         # --- PASS 2: LLM-authored delta refinement — only if the pipeline produced one. ---
@@ -678,30 +711,78 @@ class StateEngine:
         # TimelineMemory path has nothing to work with until relation extraction feeds it (see
         # Pipeline._extract_relations). Kept additive alongside that hack rather than replacing it,
         # since TimelineInspector's post-mortem detection depends on the "dies" predicate it emits.
-        for idx, event in enumerate(llm_delta.get("timeline_events", [])):
+        # The stage labels its events with local ids ("e1", "e2") and expresses causal
+        # links between them with those labels. Map them onto our stable per-chapter ids
+        # up front, so `causes` on a stored event points at something that can actually be
+        # looked up rather than at a label that only meant anything inside one response.
+        proposed_events = llm_delta.get("timeline_events", [])
+        local_id_to_stable_id = {}
+        for idx, event in enumerate(proposed_events):
+            local_id = event.get("event_id")
+            if isinstance(local_id, str) and local_id.strip():
+                local_id_to_stable_id[local_id.strip()] = f"ch{chapter_num}_llm_evt{idx}"
+
+        for idx, event in enumerate(proposed_events):
             subject = event.get("subject")
             predicate = event.get("predicate")
             obj = event.get("object")
             if not subject or not predicate:
                 continue
 
+            # Salience gate. The stage is asked for plot-load-bearing beats only and to
+            # self-score them, but models drift back toward narrating every action, so
+            # low-significance proposals are dropped rather than trusted. Events with no
+            # score at all are kept (an older/degraded response shouldn't silently empty
+            # the chapter's timeline) — only an explicit low score is a rejection.
+            significance = event.get("significance")
+            try:
+                significance = float(significance) if significance is not None else None
+            except (TypeError, ValueError):
+                significance = None
+            if significance is not None and significance < MIN_EVENT_SIGNIFICANCE:
+                logger.debug(
+                    f"Chapter {chapter_num}: dropped low-significance event "
+                    f"'{subject} {predicate} {obj or ''}' (score {significance})."
+                )
+                continue
+
+            event_id = f"ch{chapter_num}_llm_evt{idx}"
+            summary = (event.get("summary") or "").strip()
+            if not summary:
+                summary = f"{subject} {predicate} {obj or ''}".strip()
+
             timeline_entry = {
+                "id": event_id,
                 "chapter": chapter_num,
+                "kind": "narrative",
+                # A whole sentence a human can read, which is the point of this feed.
+                # subject/predicate/object are retained alongside it because the graph
+                # builder and inspectors key off them.
+                "summary": summary,
                 "subject": subject,
                 "predicate": predicate,
                 "object": obj,
+                "participants": [p for p in (event.get("participants") or []) if isinstance(p, str)],
+                "location": event.get("location"),
                 "time": event.get("time"),
+                "event_type": event.get("event_type"),
+                "significance": significance,
+                "why_it_matters": event.get("why_it_matters"),
+                # Causal link to an earlier event in this same chapter, translated from
+                # the stage's local "e1"-style label into our stable event id. An
+                # unrecognized label is dropped rather than stored, since a dangling
+                # reference is worse than no reference.
+                "causes": local_id_to_stable_id.get(str(event.get("causes") or "").strip()),
                 "source": "llm_timeline_stage",
             }
             current_state.timeline.append(timeline_entry)
 
-            event_id = f"ch{chapter_num}_llm_evt{idx}"
             delta.changes.append(StateChange(
                 change_type=StateChangeType.INTRODUCTION,
                 target_type=NarrativeElementType.EVENT,
                 target_id=event_id,
                 field_key="description",
-                new_value=f"{subject} {predicate} {obj or ''}".strip(),
+                new_value=summary,
                 confidence=event.get("confidence", 0.8),
                 reasoning="Timeline event proposed by World+Timeline LLM stage.",
             ))
@@ -762,40 +843,36 @@ class StateEngine:
                     
             loc = char_update.get("current_location_id")
             if is_dead:
-                current_state.timeline.append({
-                    "chapter": chapter_num,
-                    "subject": char_id,
-                    "predicate": "dies",
-                    "object": loc if loc else "unknown"
-                })
+                # A death is both structurally load-bearing (TimelineInspector's
+                # post-mortem check keys off this predicate) and genuinely a story beat,
+                # so unlike the other derived markers it is reader-facing.
+                _add_structural_event(
+                    current_state, chapter_num, char_id, "dies", loc if loc else "unknown",
+                    summary=f"{char_id} dies" + (f" at {loc}" if loc else ""),
+                    reader_facing=True,
+                )
             else:
                 if loc:
-                    current_state.timeline.append({
-                        "chapter": chapter_num,
-                        "subject": char_id,
-                        "predicate": "moves_to",
-                        "object": loc
-                    })
+                    _add_structural_event(
+                        current_state, chapter_num, char_id, "moves_to", loc,
+                        summary=f"{char_id} moves to {loc}",
+                    )
                 # Check for inventory actions
                 inv_delta = char_update.get("inventory_delta", {})
                 for item_obj in inv_delta.get("added", []):
                     item = item_obj.get("item_id", "") if isinstance(item_obj, dict) else str(item_obj)
                     if not item: continue
-                    current_state.timeline.append({
-                        "chapter": chapter_num,
-                        "subject": char_id,
-                        "predicate": "acquires",
-                        "object": item
-                    })
+                    _add_structural_event(
+                        current_state, chapter_num, char_id, "acquires", item,
+                        summary=f"{char_id} acquires {item}",
+                    )
                 for item_obj in inv_delta.get("removed", []):
                     item = item_obj.get("item_id", "") if isinstance(item_obj, dict) else str(item_obj)
                     if not item: continue
-                    current_state.timeline.append({
-                        "chapter": chapter_num,
-                        "subject": char_id,
-                        "predicate": "discards",
-                        "object": item
-                    })
+                    _add_structural_event(
+                        current_state, chapter_num, char_id, "discards", item,
+                        summary=f"{char_id} discards {item}",
+                    )
 
         # Prepare summary
         delta.summary = (

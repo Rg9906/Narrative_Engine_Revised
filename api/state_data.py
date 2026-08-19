@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from src.models.state import split_timeline_feeds
 from src.utils.config import Config
 
 # Collections that follow the generic `{id: {field_key: StateEntry}}` shape.
@@ -32,6 +33,7 @@ EMPTY_STATE: dict[str, Any] = {
     },
     **{key: {} for key in COLLECTION_KEYS},
     "timeline": [],
+    "raw_relations": [],
     "chapter_summaries": {},
     "evidence_store": {},
     "delta_history": [],
@@ -50,12 +52,24 @@ def load_raw_state(config: Config) -> dict[str, Any]:
         return json.load(f)
 
 
+def split_timeline(data: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Return (curated story beats, raw SVO relation evidence) for a raw state dict.
+
+    Delegates to the same helper NarrativeState.from_dict uses, so the API applies the
+    identical migration rule to state files written before the two feeds were separated
+    — the dashboard reads a curated timeline even from an un-reprocessed state file.
+    """
+    return split_timeline_feeds(data.get("timeline", []) or [], data.get("raw_relations"))
+
+
 def build_summary(data: dict[str, Any]) -> dict[str, Any]:
     counts = {key: len(data.get(key, {}) or {}) for key in COLLECTION_KEYS}
-    counts["timeline_events"] = len(data.get("timeline", []) or [])
+
+    timeline, raw_relations = split_timeline(data)
+    counts["timeline_events"] = len(timeline)
+    counts["raw_relations"] = len(raw_relations)
     counts["evidence"] = len(data.get("evidence_store", {}) or {})
 
-    timeline = data.get("timeline", []) or []
     recent_timeline = sorted(
         timeline, key=lambda e: e.get("chapter", 0) if isinstance(e, dict) else 0
     )[-8:][::-1]

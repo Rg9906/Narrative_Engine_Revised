@@ -687,6 +687,47 @@ class StateDelta:
 # NARRATIVE STATE — The complete evolving understanding of the novel
 # =============================================================================
 
+# Predicates emitted by StateEngine's own inference (not by the dependency parser)
+# that inspectors depend on. See NarrativeState.timeline.
+STRUCTURAL_PREDICATES = {"dies", "moves_to", "acquires", "discards"}
+
+
+def split_timeline_feeds(
+    timeline: List[Dict[str, Any]],
+    raw_relations: Optional[List[Dict[str, Any]]],
+) -> tuple:
+    """Separate a persisted timeline into (curated events, raw SVO relations).
+
+    Forward path: a state file written by the current engine already stores the two
+    feeds separately, so this is a passthrough.
+
+    Migration path: state files written before the split have every dependency-parsed
+    triple inlined into `timeline` and no `raw_relations` key at all. Rather than
+    require a full reprocess to become readable, those get partitioned on load — an
+    entry is a real event if it was authored by the LLM timeline stage or carries a
+    structural predicate the engine itself emitted; everything else is a raw triple.
+    """
+    timeline = timeline or []
+
+    if raw_relations is not None:
+        return list(timeline), list(raw_relations)
+
+    curated: List[Dict[str, Any]] = []
+    raw: List[Dict[str, Any]] = []
+    for event in timeline:
+        if not isinstance(event, dict):
+            continue
+        source = event.get("source")
+        predicate = (event.get("predicate") or "").strip().lower()
+        if source == "llm_timeline_stage" or event.get("kind") == "narrative":
+            curated.append({**event, "kind": event.get("kind", "narrative")})
+        elif predicate in STRUCTURAL_PREDICATES:
+            curated.append({**event, "kind": "structural"})
+        else:
+            raw.append(event)
+    return curated, raw
+
+
 @dataclass
 class NarrativeState:
     """
@@ -723,8 +764,28 @@ class NarrativeState:
     # World state (locations, objects, rules)
     world: Dict[str, Dict[str, StateEntry]] = field(default_factory=dict)
 
-    # Timeline (ordered list of events)
+    # Timeline — the CURATED narrative chronology: story beats a reader or editor
+    # would recognize as "what happened". Entries carry a `kind`:
+    #   "narrative"  — LLM-authored plot beats (summary, participants, significance,
+    #                  event_type, causal links). This is what the Timeline UI shows.
+    #   "structural" — derived markers the inspectors depend on (moves_to, dies,
+    #                  acquires, discards). Load-bearing for TimelineInspector's
+    #                  post-mortem detection and SpatiotemporalInspector, but not
+    #                  reader-facing, so the UI keeps them behind a toggle.
+    #
+    # Raw dependency-parsed subject-verb-object triples deliberately do NOT live here
+    # anymore — see `raw_relations` below.
     timeline: List[Dict[str, Any]] = field(default_factory=list)
+
+    # Raw dependency-parsed SVO triples, one per relation the NLP layer extracted.
+    # These are EVIDENCE, not events: spaCy emits a row for every verb/object pair, so
+    # a single sentence ("Marlene dipped the brush in white until it shimmered") becomes
+    # three rows, and scene-setting description ("world moved sound") becomes rows
+    # indistinguishable from real plot. Historically these were appended straight into
+    # `timeline`, which meant 337 of 345 "timeline events" were unreadable noise that
+    # buried the 8 real ones. They're kept because inspectors and the graph builder
+    # reason over them, but they are no longer part of the narrative chronology.
+    raw_relations: List[Dict[str, Any]] = field(default_factory=list)
 
     # Themes and motifs
     themes: Dict[str, StateEntry] = field(default_factory=dict)
@@ -800,6 +861,7 @@ class NarrativeState:
             "relationships": _serialize_state_dict(self.relationships),
             "world": _serialize_state_dict(self.world),
             "timeline": self.timeline,
+            "raw_relations": self.raw_relations,
             "themes": _serialize_state_dict(self.themes),
             "motifs": _serialize_state_dict(self.motifs),
             "promises": _serialize_state_dict(self.promises),
@@ -840,7 +902,9 @@ class NarrativeState:
         state.characters = _deserialize_state_dict(data.get("characters", {}))
         state.relationships = _deserialize_state_dict(data.get("relationships", {}))
         state.world = _deserialize_state_dict(data.get("world", {}))
-        state.timeline = data.get("timeline", [])
+        state.timeline, state.raw_relations = split_timeline_feeds(
+            data.get("timeline", []), data.get("raw_relations")
+        )
         state.themes = _deserialize_state_dict(data.get("themes", {}))
         state.motifs = _deserialize_state_dict(data.get("motifs", {}))
         state.promises = _deserialize_state_dict(data.get("promises", {}))

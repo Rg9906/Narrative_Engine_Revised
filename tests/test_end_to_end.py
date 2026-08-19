@@ -79,9 +79,12 @@ def test_full_pipeline_end_to_end(temp_project_dir):
     assert state.last_processed_chapter == 1
     assert state.total_chapters_processed == 1
     
-    # Verify memory states populated
+    # Verify memory states populated. The deterministic pass populates raw_relations
+    # (dependency-parsed SVO triples); state.timeline is the CURATED chronology, which
+    # is authored by the LLM timeline stage and so is legitimately empty here, since the
+    # LLM provider is disabled under pytest.
     assert len(state.characters) > 0
-    assert len(state.timeline) > 0
+    assert len(state.raw_relations) > 0
     assert len(state.themes) > 0
     
     # 3. Editorial Review

@@ -121,9 +121,12 @@ export function OverviewPage() {
                   <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                     Ch. {event.chapter}
                   </span>
-                  <span className="text-foreground">{event.subject}</span>
-                  <span className="text-muted-foreground">{event.predicate}</span>
-                  <span className="text-foreground">{event.object}</span>
+                  {/* Curated beats carry a written summary; derived structural markers
+                      fall back to their subject/predicate/object parts. */}
+                  <span className="text-foreground">
+                    {event.summary ??
+                      [event.subject, event.predicate, event.object].filter(Boolean).join(' ')}
+                  </span>
                 </motion.li>
               ))}
             </ul>

@@ -7,7 +7,7 @@ import type {
   ReportDetail,
   ReportSummary,
   StateSummary,
-  TimelineEvent,
+  TimelineResponse,
 } from '@/types/state'
 
 export class ApiError extends Error {
@@ -39,7 +39,7 @@ export const api = {
 
   stateSummary: () => request<StateSummary>('/state/summary'),
 
-  timeline: () => request<{ events: TimelineEvent[] }>('/state/timeline'),
+  timeline: () => request<TimelineResponse>('/state/timeline'),
 
   collection: (name: CollectionName) =>
     request<{ collection: string; entities: Entity[] }>(`/state/collections/${name}`),

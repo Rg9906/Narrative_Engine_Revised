@@ -12,6 +12,11 @@ from src.models.state import NarrativeElementType
 class SceneInspector(BaseInspector):
     """Inspects scene state for pacing, structure, and conflict issues."""
 
+    # Significant story beats in one chapter beyond which the chapter is likely
+    # carrying too much plot. Counted against the curated timeline, whose own
+    # extraction stage is capped at 8 beats per chapter.
+    DENSE_BEAT_THRESHOLD = 7
+
     @property
     def name(self) -> str:
         return "Scene Inspector"
@@ -26,22 +31,35 @@ class SceneInspector(BaseInspector):
         findings: List[Finding] = []
         chapter = state.last_processed_chapter
 
-        # Count timeline events for the last processed chapter
+        # Count significant story beats for the last processed chapter. This reads the
+        # CURATED timeline (LLM-authored narrative beats plus reader-facing structural
+        # markers), not the raw dependency-parsed triples in state.raw_relations. When it
+        # read the raw feed, a 279-word chapter registered "36 timeline events" and the
+        # inspector advised breaking it into clearer scenes — a conclusion drawn entirely
+        # from parser verbosity rather than from anything about the chapter's structure.
         try:
-            timeline_count = len([e for e in state.timeline if e.get('chapter') == chapter])
-            if timeline_count > 10:
+            beats = [
+                e for e in state.timeline
+                if e.get('chapter') == chapter and e.get('kind', 'narrative') == 'narrative'
+            ]
+            timeline_count = len(beats)
+            if timeline_count > self.DENSE_BEAT_THRESHOLD:
                 findings.append(Finding(
                     severity='warning',
                     category='scene',
-                    title='Dense timeline events',
-                    description=f'This chapter has {timeline_count} timeline events; consider breaking into clearer scenes for pacing.',
+                    title='Dense story beats',
+                    description=(
+                        f'This chapter carries {timeline_count} significant story beats. That is a '
+                        f'lot of plot to land in one chapter; consider whether some of it wants '
+                        f'more room, or clearer scene breaks between beats.'
+                    ),
                     chapter=chapter,
                     evidence_ids=[],
                     related_entities=[],
                     confidence=0.6,
                 ))
         except Exception:
-            pass
+            timeline_count = 0
 
         # Detect whether any SCENE introductions occurred in the delta
         try:
