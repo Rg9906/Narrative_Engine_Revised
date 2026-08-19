@@ -47,13 +47,61 @@ editorial:
   min_relationship_interactions: 3
 
 # LLM Provider configuration
-# Priority: gemini → groq → ollama (auto-detected)
-# Set GEMINI_API_KEY or GROQ_API_KEY in environment variables
+# Backend selection is PER ROLE (see llm.roles below), not one global priority chain.
+#
+# Rationale: a local Ollama model is the only backend with guaranteed availability. Within
+# a single day this project saw Groq's configured model decommissioned (404) AND the Gemini
+# project sitting at zero quota (429) -- both cloud backends down at once, while the engine
+# treated local as a last-resort fallback that had quietly been misconfigured. So local is
+# now the reliable floor for the high-volume structured extraction stages, and a cloud model
+# is an opportunistic UPGRADE for the editorial prose, where model size visibly shows.
+#
+# Set GEMINI_API_KEY or GROQ_API_KEY in the environment (or .env) to enable those backends.
+# Real environment variables take precedence over .env, so a single run can disable one
+# provider with e.g. GEMINI_API_KEY="" without editing any file.
 llm:
+  # Per-role backend preference, most-preferred first. A backend that is unavailable
+  # (no API key, not running, retired earlier in the run) is skipped, so every role
+  # degrades rather than fails as long as ONE backend in its list is reachable.
+  roles:
+    # Schema-filling over evidence the NLP layer already extracted. High volume (4 calls
+    # per chapter) and not very model-size-sensitive -> prefer local, which has no rate
+    # limit to pace against.
+    extraction: ["ollama", "groq", "gemini"]
+    # The developmental-editor critique and synthesis letter. Only ~2 calls per chapter,
+    # which fits inside even Groq's free 8,000 TPM budget without waiting, and it is the
+    # one output where a large model is clearly better prose. Falls back to local so a
+    # dead or exhausted cloud account still produces a real letter -- just a less sharp
+    # one, and the report records which model wrote it.
+    editorial: ["groq", "gemini", "ollama"]
   gemini_model: "gemini-2.0-flash"
-  groq_model: "llama-3.3-70b-versatile"
-  ollama_model: "llama3"
+  # llama-3.3-70b-versatile was decommissioned by Groq and now returns HTTP 404
+  # ("model does not exist"), which silently killed the whole LLM layer: Gemini was
+  # simultaneously out of quota (429), so every LLM call in the engine failed over to a
+  # dead model and degraded to empty output. Replaced with the closest live general
+  # model on the account. Check `GET https://api.groq.com/openai/v1/models` if this
+  # 404s again -- Groq retires models regularly.
+  groq_model: "openai/gpt-oss-120b"
+  # Must name a model actually pulled locally (`ollama list`). The previous default,
+  # "llama3", was not present and returned HTTP 404 `model 'llama3' not found` -- which,
+  # combined with the two cloud failures above, is how the engine ended up with no working
+  # LLM backend at all.
+  ollama_model: "qwen3:4b"
   ollama_url: "http://localhost:11434"
+  # Ollama defaults to a 4096-token context REGARDLESS of what the model supports, and
+  # silently truncates anything longer with no error or warning. This engine's extraction
+  # prompts run 6,000-9,000 tokens (chapter text + story context + deterministic evidence
+  # + schema), so at the default the model would silently reason over a fragment. qwen3:4b
+  # advertises a 262144 context; this is set well above our prompt sizes but far below the
+  # maximum, since KV-cache memory scales with it.
+  ollama_num_ctx: 16384
+  # Keep the model resident between calls. A chapter issues several LLM calls in sequence
+  # and Ollama unloads after 5 minutes idle by default; reloading a 2.5GB model each time
+  # dominates runtime on a laptop.
+  ollama_keep_alive: "15m"
+  # Local generation of a 500-1500 token JSON body on consumer hardware routinely exceeds
+  # the 30s used for cloud HTTP calls.
+  ollama_timeout_seconds: 900
   temperature: 0.2
 
 # Logging

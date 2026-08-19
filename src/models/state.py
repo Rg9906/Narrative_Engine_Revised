@@ -443,6 +443,19 @@ class ChapterData:
     validation_warnings: List[str] = field(default_factory=list)
     extraction_notes: List[str] = field(default_factory=list)
 
+    # Proposals from the LLM extraction stages (src/pipeline/llm_extraction.py):
+    # character_updates, relationship_mutations, world_updates, timeline_events,
+    # promises/threats/themes/motifs deltas, and structural_mysteries.
+    #
+    # Strictly speaking this is interpretation rather than evidence, so it sits oddly on
+    # ChapterData -- but StateEngine reads it from here, and the pipeline caches
+    # ChapterData wholesale. It was previously assigned as an ad-hoc attribute that
+    # `to_dict` did not serialize, which meant every cache hit silently dropped the
+    # ENTIRE LLM layer: the chapter replayed deterministic-only, with no character
+    # updates, no relationship mutations, no timeline events and no consistency check,
+    # and the only trace was an INFO line saying "No LLM delta for chapter N".
+    llm_delta: Dict[str, Any] = field(default_factory=dict)
+
     # Raw spaCy doc tokens if needed for deeper analysis
     # (not serialized — ephemeral)
 
@@ -508,6 +521,7 @@ class ChapterData:
             "style_metrics": self.style_metrics,
             "validation_warnings": self.validation_warnings,
             "extraction_notes": self.extraction_notes,
+            "llm_delta": self.llm_delta,
             "evidence_summary": self.evidence_summary(),
         }
 
@@ -582,6 +596,7 @@ class ChapterData:
             style_metrics=data.get("style_metrics", {}),
             validation_warnings=data.get("validation_warnings", []),
             extraction_notes=data.get("extraction_notes", []),
+            llm_delta=data.get("llm_delta", {}) or {},
         )
 
 

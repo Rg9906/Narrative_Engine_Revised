@@ -25,7 +25,6 @@ for actually applying (and, from Phase 5 onward, validating) these proposals.
 
 from __future__ import annotations
 
-import concurrent.futures
 import json
 import logging
 from typing import Any, Dict, List
@@ -51,7 +50,10 @@ class LLMExtractionEngine:
     # ------------------------------------------------------------------
 
     def extract(self, chapter_num: int, cleaned_text: str, chapter_data, context_block: str) -> Dict[str, Any]:
-        """Run stages A/B/C in parallel, then D, and return a merged delta dict."""
+        """Run stages A/B/C sequentially, then D, and return a merged delta dict.
+
+        Sequential rather than concurrent on purpose -- see the comment at the call site.
+        """
         evidence_block = self._build_evidence_block(chapter_data)
         system_content = (
             f"{_SYSTEM_PREAMBLE}\n\n"
@@ -67,13 +69,17 @@ class LLMExtractionEngine:
         prompt_b = self._build_world_timeline_prompt(chapter_num, cleaned_text)
         prompt_c = self._build_thematic_prompt(chapter_num, cleaned_text)
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-            future_a = executor.submit(self._fetch_json, system_content, prompt_a)
-            future_b = executor.submit(self._fetch_json, system_content, prompt_b)
-            future_c = executor.submit(self._fetch_json, system_content, prompt_c)
-            data_a = self._safe_result(future_a, "character_relationship")
-            data_b = self._safe_result(future_b, "world_timeline_scene")
-            data_c = self._safe_result(future_c, "thematic")
+        # Stages run SEQUENTIALLY, not concurrently. They were parallel (a
+        # ThreadPoolExecutor with three workers) which is the right shape for a
+        # latency-bound workload and the wrong one for a token-bound one: three ~6k-token
+        # prompts issued at once consume ~18k tokens instantaneously, and a provider with
+        # a per-minute token budget (Groq's free tier allows 8,000 TPM) rejects most of
+        # them outright. Every stage then failed and the chapter fell back to
+        # deterministic-only extraction. Sequential costs wall-clock time on a batch job
+        # that is already minutes per chapter, and actually completes.
+        data_a = self._run_stage("character_relationship", system_content, prompt_a)
+        data_b = self._run_stage("world_timeline_scene", system_content, prompt_b)
+        data_c = self._run_stage("thematic", system_content, prompt_c)
 
         delta: Dict[str, Any] = {
             "chapter_summary": data_a.get("chapter_summary", ""),
@@ -94,7 +100,7 @@ class LLMExtractionEngine:
         )
         if has_any_proposal:
             prompt_d = self._build_consistency_prompt(chapter_num, cleaned_text, data_a, data_b, data_c)
-            data_d = self._fetch_json(system_content, prompt_d)
+            data_d = self._run_stage("consistency_checker", system_content, prompt_d)
             delta["structural_mysteries"] = data_d.get("structural_mysteries", [])
         else:
             logger.info(f"Chapter {chapter_num}: no proposals from stages A-C; skipping consistency checker call.")
@@ -301,13 +307,86 @@ class LLMExtractionEngine:
     # LLM plumbing
     # ------------------------------------------------------------------
 
-    def _fetch_json(self, system_content: str, prompt: str) -> Dict[str, Any]:
+    def _run_stage(self, stage_name: str, system_content: str, prompt: str) -> Dict[str, Any]:
+        """Run one extraction stage, shrinking the request if the backend rejects its size.
+
+        A `RequestTooLargeError` is not a failure of the stage, it is a statement that this
+        particular prompt does not fit the backend's token allowance — so the stage is
+        retried with the most compressible part removed rather than abandoned. The
+        `<StoryContext>` block goes first (it is accumulated background, and the chapter
+        text plus deterministic evidence are what the stage is actually reasoning about);
+        if that is still too large, the chapter text is truncated.
+        """
+        from src.utils.llm_provider import RequestTooLargeError
+
+        attempts = [
+            ("full", system_content, prompt),
+            ("context-trimmed", self._trim_context_block(system_content), prompt),
+            (
+                "context-trimmed + text-truncated",
+                self._trim_context_block(system_content),
+                self._truncate_chapter_text(prompt),
+            ),
+        ]
+
+        for label, sys_content, user_prompt in attempts:
+            try:
+                return self._fetch_json(sys_content, user_prompt, raise_too_large=True)
+            except RequestTooLargeError as e:
+                logger.warning(
+                    f"Stage '{stage_name}' prompt too large for the backend ({label}): {e}. "
+                    f"Retrying with a smaller request."
+                )
+            except Exception as e:
+                logger.error(f"LLM extraction stage '{stage_name}' failed: {e}")
+                return {}
+
+        logger.error(
+            f"LLM extraction stage '{stage_name}' could not be made to fit the backend's "
+            f"token allowance even after trimming; skipping it."
+        )
+        return {}
+
+    @staticmethod
+    def _trim_context_block(system_content: str) -> str:
+        """Drop the accumulated <StoryContext> block, keeping the evidence and instructions."""
+        start = system_content.find("<StoryContext")
+        if start == -1:
+            return system_content
+        end = system_content.find("</StoryContext>")
+        if end == -1:
+            return system_content
+        end += len("</StoryContext>")
+        return (
+            system_content[:start]
+            + "(prior story context omitted to fit the model's token budget)"
+            + system_content[end:]
+        )
+
+    @staticmethod
+    def _truncate_chapter_text(prompt: str, keep_chars: int = 4000) -> str:
+        """Keep only the opening of the chapter text embedded in a stage prompt."""
+        marker = "--- Output Requirements ---"
+        split_at = prompt.find(marker)
+        if split_at == -1 or split_at <= keep_chars:
+            return prompt
+        return (
+            prompt[:keep_chars]
+            + "\n[... chapter text truncated to fit the model's token budget ...]\n\n"
+            + prompt[split_at:]
+        )
+
+    def _fetch_json(self, system_content: str, prompt: str, raise_too_large: bool = False) -> Dict[str, Any]:
         """Call the configured LLM backend and parse its JSON response.
 
-        Instantiates its own LLMProvider (thread-safe: stages A/B/C run concurrently).
+        Instantiates its own LLMProvider per call. (Stages used to run concurrently and
+        needed that isolation; they are sequential now, but a fresh provider also picks up
+        any backend retirement recorded by an earlier stage, which is class-level state.)
         Any failure — no backend available, HTTP error, malformed JSON — degrades to
         an empty dict rather than raising, so one stage's failure never blocks the others.
         """
+        from src.utils.llm_provider import RequestTooLargeError
+
         try:
             from src.utils.llm_provider import LLMProvider
             llm = LLMProvider(self._config)
@@ -329,13 +408,12 @@ class LLMExtractionEngine:
                     lines = lines[:-1]
                 cleaned = "\n".join(lines).strip()
             return json.loads(cleaned)
+        except RequestTooLargeError:
+            # Surfaced to _run_stage, which retries with a smaller prompt. Swallowing it
+            # here would silently drop the stage on a request that a trim would have fixed.
+            if raise_too_large:
+                raise
+            return {}
         except Exception as e:
             logger.error(f"LLM extraction stage failed: {e}")
-            return {}
-
-    def _safe_result(self, future: "concurrent.futures.Future", stage_name: str) -> Dict[str, Any]:
-        try:
-            return future.result(timeout=300)
-        except Exception as e:
-            logger.warning(f"LLM extraction stage '{stage_name}' timed out or failed: {e}")
             return {}

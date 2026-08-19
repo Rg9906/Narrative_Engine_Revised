@@ -955,15 +955,16 @@ def test_optimized_llm_prompt_generator(monkeypatch):
     rel_entry["relationship_label"].update(StateSnapshot(value="ALLIANCE", chapter=1))
     state.relationships["arthur::merlin"] = rel_entry
 
-    # Mock LLM provider to capture the prompt
-    captured_messages = []
+    # Mock LLM provider to capture the prompt. review() makes TWO LLM calls -- the
+    # critique pass and then the synthesis pass that ranks its output -- so every call
+    # is recorded and the assertions below target the critique prompt specifically.
+    calls = []
     class MockLLM:
         is_available = True
         provider_name = "mock"
         model = "mock-model"
-        def chat(self, messages):
-            nonlocal captured_messages
-            captured_messages = messages
+        def chat(self, messages, **kwargs):
+            calls.append(messages)
             return "[]"
 
     engine = EditorialEngine()

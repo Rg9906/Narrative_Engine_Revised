@@ -87,7 +87,7 @@ No more waiting on heavy models. The pipeline hashes chapter texts with **SHA-25
 ### 🔌 4. Zero-Dependency LLM Routing
 Built completely with Python's standard library (`urllib.request` + `json`), the engine automatically auto-detects and prioritizes your available LLM backends:
 1.  **Gemini** (`gemini-2.0-flash`)
-2.  **Groq** (`llama-3.3-70b-versatile`)
+2.  **Groq** (`openai/gpt-oss-120b`)
 3.  **Ollama** (`llama3` running locally)
 
 ### 🎨 5. Stunning Interactive Graph Visualizer

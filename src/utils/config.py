@@ -58,7 +58,16 @@ class Config:
                             # Strip quotes if present
                             if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
                                 val = val[1:-1]
-                            os.environ[key] = val
+                            # A real environment variable wins over .env. This used to
+                            # overwrite unconditionally, which made the class docstring's
+                            # promise of "environment variable overrides" false for every
+                            # key that also appeared in .env -- and blocked the ordinary
+                            # operational move of disabling one provider for a single run
+                            # (e.g. GEMINI_API_KEY="" to skip a zero-quota project)
+                            # without editing the file. Matches python-dotenv's own
+                            # default of override=False.
+                            if key not in os.environ:
+                                os.environ[key] = val
             except Exception as e:
                 print(f"[Config] Warning: Failed to read .env file: {e}")
 

@@ -29,6 +29,22 @@ from src.pipeline.dialogue import DialogueExtractor
 
 logger = logging.getLogger("NarrativeEngine.Pipeline")
 
+# Bump whenever a change would produce different ChapterData for identical input text:
+# new/changed NLP extractors, changed coreference or span handling, or changed LLM
+# extraction prompts/schema.
+#
+# The cache stores the ENTIRE ChapterData, including `llm_delta` — so a cache hit skips
+# NER, coreference, dialogue extraction AND every LLM extraction stage. Keyed on the text
+# hash alone, that meant improvements to extraction were invisible on any chapter already
+# processed: reprocessing replayed the old evidence and the old LLM proposals verbatim,
+# and looked like the new code had done nothing. Including the version in the key means a
+# stale entry is simply missed rather than silently served.
+# v3: llm_delta is now serialized into the cache (it previously was not, so every cache
+#     hit silently discarded the entire LLM extraction layer).
+# v4: extraction stages run sequentially with size-aware retries, so a token-budgeted
+#     backend actually returns proposals instead of rejecting three parallel prompts.
+EXTRACTION_VERSION = 4
+
 
 class Pipeline:
     """
@@ -120,13 +136,28 @@ class Pipeline:
             import hashlib
             import json
             text_hash = hashlib.sha256(cleaned_text.encode("utf-8")).hexdigest()
-            cache_file = Path(self._config.cache_dir) / f"chapter_{chapter_num}_{text_hash[:16]}.json"
+            cache_file = (
+                Path(self._config.cache_dir)
+                / f"chapter_{chapter_num}_v{EXTRACTION_VERSION}_{text_hash[:16]}.json"
+            )
             if cache_file.exists():
                 logger.info(f"Cache hit: Loading Chapter {chapter_num} data from {cache_file.name}")
                 try:
                     with open(cache_file, "r", encoding="utf-8") as f:
                         cached_data = json.load(f)
-                    return ChapterData.from_dict(cached_data)
+                    restored = ChapterData.from_dict(cached_data)
+                    # A cache entry with no LLM proposals is only legitimate if the
+                    # chapter genuinely produced none (no provider configured at the
+                    # time, or every stage failed). Serving it silently is how a cached
+                    # chapter came to look like the LLM layer had simply stopped
+                    # existing, so it is called out rather than logged at debug.
+                    if not restored.llm_delta:
+                        logger.warning(
+                            f"Cached Chapter {chapter_num} carries no LLM extraction delta; "
+                            f"this chapter will be applied deterministic-only. Delete "
+                            f"{cache_file.name} to re-run the LLM stages."
+                        )
+                    return restored
                 except Exception as e:
                     logger.warning(f"Failed to load cached chapter data: {e}. Re-processing...")
 

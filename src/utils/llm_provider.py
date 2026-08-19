@@ -24,6 +24,17 @@ from typing import Any, Dict, List, Optional
 logger = logging.getLogger("NarrativeEngine.Utils.LLMProvider")
 
 
+class RequestTooLargeError(RuntimeError):
+    """The prompt exceeded the backend's per-request or per-minute token allowance.
+
+    Distinct from a dead backend: the backend is fine and a smaller prompt would
+    succeed, so callers should shrink the request rather than fail over or give up.
+    Groq's free tier reports this as HTTP 413 with code `rate_limit_exceeded` and a
+    message of the form "Request too large ... on tokens per minute (TPM): Limit 8000,
+    Requested 8984". Retrying it unchanged can never succeed.
+    """
+
+
 class LLMProvider:
     """Centralized LLM provider with automatic backend detection and failover.
 
@@ -48,13 +59,57 @@ class LLMProvider:
         "groq": {
             "env_key": "GROQ_API_KEY",
             "url": "https://api.groq.com/openai/v1/chat/completions",
-            "default_model": "llama-3.3-70b-versatile",
+            # See config/default.yaml: the previous default (llama-3.3-70b-versatile)
+            # was decommissioned and 404s.
+            "default_model": "openai/gpt-oss-120b",
             "config_model_key": "llm.groq_model",
         },
     }
 
-    def __init__(self, config=None):
+    # Backends that have hard-failed this process, mapped to why. A dead backend is dead
+    # for every LLMProvider instance, not just the one that discovered it: the engine
+    # constructs a fresh provider per extraction stage (see LLMExtractionEngine._fetch_json),
+    # so without this each of a chapter's ~6 LLM calls independently re-discovered that
+    # Gemini was out of quota, burning five exponential-backoff retries (~60s) apiece
+    # before failing over. Deliberately class-level and never reset: an exhausted daily
+    # quota or a decommissioned model does not recover within one run.
+    _dead_backends: Dict[str, str] = {}
+
+    # Separate bookkeeping for rate/quota limits, which are NOT structural failures.
+    # A 429 can mean either "you are over your per-minute rate" (recovers in seconds) or
+    # "this project's quota is zero" (never recovers), and the response body does not
+    # reliably distinguish them. Blacklisting on the first exhausted-retry 429 would let
+    # one bad minute -- easily reached, since a chapter issues roughly six sequential
+    # calls against a per-minute token budget -- kill the backend for the rest of the run;
+    # never blacklisting means a permanently zero-quota project costs ~60s of backoff on
+    # every single call. So a backend is retired only after this many *separate* calls
+    # have each exhausted their retries.
+    _RATE_LIMIT_STRIKES_BEFORE_RETIRING = 2
+    _rate_limit_strikes: Dict[str, int] = {}
+
+    # Per-role backend preference used when config supplies none. See the commentary in
+    # config/default.yaml: local Ollama is the only backend with guaranteed availability,
+    # so it is the floor for the high-volume extraction stages, while a cloud model is an
+    # opportunistic upgrade for the editorial prose where model size visibly shows.
+    _DEFAULT_ROLE_PREFERENCES = {
+        "extraction": ["ollama", "groq", "gemini"],
+        "editorial": ["groq", "gemini", "ollama"],
+    }
+
+    # Backend order for callers that don't name a role. Preserves the original
+    # gemini -> groq -> ollama chain so nothing that predates role routing changes.
+    _DEFAULT_PREFERENCE = ["gemini", "groq", "ollama"]
+
+    def __init__(self, config=None, role: Optional[str] = None):
+        """
+        Args:
+            config: project Config, used for model names and role preferences.
+            role: which kind of work this provider is for -- "extraction" or "editorial".
+                Selects the backend preference order (see _DEFAULT_ROLE_PREFERENCES).
+                None keeps the historical global ordering.
+        """
         self._config = config
+        self._role = role
         self._provider: Optional[str] = None
         self._api_key: Optional[str] = None
         self._url: Optional[str] = None
@@ -191,8 +246,16 @@ class LLMProvider:
             }]
 
         last_error = None
-        # Try each available backend in priority order
-        for backend_idx, backend in enumerate(backends):
+        live_backends = [b for b in backends if b["name"] not in self._dead_backends]
+        if not live_backends:
+            reasons = "; ".join(f"{name}: {why}" for name, why in self._dead_backends.items())
+            raise RuntimeError(f"All LLM backends have hard-failed this run. {reasons}")
+        if len(live_backends) < len(backends):
+            skipped = [b["name"] for b in backends if b["name"] in self._dead_backends]
+            logger.debug(f"Skipping backend(s) already known dead this run: {', '.join(skipped)}")
+
+        # Try each still-live backend in priority order
+        for backend_idx, backend in enumerate(live_backends):
             provider_name = backend["name"]
             api_key = backend["api_key"]
             url = backend["url"]
@@ -270,6 +333,11 @@ class LLMProvider:
                         f"  Latency: {latency:.3f}s"
                     )
 
+                    # A success proves any earlier 429s on this backend were transient
+                    # rate limiting rather than an exhausted quota, so the strikes that
+                    # would eventually retire it are forgiven.
+                    self._rate_limit_strikes.pop(provider_name, None)
+
                     # Extract content
                     if provider_name == "ollama":
                         return resp_json["message"]["content"].strip()
@@ -292,15 +360,68 @@ class LLMProvider:
                         f"  Response Body: {error_body}"
                     )
 
+                    # A request that exceeds the token allowance will never succeed on
+                    # retry, and says nothing about the backend's health -- so it neither
+                    # retries nor retires anything. It propagates so the caller can send
+                    # less. Previously this fell through to the "non-retryable" branch and
+                    # retired the backend, which meant one oversized extraction prompt
+                    # disabled the LLM for the entire remainder of the chapter run.
+                    if status_code == 413:
+                        raise RequestTooLargeError(
+                            self._describe_http_failure(status_code, error_body)
+                        ) from e
+
                     # Determine if error is rate limit or server error (429 or 5xx)
                     if status_code in (429, 500, 502, 503, 504) and attempt < max_retries:
+                        # Token-per-minute limits come with the server's own estimate of
+                        # when the budget frees up ("Please try again in 34.52s"). Honour it
+                        # -- blind exponential backoff under-waits on the early attempts
+                        # (burning retries against a window that has not reset) and
+                        # over-waits on the late ones.
+                        advised = self._advised_retry_delay(error_body, e)
                         sleep_time = initial_delay * (backoff_factor ** attempt)
-                        logger.warning(f"Transient error {status_code} encountered. Retrying in {sleep_time:.2f}s...")
+                        if advised is not None:
+                            sleep_time = max(sleep_time, advised)
+                            logger.warning(
+                                f"Rate limited ({status_code}); backend advises retrying in "
+                                f"{advised:.2f}s. Waiting {sleep_time:.2f}s..."
+                            )
+                        else:
+                            logger.warning(
+                                f"Transient error {status_code} encountered. Retrying in "
+                                f"{sleep_time:.2f}s..."
+                            )
                         time.sleep(sleep_time)
                         continue
                     else:
-                        # Non-retryable error, or retries exhausted
-                        logger.error(f"HTTP error {status_code} is not retryable or retries exhausted. Attempting next provider...")
+                        # Non-retryable error, or retries exhausted. Either way this
+                        # backend is not going to start working later in the same run:
+                        # 404 means the configured model no longer exists, 401/403 means
+                        # the key is wrong, and a 429 that survived five backoffs means
+                        # the quota is genuinely exhausted rather than momentarily tight.
+                        reason = self._describe_http_failure(status_code, error_body)
+                        if status_code == 429:
+                            strikes = self._rate_limit_strikes.get(provider_name, 0) + 1
+                            self._rate_limit_strikes[provider_name] = strikes
+                            if strikes >= self._RATE_LIMIT_STRIKES_BEFORE_RETIRING:
+                                self._dead_backends[provider_name] = reason
+                                logger.error(
+                                    f"Backend '{provider_name}' (model {model}) retired for this run "
+                                    f"after {strikes} rate-limited calls: {reason}. "
+                                    f"Attempting next provider..."
+                                )
+                            else:
+                                logger.warning(
+                                    f"Backend '{provider_name}' (model {model}) rate-limited "
+                                    f"(strike {strikes}/{self._RATE_LIMIT_STRIKES_BEFORE_RETIRING}): "
+                                    f"{reason}. Attempting next provider..."
+                                )
+                        else:
+                            self._dead_backends[provider_name] = reason
+                            logger.error(
+                                f"Backend '{provider_name}' (model {model}) marked dead for this run: "
+                                f"{reason}. Attempting next provider..."
+                            )
                         break
 
                 except Exception as e:
@@ -323,8 +444,62 @@ class LLMProvider:
 
         # If all backends failed
         if last_error:
+            detail = "; ".join(f"{name}: {why}" for name, why in self._dead_backends.items())
             raise RuntimeError(
-                f"All LLM providers failed. Last error: {last_error}"
+                f"All LLM providers failed. Last error: {last_error}."
+                + (f" Backend status -- {detail}" if detail else "")
             ) from last_error
         else:
             raise RuntimeError("No LLM providers responded successfully.")
+
+    @staticmethod
+    def _describe_http_failure(status_code: int, error_body: str) -> str:
+        """Turn an HTTP failure into something actionable in a log line.
+
+        A bare "HTTP Error 404: Not Found" is what made the dead-model outage so hard to
+        see: it looked like a transient network problem rather than "the model in your
+        config no longer exists".
+        """
+        snippet = (error_body or "").strip().replace("\n", " ")[:200]
+        if status_code == 404:
+            return f"configured model not found (404) -- it may have been decommissioned. {snippet}"
+        if status_code in (401, 403):
+            return f"authentication rejected ({status_code}) -- check the API key. {snippet}"
+        if status_code == 429:
+            return f"quota/rate limit exhausted after retries (429). {snippet}"
+        if status_code == 413:
+            return f"request exceeded the backend's token allowance (413). {snippet}"
+        return f"HTTP {status_code}. {snippet}"
+
+    @staticmethod
+    def _advised_retry_delay(error_body: str, error: Exception) -> Optional[float]:
+        """Seconds the backend says to wait, from a Retry-After header or its message.
+
+        Groq embeds the figure in prose ("Please try again in 34.5225s") rather than
+        always setting a header, so both are checked. Capped so a hostile or malformed
+        value cannot stall a run indefinitely.
+        """
+        import re
+
+        candidates = []
+
+        headers = getattr(error, "headers", None)
+        if headers is not None:
+            for header in ("retry-after", "Retry-After", "x-ratelimit-reset-tokens"):
+                try:
+                    raw = headers.get(header)
+                except Exception:
+                    raw = None
+                if raw:
+                    match = re.search(r"([0-9]+(?:\.[0-9]+)?)", str(raw))
+                    if match:
+                        candidates.append(float(match.group(1)))
+
+        match = re.search(r"try again in\s+([0-9]+(?:\.[0-9]+)?)\s*s", error_body or "", re.IGNORECASE)
+        if match:
+            candidates.append(float(match.group(1)))
+
+        if not candidates:
+            return None
+        # A small margin, because the window boundary is a moving target.
+        return min(max(candidates) + 1.0, 90.0)
