@@ -11,6 +11,24 @@
 
 ---
 
+## 🖥️ Dashboard Tour
+
+Real screenshots of the React dashboard (`frontend/`) running against the sample story state committed in `data/memory/` (4 chapters processed). Nothing here is mocked.
+
+<p align="center">
+  <img src="docs/screenshots/dashboard-overview.png" alt="Dashboard overview: 23 characters, 21 relationships, 25 themes, 457 evidence pieces from 4 chapters" width="100%">
+  <br><sub><b>Overview.</b> After 4 chapters the engine tracks 23 characters, 21 relationships, 21 world elements, 25 themes and motifs, 4 open promises, 12 unresolved mysteries and 457 pieces of evidence.</sub>
+</p>
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/story-graph.png" alt="Interactive story graph of characters, world elements and themes"><br><sub><b>Story graph.</b> Characters, world elements, themes, events and chapters as one force-directed network (106 nodes, 615 connections). Drag, zoom, click a node to open it.</sub></td>
+    <td width="50%"><img src="docs/screenshots/editorial-reports.png" alt="Per-chapter editorial reports with severity badges"><br><sub><b>Editorial reports.</b> One developmental critique per chapter: static inspector findings plus grounded LLM commentary, grouped by severity.</sub></td>
+  </tr>
+</table>
+
+---
+
 ## ⚡ The Architectural Blueprint
 
 Unlike simple chat interfaces or generic vector retrieval tools that lose track of context over long texts, the Narrative Intelligence Engine splits **Sensory Ingestion** (observations) from **Narrative Understanding** (beliefs), feeding state updates into an editorial reasoning core.
